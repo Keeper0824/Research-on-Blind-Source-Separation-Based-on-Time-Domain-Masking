@@ -11,3 +11,20 @@ def si_snr_metric(x, s, eps=1e-13):
     proj = torch.sum(x_zm * s_zm, dim=-1, keepdim=True) * s_zm / (l2norm(s_zm, keep_dim=True) ** 2 + eps)
     si_snr_value = 20 * torch.log10((l2norm(proj) + eps) / (l2norm(x_zm - proj) + eps))
     return torch.mean(si_snr_value)
+
+def si_snr_improvement(x_hat, s, mix, eps=1e-13):
+    """
+    Compute SI-SNR improvement (SI-SNRi) in dB.
+    SI-SNRi = SI-SNR(x_hat, s) - SI-SNR(mix, s)
+
+    Args:
+        x_hat: model output, shape [B, T]
+        s: clean target, shape [B, T]
+        mix: mixture speech, shape [B, T]
+
+    Returns:
+        scalar SI-SNRi in dB (float tensor)
+    """
+    si_snr_est = si_snr_metric(x_hat, s, eps)
+    si_snr_mix = si_snr_metric(mix, s, eps)
+    return si_snr_est - si_snr_mix
