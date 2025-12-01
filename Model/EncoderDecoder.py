@@ -4,7 +4,7 @@ from torch import nn
 
 class Encoder(nn.Module):
     """
-    Time-domain convolutional encoder (TasNet-style).
+    Time-domain convolutional encoder.
 
     Input:
         waveform: (B, 1, T)
@@ -17,14 +17,8 @@ class Encoder(nn.Module):
         super().__init__()
         self.enc_dim = enc_dim
 
-        self.encoder_conv = nn.Conv1d(
-            in_channels=1,
-            out_channels=enc_dim,
-            kernel_size=kernel_size,
-            stride=stride,
-            padding=0,
-            bias=False
-        )
+        self.encoder_conv = nn.Conv1d(in_channels=1, out_channels=enc_dim, kernel_size=kernel_size, stride=stride,
+                                      padding=0, bias=False)
 
     def forward(self, x):
         """
