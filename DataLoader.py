@@ -48,20 +48,20 @@ class WSJ0MixDataset(Dataset):
 
         return mix, torch.stack([s1, s2], dim=0)
 
-def MakeDataLoader():
-    train_set = WSJ0MixDataset(root="Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min", split="tr", sample_rate=8000, segment=4.0)
-    trainLoader = DataLoader(train_set, batch_size=4, shuffle=True, num_workers=4, drop_last=True)
-    valid_set = WSJ0MixDataset(root="Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min", split="cv", sample_rate=8000, segment=4.0)
-    validLoader = DataLoader(valid_set, batch_size=4, shuffle=False, num_workers=4, drop_last=True)
-    test_set = WSJ0MixDataset(root="Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min", split="cv", sample_rate=8000,
-                               segment=4.0)
-    testLoader = DataLoader(test_set, batch_size=4, shuffle=False, num_workers=4, drop_last=True)
-
+def MakeDataLoader(root, batch_size, num_workers, segment, sample_rate):
+    train_set = WSJ0MixDataset(root=root, split="tr", sample_rate=sample_rate, segment=segment)
+    trainLoader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=num_workers, drop_last=True)
+    valid_set = WSJ0MixDataset(root=root, split="cv", sample_rate=sample_rate, segment=segment)
+    validLoader = DataLoader(valid_set, batch_size=batch_size, shuffle=True, num_workers=num_workers, drop_last=True)
+    test_set = WSJ0MixDataset(root=root, split="tt", sample_rate=sample_rate, segment=segment)
+    testLoader = DataLoader(test_set, batch_size=batch_size, shuffle=True, num_workers=num_workers, drop_last=True)
     return trainLoader, validLoader, testLoader
 
 if __name__ == "__main__":
-    trainLoader, validLoader, testLoader = MakeDataLoader()
-    for mix, targets in validLoaders:
+    root = "Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
+    sample_rate = 8000
+    trainLoader, validLoader, testLoader = MakeDataLoader(root=root, batch_size=4, num_workers=4, segment=4.0, sample_rate=sample_rate)
+    for mix, targets in validLoader:
         # mix: (B, T)
         # targets: (B, 2, T)
         print(mix.shape, targets.shape)
