@@ -43,7 +43,7 @@ def main():
         segment=4.0, sample_rate=sample_rate
     )
 
-    # torchaudio 自带 ConvTasNet
+    # torchaudio 自带 ConvTasNet_Test
     model = ConvTasNet(num_sources=2).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
