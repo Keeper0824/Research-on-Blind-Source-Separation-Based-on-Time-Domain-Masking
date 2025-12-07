@@ -1,8 +1,8 @@
 import torch
 from torch import nn
-from SI_SNR import negative_si_snr
-from MAE import mae_loss
-from STOI import STOILoss
+from LossFunction.SI_SNR import negative_si_snr
+from LossFunction.MAE import mae_loss
+from LossFunction.STOI import STOILoss
 
 
 class BSSLoss(nn.Module):

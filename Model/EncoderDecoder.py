@@ -64,13 +64,7 @@ class Decoder(nn.Module):
             separated_waveforms: (B, C, T)
         """
         B, C, N, L = masked_feat.size()
-
-        outputs = []
-        for i in range(C):
-            feat_i = masked_feat[:, i, :, :]  # (B, N, L)
-            wave_i = self.decoder_deconv(feat_i)  # (B, 1, T)
-            outputs.append(wave_i)
-
-        # Stack into (B, C, T)
-        separated = torch.cat(outputs, dim=1)
-        return separated
+        x = masked_feat.view(B * C, N, L)  # (B*C, N, L)
+        y = self.decoder_deconv(x)  # (B*C, 1, T)
+        y = y.view(B, C, -1)  # (B, C, T)
+        return y

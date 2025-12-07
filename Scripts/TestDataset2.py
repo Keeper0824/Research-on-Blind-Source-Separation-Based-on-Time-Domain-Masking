@@ -28,7 +28,7 @@ class Logger(object):
 def main():
     # ---------------- 日志设置：同时写入命令行和文件 ----------------
     timestamp = time.strftime("%Y%m%d-%H%M%S")
-    log_file = os.path.join("logs", f"train_convtasnet_{timestamp}.log")
+    log_file = os.path.join("../logs", f"train_convtasnet_{timestamp}.log")
     sys.stdout = Logger(log_file)
     print(f"Log file: {log_file}")
 
@@ -48,7 +48,7 @@ def main():
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
     # 用来保存模型参数的目录
-    ckpt_dir = "checkpoints"
+    ckpt_dir = "../checkpoints"
     os.makedirs(ckpt_dir, exist_ok=True)
 
     # --------- 训练 ---------
@@ -112,7 +112,7 @@ def main():
     print(f"[Final] Model saved to: {final_ckpt_path}")
 
     # --------- 用测试集跑一个 batch，导出音频 ---------
-    os.makedirs("outputs", exist_ok=True)
+    os.makedirs("../outputs", exist_ok=True)
     model.eval()
     with torch.no_grad():
         for mix, targets in testLoader:

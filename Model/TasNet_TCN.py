@@ -1,5 +1,6 @@
 from torch import nn
 
+
 class TCNBlock(nn.Module):
     """
     One single TCN residual block used in Conv-TasNet.
@@ -61,14 +62,8 @@ class SeparatorTCN(nn.Module):
     Output: masks (B, num_speakers, N, L)
     """
 
-    def __init__(self,
-                 enc_channels: int,
-                 bottleneck_channels: int,
-                 hidden_channels: int = 256,
-                 kernel_size: int = 3,
-                 num_blocks: int = 8,
-                 num_repeats: int = 3,
-                 num_speakers: int = 2):
+    def __init__(self, enc_channels, bottleneck_channels, hidden_channels=256, kernel_size=3, num_blocks=8,
+                 num_repeats=3, num_speakers=2):
         super().__init__()
 
         self.enc_channels = enc_channels
@@ -80,25 +75,15 @@ class SeparatorTCN(nn.Module):
         self.num_speakers = num_speakers
 
         # Map encoder output N → bottleneck B
-        self.encoder_1x1 = nn.Conv1d(
-            enc_channels,
-            bottleneck_channels,
-            kernel_size=1
-        )
+        self.encoder_1x1 = nn.Conv1d(enc_channels, bottleneck_channels, kernel_size=1)
 
         # Build TCN blocks: dilation pattern 1, 2, 4, ... per repeat
         blocks = []
         for r in range(num_repeats):
             for b in range(num_blocks):
                 dilation = 2 ** b
-                blocks.append(
-                    TCNBlock(
-                        bottleneck_channels=bottleneck_channels,
-                        hidden_channels=hidden_channels,
-                        kernel_size=kernel_size,
-                        dilation=dilation
-                    )
-                )
+                blocks.append(TCNBlock(bottleneck_channels=bottleneck_channels, hidden_channels=hidden_channels,
+                                       kernel_size=kernel_size, dilation=dilation))
 
         self.tcn_blocks = nn.ModuleList(blocks)
 
