@@ -62,26 +62,41 @@ def eval_test_full(model, test_loader, sample_rate, device, output_dir, max_samp
     """
     Run through the entire test set (or first N samples) after training finishes.
     Save separated wav files for each test sample.
+    Also compute average test loss (e.g. negative SI-SNR).
     """
     model.eval()
     os.makedirs(output_dir, exist_ok=True)
+
     count = 0
+    total_loss = 0.0
+    num_batches = 0
+
     with torch.no_grad():
         for mix, targets in test_loader:
-            mix = mix.to(device)
-            targets = targets.to(device)
-            est_sources = model(mix.unsqueeze(1))
-            # Align length
-            min_len = min(est_sources.shape[-1], targets.shape[-1])
-            est_sources = est_sources[..., :min_len]
-            targets = targets[..., :min_len]
-            mix = mix[..., :min_len]
+            mix = mix.to(device)          # [B, T]
+            targets = targets.to(device)  # [B, 2, T]  (假设 2 个源)
 
-            # Save each sample in the batch
+            est_sources = model(mix.unsqueeze(1))  # [B, 2, T’]
+
+            min_len = min(est_sources.shape[-1], targets.shape[-1])
+            est_sources = est_sources[..., :min_len]   # [B, 2, L]
+            targets = targets[..., :min_len]           # [B, 2, L]
+            mix = mix[..., :min_len]                   # [B, L]
+
+            B, S, L = est_sources.shape
+            est_flat = est_sources.view(B * S, L)      # [B*S, L]
+            tgt_flat = targets.view(B * S, L)          # [B*S, L]
+
+            batch_loss = BSSLoss.negative_si_snr(est_flat, tgt_flat)  # 标量，负 SI-SNR
+            total_loss += batch_loss.item()
+            num_batches += 1
+
             B = mix.size(0)
             for i in range(B):
                 if count >= max_samples:
                     print("[Test] Reached max_samples limit.")
+                    avg_loss = total_loss / num_batches if num_batches > 0 else float('nan')
+                    print(f"[Test] Average test loss (−SI-SNR): {avg_loss:.4f} dB")
                     return
 
                 mix_i = mix[i].cpu()
@@ -89,14 +104,26 @@ def eval_test_full(model, test_loader, sample_rate, device, output_dir, max_samp
                 s2_ref = targets[i, 1].cpu()
                 s1_est = est_sources[i, 0].cpu()
                 s2_est = est_sources[i, 1].cpu()
+
                 base = f"test_{count}"
-                torchaudio.save(os.path.join(output_dir, f"{base}_mix.wav"), mix_i.unsqueeze(0), sample_rate)
-                torchaudio.save(os.path.join(output_dir, f"{base}_s1_ref.wav"), s1_ref.unsqueeze(0), sample_rate)
-                torchaudio.save(os.path.join(output_dir, f"{base}_s2_ref.wav"), s2_ref.unsqueeze(0), sample_rate)
-                torchaudio.save(os.path.join(output_dir, f"{base}_s1_est.wav"), s1_est.unsqueeze(0), sample_rate)
-                torchaudio.save(os.path.join(output_dir, f"{base}_s2_est.wav"), s2_est.unsqueeze(0), sample_rate)
+                torchaudio.save(os.path.join(output_dir, f"{base}_mix.wav"),
+                                mix_i.unsqueeze(0), sample_rate)
+                torchaudio.save(os.path.join(output_dir, f"{base}_s1_ref.wav"),
+                                s1_ref.unsqueeze(0), sample_rate)
+                torchaudio.save(os.path.join(output_dir, f"{base}_s2_ref.wav"),
+                                s2_ref.unsqueeze(0), sample_rate)
+                torchaudio.save(os.path.join(output_dir, f"{base}_s1_est.wav"),
+                                s1_est.unsqueeze(0), sample_rate)
+                torchaudio.save(os.path.join(output_dir, f"{base}_s2_est.wav"),
+                                s2_est.unsqueeze(0), sample_rate)
                 count += 1
+
+    if num_batches > 0:
+        avg_loss = total_loss / num_batches
+    else:
+        avg_loss = float('nan')
     print(f"[Test] Saved {count} test samples to: {output_dir}")
+    print(f"[Test] Average test loss (−SI-SNR): {avg_loss:.4f} dB")
 
 
 
@@ -132,12 +159,12 @@ def main():
                                                              sample_rate=sample_rate)
 
     # Model, optimizer, loss, AMP scaler
-    model = Model(enc_dim=256, enc_kernel=16, enc_stride=8, bottleneck_channels=128, hidden_channels=256, num_blocks=8,
+    model = Model(enc_dim=512, enc_kernel=16, enc_stride=8, bottleneck_channels=128, hidden_channels=256, num_blocks=8,
                   num_repeats=3, num_speakers=2).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     scaler = GradScaler()
     loss_fn = BSSLoss.BSSLoss(mode="si_snr")
-    num_epochs = 10
+    num_epochs = 50
     global_step = 0
 
     # Training loop

@@ -1,6 +1,5 @@
 from torch import nn
 
-
 class TCNBlock(nn.Module):
     """
     One single TCN residual block used in Conv-TasNet.
