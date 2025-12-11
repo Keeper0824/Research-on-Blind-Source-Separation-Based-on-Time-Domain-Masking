@@ -5,7 +5,7 @@ import torch
 import torchaudio
 from torch.amp import GradScaler, autocast
 from Model.Model_TasNet import Model
-from LossFunction import BSSLoss
+from LossFunction.SI_SNR import pit_si_snr_loss
 from DataLoader import MakeDataLoader
 
 
@@ -13,6 +13,7 @@ class Logger(object):
     """
     Simple logger that writes both to terminal and a log file.
     """
+
     def __init__(self, log_path: str):
         self.terminal = sys.stdout
         os.makedirs(os.path.dirname(log_path), exist_ok=True)
@@ -58,7 +59,7 @@ def eval_valid(model, valid_loader, loss_fn, device):
     return avg_val_loss
 
 
-def eval_test_full(model, test_loader, sample_rate, device, output_dir, max_samples=20):
+def eval_test_full(model, test_loader, loss_fn, sample_rate, device, output_dir, max_samples=20):
     """
     Run through the entire test set (or first N samples) after training finishes.
     Save separated wav files for each test sample.
@@ -73,21 +74,17 @@ def eval_test_full(model, test_loader, sample_rate, device, output_dir, max_samp
 
     with torch.no_grad():
         for mix, targets in test_loader:
-            mix = mix.to(device)          # [B, T]
+            mix = mix.to(device)  # [B, T]
             targets = targets.to(device)  # [B, 2, T]  (假设 2 个源)
 
             est_sources = model(mix.unsqueeze(1))  # [B, 2, T’]
 
             min_len = min(est_sources.shape[-1], targets.shape[-1])
-            est_sources = est_sources[..., :min_len]   # [B, 2, L]
-            targets = targets[..., :min_len]           # [B, 2, L]
-            mix = mix[..., :min_len]                   # [B, L]
+            est_sources = est_sources[..., :min_len]  # [B, 2, L]
+            targets = targets[..., :min_len]  # [B, 2, L]
+            mix = mix[..., :min_len]  # [B, L]
 
-            B, S, L = est_sources.shape
-            est_flat = est_sources.view(B * S, L)      # [B*S, L]
-            tgt_flat = targets.view(B * S, L)          # [B*S, L]
-
-            batch_loss = BSSLoss.negative_si_snr(est_flat, tgt_flat)  # 标量，负 SI-SNR
+            batch_loss = loss_fn(est_sources, targets)
             total_loss += batch_loss.item()
             num_batches += 1
 
@@ -126,7 +123,6 @@ def eval_test_full(model, test_loader, sample_rate, device, output_dir, max_samp
     print(f"[Test] Average test loss (−SI-SNR): {avg_loss:.4f} dB")
 
 
-
 def main():
     # Basic run naming & logging setup
     timestamp = time.strftime("%Y%m%d-%H%M%S")
@@ -163,7 +159,8 @@ def main():
                   num_repeats=3, num_speakers=2).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     scaler = GradScaler()
-    loss_fn = BSSLoss.BSSLoss(mode="si_snr")
+    # loss_fn = BSSLoss.BSSLoss(mode="si_snr")
+    loss_fn = pit_si_snr_loss
     num_epochs = 50
     global_step = 0
 
@@ -241,9 +238,8 @@ def main():
         final_ckpt_path,
     )
     print(f"[Final] Model saved to: {final_ckpt_path}")
-    eval_test_full(model, test_loader, sample_rate, device, output_dir)
+    eval_test_full(model, test_loader, loss_fn, sample_rate, device, output_dir)
 
 
 if __name__ == "__main__":
     main()
-

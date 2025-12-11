@@ -1,5 +1,7 @@
 import os
 import glob
+import random
+
 import torch
 import torchaudio
 from torch.utils.data import Dataset, DataLoader
@@ -30,23 +32,45 @@ class WSJ0MixDataset(Dataset):
 
     def __getitem__(self, idx):
         mix = load_audio(self.mix_list[idx], self.sample_rate)[0]
-        s1  = load_audio(self.s1_list[idx],  self.sample_rate)[0]
-        s2  = load_audio(self.s2_list[idx],  self.sample_rate)[0]
+        s1 = load_audio(self.s1_list[idx], self.sample_rate)[0]
+        s2 = load_audio(self.s2_list[idx], self.sample_rate)[0]
 
         min_len = min(mix.shape[-1], s1.shape[-1], s2.shape[-1])
-        mix, s1, s2 = mix[:min_len], s1[:min_len], s2[:min_len]
 
-        if min_len < self.seg_len:
+        if min_len <= self.seg_len:
+            # 和之前一样，pad 到 seg_len
             pad = self.seg_len - min_len
             mix = torch.nn.functional.pad(mix, (0, pad))
-            s1  = torch.nn.functional.pad(s1, (0, pad))
-            s2  = torch.nn.functional.pad(s2, (0, pad))
+            s1 = torch.nn.functional.pad(s1, (0, pad))
+            s2 = torch.nn.functional.pad(s2, (0, pad))
         else:
-            mix = mix[:self.seg_len]
-            s1  = s1[:self.seg_len]
-            s2  = s2[:self.seg_len]
+            start = random.randint(0, min_len - self.seg_len)
+            end = start + self.seg_len
+            mix = mix[start:end]
+            s1 = s1[start:end]
+            s2 = s2[start:end]
 
         return mix, torch.stack([s1, s2], dim=0)
+
+    # def __getitem__(self, idx):
+    #     mix = load_audio(self.mix_list[idx], self.sample_rate)[0]
+    #     s1  = load_audio(self.s1_list[idx],  self.sample_rate)[0]
+    #     s2  = load_audio(self.s2_list[idx],  self.sample_rate)[0]
+    #
+    #     min_len = min(mix.shape[-1], s1.shape[-1], s2.shape[-1])
+    #     mix, s1, s2 = mix[:min_len], s1[:min_len], s2[:min_len]
+    #
+    #     if min_len < self.seg_len:
+    #         pad = self.seg_len - min_len
+    #         mix = torch.nn.functional.pad(mix, (0, pad))
+    #         s1  = torch.nn.functional.pad(s1, (0, pad))
+    #         s2  = torch.nn.functional.pad(s2, (0, pad))
+    #     else:
+    #         mix = mix[:self.seg_len]
+    #         s1  = s1[:self.seg_len]
+    #         s2  = s2[:self.seg_len]
+    #
+    #     return mix, torch.stack([s1, s2], dim=0)
 
 def MakeDataLoader(root, batch_size, num_workers, segment, sample_rate):
     train_set = WSJ0MixDataset(root=root, split="tr", sample_rate=sample_rate, segment=segment)
