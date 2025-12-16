@@ -3,6 +3,9 @@ import sys
 import time
 import torch
 import torchaudio
+import copy
+import matplotlib.pyplot as plt
+from contextlib import nullcontext
 from torch.amp import GradScaler, autocast
 from Model.Model_TasNet import Model
 from LossFunction.SI_SNR import pit_si_snr_loss
@@ -122,6 +125,135 @@ def eval_test_full(model, test_loader, loss_fn, sample_rate, device, output_dir,
     print(f"[Test] Saved {count} test samples to: {output_dir}")
     print(f"[Test] Average test loss (−SI-SNR): {avg_loss:.4f} dB")
 
+def _safe_autocast(device):
+    return autocast(device_type="cuda", dtype=torch.float16) if device.type == "cuda" else nullcontext()
+
+def _log_spec(x, sample_rate, n_fft=256, hop=64):
+    """
+    x: Tensor [T] float
+    return: Tensor [F, TT] log-magnitude spectrogram
+    """
+    x = x.unsqueeze(0)  # [1, T]
+    spec = torch.stft(
+        x, n_fft=n_fft, hop_length=hop, win_length=n_fft,
+        window=torch.hann_window(n_fft, device=x.device),
+        return_complex=True
+    )  # [1, F, TT]
+    mag = spec.abs().clamp_min(1e-8)
+    log_mag = mag.log10()  # log10
+    return log_mag.squeeze(0)  # [F, TT]
+
+def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_prefix):
+    """
+    固定样例可视化：波形图 + 频谱图
+    mix: [1, T] or [T]
+    targets: [1, 2, T] or [2, T]
+    """
+    model.eval()
+    os.makedirs(os.path.dirname(save_prefix), exist_ok=True)
+
+    with torch.no_grad():
+        # 统一 shape
+        if mix.dim() == 1:
+            mix = mix.unsqueeze(0)          # [1, T]
+        if targets.dim() == 2:
+            targets = targets.unsqueeze(0)  # [1, 2, T]
+
+        mix = mix.to(device)
+        targets = targets.to(device)
+
+        with _safe_autocast(device):
+            est = model(mix.unsqueeze(1))  # [1, 2, T’]
+
+        # 对齐长度
+        min_len = min(est.shape[-1], targets.shape[-1], mix.shape[-1])
+        est = est[..., :min_len]
+        targets = targets[..., :min_len]
+        mix = mix[..., :min_len]
+
+        # 取出单条
+        mix_ = mix[0].detach().float().cpu()
+        s1_ref = targets[0, 0].detach().float().cpu()
+        s2_ref = targets[0, 1].detach().float().cpu()
+        s1_est = est[0, 0].detach().float().cpu()
+        s2_est = est[0, 1].detach().float().cpu()
+
+    # ============ 1) 波形图 ============
+    wavs = [mix_, s1_ref, s2_ref, s1_est, s2_est]
+    names = ["mix", "s1_ref", "s2_ref", "s1_est", "s2_est"]
+
+    plt.figure(figsize=(12, 10))
+    for i, (w, n) in enumerate(zip(wavs, names), start=1):
+        plt.subplot(5, 1, i)
+        plt.plot(w.numpy())
+        plt.title(n)
+        plt.tight_layout()
+    plt.savefig(save_prefix + "_wave.png", dpi=200)
+    plt.close()
+
+    # ============ 2) 频谱图 ============
+    # 用 CPU 也行（快且稳），转回 tensor 方便 stft
+    def to_t(x):
+        return x.to(torch.float32)
+
+    mix_t = to_t(mix_)
+    s1_ref_t = to_t(s1_ref)
+    s2_ref_t = to_t(s2_ref)
+    s1_est_t = to_t(s1_est)
+    s2_est_t = to_t(s2_est)
+
+    # stft 放 CPU 上跑就行（省 GPU）
+    mix_spec = _log_spec(mix_t, sample_rate)
+    s1_ref_spec = _log_spec(s1_ref_t, sample_rate)
+    s2_ref_spec = _log_spec(s2_ref_t, sample_rate)
+    s1_est_spec = _log_spec(s1_est_t, sample_rate)
+    s2_est_spec = _log_spec(s2_est_t, sample_rate)
+
+    specs = [mix_spec, s1_ref_spec, s2_ref_spec, s1_est_spec, s2_est_spec]
+
+    plt.figure(figsize=(12, 10))
+    for i, (sp, n) in enumerate(zip(specs, names), start=1):
+        plt.subplot(5, 1, i)
+        plt.imshow(sp.numpy(), origin="lower", aspect="auto")
+        plt.title(n + " (log10 |STFT|)")
+        plt.tight_layout()
+    plt.savefig(save_prefix + "_spec.png", dpi=200)
+    plt.close()
+
+    model.train()
+
+def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
+    os.makedirs(output_dir, exist_ok=True)
+
+    # 1) SI-SNR(dB) = -loss（你的 loss 是 -SI-SNR）
+    train_sisnr = [-x for x in train_loss]
+    val_sisnr = [-x for x in val_loss]
+    plt.figure()
+    plt.plot(epochs, train_sisnr, label="train SI-SNR (dB)")
+    plt.plot(epochs, val_sisnr, label="val SI-SNR (dB)")
+    plt.xlabel("epoch"); plt.ylabel("SI-SNR (dB)")
+    plt.legend(); plt.tight_layout()
+    plt.savefig(os.path.join(output_dir, "curve_sisnr.png"), dpi=200)
+    plt.close()
+
+    # 2) gap = val_loss - train_loss（看过拟合很直观）
+    gap = [v - t for t, v in zip(train_loss, val_loss)]
+    plt.figure()
+    plt.plot(epochs, gap, label="gap = val_loss - train_loss")
+    plt.axhline(0.0, linestyle="--")
+    plt.xlabel("epoch"); plt.ylabel("loss gap")
+    plt.legend(); plt.tight_layout()
+    plt.savefig(os.path.join(output_dir, "curve_gap.png"), dpi=200)
+    plt.close()
+
+    # 3) grad norm（每个 epoch 平均值）
+    plt.figure()
+    plt.plot(epochs, grad_norm_epoch, label="avg grad norm / epoch")
+    plt.xlabel("epoch"); plt.ylabel("grad norm")
+    plt.legend(); plt.tight_layout()
+    plt.savefig(os.path.join(output_dir, "curve_gradnorm.png"), dpi=200)
+    plt.close()
+
 
 def main():
     # Basic run naming & logging setup
@@ -143,6 +275,10 @@ def main():
 
     print(f"Checkpoint directory: {ckpt_dir}")
     print(f"Output directory: {output_dir}")
+    epochs_hist = []
+    train_loss_hist = []
+    val_loss_hist = []
+    grad_norm_hist = []
 
     torch.backends.cudnn.benchmark = True
     # Data & device setup
@@ -153,6 +289,10 @@ def main():
 
     train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=16, num_workers=8, segment=4.0,
                                                              sample_rate=sample_rate)
+    # 固定一个 valid 样例：每个 epoch 都用同一个，方便看训练进步
+    fixed_mix, fixed_targets = next(iter(valid_loader))
+    fixed_mix = fixed_mix[0]  # [T]
+    fixed_targets = fixed_targets[0]  # [2, T]
 
     # Model, optimizer, loss, AMP scaler
     model = Model(enc_dim=512, enc_kernel=16, enc_stride=8, bottleneck_channels=128, hidden_channels=256, num_blocks=8,
@@ -161,12 +301,18 @@ def main():
     scaler = GradScaler()
     # loss_fn = BSSLoss.BSSLoss(mode="si_snr")
     loss_fn = pit_si_snr_loss
-    num_epochs = 50
+    num_epochs = 100
     global_step = 0
+    patience = 5
+    best_val_loss = float("inf")
+    no_improve_epochs = 0
+    best_state_dict = None
+    epoch = 0
 
     # Training loop
     model.train()
     for epoch in range(num_epochs):
+        total_gn = 0.0
         total_loss = 0.0
         num_batches = len(train_loader)
 
@@ -192,7 +338,8 @@ def main():
             # Backward with scaled gradients
             scaler.scale(loss).backward()
             scaler.unscale_(optimizer)
-            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)
+            gn = torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)
+            total_gn += float(gn)
             scaler.step(optimizer)
             scaler.update()
 
@@ -213,6 +360,34 @@ def main():
         avg_val_loss = eval_valid(model, valid_loader, loss_fn, device)
         print(f"Epoch {epoch + 1} finished. Avg valid loss: {avg_val_loss:.4f}")
 
+        avg_gn = total_gn / num_batches
+
+        epochs_hist.append(epoch + 1)
+        train_loss_hist.append(avg_train_loss)
+        val_loss_hist.append(avg_val_loss)
+        grad_norm_hist.append(avg_gn)
+
+        plot_metrics(output_dir, epochs_hist, train_loss_hist, val_loss_hist, grad_norm_hist)
+        print("[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png")
+
+        if avg_val_loss < best_val_loss - 1e-4:  # 可以加个很小的 margin 防止浮点抖动
+            best_val_loss = avg_val_loss
+            no_improve_epochs = 0
+            best_state_dict = copy.deepcopy(model.state_dict())
+            print(f"Validation improved, new best val loss: {best_val_loss:.4f}")
+        else:
+            no_improve_epochs += 1
+            print(
+                f"⚠ No improvement on valid for {no_improve_epochs} epoch(s) "
+                f"(best: {best_val_loss:.4f})"
+            )
+            if no_improve_epochs >= patience:
+                print(
+                    f"Early stopping triggered at epoch {epoch + 1} "
+                    f"(patience={patience})"
+                )
+                break
+
         # Save checkpoint for this epoch into the per-run ckpt_dir
         ckpt_path = os.path.join(ckpt_dir, f"conv_tasnet_epoch{epoch + 1}.pt")
         torch.save(
@@ -226,12 +401,22 @@ def main():
             ckpt_path,
         )
         print(f"[Checkpoint] Saved: {ckpt_path}")
+        # 每轮保存一次可视化（波形+频谱）
+        viz_prefix = os.path.join(output_dir, f"viz_epoch{epoch + 1:03d}")
+        visualize_separation_epoch(model, fixed_mix, fixed_targets, sample_rate, device, viz_prefix)
+        print(f"[Viz] Saved: {viz_prefix}_wave.png and {viz_prefix}_spec.png")
+
+    if best_state_dict is not None:
+        model.load_state_dict(best_state_dict)
+        print(f"Loaded best model with val loss = {best_val_loss:.4f}")
+    else:
+        print("Warning: best_state_dict is None, did training even run?")
 
     # Final checkpoint and final audio examples
     final_ckpt_path = os.path.join(ckpt_dir, "conv_tasnet_final.pt")
     torch.save(
         {
-            "epoch": num_epochs,
+            "epoch": epoch + 1,
             "model_state_dict": model.state_dict(),
             "optimizer_state_dict": optimizer.state_dict(),
         },
@@ -239,6 +424,9 @@ def main():
     )
     print(f"[Final] Model saved to: {final_ckpt_path}")
     eval_test_full(model, test_loader, loss_fn, sample_rate, device, output_dir)
+    final_viz_prefix = os.path.join(output_dir, "viz_final_best")
+    visualize_separation_epoch(model, fixed_mix, fixed_targets, sample_rate, device, final_viz_prefix)
+    print(f"[Viz] Saved FINAL: {final_viz_prefix}_wave.png and {final_viz_prefix}_spec.png")
 
 
 if __name__ == "__main__":

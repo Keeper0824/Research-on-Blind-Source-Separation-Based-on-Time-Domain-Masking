@@ -1,9 +1,0 @@
-Log file: logs\train_convtasnet_20251207-215612.log
-Using device: cuda
-
-===== Epoch 1/10 =====
-Epoch 1 | Step 100 (100/1666) | Train loss (−SI-SNR): -0.0274
-Epoch 1 | Step 200 (200/1666) | Train loss (−SI-SNR): 0.1818
-Epoch 1 | Step 300 (300/1666) | Train loss (−SI-SNR): -0.2272
-Epoch 1 | Step 400 (400/1666) | Train loss (−SI-SNR): -0.6768
-Epoch 1 | Step 500 (500/1666) | Train loss (−SI-SNR): 1.0784
