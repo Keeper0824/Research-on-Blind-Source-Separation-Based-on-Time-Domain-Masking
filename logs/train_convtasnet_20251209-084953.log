@@ -1,0 +1,883 @@
+ConvTasNet-BaseLine (Non-PIT)
+Log file: logs\train_convtasnet_20251209-084953.log
+Checkpoint directory: checkpoints\train_convtasnet_20251209-084953
+Output directory: outputs\train_convtasnet_20251209-084953
+Using device: cuda
+
+===== Epoch 1/50 =====
+Epoch 1 | Step 100 (100/1250) | Train loss (−SI-SNR): -0.2712
+Epoch 1 | Step 200 (200/1250) | Train loss (−SI-SNR): -0.1942
+Epoch 1 | Step 300 (300/1250) | Train loss (−SI-SNR): -1.4275
+Epoch 1 | Step 400 (400/1250) | Train loss (−SI-SNR): -1.6484
+Epoch 1 | Step 500 (500/1250) | Train loss (−SI-SNR): -1.8378
+Epoch 1 | Step 600 (600/1250) | Train loss (−SI-SNR): -1.4471
+Epoch 1 | Step 700 (700/1250) | Train loss (−SI-SNR): -1.2909
+Epoch 1 | Step 800 (800/1250) | Train loss (−SI-SNR): -1.5906
+Epoch 1 | Step 900 (900/1250) | Train loss (−SI-SNR): -0.6957
+Epoch 1 | Step 1000 (1000/1250) | Train loss (−SI-SNR): -1.1013
+Epoch 1 | Step 1100 (1100/1250) | Train loss (−SI-SNR): -1.7089
+Epoch 1 | Step 1200 (1200/1250) | Train loss (−SI-SNR): -0.6749
+Epoch 1 finished. Avg train loss: -0.9053
+Epoch 1 finished. Avg valid loss: -2.1519
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch1.pt
+
+===== Epoch 2/50 =====
+Epoch 2 | Step 1300 (50/1250) | Train loss (−SI-SNR): -2.8437
+Epoch 2 | Step 1400 (150/1250) | Train loss (−SI-SNR): -3.5941
+Epoch 2 | Step 1500 (250/1250) | Train loss (−SI-SNR): -3.0696
+Epoch 2 | Step 1600 (350/1250) | Train loss (−SI-SNR): -2.4099
+Epoch 2 | Step 1700 (450/1250) | Train loss (−SI-SNR): -2.7040
+Epoch 2 | Step 1800 (550/1250) | Train loss (−SI-SNR): -2.4382
+Epoch 2 | Step 1900 (650/1250) | Train loss (−SI-SNR): -5.2024
+Epoch 2 | Step 2000 (750/1250) | Train loss (−SI-SNR): -5.2604
+Epoch 2 | Step 2100 (850/1250) | Train loss (−SI-SNR): -4.4425
+Epoch 2 | Step 2200 (950/1250) | Train loss (−SI-SNR): -3.0513
+Epoch 2 | Step 2300 (1050/1250) | Train loss (−SI-SNR): -5.5050
+Epoch 2 | Step 2400 (1150/1250) | Train loss (−SI-SNR): -4.4029
+Epoch 2 | Step 2500 (1250/1250) | Train loss (−SI-SNR): -2.6742
+Epoch 2 finished. Avg train loss: -3.8947
+Epoch 2 finished. Avg valid loss: -3.6014
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch2.pt
+
+===== Epoch 3/50 =====
+Epoch 3 | Step 2600 (100/1250) | Train loss (−SI-SNR): -3.1624
+Epoch 3 | Step 2700 (200/1250) | Train loss (−SI-SNR): -6.6351
+Epoch 3 | Step 2800 (300/1250) | Train loss (−SI-SNR): -4.5632
+Epoch 3 | Step 2900 (400/1250) | Train loss (−SI-SNR): -7.8368
+Epoch 3 | Step 3000 (500/1250) | Train loss (−SI-SNR): -3.4677
+Epoch 3 | Step 3100 (600/1250) | Train loss (−SI-SNR): -5.0620
+Epoch 3 | Step 3200 (700/1250) | Train loss (−SI-SNR): -4.7254
+Epoch 3 | Step 3300 (800/1250) | Train loss (−SI-SNR): -4.7086
+Epoch 3 | Step 3400 (900/1250) | Train loss (−SI-SNR): -4.4035
+Epoch 3 | Step 3500 (1000/1250) | Train loss (−SI-SNR): -4.9693
+Epoch 3 | Step 3600 (1100/1250) | Train loss (−SI-SNR): -6.1494
+Epoch 3 | Step 3700 (1200/1250) | Train loss (−SI-SNR): -4.6058
+Epoch 3 finished. Avg train loss: -5.4866
+Epoch 3 finished. Avg valid loss: -6.0124
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch3.pt
+
+===== Epoch 4/50 =====
+Epoch 4 | Step 3800 (50/1250) | Train loss (−SI-SNR): -7.0465
+Epoch 4 | Step 3900 (150/1250) | Train loss (−SI-SNR): -5.0384
+Epoch 4 | Step 4000 (250/1250) | Train loss (−SI-SNR): -8.6193
+Epoch 4 | Step 4100 (350/1250) | Train loss (−SI-SNR): -6.9458
+Epoch 4 | Step 4200 (450/1250) | Train loss (−SI-SNR): -6.4534
+Epoch 4 | Step 4300 (550/1250) | Train loss (−SI-SNR): -7.6699
+Epoch 4 | Step 4400 (650/1250) | Train loss (−SI-SNR): -3.1196
+Epoch 4 | Step 4500 (750/1250) | Train loss (−SI-SNR): -4.7324
+Epoch 4 | Step 4600 (850/1250) | Train loss (−SI-SNR): -5.0423
+Epoch 4 | Step 4700 (950/1250) | Train loss (−SI-SNR): -7.1908
+Epoch 4 | Step 4800 (1050/1250) | Train loss (−SI-SNR): -6.9274
+Epoch 4 | Step 4900 (1150/1250) | Train loss (−SI-SNR): -8.1724
+Epoch 4 | Step 5000 (1250/1250) | Train loss (−SI-SNR): -2.6506
+Epoch 4 finished. Avg train loss: -6.2854
+Epoch 4 finished. Avg valid loss: -5.8922
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch4.pt
+
+===== Epoch 5/50 =====
+Epoch 5 | Step 5100 (100/1250) | Train loss (−SI-SNR): -4.8019
+Epoch 5 | Step 5200 (200/1250) | Train loss (−SI-SNR): -4.5555
+Epoch 5 | Step 5300 (300/1250) | Train loss (−SI-SNR): -5.9634
+Epoch 5 | Step 5400 (400/1250) | Train loss (−SI-SNR): -7.8016
+Epoch 5 | Step 5500 (500/1250) | Train loss (−SI-SNR): -6.1930
+Epoch 5 | Step 5600 (600/1250) | Train loss (−SI-SNR): -8.7361
+Epoch 5 | Step 5700 (700/1250) | Train loss (−SI-SNR): -5.1230
+Epoch 5 | Step 5800 (800/1250) | Train loss (−SI-SNR): -7.3188
+Epoch 5 | Step 5900 (900/1250) | Train loss (−SI-SNR): -4.6880
+Epoch 5 | Step 6000 (1000/1250) | Train loss (−SI-SNR): -7.2437
+Epoch 5 | Step 6100 (1100/1250) | Train loss (−SI-SNR): -7.7613
+Epoch 5 | Step 6200 (1200/1250) | Train loss (−SI-SNR): -8.0921
+Epoch 5 finished. Avg train loss: -6.9223
+Epoch 5 finished. Avg valid loss: -7.1830
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch5.pt
+
+===== Epoch 6/50 =====
+Epoch 6 | Step 6300 (50/1250) | Train loss (−SI-SNR): -8.1063
+Epoch 6 | Step 6400 (150/1250) | Train loss (−SI-SNR): -9.8399
+Epoch 6 | Step 6500 (250/1250) | Train loss (−SI-SNR): -6.3419
+Epoch 6 | Step 6600 (350/1250) | Train loss (−SI-SNR): -10.0886
+Epoch 6 | Step 6700 (450/1250) | Train loss (−SI-SNR): -9.2316
+Epoch 6 | Step 6800 (550/1250) | Train loss (−SI-SNR): -8.1004
+Epoch 6 | Step 6900 (650/1250) | Train loss (−SI-SNR): -8.4358
+Epoch 6 | Step 7000 (750/1250) | Train loss (−SI-SNR): -9.2076
+Epoch 6 | Step 7100 (850/1250) | Train loss (−SI-SNR): -8.0659
+Epoch 6 | Step 7200 (950/1250) | Train loss (−SI-SNR): -6.0447
+Epoch 6 | Step 7300 (1050/1250) | Train loss (−SI-SNR): -7.7475
+Epoch 6 | Step 7400 (1150/1250) | Train loss (−SI-SNR): -8.0926
+Epoch 6 | Step 7500 (1250/1250) | Train loss (−SI-SNR): -8.9901
+Epoch 6 finished. Avg train loss: -7.4292
+Epoch 6 finished. Avg valid loss: -7.2144
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch6.pt
+
+===== Epoch 7/50 =====
+Epoch 7 | Step 7600 (100/1250) | Train loss (−SI-SNR): -6.7155
+Epoch 7 | Step 7700 (200/1250) | Train loss (−SI-SNR): -9.6938
+Epoch 7 | Step 7800 (300/1250) | Train loss (−SI-SNR): -5.5373
+Epoch 7 | Step 7900 (400/1250) | Train loss (−SI-SNR): -6.5517
+Epoch 7 | Step 8000 (500/1250) | Train loss (−SI-SNR): -5.1359
+Epoch 7 | Step 8100 (600/1250) | Train loss (−SI-SNR): -8.0209
+Epoch 7 | Step 8200 (700/1250) | Train loss (−SI-SNR): -10.4256
+Epoch 7 | Step 8300 (800/1250) | Train loss (−SI-SNR): -5.7597
+Epoch 7 | Step 8400 (900/1250) | Train loss (−SI-SNR): -7.4365
+Epoch 7 | Step 8500 (1000/1250) | Train loss (−SI-SNR): -9.1739
+Epoch 7 | Step 8600 (1100/1250) | Train loss (−SI-SNR): -9.8716
+Epoch 7 | Step 8700 (1200/1250) | Train loss (−SI-SNR): -6.4189
+Epoch 7 finished. Avg train loss: -7.7304
+Epoch 7 finished. Avg valid loss: -7.3809
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch7.pt
+
+===== Epoch 8/50 =====
+Epoch 8 | Step 8800 (50/1250) | Train loss (−SI-SNR): -9.9823
+Epoch 8 | Step 8900 (150/1250) | Train loss (−SI-SNR): -10.7894
+Epoch 8 | Step 9000 (250/1250) | Train loss (−SI-SNR): -5.7464
+Epoch 8 | Step 9100 (350/1250) | Train loss (−SI-SNR): -8.9237
+Epoch 8 | Step 9200 (450/1250) | Train loss (−SI-SNR): -6.2831
+Epoch 8 | Step 9300 (550/1250) | Train loss (−SI-SNR): -5.5646
+Epoch 8 | Step 9400 (650/1250) | Train loss (−SI-SNR): -9.8184
+Epoch 8 | Step 9500 (750/1250) | Train loss (−SI-SNR): -7.5971
+Epoch 8 | Step 9600 (850/1250) | Train loss (−SI-SNR): -10.4510
+Epoch 8 | Step 9700 (950/1250) | Train loss (−SI-SNR): -7.8220
+Epoch 8 | Step 9800 (1050/1250) | Train loss (−SI-SNR): -10.6642
+Epoch 8 | Step 9900 (1150/1250) | Train loss (−SI-SNR): -7.2718
+Epoch 8 | Step 10000 (1250/1250) | Train loss (−SI-SNR): -6.2395
+Epoch 8 finished. Avg train loss: -8.1161
+Epoch 8 finished. Avg valid loss: -7.6997
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch8.pt
+
+===== Epoch 9/50 =====
+Epoch 9 | Step 10100 (100/1250) | Train loss (−SI-SNR): -8.2569
+Epoch 9 | Step 10200 (200/1250) | Train loss (−SI-SNR): -8.3069
+Epoch 9 | Step 10300 (300/1250) | Train loss (−SI-SNR): -11.7945
+Epoch 9 | Step 10400 (400/1250) | Train loss (−SI-SNR): -7.7992
+Epoch 9 | Step 10500 (500/1250) | Train loss (−SI-SNR): -9.4556
+Epoch 9 | Step 10600 (600/1250) | Train loss (−SI-SNR): -9.7968
+Epoch 9 | Step 10700 (700/1250) | Train loss (−SI-SNR): -8.1999
+Epoch 9 | Step 10800 (800/1250) | Train loss (−SI-SNR): -8.1805
+Epoch 9 | Step 10900 (900/1250) | Train loss (−SI-SNR): -9.5237
+Epoch 9 | Step 11000 (1000/1250) | Train loss (−SI-SNR): -11.8757
+Epoch 9 | Step 11100 (1100/1250) | Train loss (−SI-SNR): -10.5299
+Epoch 9 | Step 11200 (1200/1250) | Train loss (−SI-SNR): -7.5732
+Epoch 9 finished. Avg train loss: -8.4006
+Epoch 9 finished. Avg valid loss: -8.0239
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch9.pt
+
+===== Epoch 10/50 =====
+Epoch 10 | Step 11300 (50/1250) | Train loss (−SI-SNR): -10.4267
+Epoch 10 | Step 11400 (150/1250) | Train loss (−SI-SNR): -8.6409
+Epoch 10 | Step 11500 (250/1250) | Train loss (−SI-SNR): -2.4557
+Epoch 10 | Step 11600 (350/1250) | Train loss (−SI-SNR): -9.5651
+Epoch 10 | Step 11700 (450/1250) | Train loss (−SI-SNR): -8.5939
+Epoch 10 | Step 11800 (550/1250) | Train loss (−SI-SNR): -9.1185
+Epoch 10 | Step 11900 (650/1250) | Train loss (−SI-SNR): -8.5567
+Epoch 10 | Step 12000 (750/1250) | Train loss (−SI-SNR): -9.9468
+Epoch 10 | Step 12100 (850/1250) | Train loss (−SI-SNR): -8.4642
+Epoch 10 | Step 12200 (950/1250) | Train loss (−SI-SNR): -7.6617
+Epoch 10 | Step 12300 (1050/1250) | Train loss (−SI-SNR): -8.0884
+Epoch 10 | Step 12400 (1150/1250) | Train loss (−SI-SNR): -7.6688
+Epoch 10 | Step 12500 (1250/1250) | Train loss (−SI-SNR): -5.0532
+Epoch 10 finished. Avg train loss: -8.7508
+Epoch 10 finished. Avg valid loss: -8.2158
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch10.pt
+
+===== Epoch 11/50 =====
+Epoch 11 | Step 12600 (100/1250) | Train loss (−SI-SNR): -10.9670
+Epoch 11 | Step 12700 (200/1250) | Train loss (−SI-SNR): -10.1993
+Epoch 11 | Step 12800 (300/1250) | Train loss (−SI-SNR): -8.9790
+Epoch 11 | Step 12900 (400/1250) | Train loss (−SI-SNR): -8.0455
+Epoch 11 | Step 13000 (500/1250) | Train loss (−SI-SNR): -8.9084
+Epoch 11 | Step 13100 (600/1250) | Train loss (−SI-SNR): -10.4491
+Epoch 11 | Step 13200 (700/1250) | Train loss (−SI-SNR): -9.4862
+Epoch 11 | Step 13300 (800/1250) | Train loss (−SI-SNR): -9.6159
+Epoch 11 | Step 13400 (900/1250) | Train loss (−SI-SNR): -7.1312
+Epoch 11 | Step 13500 (1000/1250) | Train loss (−SI-SNR): -9.6566
+Epoch 11 | Step 13600 (1100/1250) | Train loss (−SI-SNR): -7.9598
+Epoch 11 | Step 13700 (1200/1250) | Train loss (−SI-SNR): -10.3968
+Epoch 11 finished. Avg train loss: -8.9548
+Epoch 11 finished. Avg valid loss: -7.9466
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch11.pt
+
+===== Epoch 12/50 =====
+Epoch 12 | Step 13800 (50/1250) | Train loss (−SI-SNR): -9.0493
+Epoch 12 | Step 13900 (150/1250) | Train loss (−SI-SNR): -8.5467
+Epoch 12 | Step 14000 (250/1250) | Train loss (−SI-SNR): -5.5286
+Epoch 12 | Step 14100 (350/1250) | Train loss (−SI-SNR): -8.4329
+Epoch 12 | Step 14200 (450/1250) | Train loss (−SI-SNR): -10.9942
+Epoch 12 | Step 14300 (550/1250) | Train loss (−SI-SNR): -9.6854
+Epoch 12 | Step 14400 (650/1250) | Train loss (−SI-SNR): -11.2624
+Epoch 12 | Step 14500 (750/1250) | Train loss (−SI-SNR): -12.9458
+Epoch 12 | Step 14600 (850/1250) | Train loss (−SI-SNR): -9.5592
+Epoch 12 | Step 14700 (950/1250) | Train loss (−SI-SNR): -8.8210
+Epoch 12 | Step 14800 (1050/1250) | Train loss (−SI-SNR): -8.0453
+Epoch 12 | Step 14900 (1150/1250) | Train loss (−SI-SNR): -8.7898
+Epoch 12 | Step 15000 (1250/1250) | Train loss (−SI-SNR): -8.2173
+Epoch 12 finished. Avg train loss: -9.2377
+Epoch 12 finished. Avg valid loss: -8.4638
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch12.pt
+
+===== Epoch 13/50 =====
+Epoch 13 | Step 15100 (100/1250) | Train loss (−SI-SNR): -6.7076
+Epoch 13 | Step 15200 (200/1250) | Train loss (−SI-SNR): -7.5555
+Epoch 13 | Step 15300 (300/1250) | Train loss (−SI-SNR): -9.9858
+Epoch 13 | Step 15400 (400/1250) | Train loss (−SI-SNR): -4.2688
+Epoch 13 | Step 15500 (500/1250) | Train loss (−SI-SNR): -11.1561
+Epoch 13 | Step 15600 (600/1250) | Train loss (−SI-SNR): -9.4441
+Epoch 13 | Step 15700 (700/1250) | Train loss (−SI-SNR): -10.8328
+Epoch 13 | Step 15800 (800/1250) | Train loss (−SI-SNR): -8.7076
+Epoch 13 | Step 15900 (900/1250) | Train loss (−SI-SNR): -11.2027
+Epoch 13 | Step 16000 (1000/1250) | Train loss (−SI-SNR): -12.9164
+Epoch 13 | Step 16100 (1100/1250) | Train loss (−SI-SNR): -6.6818
+Epoch 13 | Step 16200 (1200/1250) | Train loss (−SI-SNR): -10.2587
+Epoch 13 finished. Avg train loss: -9.4204
+Epoch 13 finished. Avg valid loss: -8.6994
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch13.pt
+
+===== Epoch 14/50 =====
+Epoch 14 | Step 16300 (50/1250) | Train loss (−SI-SNR): -10.2637
+Epoch 14 | Step 16400 (150/1250) | Train loss (−SI-SNR): -11.8092
+Epoch 14 | Step 16500 (250/1250) | Train loss (−SI-SNR): -9.2912
+Epoch 14 | Step 16600 (350/1250) | Train loss (−SI-SNR): -9.2582
+Epoch 14 | Step 16700 (450/1250) | Train loss (−SI-SNR): -9.8169
+Epoch 14 | Step 16800 (550/1250) | Train loss (−SI-SNR): -11.8116
+Epoch 14 | Step 16900 (650/1250) | Train loss (−SI-SNR): -11.3805
+Epoch 14 | Step 17000 (750/1250) | Train loss (−SI-SNR): -8.0557
+Epoch 14 | Step 17100 (850/1250) | Train loss (−SI-SNR): -10.1009
+Epoch 14 | Step 17200 (950/1250) | Train loss (−SI-SNR): -9.2162
+Epoch 14 | Step 17300 (1050/1250) | Train loss (−SI-SNR): -10.7984
+Epoch 14 | Step 17400 (1150/1250) | Train loss (−SI-SNR): -9.7800
+Epoch 14 | Step 17500 (1250/1250) | Train loss (−SI-SNR): -10.3979
+Epoch 14 finished. Avg train loss: -9.7042
+Epoch 14 finished. Avg valid loss: -8.8809
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch14.pt
+
+===== Epoch 15/50 =====
+Epoch 15 | Step 17600 (100/1250) | Train loss (−SI-SNR): -11.3767
+Epoch 15 | Step 17700 (200/1250) | Train loss (−SI-SNR): -9.7057
+Epoch 15 | Step 17800 (300/1250) | Train loss (−SI-SNR): -8.8423
+Epoch 15 | Step 17900 (400/1250) | Train loss (−SI-SNR): -8.6287
+Epoch 15 | Step 18000 (500/1250) | Train loss (−SI-SNR): -9.5754
+Epoch 15 | Step 18100 (600/1250) | Train loss (−SI-SNR): -9.6506
+Epoch 15 | Step 18200 (700/1250) | Train loss (−SI-SNR): -10.1735
+Epoch 15 | Step 18300 (800/1250) | Train loss (−SI-SNR): -12.1806
+Epoch 15 | Step 18400 (900/1250) | Train loss (−SI-SNR): -10.8616
+Epoch 15 | Step 18500 (1000/1250) | Train loss (−SI-SNR): -10.7951
+Epoch 15 | Step 18600 (1100/1250) | Train loss (−SI-SNR): -5.6777
+Epoch 15 | Step 18700 (1200/1250) | Train loss (−SI-SNR): -7.2022
+Epoch 15 finished. Avg train loss: -9.8710
+Epoch 15 finished. Avg valid loss: -8.8898
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch15.pt
+
+===== Epoch 16/50 =====
+Epoch 16 | Step 18800 (50/1250) | Train loss (−SI-SNR): -7.2335
+Epoch 16 | Step 18900 (150/1250) | Train loss (−SI-SNR): -8.7629
+Epoch 16 | Step 19000 (250/1250) | Train loss (−SI-SNR): -9.9896
+Epoch 16 | Step 19100 (350/1250) | Train loss (−SI-SNR): -9.2825
+Epoch 16 | Step 19200 (450/1250) | Train loss (−SI-SNR): -7.8458
+Epoch 16 | Step 19300 (550/1250) | Train loss (−SI-SNR): -8.0507
+Epoch 16 | Step 19400 (650/1250) | Train loss (−SI-SNR): -12.8193
+Epoch 16 | Step 19500 (750/1250) | Train loss (−SI-SNR): -11.1434
+Epoch 16 | Step 19600 (850/1250) | Train loss (−SI-SNR): -9.3004
+Epoch 16 | Step 19700 (950/1250) | Train loss (−SI-SNR): -9.9180
+Epoch 16 | Step 19800 (1050/1250) | Train loss (−SI-SNR): -12.6101
+Epoch 16 | Step 19900 (1150/1250) | Train loss (−SI-SNR): -6.7928
+Epoch 16 | Step 20000 (1250/1250) | Train loss (−SI-SNR): -9.8306
+Epoch 16 finished. Avg train loss: -10.1713
+Epoch 16 finished. Avg valid loss: -8.8295
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch16.pt
+
+===== Epoch 17/50 =====
+Epoch 17 | Step 20100 (100/1250) | Train loss (−SI-SNR): -5.5865
+Epoch 17 | Step 20200 (200/1250) | Train loss (−SI-SNR): -9.8438
+Epoch 17 | Step 20300 (300/1250) | Train loss (−SI-SNR): -11.8269
+Epoch 17 | Step 20400 (400/1250) | Train loss (−SI-SNR): -9.5139
+Epoch 17 | Step 20500 (500/1250) | Train loss (−SI-SNR): -11.3399
+Epoch 17 | Step 20600 (600/1250) | Train loss (−SI-SNR): -10.1615
+Epoch 17 | Step 20700 (700/1250) | Train loss (−SI-SNR): -12.5754
+Epoch 17 | Step 20800 (800/1250) | Train loss (−SI-SNR): -11.6284
+Epoch 17 | Step 20900 (900/1250) | Train loss (−SI-SNR): -10.7519
+Epoch 17 | Step 21000 (1000/1250) | Train loss (−SI-SNR): -10.2194
+Epoch 17 | Step 21100 (1100/1250) | Train loss (−SI-SNR): -6.4968
+Epoch 17 | Step 21200 (1200/1250) | Train loss (−SI-SNR): -8.1940
+Epoch 17 finished. Avg train loss: -10.3720
+Epoch 17 finished. Avg valid loss: -8.7194
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch17.pt
+
+===== Epoch 18/50 =====
+Epoch 18 | Step 21300 (50/1250) | Train loss (−SI-SNR): -11.0972
+Epoch 18 | Step 21400 (150/1250) | Train loss (−SI-SNR): -12.8594
+Epoch 18 | Step 21500 (250/1250) | Train loss (−SI-SNR): -8.0018
+Epoch 18 | Step 21600 (350/1250) | Train loss (−SI-SNR): -11.1573
+Epoch 18 | Step 21700 (450/1250) | Train loss (−SI-SNR): -10.7524
+Epoch 18 | Step 21800 (550/1250) | Train loss (−SI-SNR): -7.1264
+Epoch 18 | Step 21900 (650/1250) | Train loss (−SI-SNR): -10.6557
+Epoch 18 | Step 22000 (750/1250) | Train loss (−SI-SNR): -12.9234
+Epoch 18 | Step 22100 (850/1250) | Train loss (−SI-SNR): -12.1850
+Epoch 18 | Step 22200 (950/1250) | Train loss (−SI-SNR): -7.8328
+Epoch 18 | Step 22300 (1050/1250) | Train loss (−SI-SNR): -11.0459
+Epoch 18 | Step 22400 (1150/1250) | Train loss (−SI-SNR): -10.1024
+Epoch 18 | Step 22500 (1250/1250) | Train loss (−SI-SNR): -10.6934
+Epoch 18 finished. Avg train loss: -10.6545
+Epoch 18 finished. Avg valid loss: -9.0202
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch18.pt
+
+===== Epoch 19/50 =====
+Epoch 19 | Step 22600 (100/1250) | Train loss (−SI-SNR): -11.0407
+Epoch 19 | Step 22700 (200/1250) | Train loss (−SI-SNR): -9.8744
+Epoch 19 | Step 22800 (300/1250) | Train loss (−SI-SNR): -12.3236
+Epoch 19 | Step 22900 (400/1250) | Train loss (−SI-SNR): -9.3741
+Epoch 19 | Step 23000 (500/1250) | Train loss (−SI-SNR): -10.9080
+Epoch 19 | Step 23100 (600/1250) | Train loss (−SI-SNR): -12.5197
+Epoch 19 | Step 23200 (700/1250) | Train loss (−SI-SNR): -12.7523
+Epoch 19 | Step 23300 (800/1250) | Train loss (−SI-SNR): -11.9811
+Epoch 19 | Step 23400 (900/1250) | Train loss (−SI-SNR): -11.7983
+Epoch 19 | Step 23500 (1000/1250) | Train loss (−SI-SNR): -10.6300
+Epoch 19 | Step 23600 (1100/1250) | Train loss (−SI-SNR): -12.3999
+Epoch 19 | Step 23700 (1200/1250) | Train loss (−SI-SNR): -10.9001
+Epoch 19 finished. Avg train loss: -10.8308
+Epoch 19 finished. Avg valid loss: -8.6679
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch19.pt
+
+===== Epoch 20/50 =====
+Epoch 20 | Step 23800 (50/1250) | Train loss (−SI-SNR): -12.2391
+Epoch 20 | Step 23900 (150/1250) | Train loss (−SI-SNR): -13.3985
+Epoch 20 | Step 24000 (250/1250) | Train loss (−SI-SNR): -10.6624
+Epoch 20 | Step 24100 (350/1250) | Train loss (−SI-SNR): -10.7074
+Epoch 20 | Step 24200 (450/1250) | Train loss (−SI-SNR): -13.4303
+Epoch 20 | Step 24300 (550/1250) | Train loss (−SI-SNR): -12.7612
+Epoch 20 | Step 24400 (650/1250) | Train loss (−SI-SNR): -11.1681
+Epoch 20 | Step 24500 (750/1250) | Train loss (−SI-SNR): -11.9483
+Epoch 20 | Step 24600 (850/1250) | Train loss (−SI-SNR): -11.8934
+Epoch 20 | Step 24700 (950/1250) | Train loss (−SI-SNR): -11.8827
+Epoch 20 | Step 24800 (1050/1250) | Train loss (−SI-SNR): -12.3504
+Epoch 20 | Step 24900 (1150/1250) | Train loss (−SI-SNR): -12.1925
+Epoch 20 | Step 25000 (1250/1250) | Train loss (−SI-SNR): -9.9911
+Epoch 20 finished. Avg train loss: -11.1146
+Epoch 20 finished. Avg valid loss: -9.0902
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch20.pt
+
+===== Epoch 21/50 =====
+Epoch 21 | Step 25100 (100/1250) | Train loss (−SI-SNR): -13.5745
+Epoch 21 | Step 25200 (200/1250) | Train loss (−SI-SNR): -13.3439
+Epoch 21 | Step 25300 (300/1250) | Train loss (−SI-SNR): -10.4556
+Epoch 21 | Step 25400 (400/1250) | Train loss (−SI-SNR): -10.9694
+Epoch 21 | Step 25500 (500/1250) | Train loss (−SI-SNR): -10.2759
+Epoch 21 | Step 25600 (600/1250) | Train loss (−SI-SNR): -12.4027
+Epoch 21 | Step 25700 (700/1250) | Train loss (−SI-SNR): -13.4813
+Epoch 21 | Step 25800 (800/1250) | Train loss (−SI-SNR): -10.0550
+Epoch 21 | Step 25900 (900/1250) | Train loss (−SI-SNR): -11.9889
+Epoch 21 | Step 26000 (1000/1250) | Train loss (−SI-SNR): -11.9631
+Epoch 21 | Step 26100 (1100/1250) | Train loss (−SI-SNR): -10.5575
+Epoch 21 | Step 26200 (1200/1250) | Train loss (−SI-SNR): -12.5158
+Epoch 21 finished. Avg train loss: -11.3126
+Epoch 21 finished. Avg valid loss: -9.2450
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch21.pt
+
+===== Epoch 22/50 =====
+Epoch 22 | Step 26300 (50/1250) | Train loss (−SI-SNR): -13.0943
+Epoch 22 | Step 26400 (150/1250) | Train loss (−SI-SNR): -13.4191
+Epoch 22 | Step 26500 (250/1250) | Train loss (−SI-SNR): -10.2852
+Epoch 22 | Step 26600 (350/1250) | Train loss (−SI-SNR): -12.0182
+Epoch 22 | Step 26700 (450/1250) | Train loss (−SI-SNR): -10.7394
+Epoch 22 | Step 26800 (550/1250) | Train loss (−SI-SNR): -9.8113
+Epoch 22 | Step 26900 (650/1250) | Train loss (−SI-SNR): -12.3243
+Epoch 22 | Step 27000 (750/1250) | Train loss (−SI-SNR): -8.0665
+Epoch 22 | Step 27100 (850/1250) | Train loss (−SI-SNR): -11.1715
+Epoch 22 | Step 27200 (950/1250) | Train loss (−SI-SNR): -13.0693
+Epoch 22 | Step 27300 (1050/1250) | Train loss (−SI-SNR): -11.5536
+Epoch 22 | Step 27400 (1150/1250) | Train loss (−SI-SNR): -8.4993
+Epoch 22 | Step 27500 (1250/1250) | Train loss (−SI-SNR): -12.7323
+Epoch 22 finished. Avg train loss: -11.4831
+Epoch 22 finished. Avg valid loss: -9.3540
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch22.pt
+
+===== Epoch 23/50 =====
+Epoch 23 | Step 27600 (100/1250) | Train loss (−SI-SNR): -10.4010
+Epoch 23 | Step 27700 (200/1250) | Train loss (−SI-SNR): -13.5531
+Epoch 23 | Step 27800 (300/1250) | Train loss (−SI-SNR): -13.5827
+Epoch 23 | Step 27900 (400/1250) | Train loss (−SI-SNR): -7.8719
+Epoch 23 | Step 28000 (500/1250) | Train loss (−SI-SNR): -11.7301
+Epoch 23 | Step 28100 (600/1250) | Train loss (−SI-SNR): -6.4663
+Epoch 23 | Step 28200 (700/1250) | Train loss (−SI-SNR): -12.3715
+Epoch 23 | Step 28300 (800/1250) | Train loss (−SI-SNR): -12.6917
+Epoch 23 | Step 28400 (900/1250) | Train loss (−SI-SNR): -7.5511
+Epoch 23 | Step 28500 (1000/1250) | Train loss (−SI-SNR): -13.1201
+Epoch 23 | Step 28600 (1100/1250) | Train loss (−SI-SNR): -12.9639
+Epoch 23 | Step 28700 (1200/1250) | Train loss (−SI-SNR): -12.2999
+Epoch 23 finished. Avg train loss: -11.6865
+Epoch 23 finished. Avg valid loss: -9.4708
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch23.pt
+
+===== Epoch 24/50 =====
+Epoch 24 | Step 28800 (50/1250) | Train loss (−SI-SNR): -13.1683
+Epoch 24 | Step 28900 (150/1250) | Train loss (−SI-SNR): -12.0142
+Epoch 24 | Step 29000 (250/1250) | Train loss (−SI-SNR): -13.2986
+Epoch 24 | Step 29100 (350/1250) | Train loss (−SI-SNR): -13.0494
+Epoch 24 | Step 29200 (450/1250) | Train loss (−SI-SNR): -9.9407
+Epoch 24 | Step 29300 (550/1250) | Train loss (−SI-SNR): -7.9196
+Epoch 24 | Step 29400 (650/1250) | Train loss (−SI-SNR): -12.7855
+Epoch 24 | Step 29500 (750/1250) | Train loss (−SI-SNR): -10.7969
+Epoch 24 | Step 29600 (850/1250) | Train loss (−SI-SNR): -12.7482
+Epoch 24 | Step 29700 (950/1250) | Train loss (−SI-SNR): -13.2299
+Epoch 24 | Step 29800 (1050/1250) | Train loss (−SI-SNR): -13.2108
+Epoch 24 | Step 29900 (1150/1250) | Train loss (−SI-SNR): -13.4165
+Epoch 24 | Step 30000 (1250/1250) | Train loss (−SI-SNR): -9.6810
+Epoch 24 finished. Avg train loss: -11.8886
+Epoch 24 finished. Avg valid loss: -9.2034
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch24.pt
+
+===== Epoch 25/50 =====
+Epoch 25 | Step 30100 (100/1250) | Train loss (−SI-SNR): -12.0604
+Epoch 25 | Step 30200 (200/1250) | Train loss (−SI-SNR): -12.2162
+Epoch 25 | Step 30300 (300/1250) | Train loss (−SI-SNR): -13.8334
+Epoch 25 | Step 30400 (400/1250) | Train loss (−SI-SNR): -11.9171
+Epoch 25 | Step 30500 (500/1250) | Train loss (−SI-SNR): -12.3100
+Epoch 25 | Step 30600 (600/1250) | Train loss (−SI-SNR): -11.6094
+Epoch 25 | Step 30700 (700/1250) | Train loss (−SI-SNR): -10.8506
+Epoch 25 | Step 30800 (800/1250) | Train loss (−SI-SNR): -13.0464
+Epoch 25 | Step 30900 (900/1250) | Train loss (−SI-SNR): -13.5589
+Epoch 25 | Step 31000 (1000/1250) | Train loss (−SI-SNR): -13.6110
+Epoch 25 | Step 31100 (1100/1250) | Train loss (−SI-SNR): -12.3448
+Epoch 25 | Step 31200 (1200/1250) | Train loss (−SI-SNR): -8.5679
+Epoch 25 finished. Avg train loss: -12.0332
+Epoch 25 finished. Avg valid loss: -9.4117
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch25.pt
+
+===== Epoch 26/50 =====
+Epoch 26 | Step 31300 (50/1250) | Train loss (−SI-SNR): -14.5328
+Epoch 26 | Step 31400 (150/1250) | Train loss (−SI-SNR): -13.1188
+Epoch 26 | Step 31500 (250/1250) | Train loss (−SI-SNR): -13.1032
+Epoch 26 | Step 31600 (350/1250) | Train loss (−SI-SNR): -9.9676
+Epoch 26 | Step 31700 (450/1250) | Train loss (−SI-SNR): -11.2502
+Epoch 26 | Step 31800 (550/1250) | Train loss (−SI-SNR): -13.1736
+Epoch 26 | Step 31900 (650/1250) | Train loss (−SI-SNR): -10.9762
+Epoch 26 | Step 32000 (750/1250) | Train loss (−SI-SNR): -11.1220
+Epoch 26 | Step 32100 (850/1250) | Train loss (−SI-SNR): -12.9387
+Epoch 26 | Step 32200 (950/1250) | Train loss (−SI-SNR): -12.5760
+Epoch 26 | Step 32300 (1050/1250) | Train loss (−SI-SNR): -13.2715
+Epoch 26 | Step 32400 (1150/1250) | Train loss (−SI-SNR): -10.4627
+Epoch 26 | Step 32500 (1250/1250) | Train loss (−SI-SNR): -12.8020
+Epoch 26 finished. Avg train loss: -12.2092
+Epoch 26 finished. Avg valid loss: -9.3986
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch26.pt
+
+===== Epoch 27/50 =====
+Epoch 27 | Step 32600 (100/1250) | Train loss (−SI-SNR): -12.9204
+Epoch 27 | Step 32700 (200/1250) | Train loss (−SI-SNR): -13.6154
+Epoch 27 | Step 32800 (300/1250) | Train loss (−SI-SNR): -13.8612
+Epoch 27 | Step 32900 (400/1250) | Train loss (−SI-SNR): -12.3904
+Epoch 27 | Step 33000 (500/1250) | Train loss (−SI-SNR): -12.1844
+Epoch 27 | Step 33100 (600/1250) | Train loss (−SI-SNR): -12.7402
+Epoch 27 | Step 33200 (700/1250) | Train loss (−SI-SNR): -10.9911
+Epoch 27 | Step 33300 (800/1250) | Train loss (−SI-SNR): -12.8198
+Epoch 27 | Step 33400 (900/1250) | Train loss (−SI-SNR): -13.9144
+Epoch 27 | Step 33500 (1000/1250) | Train loss (−SI-SNR): -14.1607
+Epoch 27 | Step 33600 (1100/1250) | Train loss (−SI-SNR): -14.0973
+Epoch 27 | Step 33700 (1200/1250) | Train loss (−SI-SNR): -10.2768
+Epoch 27 finished. Avg train loss: -13.1408
+Epoch 27 finished. Avg valid loss: -9.6166
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch27.pt
+
+===== Epoch 28/50 =====
+Epoch 28 | Step 33800 (50/1250) | Train loss (−SI-SNR): -14.4421
+Epoch 28 | Step 33900 (150/1250) | Train loss (−SI-SNR): -14.4863
+Epoch 28 | Step 34000 (250/1250) | Train loss (−SI-SNR): -13.4421
+Epoch 28 | Step 34100 (350/1250) | Train loss (−SI-SNR): -10.5594
+Epoch 28 | Step 34200 (450/1250) | Train loss (−SI-SNR): -13.5023
+Epoch 28 | Step 34300 (550/1250) | Train loss (−SI-SNR): -13.4576
+Epoch 28 | Step 34400 (650/1250) | Train loss (−SI-SNR): -13.7403
+Epoch 28 | Step 34500 (750/1250) | Train loss (−SI-SNR): -11.9299
+Epoch 28 | Step 34600 (850/1250) | Train loss (−SI-SNR): -12.4047
+Epoch 28 | Step 34700 (950/1250) | Train loss (−SI-SNR): -13.6848
+Epoch 28 | Step 34800 (1050/1250) | Train loss (−SI-SNR): -12.1629
+Epoch 28 | Step 34900 (1150/1250) | Train loss (−SI-SNR): -14.2095
+Epoch 28 | Step 35000 (1250/1250) | Train loss (−SI-SNR): -14.9140
+Epoch 28 finished. Avg train loss: -13.4754
+Epoch 28 finished. Avg valid loss: -9.6558
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch28.pt
+
+===== Epoch 29/50 =====
+Epoch 29 | Step 35100 (100/1250) | Train loss (−SI-SNR): -14.8486
+Epoch 29 | Step 35200 (200/1250) | Train loss (−SI-SNR): -11.8659
+Epoch 29 | Step 35300 (300/1250) | Train loss (−SI-SNR): -14.1761
+Epoch 29 | Step 35400 (400/1250) | Train loss (−SI-SNR): -13.8543
+Epoch 29 | Step 35500 (500/1250) | Train loss (−SI-SNR): -13.8601
+Epoch 29 | Step 35600 (600/1250) | Train loss (−SI-SNR): -9.8101
+Epoch 29 | Step 35700 (700/1250) | Train loss (−SI-SNR): -14.9555
+Epoch 29 | Step 35800 (800/1250) | Train loss (−SI-SNR): -10.0634
+Epoch 29 | Step 35900 (900/1250) | Train loss (−SI-SNR): -13.9163
+Epoch 29 | Step 36000 (1000/1250) | Train loss (−SI-SNR): -13.7436
+Epoch 29 | Step 36100 (1100/1250) | Train loss (−SI-SNR): -12.7132
+Epoch 29 | Step 36200 (1200/1250) | Train loss (−SI-SNR): -14.0440
+Epoch 29 finished. Avg train loss: -13.6849
+Epoch 29 finished. Avg valid loss: -9.6397
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch29.pt
+
+===== Epoch 30/50 =====
+Epoch 30 | Step 36300 (50/1250) | Train loss (−SI-SNR): -14.6878
+Epoch 30 | Step 36400 (150/1250) | Train loss (−SI-SNR): -14.5906
+Epoch 30 | Step 36500 (250/1250) | Train loss (−SI-SNR): -12.7519
+Epoch 30 | Step 36600 (350/1250) | Train loss (−SI-SNR): -13.4553
+Epoch 30 | Step 36700 (450/1250) | Train loss (−SI-SNR): -14.9577
+Epoch 30 | Step 36800 (550/1250) | Train loss (−SI-SNR): -14.7043
+Epoch 30 | Step 36900 (650/1250) | Train loss (−SI-SNR): -14.2454
+Epoch 30 | Step 37000 (750/1250) | Train loss (−SI-SNR): -14.9818
+Epoch 30 | Step 37100 (850/1250) | Train loss (−SI-SNR): -14.2564
+Epoch 30 | Step 37200 (950/1250) | Train loss (−SI-SNR): -14.6383
+Epoch 30 | Step 37300 (1050/1250) | Train loss (−SI-SNR): -14.3405
+Epoch 30 | Step 37400 (1150/1250) | Train loss (−SI-SNR): -14.0700
+Epoch 30 | Step 37500 (1250/1250) | Train loss (−SI-SNR): -13.3564
+Epoch 30 finished. Avg train loss: -13.8364
+Epoch 30 finished. Avg valid loss: -9.7430
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch30.pt
+
+===== Epoch 31/50 =====
+Epoch 31 | Step 37600 (100/1250) | Train loss (−SI-SNR): -14.8597
+Epoch 31 | Step 37700 (200/1250) | Train loss (−SI-SNR): -14.2357
+Epoch 31 | Step 37800 (300/1250) | Train loss (−SI-SNR): -13.2355
+Epoch 31 | Step 37900 (400/1250) | Train loss (−SI-SNR): -14.2804
+Epoch 31 | Step 38000 (500/1250) | Train loss (−SI-SNR): -14.5363
+Epoch 31 | Step 38100 (600/1250) | Train loss (−SI-SNR): -14.5171
+Epoch 31 | Step 38200 (700/1250) | Train loss (−SI-SNR): -14.7704
+Epoch 31 | Step 38300 (800/1250) | Train loss (−SI-SNR): -14.0777
+Epoch 31 | Step 38400 (900/1250) | Train loss (−SI-SNR): -14.1414
+Epoch 31 | Step 38500 (1000/1250) | Train loss (−SI-SNR): -14.7610
+Epoch 31 | Step 38600 (1100/1250) | Train loss (−SI-SNR): -11.9996
+Epoch 31 | Step 38700 (1200/1250) | Train loss (−SI-SNR): -13.9651
+Epoch 31 finished. Avg train loss: -13.9534
+Epoch 31 finished. Avg valid loss: -9.7095
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch31.pt
+
+===== Epoch 32/50 =====
+Epoch 32 | Step 38800 (50/1250) | Train loss (−SI-SNR): -14.6879
+Epoch 32 | Step 38900 (150/1250) | Train loss (−SI-SNR): -13.3578
+Epoch 32 | Step 39000 (250/1250) | Train loss (−SI-SNR): -12.4752
+Epoch 32 | Step 39100 (350/1250) | Train loss (−SI-SNR): -14.6742
+Epoch 32 | Step 39200 (450/1250) | Train loss (−SI-SNR): -14.0985
+Epoch 32 | Step 39300 (550/1250) | Train loss (−SI-SNR): -12.2254
+Epoch 32 | Step 39400 (650/1250) | Train loss (−SI-SNR): -11.4046
+Epoch 32 | Step 39500 (750/1250) | Train loss (−SI-SNR): -15.2008
+Epoch 32 | Step 39600 (850/1250) | Train loss (−SI-SNR): -13.8887
+Epoch 32 | Step 39700 (950/1250) | Train loss (−SI-SNR): -13.7326
+Epoch 32 | Step 39800 (1050/1250) | Train loss (−SI-SNR): -14.4461
+Epoch 32 | Step 39900 (1150/1250) | Train loss (−SI-SNR): -13.4573
+Epoch 32 | Step 40000 (1250/1250) | Train loss (−SI-SNR): -14.1307
+Epoch 32 finished. Avg train loss: -14.0624
+Epoch 32 finished. Avg valid loss: -9.8441
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch32.pt
+
+===== Epoch 33/50 =====
+Epoch 33 | Step 40100 (100/1250) | Train loss (−SI-SNR): -14.9786
+Epoch 33 | Step 40200 (200/1250) | Train loss (−SI-SNR): -13.8385
+Epoch 33 | Step 40300 (300/1250) | Train loss (−SI-SNR): -14.7309
+Epoch 33 | Step 40400 (400/1250) | Train loss (−SI-SNR): -14.8315
+Epoch 33 | Step 40500 (500/1250) | Train loss (−SI-SNR): -13.5780
+Epoch 33 | Step 40600 (600/1250) | Train loss (−SI-SNR): -14.4183
+Epoch 33 | Step 40700 (700/1250) | Train loss (−SI-SNR): -11.6198
+Epoch 33 | Step 40800 (800/1250) | Train loss (−SI-SNR): -14.8613
+Epoch 33 | Step 40900 (900/1250) | Train loss (−SI-SNR): -15.0331
+Epoch 33 | Step 41000 (1000/1250) | Train loss (−SI-SNR): -11.9481
+Epoch 33 | Step 41100 (1100/1250) | Train loss (−SI-SNR): -14.1504
+Epoch 33 | Step 41200 (1200/1250) | Train loss (−SI-SNR): -14.4868
+Epoch 33 finished. Avg train loss: -14.1163
+Epoch 33 finished. Avg valid loss: -9.7641
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch33.pt
+
+===== Epoch 34/50 =====
+Epoch 34 | Step 41300 (50/1250) | Train loss (−SI-SNR): -14.5056
+Epoch 34 | Step 41400 (150/1250) | Train loss (−SI-SNR): -14.1047
+Epoch 34 | Step 41500 (250/1250) | Train loss (−SI-SNR): -15.2059
+Epoch 34 | Step 41600 (350/1250) | Train loss (−SI-SNR): -15.1337
+Epoch 34 | Step 41700 (450/1250) | Train loss (−SI-SNR): -14.8796
+Epoch 34 | Step 41800 (550/1250) | Train loss (−SI-SNR): -14.0021
+Epoch 34 | Step 41900 (650/1250) | Train loss (−SI-SNR): -14.2965
+Epoch 34 | Step 42000 (750/1250) | Train loss (−SI-SNR): -14.2596
+Epoch 34 | Step 42100 (850/1250) | Train loss (−SI-SNR): -14.8585
+Epoch 34 | Step 42200 (950/1250) | Train loss (−SI-SNR): -14.3909
+Epoch 34 | Step 42300 (1050/1250) | Train loss (−SI-SNR): -14.0630
+Epoch 34 | Step 42400 (1150/1250) | Train loss (−SI-SNR): -14.5391
+Epoch 34 | Step 42500 (1250/1250) | Train loss (−SI-SNR): -13.4581
+Epoch 34 finished. Avg train loss: -14.2376
+Epoch 34 finished. Avg valid loss: -9.6913
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch34.pt
+
+===== Epoch 35/50 =====
+Epoch 35 | Step 42600 (100/1250) | Train loss (−SI-SNR): -14.7004
+Epoch 35 | Step 42700 (200/1250) | Train loss (−SI-SNR): -13.6039
+Epoch 35 | Step 42800 (300/1250) | Train loss (−SI-SNR): -14.1857
+Epoch 35 | Step 42900 (400/1250) | Train loss (−SI-SNR): -12.3877
+Epoch 35 | Step 43000 (500/1250) | Train loss (−SI-SNR): -12.2248
+Epoch 35 | Step 43100 (600/1250) | Train loss (−SI-SNR): -13.8481
+Epoch 35 | Step 43200 (700/1250) | Train loss (−SI-SNR): -14.1572
+Epoch 35 | Step 43300 (800/1250) | Train loss (−SI-SNR): -14.1701
+Epoch 35 | Step 43400 (900/1250) | Train loss (−SI-SNR): -14.8027
+Epoch 35 | Step 43500 (1000/1250) | Train loss (−SI-SNR): -14.3959
+Epoch 35 | Step 43600 (1100/1250) | Train loss (−SI-SNR): -12.8476
+Epoch 35 | Step 43700 (1200/1250) | Train loss (−SI-SNR): -14.4231
+Epoch 35 finished. Avg train loss: -14.3004
+Epoch 35 finished. Avg valid loss: -9.8598
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch35.pt
+
+===== Epoch 36/50 =====
+Epoch 36 | Step 43800 (50/1250) | Train loss (−SI-SNR): -14.4499
+Epoch 36 | Step 43900 (150/1250) | Train loss (−SI-SNR): -15.1180
+Epoch 36 | Step 44000 (250/1250) | Train loss (−SI-SNR): -15.8611
+Epoch 36 | Step 44100 (350/1250) | Train loss (−SI-SNR): -14.9793
+Epoch 36 | Step 44200 (450/1250) | Train loss (−SI-SNR): -12.2530
+Epoch 36 | Step 44300 (550/1250) | Train loss (−SI-SNR): -14.0434
+Epoch 36 | Step 44400 (650/1250) | Train loss (−SI-SNR): -14.7597
+Epoch 36 | Step 44500 (750/1250) | Train loss (−SI-SNR): -14.5390
+Epoch 36 | Step 44600 (850/1250) | Train loss (−SI-SNR): -14.8212
+Epoch 36 | Step 44700 (950/1250) | Train loss (−SI-SNR): -14.3331
+Epoch 36 | Step 44800 (1050/1250) | Train loss (−SI-SNR): -14.6143
+Epoch 36 | Step 44900 (1150/1250) | Train loss (−SI-SNR): -14.6086
+Epoch 36 | Step 45000 (1250/1250) | Train loss (−SI-SNR): -14.2641
+Epoch 36 finished. Avg train loss: -14.3952
+Epoch 36 finished. Avg valid loss: -10.0290
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch36.pt
+
+===== Epoch 37/50 =====
+Epoch 37 | Step 45100 (100/1250) | Train loss (−SI-SNR): -14.8706
+Epoch 37 | Step 45200 (200/1250) | Train loss (−SI-SNR): -14.8826
+Epoch 37 | Step 45300 (300/1250) | Train loss (−SI-SNR): -15.4133
+Epoch 37 | Step 45400 (400/1250) | Train loss (−SI-SNR): -14.2222
+Epoch 37 | Step 45500 (500/1250) | Train loss (−SI-SNR): -14.5302
+Epoch 37 | Step 45600 (600/1250) | Train loss (−SI-SNR): -14.3553
+Epoch 37 | Step 45700 (700/1250) | Train loss (−SI-SNR): -14.9484
+Epoch 37 | Step 45800 (800/1250) | Train loss (−SI-SNR): -12.6939
+Epoch 37 | Step 45900 (900/1250) | Train loss (−SI-SNR): -14.6603
+Epoch 37 | Step 46000 (1000/1250) | Train loss (−SI-SNR): -14.6518
+Epoch 37 | Step 46100 (1100/1250) | Train loss (−SI-SNR): -14.4556
+Epoch 37 | Step 46200 (1200/1250) | Train loss (−SI-SNR): -14.5785
+Epoch 37 finished. Avg train loss: -14.4555
+Epoch 37 finished. Avg valid loss: -9.8162
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch37.pt
+
+===== Epoch 38/50 =====
+Epoch 38 | Step 46300 (50/1250) | Train loss (−SI-SNR): -14.6269
+Epoch 38 | Step 46400 (150/1250) | Train loss (−SI-SNR): -14.7047
+Epoch 38 | Step 46500 (250/1250) | Train loss (−SI-SNR): -14.2132
+Epoch 38 | Step 46600 (350/1250) | Train loss (−SI-SNR): -15.2034
+Epoch 38 | Step 46700 (450/1250) | Train loss (−SI-SNR): -14.8214
+Epoch 38 | Step 46800 (550/1250) | Train loss (−SI-SNR): -14.8443
+Epoch 38 | Step 46900 (650/1250) | Train loss (−SI-SNR): -15.4285
+Epoch 38 | Step 47000 (750/1250) | Train loss (−SI-SNR): -14.7451
+Epoch 38 | Step 47100 (850/1250) | Train loss (−SI-SNR): -13.8823
+Epoch 38 | Step 47200 (950/1250) | Train loss (−SI-SNR): -14.3874
+Epoch 38 | Step 47300 (1050/1250) | Train loss (−SI-SNR): -14.7305
+Epoch 38 | Step 47400 (1150/1250) | Train loss (−SI-SNR): -14.7970
+Epoch 38 | Step 47500 (1250/1250) | Train loss (−SI-SNR): -15.3857
+Epoch 38 finished. Avg train loss: -14.5159
+Epoch 38 finished. Avg valid loss: -9.8651
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch38.pt
+
+===== Epoch 39/50 =====
+Epoch 39 | Step 47600 (100/1250) | Train loss (−SI-SNR): -13.8969
+Epoch 39 | Step 47700 (200/1250) | Train loss (−SI-SNR): -14.8148
+Epoch 39 | Step 47800 (300/1250) | Train loss (−SI-SNR): -14.6935
+Epoch 39 | Step 47900 (400/1250) | Train loss (−SI-SNR): -15.4671
+Epoch 39 | Step 48000 (500/1250) | Train loss (−SI-SNR): -14.9205
+Epoch 39 | Step 48100 (600/1250) | Train loss (−SI-SNR): -11.9885
+Epoch 39 | Step 48200 (700/1250) | Train loss (−SI-SNR): -14.6017
+Epoch 39 | Step 48300 (800/1250) | Train loss (−SI-SNR): -14.7054
+Epoch 39 | Step 48400 (900/1250) | Train loss (−SI-SNR): -14.6856
+Epoch 39 | Step 48500 (1000/1250) | Train loss (−SI-SNR): -14.6838
+Epoch 39 | Step 48600 (1100/1250) | Train loss (−SI-SNR): -15.1962
+Epoch 39 | Step 48700 (1200/1250) | Train loss (−SI-SNR): -14.3452
+Epoch 39 finished. Avg train loss: -14.5829
+Epoch 39 finished. Avg valid loss: -9.8453
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch39.pt
+
+===== Epoch 40/50 =====
+Epoch 40 | Step 48800 (50/1250) | Train loss (−SI-SNR): -15.0732
+Epoch 40 | Step 48900 (150/1250) | Train loss (−SI-SNR): -15.0191
+Epoch 40 | Step 49000 (250/1250) | Train loss (−SI-SNR): -14.8874
+Epoch 40 | Step 49100 (350/1250) | Train loss (−SI-SNR): -14.7494
+Epoch 40 | Step 49200 (450/1250) | Train loss (−SI-SNR): -14.6791
+Epoch 40 | Step 49300 (550/1250) | Train loss (−SI-SNR): -14.8553
+Epoch 40 | Step 49400 (650/1250) | Train loss (−SI-SNR): -14.9789
+Epoch 40 | Step 49500 (750/1250) | Train loss (−SI-SNR): -15.0729
+Epoch 40 | Step 49600 (850/1250) | Train loss (−SI-SNR): -14.9557
+Epoch 40 | Step 49700 (950/1250) | Train loss (−SI-SNR): -15.5080
+Epoch 40 | Step 49800 (1050/1250) | Train loss (−SI-SNR): -15.5695
+Epoch 40 | Step 49900 (1150/1250) | Train loss (−SI-SNR): -15.3991
+Epoch 40 | Step 50000 (1250/1250) | Train loss (−SI-SNR): -14.8517
+Epoch 40 finished. Avg train loss: -14.8949
+Epoch 40 finished. Avg valid loss: -10.0027
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch40.pt
+
+===== Epoch 41/50 =====
+Epoch 41 | Step 50100 (100/1250) | Train loss (−SI-SNR): -15.7792
+Epoch 41 | Step 50200 (200/1250) | Train loss (−SI-SNR): -14.9642
+Epoch 41 | Step 50300 (300/1250) | Train loss (−SI-SNR): -15.6628
+Epoch 41 | Step 50400 (400/1250) | Train loss (−SI-SNR): -12.8203
+Epoch 41 | Step 50500 (500/1250) | Train loss (−SI-SNR): -14.9731
+Epoch 41 | Step 50600 (600/1250) | Train loss (−SI-SNR): -15.1885
+Epoch 41 | Step 50700 (700/1250) | Train loss (−SI-SNR): -14.9710
+Epoch 41 | Step 50800 (800/1250) | Train loss (−SI-SNR): -12.6022
+Epoch 41 | Step 50900 (900/1250) | Train loss (−SI-SNR): -14.6281
+Epoch 41 | Step 51000 (1000/1250) | Train loss (−SI-SNR): -15.5030
+Epoch 41 | Step 51100 (1100/1250) | Train loss (−SI-SNR): -15.3350
+Epoch 41 | Step 51200 (1200/1250) | Train loss (−SI-SNR): -14.5970
+Epoch 41 finished. Avg train loss: -14.9954
+Epoch 41 finished. Avg valid loss: -9.7813
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch41.pt
+
+===== Epoch 42/50 =====
+Epoch 42 | Step 51300 (50/1250) | Train loss (−SI-SNR): -15.3387
+Epoch 42 | Step 51400 (150/1250) | Train loss (−SI-SNR): -14.5876
+Epoch 42 | Step 51500 (250/1250) | Train loss (−SI-SNR): -15.4691
+Epoch 42 | Step 51600 (350/1250) | Train loss (−SI-SNR): -15.2053
+Epoch 42 | Step 51700 (450/1250) | Train loss (−SI-SNR): -15.3683
+Epoch 42 | Step 51800 (550/1250) | Train loss (−SI-SNR): -14.9264
+Epoch 42 | Step 51900 (650/1250) | Train loss (−SI-SNR): -15.2411
+Epoch 42 | Step 52000 (750/1250) | Train loss (−SI-SNR): -12.2808
+Epoch 42 | Step 52100 (850/1250) | Train loss (−SI-SNR): -15.6145
+Epoch 42 | Step 52200 (950/1250) | Train loss (−SI-SNR): -15.2645
+Epoch 42 | Step 52300 (1050/1250) | Train loss (−SI-SNR): -15.6649
+Epoch 42 | Step 52400 (1150/1250) | Train loss (−SI-SNR): -15.3432
+Epoch 42 | Step 52500 (1250/1250) | Train loss (−SI-SNR): -14.7796
+Epoch 42 finished. Avg train loss: -15.0471
+Epoch 42 finished. Avg valid loss: -9.8464
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch42.pt
+
+===== Epoch 43/50 =====
+Epoch 43 | Step 52600 (100/1250) | Train loss (−SI-SNR): -15.2544
+Epoch 43 | Step 52700 (200/1250) | Train loss (−SI-SNR): -14.9946
+Epoch 43 | Step 52800 (300/1250) | Train loss (−SI-SNR): -15.3840
+Epoch 43 | Step 52900 (400/1250) | Train loss (−SI-SNR): -15.1825
+Epoch 43 | Step 53000 (500/1250) | Train loss (−SI-SNR): -15.2094
+Epoch 43 | Step 53100 (600/1250) | Train loss (−SI-SNR): -15.0272
+Epoch 43 | Step 53200 (700/1250) | Train loss (−SI-SNR): -15.4708
+Epoch 43 | Step 53300 (800/1250) | Train loss (−SI-SNR): -15.5545
+Epoch 43 | Step 53400 (900/1250) | Train loss (−SI-SNR): -15.2113
+Epoch 43 | Step 53500 (1000/1250) | Train loss (−SI-SNR): -16.3882
+Epoch 43 | Step 53600 (1100/1250) | Train loss (−SI-SNR): -15.7055
+Epoch 43 | Step 53700 (1200/1250) | Train loss (−SI-SNR): -15.7117
+Epoch 43 finished. Avg train loss: -15.1738
+Epoch 43 finished. Avg valid loss: -9.9667
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch43.pt
+
+===== Epoch 44/50 =====
+Epoch 44 | Step 53800 (50/1250) | Train loss (−SI-SNR): -15.2438
+Epoch 44 | Step 53900 (150/1250) | Train loss (−SI-SNR): -15.6056
+Epoch 44 | Step 54000 (250/1250) | Train loss (−SI-SNR): -14.8917
+Epoch 44 | Step 54100 (350/1250) | Train loss (−SI-SNR): -15.3572
+Epoch 44 | Step 54200 (450/1250) | Train loss (−SI-SNR): -15.1968
+Epoch 44 | Step 54300 (550/1250) | Train loss (−SI-SNR): -14.6831
+Epoch 44 | Step 54400 (650/1250) | Train loss (−SI-SNR): -13.5827
+Epoch 44 | Step 54500 (750/1250) | Train loss (−SI-SNR): -14.9622
+Epoch 44 | Step 54600 (850/1250) | Train loss (−SI-SNR): -15.2069
+Epoch 44 | Step 54700 (950/1250) | Train loss (−SI-SNR): -15.0242
+Epoch 44 | Step 54800 (1050/1250) | Train loss (−SI-SNR): -15.5456
+Epoch 44 | Step 54900 (1150/1250) | Train loss (−SI-SNR): -15.7275
+Epoch 44 | Step 55000 (1250/1250) | Train loss (−SI-SNR): -15.7226
+Epoch 44 finished. Avg train loss: -15.2203
+Epoch 44 finished. Avg valid loss: -9.9527
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch44.pt
+
+===== Epoch 45/50 =====
+Epoch 45 | Step 55100 (100/1250) | Train loss (−SI-SNR): -16.0689
+Epoch 45 | Step 55200 (200/1250) | Train loss (−SI-SNR): -15.4659
+Epoch 45 | Step 55300 (300/1250) | Train loss (−SI-SNR): -15.2984
+Epoch 45 | Step 55400 (400/1250) | Train loss (−SI-SNR): -15.7675
+Epoch 45 | Step 55500 (500/1250) | Train loss (−SI-SNR): -14.6284
+Epoch 45 | Step 55600 (600/1250) | Train loss (−SI-SNR): -14.9570
+Epoch 45 | Step 55700 (700/1250) | Train loss (−SI-SNR): -15.0669
+Epoch 45 | Step 55800 (800/1250) | Train loss (−SI-SNR): -15.5733
+Epoch 45 | Step 55900 (900/1250) | Train loss (−SI-SNR): -15.0686
+Epoch 45 | Step 56000 (1000/1250) | Train loss (−SI-SNR): -15.5949
+Epoch 45 | Step 56100 (1100/1250) | Train loss (−SI-SNR): -14.9971
+Epoch 45 | Step 56200 (1200/1250) | Train loss (−SI-SNR): -14.7866
+Epoch 45 finished. Avg train loss: -15.2544
+Epoch 45 finished. Avg valid loss: -10.0577
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch45.pt
+
+===== Epoch 46/50 =====
+Epoch 46 | Step 56300 (50/1250) | Train loss (−SI-SNR): -15.6986
+Epoch 46 | Step 56400 (150/1250) | Train loss (−SI-SNR): -15.0138
+Epoch 46 | Step 56500 (250/1250) | Train loss (−SI-SNR): -14.9373
+Epoch 46 | Step 56600 (350/1250) | Train loss (−SI-SNR): -16.2031
+Epoch 46 | Step 56700 (450/1250) | Train loss (−SI-SNR): -15.8667
+Epoch 46 | Step 56800 (550/1250) | Train loss (−SI-SNR): -15.3837
+Epoch 46 | Step 56900 (650/1250) | Train loss (−SI-SNR): -14.6512
+Epoch 46 | Step 57000 (750/1250) | Train loss (−SI-SNR): -15.4396
+Epoch 46 | Step 57100 (850/1250) | Train loss (−SI-SNR): -15.2142
+Epoch 46 | Step 57200 (950/1250) | Train loss (−SI-SNR): -15.5383
+Epoch 46 | Step 57300 (1050/1250) | Train loss (−SI-SNR): -16.0473
+Epoch 46 | Step 57400 (1150/1250) | Train loss (−SI-SNR): -14.5427
+Epoch 46 | Step 57500 (1250/1250) | Train loss (−SI-SNR): -13.2520
+Epoch 46 finished. Avg train loss: -15.2844
+Epoch 46 finished. Avg valid loss: -9.9833
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch46.pt
+
+===== Epoch 47/50 =====
+Epoch 47 | Step 57600 (100/1250) | Train loss (−SI-SNR): -15.5000
+Epoch 47 | Step 57700 (200/1250) | Train loss (−SI-SNR): -15.3465
+Epoch 47 | Step 57800 (300/1250) | Train loss (−SI-SNR): -15.5505
+Epoch 47 | Step 57900 (400/1250) | Train loss (−SI-SNR): -14.9083
+Epoch 47 | Step 58000 (500/1250) | Train loss (−SI-SNR): -15.2797
+Epoch 47 | Step 58100 (600/1250) | Train loss (−SI-SNR): -16.2671
+Epoch 47 | Step 58200 (700/1250) | Train loss (−SI-SNR): -14.9015
+Epoch 47 | Step 58300 (800/1250) | Train loss (−SI-SNR): -15.2051
+Epoch 47 | Step 58400 (900/1250) | Train loss (−SI-SNR): -15.6929
+Epoch 47 | Step 58500 (1000/1250) | Train loss (−SI-SNR): -16.0825
+Epoch 47 | Step 58600 (1100/1250) | Train loss (−SI-SNR): -14.1564
+Epoch 47 | Step 58700 (1200/1250) | Train loss (−SI-SNR): -15.2036
+Epoch 47 finished. Avg train loss: -15.3146
+Epoch 47 finished. Avg valid loss: -10.0154
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch47.pt
+
+===== Epoch 48/50 =====
+Epoch 48 | Step 58800 (50/1250) | Train loss (−SI-SNR): -15.6285
+Epoch 48 | Step 58900 (150/1250) | Train loss (−SI-SNR): -14.6074
+Epoch 48 | Step 59000 (250/1250) | Train loss (−SI-SNR): -15.9873
+Epoch 48 | Step 59100 (350/1250) | Train loss (−SI-SNR): -15.3988
+Epoch 48 | Step 59200 (450/1250) | Train loss (−SI-SNR): -15.1764
+Epoch 48 | Step 59300 (550/1250) | Train loss (−SI-SNR): -15.6689
+Epoch 48 | Step 59400 (650/1250) | Train loss (−SI-SNR): -15.6019
+Epoch 48 | Step 59500 (750/1250) | Train loss (−SI-SNR): -16.0280
+Epoch 48 | Step 59600 (850/1250) | Train loss (−SI-SNR): -15.8774
+Epoch 48 | Step 59700 (950/1250) | Train loss (−SI-SNR): -15.6956
+Epoch 48 | Step 59800 (1050/1250) | Train loss (−SI-SNR): -14.4090
+Epoch 48 | Step 59900 (1150/1250) | Train loss (−SI-SNR): -15.7697
+Epoch 48 | Step 60000 (1250/1250) | Train loss (−SI-SNR): -15.2894
+Epoch 48 finished. Avg train loss: -15.3398
+Epoch 48 finished. Avg valid loss: -10.0264
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch48.pt
+
+===== Epoch 49/50 =====
+Epoch 49 | Step 60100 (100/1250) | Train loss (−SI-SNR): -15.0588
+Epoch 49 | Step 60200 (200/1250) | Train loss (−SI-SNR): -16.2998
+Epoch 49 | Step 60300 (300/1250) | Train loss (−SI-SNR): -15.3468
+Epoch 49 | Step 60400 (400/1250) | Train loss (−SI-SNR): -16.0125
+Epoch 49 | Step 60500 (500/1250) | Train loss (−SI-SNR): -15.6353
+Epoch 49 | Step 60600 (600/1250) | Train loss (−SI-SNR): -15.5872
+Epoch 49 | Step 60700 (700/1250) | Train loss (−SI-SNR): -15.1298
+Epoch 49 | Step 60800 (800/1250) | Train loss (−SI-SNR): -15.3579
+Epoch 49 | Step 60900 (900/1250) | Train loss (−SI-SNR): -15.7272
+Epoch 49 | Step 61000 (1000/1250) | Train loss (−SI-SNR): -15.6260
+Epoch 49 | Step 61100 (1100/1250) | Train loss (−SI-SNR): -16.3304
+Epoch 49 | Step 61200 (1200/1250) | Train loss (−SI-SNR): -16.2491
+Epoch 49 finished. Avg train loss: -15.4063
+Epoch 49 finished. Avg valid loss: -10.0100
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch49.pt
+
+===== Epoch 50/50 =====
+Epoch 50 | Step 61300 (50/1250) | Train loss (−SI-SNR): -15.2236
+Epoch 50 | Step 61400 (150/1250) | Train loss (−SI-SNR): -16.2789
+Epoch 50 | Step 61500 (250/1250) | Train loss (−SI-SNR): -15.8809
+Epoch 50 | Step 61600 (350/1250) | Train loss (−SI-SNR): -15.4748
+Epoch 50 | Step 61700 (450/1250) | Train loss (−SI-SNR): -15.5313
+Epoch 50 | Step 61800 (550/1250) | Train loss (−SI-SNR): -15.1451
+Epoch 50 | Step 61900 (650/1250) | Train loss (−SI-SNR): -15.3631
+Epoch 50 | Step 62000 (750/1250) | Train loss (−SI-SNR): -15.9834
+Epoch 50 | Step 62100 (850/1250) | Train loss (−SI-SNR): -14.7813
+Epoch 50 | Step 62200 (950/1250) | Train loss (−SI-SNR): -15.6278
+Epoch 50 | Step 62300 (1050/1250) | Train loss (−SI-SNR): -14.9775
+Epoch 50 | Step 62400 (1150/1250) | Train loss (−SI-SNR): -15.8563
+Epoch 50 | Step 62500 (1250/1250) | Train loss (−SI-SNR): -14.9142
+Epoch 50 finished. Avg train loss: -15.4273
+Epoch 50 finished. Avg valid loss: -10.0715
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_epoch50.pt
+[Final] Model saved to: checkpoints\train_convtasnet_20251209-084953\conv_tasnet_final.pt
+[Test] Reached max_samples limit.
+[Test] Average test loss (−SI-SNR): -9.3721 dB
