@@ -188,3 +188,54 @@ Validation improved, new best val loss: -12.4843
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch009_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch009_spec.png
 
 ===== Epoch 10/100 =====
+Epoch 10 | Step 11300 (50/1250) | Train loss (−SI-SNR): -13.0631
+Epoch 10 | Step 11400 (150/1250) | Train loss (−SI-SNR): -14.3461
+Epoch 10 | Step 11500 (250/1250) | Train loss (−SI-SNR): -13.5927
+Epoch 10 | Step 11600 (350/1250) | Train loss (−SI-SNR): -13.3349
+Epoch 10 | Step 11700 (450/1250) | Train loss (−SI-SNR): -11.0951
+Epoch 10 | Step 11800 (550/1250) | Train loss (−SI-SNR): -12.4547
+Epoch 10 | Step 11900 (650/1250) | Train loss (−SI-SNR): -12.9165
+Epoch 10 | Step 12000 (750/1250) | Train loss (−SI-SNR): -12.2443
+Epoch 10 | Step 12100 (850/1250) | Train loss (−SI-SNR): -12.2051
+Epoch 10 | Step 12200 (950/1250) | Train loss (−SI-SNR): -13.4312
+Epoch 10 | Step 12300 (1050/1250) | Train loss (−SI-SNR): -13.4323
+Epoch 10 | Step 12400 (1150/1250) | Train loss (−SI-SNR): -11.0613
+Epoch 10 | Step 12500 (1250/1250) | Train loss (−SI-SNR): -14.8896
+Epoch 10 finished. Avg train loss: -12.8639
+Epoch 10 finished. Avg valid loss: -12.6537
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -12.6537
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch10.pt
+[Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch010_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch010_spec.png
+
+===== Epoch 11/100 =====
+Epoch 11 | Step 12600 (100/1250) | Train loss (−SI-SNR): -12.6214
+Epoch 11 | Step 12700 (200/1250) | Train loss (−SI-SNR): -12.4982
+Epoch 11 | Step 12800 (300/1250) | Train loss (−SI-SNR): -13.6869
+Epoch 11 | Step 12900 (400/1250) | Train loss (−SI-SNR): -11.3381
+Epoch 11 | Step 13000 (500/1250) | Train loss (−SI-SNR): -13.7388
+Epoch 11 | Step 13100 (600/1250) | Train loss (−SI-SNR): -14.3497
+Epoch 11 | Step 13200 (700/1250) | Train loss (−SI-SNR): -12.8762
+Epoch 11 | Step 13300 (800/1250) | Train loss (−SI-SNR): -13.2022
+Epoch 11 | Step 13400 (900/1250) | Train loss (−SI-SNR): -12.8260
+Epoch 11 | Step 13500 (1000/1250) | Train loss (−SI-SNR): -11.8263
+Epoch 11 | Step 13600 (1100/1250) | Train loss (−SI-SNR): -12.2771
+Epoch 11 | Step 13700 (1200/1250) | Train loss (−SI-SNR): -13.0336
+Epoch 11 finished. Avg train loss: -13.0584
+Epoch 11 finished. Avg valid loss: -12.8923
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -12.8923
+[Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch11.pt
+[Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch011_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch011_spec.png
+
+===== Epoch 12/100 =====
+Epoch 12 | Step 13800 (50/1250) | Train loss (−SI-SNR): -12.1045
+Epoch 12 | Step 13900 (150/1250) | Train loss (−SI-SNR): -11.8157
+Epoch 12 | Step 14000 (250/1250) | Train loss (−SI-SNR): -12.0356
+Epoch 12 | Step 14100 (350/1250) | Train loss (−SI-SNR): -12.8685
+Epoch 12 | Step 14200 (450/1250) | Train loss (−SI-SNR): -14.3782
+Epoch 12 | Step 14300 (550/1250) | Train loss (−SI-SNR): -14.4760
+Epoch 12 | Step 14400 (650/1250) | Train loss (−SI-SNR): -11.5579
+Epoch 12 | Step 14500 (750/1250) | Train loss (−SI-SNR): -13.9561
+Epoch 12 | Step 14600 (850/1250) | Train loss (−SI-SNR): -13.9705
+Epoch 12 | Step 14700 (950/1250) | Train loss (−SI-SNR): -13.2776
