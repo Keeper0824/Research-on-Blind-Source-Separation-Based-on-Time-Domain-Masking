@@ -19,7 +19,7 @@ class Model(nn.Module):
         self.separator = TCNModel.SeparatorTCN(enc_channels=enc_dim, bottleneck_channels=bottleneck_channels,
                                                hidden_channels=hidden_channels, kernel_size=3, num_blocks=num_blocks,
                                                num_repeats=num_repeats, num_speakers=num_speakers)
-        self.decoder = EncoderDecoder.SharedDecoder(in_channels=256, kernel_size=16, stride=8)
+        self.decoder = EncoderDecoder.SharedDecoder(in_channels=enc_dim, kernel_size=16, stride=8)
 
     def forward(self, mixture):
         """
