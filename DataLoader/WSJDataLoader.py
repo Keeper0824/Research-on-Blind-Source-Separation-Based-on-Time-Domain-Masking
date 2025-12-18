@@ -82,7 +82,7 @@ def MakeDataLoader(root, batch_size, num_workers, segment, sample_rate):
     return trainLoader, validLoader, testLoader
 
 if __name__ == "__main__":
-    root = "Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
+    root = "../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
     sample_rate = 8000
     trainLoader, validLoader, testLoader = MakeDataLoader(root=root, batch_size=4, num_workers=4, segment=4.0, sample_rate=sample_rate)
     for mix, targets in validLoader:

@@ -7,9 +7,9 @@ import copy
 import matplotlib.pyplot as plt
 from contextlib import nullcontext
 from torch.amp import GradScaler, autocast
-from Model.Model_TasNet import Model
+from Model.Baseline.Model_TasNet import Model
 from LossFunction.SI_SNR import pit_si_snr_loss
-from DataLoader import MakeDataLoader
+from DataLoader.WSJDataLoader import MakeDataLoader
 
 
 class Logger(object):
@@ -259,15 +259,15 @@ def main():
     # Basic run naming & logging setup
     timestamp = time.strftime("%Y%m%d-%H%M%S")
     log_name = f"train_convtasnet_{timestamp}"  # base name without extension
-    log_file = os.path.join("logs", log_name + ".log")
+    log_file = os.path.join("../../logs", log_name + ".log")
 
     # Redirect stdout to logger
     sys.stdout = Logger(log_file)
     print(f"Log file: {log_file}")
 
     # Create per-run directories for checkpoints and outputs
-    ckpt_root = "checkpoints"
-    output_root = "outputs"
+    ckpt_root = "../../checkpoints"
+    output_root = "../../outputs"
     ckpt_dir = os.path.join(ckpt_root, log_name)
     output_dir = os.path.join(output_root, log_name)
     os.makedirs(ckpt_dir, exist_ok=True)
@@ -282,7 +282,7 @@ def main():
 
     torch.backends.cudnn.benchmark = True
     # Data & device setup
-    root = "Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
+    root = "../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
     sample_rate = 8000
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
@@ -295,6 +295,7 @@ def main():
     fixed_targets = fixed_targets[0]  # [2, T]
 
     # Model, optimizer, loss, AMP scaler
+    # Baseline
     model = Model(enc_dim=512, enc_kernel=16, enc_stride=8, bottleneck_channels=128, hidden_channels=256, num_blocks=8,
                   num_repeats=3, num_speakers=2).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)

@@ -1,7 +1,6 @@
-import torch
 from torch import nn
-import Model.EncoderDecoder as EncoderDecoder
-import Model.TasNet_TCN as TCNModel
+import Model.MultiScale.MultiscaleEncoderDecoder as EncoderDecoder
+import Model.MultiScale.TasNet_TCN as TCNModel
 
 
 class Model(nn.Module):
@@ -11,16 +10,16 @@ class Model(nn.Module):
     输出:  est_sources (B, num_speakers, T_est)
     """
 
-    def __init__(self, enc_dim=256, enc_kernel=16, enc_stride=8, bottleneck_channels=128, hidden_channels=256,
+    def __init__(self, enc_dim=256, enc_kernel=[16, 32, 64], enc_stride=8, bottleneck_channels=128, hidden_channels=256,
                  num_blocks=8, num_repeats=3, num_speakers=2):
         super().__init__()
         self.num_speakers = num_speakers
 
-        self.encoder = EncoderDecoder.Encoder(enc_dim, enc_kernel, enc_stride)
+        self.encoder = EncoderDecoder.Encoder(out_channels=enc_dim, kernel_sizes=enc_kernel, stride=enc_stride)
         self.separator = TCNModel.SeparatorTCN(enc_channels=enc_dim, bottleneck_channels=bottleneck_channels,
                                                hidden_channels=hidden_channels, kernel_size=3, num_blocks=num_blocks,
                                                num_repeats=num_repeats, num_speakers=num_speakers)
-        self.decoder = EncoderDecoder.Decoder(enc_dim, enc_kernel, enc_stride)
+        self.decoder = EncoderDecoder.SharedDecoder(in_channels=256, kernel_size=16, stride=8)
 
     def forward(self, mixture):
         """

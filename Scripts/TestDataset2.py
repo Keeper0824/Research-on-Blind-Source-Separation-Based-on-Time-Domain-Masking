@@ -4,7 +4,7 @@ import time
 import torch
 import torchaudio
 from torchaudio.models import ConvTasNet
-from DataLoader import MakeDataLoader
+from DataLoader.WSJDataLoader import MakeDataLoader
 from LossFunction.SI_SNR import negative_si_snr as si_snr_loss
 
 
