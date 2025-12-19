@@ -27,13 +27,13 @@ class Encoder(nn.Module):
     """
 
     def __init__(
-        self,
-        out_channels: int = 256,
-        kernel_sizes: List[int] = (16, 32, 64),
-        stride: int = 8,
-        branch_channels: Optional[List[int]] = None,
-        activation: str = "prelu",
-        bias: bool = False,
+            self,
+            out_channels: int = 256,
+            kernel_sizes: List[int] = (16, 32, 64),
+            stride: int = 8,
+            branch_channels: Optional[List[int]] = None,
+            activation: str = "prelu",
+            bias: bool = False,
     ):
         super().__init__()
         self.out_channels = out_channels
@@ -57,7 +57,7 @@ class Encoder(nn.Module):
                     out_channels=c,
                     kernel_size=k,
                     stride=stride,
-                    padding=0,      # keep as 'valid', we will crop after
+                    padding=0,  # keep as 'valid', we will crop after
                     bias=bias,
                 )
             )
@@ -87,10 +87,10 @@ class Encoder(nn.Module):
         if wav.dim() == 2:
             wav = wav.unsqueeze(1)
 
-        outs = [branch(wav) for branch in self.branches]   # each: [B, C_i, K_i]
-        outs = _crop_to_min_len(outs)                      # align time length
-        x = torch.cat(outs, dim=1)                         # [B, sum(C_i), K]
-        x = self.fuse(x)                                   # [B, N, K]
+        outs = [branch(wav) for branch in self.branches]  # each: [B, C_i, K_i]
+        outs = _crop_to_min_len(outs)  # align time length
+        x = torch.cat(outs, dim=1)  # [B, sum(C_i), K]
+        x = self.fuse(x)  # [B, N, K]
         x = self.act(x)
         return x
 
@@ -106,11 +106,11 @@ class SharedDecoder(nn.Module):
     """
 
     def __init__(
-        self,
-        in_channels: int = 256,
-        kernel_size: int = 16,
-        stride: int = 8,
-        bias: bool = False,
+            self,
+            in_channels: int = 256,
+            kernel_size: int = 16,
+            stride: int = 8,
+            bias: bool = False,
     ):
         super().__init__()
         self.deconv = nn.ConvTranspose1d(
@@ -133,9 +133,9 @@ class SharedDecoder(nn.Module):
 
         if feat.dim() == 4:
             B, S, N, K = feat.shape
-            x = feat.reshape(B * S, N, K)          # [B*S, N, K]
-            y = self.deconv(x)                      # [B*S, 1, T]
-            y = y.squeeze(1).reshape(B, S, -1)      # [B, S, T]
+            x = feat.reshape(B * S, N, K)  # [B*S, N, K]
+            y = self.deconv(x)  # [B*S, 1, T]
+            y = y.squeeze(1).reshape(B, S, -1)  # [B, S, T]
             return y.contiguous()
 
         raise ValueError(f"SharedDecoder got unsupported shape: {tuple(feat.shape)}")
@@ -150,11 +150,11 @@ class MultiBranchDecoder(nn.Module):
     """
 
     def __init__(
-        self,
-        in_channels: int = 256,
-        kernel_sizes: List[int] = (16, 32, 64),
-        stride: int = 8,
-        bias: bool = False,
+            self,
+            in_channels: int = 256,
+            kernel_sizes: List[int] = (16, 32, 64),
+            stride: int = 8,
+            bias: bool = False,
     ):
         super().__init__()
         self.deconvs = nn.ModuleList([
@@ -169,8 +169,17 @@ class MultiBranchDecoder(nn.Module):
             for k in kernel_sizes
         ])
 
-    def forward(self, feat: torch.Tensor) -> torch.Tensor:
-        outs = [d(feat) for d in self.deconvs]   # each: [B, 1, T_i]
+    def _decode_3d(self, feat_3d: torch.Tensor) -> torch.Tensor:
+        # feat_3d: [B, C, T]
+        outs = [d(feat_3d) for d in self.deconvs]  # each: [B, 1, T_i]
         outs = _crop_to_min_len(outs)
         wav_hat = torch.stack(outs, dim=0).sum(dim=0)  # [B, 1, T]
         return wav_hat
+
+    def forward(self, feat: torch.Tensor) -> torch.Tensor:
+        # [B, S, C, T] -> merge -> [B*S, C, T]
+        B, S, C, T = feat.shape
+        feat = feat.reshape(B * S, C, T)
+        wav = self._decode_3d(feat)  # [B*S, 1, T_w]
+        wav = wav.reshape(B, S, wav.size(-1))  # [B, S, T_w]
+        return wav

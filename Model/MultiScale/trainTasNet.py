@@ -380,7 +380,7 @@ def main():
         else:
             no_improve_epochs += 1
             print(
-                f"⚠ No improvement on valid for {no_improve_epochs} epoch(s) "
+                f"No improvement on valid for {no_improve_epochs} epoch(s) "
                 f"(best: {best_val_loss:.4f})"
             )
             if no_improve_epochs >= patience:

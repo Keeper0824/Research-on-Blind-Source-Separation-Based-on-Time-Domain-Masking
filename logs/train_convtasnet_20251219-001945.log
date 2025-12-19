@@ -1249,7 +1249,7 @@ Epoch 61 | Step 76200 (1200/1250) | Train loss (−SI-SNR): -15.9346
 Epoch 61 finished. Avg train loss: -15.9742
 Epoch 61 finished. Avg valid loss: -15.0379
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 5 epoch(s) (best: -15.0628)
+No improvement on valid for 5 epoch(s) (best: -15.0628)
 Early stopping triggered at epoch 61 (patience=5)
 Loaded best model with val loss = -15.0628
 [Final] Model saved to: ../../checkpoints\train_convtasnet_20251219-001945\conv_tasnet_final.pt
