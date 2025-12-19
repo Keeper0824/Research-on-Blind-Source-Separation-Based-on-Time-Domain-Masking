@@ -245,7 +245,7 @@ Epoch 12 | Step 15000 (1250/1250) | Train loss (−SI-SNR): -13.6240
 Epoch 12 finished. Avg train loss: -13.2059
 Epoch 12 finished. Avg valid loss: -12.8271
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -12.8923)
+No improvement on valid for 1 epoch(s) (best: -12.8923)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch12.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch012_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch012_spec.png
 
@@ -347,7 +347,7 @@ Epoch 17 | Step 21200 (1200/1250) | Train loss (−SI-SNR): -12.9449
 Epoch 17 finished. Avg train loss: -13.8787
 Epoch 17 finished. Avg valid loss: -13.4400
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -13.4424)
+No improvement on valid for 1 epoch(s) (best: -13.4424)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch17.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch017_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch017_spec.png
 
@@ -429,7 +429,7 @@ Epoch 21 | Step 26200 (1200/1250) | Train loss (−SI-SNR): -14.7625
 Epoch 21 finished. Avg train loss: -14.2673
 Epoch 21 finished. Avg valid loss: -13.8054
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -13.8136)
+No improvement on valid for 1 epoch(s) (best: -13.8136)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch21.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch021_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch021_spec.png
 
@@ -470,7 +470,7 @@ Epoch 23 | Step 28700 (1200/1250) | Train loss (−SI-SNR): -15.1675
 Epoch 23 finished. Avg train loss: -14.4404
 Epoch 23 finished. Avg valid loss: -13.8464
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -13.8801)
+No improvement on valid for 1 epoch(s) (best: -13.8801)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch23.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch023_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch023_spec.png
 
@@ -552,7 +552,7 @@ Epoch 27 | Step 33700 (1200/1250) | Train loss (−SI-SNR): -15.3047
 Epoch 27 finished. Avg train loss: -14.6693
 Epoch 27 finished. Avg valid loss: -13.9560
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -14.0685)
+No improvement on valid for 1 epoch(s) (best: -14.0685)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch27.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch027_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch027_spec.png
 
@@ -573,7 +573,7 @@ Epoch 28 | Step 35000 (1250/1250) | Train loss (−SI-SNR): -13.9176
 Epoch 28 finished. Avg train loss: -14.7683
 Epoch 28 finished. Avg valid loss: -13.9255
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 2 epoch(s) (best: -14.0685)
+No improvement on valid for 2 epoch(s) (best: -14.0685)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch28.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch028_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch028_spec.png
 
@@ -634,7 +634,7 @@ Epoch 31 | Step 38700 (1200/1250) | Train loss (−SI-SNR): -14.5214
 Epoch 31 finished. Avg train loss: -14.9472
 Epoch 31 finished. Avg valid loss: -14.2673
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -14.3345)
+No improvement on valid for 1 epoch(s) (best: -14.3345)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch31.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch031_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch031_spec.png
 
@@ -655,7 +655,7 @@ Epoch 32 | Step 40000 (1250/1250) | Train loss (−SI-SNR): -15.7619
 Epoch 32 finished. Avg train loss: -14.9998
 Epoch 32 finished. Avg valid loss: -14.3330
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 2 epoch(s) (best: -14.3345)
+No improvement on valid for 2 epoch(s) (best: -14.3345)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch32.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch032_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch032_spec.png
 
@@ -675,7 +675,7 @@ Epoch 33 | Step 41200 (1200/1250) | Train loss (−SI-SNR): -15.4493
 Epoch 33 finished. Avg train loss: -15.0675
 Epoch 33 finished. Avg valid loss: -14.2974
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 3 epoch(s) (best: -14.3345)
+No improvement on valid for 3 epoch(s) (best: -14.3345)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch33.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch033_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch033_spec.png
 
@@ -696,7 +696,7 @@ Epoch 34 | Step 42500 (1250/1250) | Train loss (−SI-SNR): -14.4087
 Epoch 34 finished. Avg train loss: -15.1153
 Epoch 34 finished. Avg valid loss: -14.2938
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 4 epoch(s) (best: -14.3345)
+No improvement on valid for 4 epoch(s) (best: -14.3345)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch34.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch034_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch034_spec.png
 
@@ -798,7 +798,7 @@ Epoch 39 | Step 48700 (1200/1250) | Train loss (−SI-SNR): -15.3362
 Epoch 39 finished. Avg train loss: -15.3513
 Epoch 39 finished. Avg valid loss: -14.5627
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -14.5834)
+No improvement on valid for 1 epoch(s) (best: -14.5834)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch39.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch039_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch039_spec.png
 
@@ -839,7 +839,7 @@ Epoch 41 | Step 51200 (1200/1250) | Train loss (−SI-SNR): -15.9226
 Epoch 41 finished. Avg train loss: -15.4320
 Epoch 41 finished. Avg valid loss: -14.6965
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -14.7307)
+No improvement on valid for 1 epoch(s) (best: -14.7307)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch41.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch041_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch041_spec.png
 
@@ -860,7 +860,7 @@ Epoch 42 | Step 52500 (1250/1250) | Train loss (−SI-SNR): -15.4030
 Epoch 42 finished. Avg train loss: -15.4980
 Epoch 42 finished. Avg valid loss: -14.7112
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 2 epoch(s) (best: -14.7307)
+No improvement on valid for 2 epoch(s) (best: -14.7307)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch42.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch042_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch042_spec.png
 
@@ -880,7 +880,7 @@ Epoch 43 | Step 53700 (1200/1250) | Train loss (−SI-SNR): -15.7957
 Epoch 43 finished. Avg train loss: -15.5117
 Epoch 43 finished. Avg valid loss: -14.6709
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 3 epoch(s) (best: -14.7307)
+No improvement on valid for 3 epoch(s) (best: -14.7307)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch43.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch043_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch043_spec.png
 
@@ -901,7 +901,7 @@ Epoch 44 | Step 55000 (1250/1250) | Train loss (−SI-SNR): -15.0889
 Epoch 44 finished. Avg train loss: -15.5409
 Epoch 44 finished. Avg valid loss: -14.6990
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 4 epoch(s) (best: -14.7307)
+No improvement on valid for 4 epoch(s) (best: -14.7307)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch44.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch044_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch044_spec.png
 
@@ -942,7 +942,7 @@ Epoch 46 | Step 57500 (1250/1250) | Train loss (−SI-SNR): -13.8489
 Epoch 46 finished. Avg train loss: -15.6341
 Epoch 46 finished. Avg valid loss: -14.7713
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -14.7979)
+No improvement on valid for 1 epoch(s) (best: -14.7979)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch46.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch046_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch046_spec.png
 
@@ -1024,7 +1024,7 @@ Epoch 50 | Step 62500 (1250/1250) | Train loss (−SI-SNR): -16.1870
 Epoch 50 finished. Avg train loss: -15.7604
 Epoch 50 finished. Avg valid loss: -14.8705
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -14.9188)
+No improvement on valid for 1 epoch(s) (best: -14.9188)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch50.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch050_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch050_spec.png
 
@@ -1065,7 +1065,7 @@ Epoch 52 | Step 65000 (1250/1250) | Train loss (−SI-SNR): -16.2772
 Epoch 52 finished. Avg train loss: -15.8138
 Epoch 52 finished. Avg valid loss: -14.8984
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -14.9410)
+No improvement on valid for 1 epoch(s) (best: -14.9410)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch52.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch052_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch052_spec.png
 
@@ -1147,7 +1147,7 @@ Epoch 56 | Step 70000 (1250/1250) | Train loss (−SI-SNR): -16.1337
 Epoch 56 finished. Avg train loss: -15.9383
 Epoch 56 finished. Avg valid loss: -14.9870
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -15.0411)
+No improvement on valid for 1 epoch(s) (best: -15.0411)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch56.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch056_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch056_spec.png
 
@@ -1188,7 +1188,7 @@ Epoch 58 | Step 72500 (1250/1250) | Train loss (−SI-SNR): -15.0017
 Epoch 58 finished. Avg train loss: -16.0111
 Epoch 58 finished. Avg valid loss: -15.1213
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -15.1257)
+No improvement on valid for 1 epoch(s) (best: -15.1257)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch58.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch058_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch058_spec.png
 
@@ -1208,7 +1208,7 @@ Epoch 59 | Step 73700 (1200/1250) | Train loss (−SI-SNR): -15.8840
 Epoch 59 finished. Avg train loss: -16.0508
 Epoch 59 finished. Avg valid loss: -15.0725
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 2 epoch(s) (best: -15.1257)
+No improvement on valid for 2 epoch(s) (best: -15.1257)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch59.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch059_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch059_spec.png
 
@@ -1229,7 +1229,7 @@ Epoch 60 | Step 75000 (1250/1250) | Train loss (−SI-SNR): -15.6578
 Epoch 60 finished. Avg train loss: -16.0850
 Epoch 60 finished. Avg valid loss: -15.0516
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 3 epoch(s) (best: -15.1257)
+No improvement on valid for 3 epoch(s) (best: -15.1257)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch60.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch060_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch060_spec.png
 
@@ -1270,7 +1270,7 @@ Epoch 62 | Step 77500 (1250/1250) | Train loss (−SI-SNR): -16.9372
 Epoch 62 finished. Avg train loss: -16.1259
 Epoch 62 finished. Avg valid loss: -15.0077
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -15.1358)
+No improvement on valid for 1 epoch(s) (best: -15.1358)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch62.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch062_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch062_spec.png
 
@@ -1290,7 +1290,7 @@ Epoch 63 | Step 78700 (1200/1250) | Train loss (−SI-SNR): -16.0610
 Epoch 63 finished. Avg train loss: -16.1148
 Epoch 63 finished. Avg valid loss: -15.1134
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 2 epoch(s) (best: -15.1358)
+No improvement on valid for 2 epoch(s) (best: -15.1358)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch63.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch063_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch063_spec.png
 
@@ -1331,7 +1331,7 @@ Epoch 65 | Step 81200 (1200/1250) | Train loss (−SI-SNR): -16.0212
 Epoch 65 finished. Avg train loss: -16.1171
 Epoch 65 finished. Avg valid loss: -15.1438
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -15.1705)
+No improvement on valid for 1 epoch(s) (best: -15.1705)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch65.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch065_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch065_spec.png
 
@@ -1393,7 +1393,7 @@ Epoch 68 | Step 85000 (1250/1250) | Train loss (−SI-SNR): -16.2599
 Epoch 68 finished. Avg train loss: -16.2273
 Epoch 68 finished. Avg valid loss: -15.1220
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -15.2543)
+No improvement on valid for 1 epoch(s) (best: -15.2543)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch68.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch068_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch068_spec.png
 
@@ -1413,7 +1413,7 @@ Epoch 69 | Step 86200 (1200/1250) | Train loss (−SI-SNR): -15.4287
 Epoch 69 finished. Avg train loss: -16.2622
 Epoch 69 finished. Avg valid loss: -15.2403
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 2 epoch(s) (best: -15.2543)
+No improvement on valid for 2 epoch(s) (best: -15.2543)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch69.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch069_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch069_spec.png
 
@@ -1434,7 +1434,7 @@ Epoch 70 | Step 87500 (1250/1250) | Train loss (−SI-SNR): -15.5883
 Epoch 70 finished. Avg train loss: -16.2822
 Epoch 70 finished. Avg valid loss: -15.1658
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 3 epoch(s) (best: -15.2543)
+No improvement on valid for 3 epoch(s) (best: -15.2543)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch70.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch070_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch070_spec.png
 
@@ -1516,7 +1516,7 @@ Epoch 74 | Step 92500 (1250/1250) | Train loss (−SI-SNR): -16.3562
 Epoch 74 finished. Avg train loss: -16.3534
 Epoch 74 finished. Avg valid loss: -15.2253
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -15.2926)
+No improvement on valid for 1 epoch(s) (best: -15.2926)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch74.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch074_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch074_spec.png
 
@@ -1557,7 +1557,7 @@ Epoch 76 | Step 95000 (1250/1250) | Train loss (−SI-SNR): -16.1511
 Epoch 76 finished. Avg train loss: -16.3825
 Epoch 76 finished. Avg valid loss: -15.3610
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -15.3893)
+No improvement on valid for 1 epoch(s) (best: -15.3893)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch76.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch076_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch076_spec.png
 
@@ -1577,7 +1577,7 @@ Epoch 77 | Step 96200 (1200/1250) | Train loss (−SI-SNR): -15.8018
 Epoch 77 finished. Avg train loss: -16.4020
 Epoch 77 finished. Avg valid loss: -15.3592
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 2 epoch(s) (best: -15.3893)
+No improvement on valid for 2 epoch(s) (best: -15.3893)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch77.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch077_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch077_spec.png
 
@@ -1618,7 +1618,7 @@ Epoch 79 | Step 98700 (1200/1250) | Train loss (−SI-SNR): -16.0651
 Epoch 79 finished. Avg train loss: -16.4687
 Epoch 79 finished. Avg valid loss: -15.4150
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -15.4432)
+No improvement on valid for 1 epoch(s) (best: -15.4432)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch79.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch079_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch079_spec.png
 
@@ -1680,7 +1680,7 @@ Epoch 82 | Step 102500 (1250/1250) | Train loss (−SI-SNR): -16.8378
 Epoch 82 finished. Avg train loss: -16.4346
 Epoch 82 finished. Avg valid loss: -15.3248
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -15.4916)
+No improvement on valid for 1 epoch(s) (best: -15.4916)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch82.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch082_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch082_spec.png
 
@@ -1700,7 +1700,7 @@ Epoch 83 | Step 103700 (1200/1250) | Train loss (−SI-SNR): -15.9692
 Epoch 83 finished. Avg train loss: -16.4856
 Epoch 83 finished. Avg valid loss: -15.4611
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 2 epoch(s) (best: -15.4916)
+No improvement on valid for 2 epoch(s) (best: -15.4916)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch83.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch083_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch083_spec.png
 
@@ -1721,7 +1721,7 @@ Epoch 84 | Step 105000 (1250/1250) | Train loss (−SI-SNR): -16.0630
 Epoch 84 finished. Avg train loss: -16.5167
 Epoch 84 finished. Avg valid loss: -15.4707
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 3 epoch(s) (best: -15.4916)
+No improvement on valid for 3 epoch(s) (best: -15.4916)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch84.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch084_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch084_spec.png
 
@@ -1762,7 +1762,7 @@ Epoch 86 | Step 107500 (1250/1250) | Train loss (−SI-SNR): -16.1248
 Epoch 86 finished. Avg train loss: -16.5773
 Epoch 86 finished. Avg valid loss: -15.4345
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -15.5559)
+No improvement on valid for 1 epoch(s) (best: -15.5559)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch86.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch086_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch086_spec.png
 
@@ -1803,7 +1803,7 @@ Epoch 88 | Step 110000 (1250/1250) | Train loss (−SI-SNR): -15.2446
 Epoch 88 finished. Avg train loss: -16.6002
 Epoch 88 finished. Avg valid loss: -15.4650
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -15.5688)
+No improvement on valid for 1 epoch(s) (best: -15.5688)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch88.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch088_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch088_spec.png
 
@@ -1823,7 +1823,7 @@ Epoch 89 | Step 111200 (1200/1250) | Train loss (−SI-SNR): -16.7427
 Epoch 89 finished. Avg train loss: -16.6223
 Epoch 89 finished. Avg valid loss: -15.4741
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 2 epoch(s) (best: -15.5688)
+No improvement on valid for 2 epoch(s) (best: -15.5688)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch89.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch089_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch089_spec.png
 
@@ -1844,7 +1844,7 @@ Epoch 90 | Step 112500 (1250/1250) | Train loss (−SI-SNR): -16.7609
 Epoch 90 finished. Avg train loss: -16.5945
 Epoch 90 finished. Avg valid loss: -15.5162
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 3 epoch(s) (best: -15.5688)
+No improvement on valid for 3 epoch(s) (best: -15.5688)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch90.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch090_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch090_spec.png
 
@@ -1885,7 +1885,7 @@ Epoch 92 | Step 115000 (1250/1250) | Train loss (−SI-SNR): -16.3332
 Epoch 92 finished. Avg train loss: -16.6607
 Epoch 92 finished. Avg valid loss: -15.4514
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 1 epoch(s) (best: -15.6183)
+No improvement on valid for 1 epoch(s) (best: -15.6183)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch92.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch092_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch092_spec.png
 
@@ -1905,7 +1905,7 @@ Epoch 93 | Step 116200 (1200/1250) | Train loss (−SI-SNR): -17.3105
 Epoch 93 finished. Avg train loss: -16.6344
 Epoch 93 finished. Avg valid loss: -15.5359
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 2 epoch(s) (best: -15.6183)
+No improvement on valid for 2 epoch(s) (best: -15.6183)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch93.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch093_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch093_spec.png
 
@@ -1926,7 +1926,7 @@ Epoch 94 | Step 117500 (1250/1250) | Train loss (−SI-SNR): -15.3757
 Epoch 94 finished. Avg train loss: -16.6375
 Epoch 94 finished. Avg valid loss: -15.5949
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 3 epoch(s) (best: -15.6183)
+No improvement on valid for 3 epoch(s) (best: -15.6183)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch94.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch094_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch094_spec.png
 
@@ -1946,7 +1946,7 @@ Epoch 95 | Step 118700 (1200/1250) | Train loss (−SI-SNR): -15.5796
 Epoch 95 finished. Avg train loss: -16.7179
 Epoch 95 finished. Avg valid loss: -15.6078
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 4 epoch(s) (best: -15.6183)
+No improvement on valid for 4 epoch(s) (best: -15.6183)
 [Checkpoint] Saved: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_epoch95.pt
 [Viz] Saved: outputs\train_convtasnet_20251216-225848\viz_epoch095_wave.png and outputs\train_convtasnet_20251216-225848\viz_epoch095_spec.png
 
@@ -1967,7 +1967,7 @@ Epoch 96 | Step 120000 (1250/1250) | Train loss (−SI-SNR): -17.1595
 Epoch 96 finished. Avg train loss: -16.7254
 Epoch 96 finished. Avg valid loss: -15.5352
 [Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
-⚠ No improvement on valid for 5 epoch(s) (best: -15.6183)
+No improvement on valid for 5 epoch(s) (best: -15.6183)
 Early stopping triggered at epoch 96 (patience=5)
 Loaded best model with val loss = -15.6183
 [Final] Model saved to: checkpoints\train_convtasnet_20251216-225848\conv_tasnet_final.pt
