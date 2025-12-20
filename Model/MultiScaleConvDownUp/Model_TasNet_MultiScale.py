@@ -15,12 +15,12 @@ class Model(nn.Module):
         super().__init__()
         self.num_speakers = num_speakers
 
-        self.encoder = EncoderDecoder.MultiScaleEncoder(out_channels=enc_dim, kernel_sizes=enc_kernel,
+        self.encoder = EncoderDecoder.MultiScaleEncoder(enc_dim=enc_dim, kernel_sizes=enc_kernel,
                                                         stride=enc_stride)
         self.separator = TCNModel.SeparatorTCN(enc_channels=enc_dim, bottleneck_channels=bottleneck_channels,
                                                hidden_channels=hidden_channels, kernel_size=3, num_blocks=num_blocks,
                                                num_repeats=num_repeats, num_speakers=num_speakers)
-        self.decoder = EncoderDecoder.MultiScaleDecoder(in_channels=enc_dim, kernel_sizes=enc_kernel, stride=8)
+        self.decoder = EncoderDecoder.MultiScaleDecoder(enc_dim=enc_dim, kernel_sizes=enc_kernel, stride=8)
 
     def forward(self, mixture):
         """

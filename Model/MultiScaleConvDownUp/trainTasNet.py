@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from contextlib import nullcontext
 from torch.amp import GradScaler, autocast
 from Model.MultiScaleConvDownUp.Model_TasNet_MultiScale import Model
+from torch.optim.swa_utils import AveragedModel, get_ema_multi_avg_fn
 from LossFunction.SI_SNR import pit_si_snr_loss
 from DataLoader.WSJDataLoader import MakeDataLoader
 
@@ -45,8 +46,8 @@ def eval_valid(model, valid_loader, loss_fn, device):
             targets = targets.to(device)  # (B, 2, T)
 
             # Use AMP for faster inference as well (optional but fine)
-            # with autocast(device_type="cuda", dtype=torch.float16):
-            est_sources = model(mix.unsqueeze(1))  # (B, 2, T_est)
+            with autocast(device_type="cuda", dtype=torch.bfloat16):
+                est_sources = model(mix.unsqueeze(1))  # (B, 2, T_est)
 
             # Align time length in case of slight mismatch
             min_len = min(est_sources.shape[-1], targets.shape[-1])
@@ -126,7 +127,7 @@ def eval_test_full(model, test_loader, loss_fn, sample_rate, device, output_dir,
     print(f"[Test] Average test loss (−SI-SNR): {avg_loss:.4f} dB")
 
 def _safe_autocast(device):
-    return autocast(device_type="cuda", dtype=torch.float16) if device.type == "cuda" else nullcontext()
+    return autocast(device_type="cuda", dtype=torch.bfloat16) if device.type == "cuda" else nullcontext()
 
 def _log_spec(x, sample_rate, n_fft=256, hop=64):
     """
@@ -162,8 +163,8 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
         mix = mix.to(device)
         targets = targets.to(device)
 
-        # with _safe_autocast(device):
-        est = model(mix.unsqueeze(1))  # [1, 2, T’]
+        with _safe_autocast(device):
+            est = model(mix.unsqueeze(1))  # [1, 2, T’]
 
         # 对齐长度
         min_len = min(est.shape[-1], targets.shape[-1], mix.shape[-1])
@@ -298,10 +299,10 @@ def main():
     # MutiScaleEncoder
     model = Model(enc_dim=512, enc_kernel=(5, 10, 20), enc_stride=8, bottleneck_channels=128, hidden_channels=256, num_blocks=8,
                   num_repeats=3, num_speakers=2).to(device)
+    ema_model = AveragedModel(model, multi_avg_fn=get_ema_multi_avg_fn(0.999)).to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
-    scaler = GradScaler()
-    # loss_fn = BSSLoss.BSSLoss(mode="si_snr")
+    # scaler = GradScaler()
     loss_fn = pit_si_snr_loss
     num_epochs = 100
     global_step = 0
@@ -310,6 +311,15 @@ def main():
     no_improve_epochs = 0
     best_state_dict = None
     epoch = 0
+
+    steps_per_epoch = len(train_loader)
+    scheduler = torch.optim.lr_scheduler.OneCycleLR(
+        optimizer,
+        max_lr=2e-3,
+        epochs=num_epochs,
+        steps_per_epoch=steps_per_epoch,
+        pct_start=0.1
+    )
 
     # Training loop
     model.train()
@@ -327,15 +337,15 @@ def main():
             optimizer.zero_grad()
 
             # Forward pass with AMP
-            # with autocast(device_type="cuda", dtype=torch.float16):
-            est_sources = model(mix.unsqueeze(1))  # (B, 2, T_est)
+            with autocast(device_type="cuda", dtype=torch.bfloat16):
+                est_sources = model(mix.unsqueeze(1))  # (B, 2, T_est)
 
-            # Align length
-            min_len = min(est_sources.shape[-1], targets.shape[-1])
-            est_sources = est_sources[..., :min_len]
-            targets = targets[..., :min_len]
+                # Align length
+                min_len = min(est_sources.shape[-1], targets.shape[-1])
+                est_sources = est_sources[..., :min_len]
+                targets = targets[..., :min_len]
 
-            loss = loss_fn(est_sources.float(), targets.float())
+                loss = loss_fn(est_sources, targets)
 
             # Backward with scaled gradients
             # scaler.scale(loss).backward()
@@ -345,11 +355,12 @@ def main():
             # scaler.step(optimizer)
             # scaler.update()
 
-            # 纯 FP32 标准写法
-            loss.backward()  # 直接反向传播
+            loss.backward()
             gn = torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)
             total_gn += float(gn)
-            optimizer.step()  # 直接更新
+            optimizer.step()
+            scheduler.step()
+            ema_model.update_parameters(model)
 
             total_loss += loss.item()
             global_step += 1
@@ -365,7 +376,7 @@ def main():
         print(f"Epoch {epoch + 1} finished. Avg train loss: {avg_train_loss:.4f}")
 
         # Validation
-        avg_val_loss = eval_valid(model, valid_loader, loss_fn, device)
+        avg_val_loss = eval_valid(ema_model, valid_loader, loss_fn, device)
         print(f"Epoch {epoch + 1} finished. Avg valid loss: {avg_val_loss:.4f}")
 
         avg_gn = total_gn / num_batches
@@ -381,7 +392,7 @@ def main():
         if avg_val_loss < best_val_loss - 1e-4:  # 可以加个很小的 margin 防止浮点抖动
             best_val_loss = avg_val_loss
             no_improve_epochs = 0
-            best_state_dict = copy.deepcopy(model.state_dict())
+            best_state_dict = copy.deepcopy(ema_model.module.state_dict() if hasattr(ema_model, "module") else ema_model.state_dict())
             print(f"Validation improved, new best val loss: {best_val_loss:.4f}")
         else:
             no_improve_epochs += 1
@@ -402,7 +413,9 @@ def main():
             {
                 "epoch": epoch + 1,
                 "model_state_dict": model.state_dict(),
+                "ema_state_dict": ema_model.state_dict(),
                 "optimizer_state_dict": optimizer.state_dict(),
+                "scheduler_state_dict": scheduler.state_dict(),
                 "avg_train_loss": avg_train_loss,
                 "avg_val_loss": avg_val_loss,
             },
@@ -411,7 +424,7 @@ def main():
         print(f"[Checkpoint] Saved: {ckpt_path}")
         # 每轮保存一次可视化（波形+频谱）
         viz_prefix = os.path.join(output_dir, f"viz_epoch{epoch + 1:03d}")
-        visualize_separation_epoch(model, fixed_mix, fixed_targets, sample_rate, device, viz_prefix)
+        visualize_separation_epoch(ema_model, fixed_mix, fixed_targets, sample_rate, device, viz_prefix)
         print(f"[Viz] Saved: {viz_prefix}_wave.png and {viz_prefix}_spec.png")
 
     if best_state_dict is not None:
@@ -422,10 +435,15 @@ def main():
 
     # Final checkpoint and final audio examples
     final_ckpt_path = os.path.join(ckpt_dir, "conv_tasnet_final.pt")
+    if hasattr(ema_model, "module"):
+        ema_weights = ema_model.module.state_dict()
+    else:
+        ema_weights = ema_model.state_dict()
     torch.save(
         {
             "epoch": epoch + 1,
             "model_state_dict": model.state_dict(),
+            "ema_state_dict": ema_weights,
             "optimizer_state_dict": optimizer.state_dict(),
         },
         final_ckpt_path,

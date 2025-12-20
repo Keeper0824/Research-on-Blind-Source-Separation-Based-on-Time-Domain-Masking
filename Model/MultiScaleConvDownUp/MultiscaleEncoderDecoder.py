@@ -178,8 +178,6 @@ class MultiScaleDecoder(nn.Module):
                 self.long_branch.out_channels
         )
 
-        print(f"Decoder Final Fusion Channels: {total_out_channels}")  # 调试用
-
         # self.post_refine = PostRefine(enc_dim, depth=3)
         self.final_concat = nn.Conv1d(total_out_channels, 1, kernel_size=1)
 

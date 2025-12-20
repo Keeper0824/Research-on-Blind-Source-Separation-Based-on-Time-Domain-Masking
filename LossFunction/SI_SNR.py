@@ -20,7 +20,7 @@ def si_snr(x, s, eps=1e-8):
     return si_snr_value
 
 
-def negative_si_snr(x, s, eps=1e-8):
+def negative_si_snr(x, s):
     """
     Args:
         x: estimated signal, shape [B, T]
@@ -39,24 +39,14 @@ def pit_si_snr_loss(
     """
     Permutation Invariant Training (PIT) 的 SI-SNR loss.
 
-    ests: [B, S, T]  模型输出的估计源
-    refs: [B, S, T]  对应的参考源（顺序未知）
-    return: 标量，负的 SI-SNR（越小越好）
+    ests: [B, S, T]
+    refs: [B, S, T]
     """
-    assert ests.ndim == 3 and refs.ndim == 3, "ests/refs 必须是 [B, S, T]"
     B, S, T = ests.shape
-    assert refs.shape == (B, S, T), "refs 形状必须和 ests 一致"
-
-    # 所有说话人的排列
-    perms = list(permutations(range(S)))   # S=2 时就是 (0,1) 和 (1,0)
-    num_perms = len(perms)
-
-    # 对每一种排列，算一遍这个排列下的平均 SI-SNR
+    perms = list(permutations(range(S)))
     sisnr_set = []
     for perm in perms:
-        # permute 参考信号的说话人顺序: [B, S, T]
         s_perm = refs[:, perm, :]
-        # 对每一个说话人算 SI-SNR，然后对 S 取平均
         sisnr_per_src = []
         for s_idx in range(S):
             sisnr_per_src.append(
@@ -66,11 +56,7 @@ def pit_si_snr_loss(
         sisnr_avg = sum(sisnr_per_src) / S      # [B]
         sisnr_set.append(sisnr_avg)
 
-    # [B, num_perms]
     sisnr_stack = torch.stack(sisnr_set, dim=1)
-    # 每个样本选择 SI-SNR 最大的那一种排列
     max_sisnr, _ = torch.max(sisnr_stack, dim=1)  # [B]
-
-    # 训练用负号，作为 loss
     loss = -torch.mean(max_sisnr)
     return loss
