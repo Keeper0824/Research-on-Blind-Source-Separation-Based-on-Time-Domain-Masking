@@ -287,7 +287,7 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=4, num_workers=8, segment=4.0,
+    train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=16, num_workers=8, segment=4.0,
                                                              sample_rate=sample_rate)
     # 固定一个 valid 样例：每个 epoch 都用同一个，方便看训练进步
     fixed_mix, fixed_targets = next(iter(valid_loader))
