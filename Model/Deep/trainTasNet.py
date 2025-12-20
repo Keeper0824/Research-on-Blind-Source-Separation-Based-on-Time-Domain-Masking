@@ -334,7 +334,15 @@ def main():
                 est_sources = est_sources[..., :min_len]
                 targets = targets[..., :min_len]
 
-                loss = loss_fn(est_sources, targets)
+            loss = loss_fn(est_sources.float(), targets.float())
+            if not torch.isfinite(loss):
+                print("BAD!", epoch, global_step)
+                print("mix", mix.pow(2).mean().item(),
+                      "tgt", targets.pow(2).mean().item(),
+                      "est", est_sources.pow(2).mean().item())
+                optimizer.zero_grad(set_to_none=True)
+                scaler.update()
+                continue
 
             # Backward with scaled gradients
             scaler.scale(loss).backward()
@@ -379,7 +387,7 @@ def main():
         else:
             no_improve_epochs += 1
             print(
-                f"⚠ No improvement on valid for {no_improve_epochs} epoch(s) "
+                f"No improvement on valid for {no_improve_epochs} epoch(s) "
                 f"(best: {best_val_loss:.4f})"
             )
             if no_improve_epochs >= patience:

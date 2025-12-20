@@ -20,10 +20,13 @@ class Encoder(nn.Module):
         self.sequential = nn.Sequential(
             nn.Conv1d(1, enc_dim, kernel_size, stride=stride),
             nn.Conv1d(enc_dim, enc_dim, kernel_size=3, stride=1, padding=1),
+            nn.GroupNorm(1, enc_dim, eps=1e-8),
             nn.PReLU(),
             nn.Conv1d(enc_dim, enc_dim, kernel_size=3, stride=1, padding=1),
+            nn.GroupNorm(1, enc_dim, eps=1e-8),
             nn.PReLU(),
             nn.Conv1d(enc_dim, enc_dim, kernel_size=3, stride=1, padding=1),
+            nn.GroupNorm(1, enc_dim, eps=1e-8),
             nn.PReLU()
         )
 
@@ -55,10 +58,13 @@ class Decoder(nn.Module):
 
         self.sequential = nn.Sequential(
             nn.ConvTranspose1d(enc_dim, enc_dim, kernel_size=3, stride=1, padding=1),
+            nn.GroupNorm(1, enc_dim, eps=1e-8),
             nn.PReLU(),
             nn.ConvTranspose1d(enc_dim, enc_dim, kernel_size=3, stride=1, padding=1),
+            nn.GroupNorm(1, enc_dim, eps=1e-8),
             nn.PReLU(),
             nn.ConvTranspose1d(enc_dim, enc_dim, kernel_size=3, stride=1, padding=1),
+            nn.GroupNorm(1, enc_dim, eps=1e-8),
             nn.PReLU(),
             nn.ConvTranspose1d(enc_dim, 1, kernel_size=kernel_size, stride=stride, bias=True)
         )

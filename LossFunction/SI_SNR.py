@@ -5,7 +5,7 @@ def l2norm(mat, keep_dim=False):
     return torch.norm(mat, dim=-1, keepdim=keep_dim)
 
 
-def si_snr(x, s, eps=1e-13):
+def si_snr(x, s, eps=1e-8):
     """
     Args:
         x: estimated signal, shape [B, T]
@@ -20,7 +20,7 @@ def si_snr(x, s, eps=1e-13):
     return si_snr_value
 
 
-def negative_si_snr(x, s, eps=1e-13):
+def negative_si_snr(x, s, eps=1e-8):
     """
     Args:
         x: estimated signal, shape [B, T]
