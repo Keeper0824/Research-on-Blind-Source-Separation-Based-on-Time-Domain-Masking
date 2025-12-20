@@ -1,4 +1,4 @@
-Log file: ../../logs\train_convtasnet_20251219-090420.log
+Log file: ../../logs\train_convtasnet_20251219-090420.log (Small Multi)
 Checkpoint directory: ../../checkpoints\train_convtasnet_20251219-090420
 Output directory: ../../outputs\train_convtasnet_20251219-090420
 Using device: cuda

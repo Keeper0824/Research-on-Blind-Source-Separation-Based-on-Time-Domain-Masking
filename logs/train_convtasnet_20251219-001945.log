@@ -1,4 +1,4 @@
-Log file: ../../logs\train_convtasnet_20251219-001945.log (only-MultiScaleEncoder)
+Log file: ../../logs\train_convtasnet_20251219-001945.log (Small-Multi only-MultiScaleEncoder)
 Checkpoint directory: ../../checkpoints\train_convtasnet_20251219-001945
 Output directory: ../../outputs\train_convtasnet_20251219-001945
 Using device: cuda

@@ -6,10 +6,11 @@ import torchaudio
 import copy
 import matplotlib.pyplot as plt
 from contextlib import nullcontext
+from itertools import permutations
 from torch.amp import GradScaler, autocast
 from Model.MultiScaleConvDownUp.Model_TasNet_MultiScale import Model
 from torch.optim.swa_utils import AveragedModel, get_ema_multi_avg_fn
-from LossFunction.SI_SNR import pit_si_snr_loss
+from LossFunction.SI_SNR import pit_si_snr_loss, si_snr
 from DataLoader.WSJDataLoader import MakeDataLoader
 
 
@@ -126,8 +127,10 @@ def eval_test_full(model, test_loader, loss_fn, sample_rate, device, output_dir,
     print(f"[Test] Saved {count} test samples to: {output_dir}")
     print(f"[Test] Average test loss (−SI-SNR): {avg_loss:.4f} dB")
 
+
 def _safe_autocast(device):
     return autocast(device_type="cuda", dtype=torch.bfloat16) if device.type == "cuda" else nullcontext()
+
 
 def _log_spec(x, sample_rate, n_fft=256, hop=64):
     """
@@ -144,19 +147,52 @@ def _log_spec(x, sample_rate, n_fft=256, hop=64):
     log_mag = mag.log10()  # log10
     return log_mag.squeeze(0)  # [F, TT]
 
+
+def align_waveform(est, ref):
+    num = torch.dot(est, ref)
+    den = torch.dot(est, est) + 1e-8
+    alpha = num / den
+    return est * alpha
+
+
+def pit_reorder(ests: torch.Tensor, refs: torch.Tensor, eps=1e-8):
+    """
+    ests: [B, S, T]
+    refs: [B, S, T]
+    return:
+      ests_reordered: [B, S, T]
+      best_perm: LongTensor [B, S]  (每个样本选到的 permutation)
+    """
+    B, S, T = ests.shape
+    perms = list(permutations(range(S)))
+
+    scores = []  # list of [B]
+    for perm in perms:
+        refp = refs[:, perm, :]
+        # 平均每个源的 si-snr
+        s = 0.0
+        for k in range(S):
+            s = s + si_snr(ests[:, k, :], refp[:, k, :], eps=eps)  # [B]
+        scores.append(s / S)
+
+    score_stack = torch.stack(scores, dim=1)  # [B, P]
+    best_idx = torch.argmax(score_stack, dim=1)  # [B]
+    best_perm = torch.tensor(perms, device=ests.device)[best_idx]  # [B, S]
+
+    # 根据 best_perm 重排 ests
+    ests_reordered = torch.stack(
+        [ests[b, best_perm[b]] for b in range(B)], dim=0
+    )
+    return ests_reordered, best_perm
+
+
 def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_prefix):
-    """
-    固定样例可视化：波形图 + 频谱图
-    mix: [1, T] or [T]
-    targets: [1, 2, T] or [2, T]
-    """
     model.eval()
     os.makedirs(os.path.dirname(save_prefix), exist_ok=True)
 
     with torch.no_grad():
-        # 统一 shape
         if mix.dim() == 1:
-            mix = mix.unsqueeze(0)          # [1, T]
+            mix = mix.unsqueeze(0)  # [1, T]
         if targets.dim() == 2:
             targets = targets.unsqueeze(0)  # [1, 2, T]
 
@@ -164,23 +200,32 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
         targets = targets.to(device)
 
         with _safe_autocast(device):
-            est = model(mix.unsqueeze(1))  # [1, 2, T’]
+            est = model(mix.unsqueeze(1))  # [1, 2, T_est]
 
-        # 对齐长度
+        # 1. 对齐长度
         min_len = min(est.shape[-1], targets.shape[-1], mix.shape[-1])
         est = est[..., :min_len]
         targets = targets[..., :min_len]
         mix = mix[..., :min_len]
 
-        # 取出单条
+        # 2. 【关键步骤】调用 PIT 重排，自动修正通道顺序
+        # est: [B, S, T], targets: [B, S, T]
+        est, _ = pit_reorder(est, targets)
+
+        # 3. 提取单条数据
         mix_ = mix[0].detach().float().cpu()
         s1_ref = targets[0, 0].detach().float().cpu()
         s2_ref = targets[0, 1].detach().float().cpu()
+
+        # 此时 est[0,0] 已经确保是对应 s1_ref 的了
         s1_est = est[0, 0].detach().float().cpu()
         s2_est = est[0, 1].detach().float().cpu()
 
-    # ============ 1) 波形图 ============
-    wavs = [mix_, s1_ref, s2_ref, s1_est, s2_est]
+    # 4. 波形图 (加入 align_waveform 修正幅度和相位)
+    s1_est_aligned = align_waveform(s1_est, s1_ref)
+    s2_est_aligned = align_waveform(s2_est, s2_ref)
+
+    wavs = [mix_, s1_ref, s2_ref, s1_est_aligned, s2_est_aligned]
     names = ["mix", "s1_ref", "s2_ref", "s1_est", "s2_est"]
 
     plt.figure(figsize=(12, 10))
@@ -192,36 +237,30 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
     plt.savefig(save_prefix + "_wave.png", dpi=200)
     plt.close()
 
-    # ============ 2) 频谱图 ============
-    # 用 CPU 也行（快且稳），转回 tensor 方便 stft
+    # 5. 频谱图 (同理)
     def to_t(x):
         return x.to(torch.float32)
 
-    mix_t = to_t(mix_)
-    s1_ref_t = to_t(s1_ref)
-    s2_ref_t = to_t(s2_ref)
-    s1_est_t = to_t(s1_est)
-    s2_est_t = to_t(s2_est)
-
-    # stft 放 CPU 上跑就行（省 GPU）
-    mix_spec = _log_spec(mix_t, sample_rate)
-    s1_ref_spec = _log_spec(s1_ref_t, sample_rate)
-    s2_ref_spec = _log_spec(s2_ref_t, sample_rate)
-    s1_est_spec = _log_spec(s1_est_t, sample_rate)
-    s2_est_spec = _log_spec(s2_est_t, sample_rate)
-
-    specs = [mix_spec, s1_ref_spec, s2_ref_spec, s1_est_spec, s2_est_spec]
+    # 使用对齐后的波形画谱，看起来更直观
+    specs = [
+        _log_spec(to_t(mix_), sample_rate),
+        _log_spec(to_t(s1_ref), sample_rate),
+        _log_spec(to_t(s2_ref), sample_rate),
+        _log_spec(to_t(s1_est_aligned), sample_rate),
+        _log_spec(to_t(s2_est_aligned), sample_rate)
+    ]
 
     plt.figure(figsize=(12, 10))
     for i, (sp, n) in enumerate(zip(specs, names), start=1):
         plt.subplot(5, 1, i)
         plt.imshow(sp.numpy(), origin="lower", aspect="auto")
-        plt.title(n + " (log10 |STFT|)")
+        plt.title(n + " (Spectrogram)")
         plt.tight_layout()
     plt.savefig(save_prefix + "_spec.png", dpi=200)
     plt.close()
 
     model.train()
+
 
 def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
     os.makedirs(output_dir, exist_ok=True)
@@ -232,8 +271,10 @@ def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
     plt.figure()
     plt.plot(epochs, train_sisnr, label="train SI-SNR (dB)")
     plt.plot(epochs, val_sisnr, label="val SI-SNR (dB)")
-    plt.xlabel("epoch"); plt.ylabel("SI-SNR (dB)")
-    plt.legend(); plt.tight_layout()
+    plt.xlabel("epoch");
+    plt.ylabel("SI-SNR (dB)")
+    plt.legend();
+    plt.tight_layout()
     plt.savefig(os.path.join(output_dir, "curve_sisnr.png"), dpi=200)
     plt.close()
 
@@ -242,16 +283,20 @@ def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
     plt.figure()
     plt.plot(epochs, gap, label="gap = val_loss - train_loss")
     plt.axhline(0.0, linestyle="--")
-    plt.xlabel("epoch"); plt.ylabel("loss gap")
-    plt.legend(); plt.tight_layout()
+    plt.xlabel("epoch");
+    plt.ylabel("loss gap")
+    plt.legend();
+    plt.tight_layout()
     plt.savefig(os.path.join(output_dir, "curve_gap.png"), dpi=200)
     plt.close()
 
     # 3) grad norm（每个 epoch 平均值）
     plt.figure()
     plt.plot(epochs, grad_norm_epoch, label="avg grad norm / epoch")
-    plt.xlabel("epoch"); plt.ylabel("grad norm")
-    plt.legend(); plt.tight_layout()
+    plt.xlabel("epoch");
+    plt.ylabel("grad norm")
+    plt.legend();
+    plt.tight_layout()
     plt.savefig(os.path.join(output_dir, "curve_gradnorm.png"), dpi=200)
     plt.close()
 
@@ -297,7 +342,8 @@ def main():
 
     # Model, optimizer, loss, AMP scaler
     # MutiScaleEncoder
-    model = Model(enc_dim=512, enc_kernel=(5, 10, 20), enc_stride=8, bottleneck_channels=128, hidden_channels=256, num_blocks=8,
+    model = Model(enc_dim=512, enc_kernel=(5, 10, 20), enc_stride=8, bottleneck_channels=128, hidden_channels=256,
+                  num_blocks=8,
                   num_repeats=3, num_speakers=2).to(device)
     ema_model = AveragedModel(model, multi_avg_fn=get_ema_multi_avg_fn(0.999)).to(device)
 
@@ -392,7 +438,8 @@ def main():
         if avg_val_loss < best_val_loss - 1e-4:  # 可以加个很小的 margin 防止浮点抖动
             best_val_loss = avg_val_loss
             no_improve_epochs = 0
-            best_state_dict = copy.deepcopy(ema_model.module.state_dict() if hasattr(ema_model, "module") else ema_model.state_dict())
+            best_state_dict = copy.deepcopy(
+                ema_model.module.state_dict() if hasattr(ema_model, "module") else ema_model.state_dict())
             print(f"Validation improved, new best val loss: {best_val_loss:.4f}")
         else:
             no_improve_epochs += 1

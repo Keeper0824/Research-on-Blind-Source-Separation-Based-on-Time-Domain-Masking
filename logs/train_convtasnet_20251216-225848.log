@@ -1,4 +1,4 @@
-Log file: logs\train_convtasnet_20251216-225848.log
+Log file: logs\train_convtasnet_20251216-225848.log ConvTasNet-BaseLine (PIT)
 Checkpoint directory: checkpoints\train_convtasnet_20251216-225848
 Output directory: outputs\train_convtasnet_20251216-225848
 Using device: cuda
