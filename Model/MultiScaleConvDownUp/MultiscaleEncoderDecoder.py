@@ -99,7 +99,7 @@ class MultiScaleEncoder(nn.Module):
         self.mid_branch = ConvDownBlock(branch_dim, kernel_size=kernel_sizes[1])
         self.long_branch = ConvDownBlock(last_dim, kernel_size=kernel_sizes[2])
 
-        self.post_refine = PostRefine(enc_dim, depth=3)
+        # self.post_refine = PostRefine(enc_dim, depth=3)
 
     def forward(self, x):
         # x: (B, 1, T)
@@ -112,7 +112,7 @@ class MultiScaleEncoder(nn.Module):
 
         # 拼接: (B, C_short, L) + (B, C_mid, L) + ... -> (B, enc_dim, L)
         enc_feat = torch.cat(outs, dim=1)
-        enc_feat = self.post_refine(enc_feat)
+        # enc_feat = self.post_refine(enc_feat)
         return enc_feat
 
 
@@ -180,7 +180,7 @@ class MultiScaleDecoder(nn.Module):
 
         print(f"Decoder Final Fusion Channels: {total_out_channels}")  # 调试用
 
-        self.post_refine = PostRefine(enc_dim, depth=3)
+        # self.post_refine = PostRefine(enc_dim, depth=3)
         self.final_concat = nn.Conv1d(total_out_channels, 1, kernel_size=1)
 
     def forward(self, masked_feat):
@@ -193,7 +193,7 @@ class MultiScaleDecoder(nn.Module):
         else:
             x = masked_feat
 
-        x = self.post_refine(x)
+        # x = self.post_refine(x)
 
         # 1. 拆分特征
         cur = 0

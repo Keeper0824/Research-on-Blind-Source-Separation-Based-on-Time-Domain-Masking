@@ -45,15 +45,15 @@ def eval_valid(model, valid_loader, loss_fn, device):
             targets = targets.to(device)  # (B, 2, T)
 
             # Use AMP for faster inference as well (optional but fine)
-            with autocast(device_type="cuda", dtype=torch.float16):
-                est_sources = model(mix.unsqueeze(1))  # (B, 2, T_est)
+            # with autocast(device_type="cuda", dtype=torch.float16):
+            est_sources = model(mix.unsqueeze(1))  # (B, 2, T_est)
 
-                # Align time length in case of slight mismatch
-                min_len = min(est_sources.shape[-1], targets.shape[-1])
-                est_sources = est_sources[..., :min_len]
-                targets = targets[..., :min_len]
+            # Align time length in case of slight mismatch
+            min_len = min(est_sources.shape[-1], targets.shape[-1])
+            est_sources = est_sources[..., :min_len]
+            targets = targets[..., :min_len]
 
-                val_loss = loss_fn(est_sources, targets)
+            val_loss = loss_fn(est_sources, targets)
 
             total_val_loss += val_loss.item()
 
@@ -162,8 +162,8 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
         mix = mix.to(device)
         targets = targets.to(device)
 
-        with _safe_autocast(device):
-            est = model(mix.unsqueeze(1))  # [1, 2, T’]
+        # with _safe_autocast(device):
+        est = model(mix.unsqueeze(1))  # [1, 2, T’]
 
         # 对齐长度
         min_len = min(est.shape[-1], targets.shape[-1], mix.shape[-1])
@@ -327,23 +327,29 @@ def main():
             optimizer.zero_grad()
 
             # Forward pass with AMP
-            with autocast(device_type="cuda", dtype=torch.float16):
-                est_sources = model(mix.unsqueeze(1))  # (B, 2, T_est)
+            # with autocast(device_type="cuda", dtype=torch.float16):
+            est_sources = model(mix.unsqueeze(1))  # (B, 2, T_est)
 
-                # Align length
-                min_len = min(est_sources.shape[-1], targets.shape[-1])
-                est_sources = est_sources[..., :min_len]
-                targets = targets[..., :min_len]
+            # Align length
+            min_len = min(est_sources.shape[-1], targets.shape[-1])
+            est_sources = est_sources[..., :min_len]
+            targets = targets[..., :min_len]
 
-                loss = loss_fn(est_sources, targets)
+            loss = loss_fn(est_sources.float(), targets.float())
 
             # Backward with scaled gradients
-            scaler.scale(loss).backward()
-            scaler.unscale_(optimizer)
+            # scaler.scale(loss).backward()
+            # scaler.unscale_(optimizer)
+            # gn = torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)
+            # total_gn += float(gn)
+            # scaler.step(optimizer)
+            # scaler.update()
+
+            # 纯 FP32 标准写法
+            loss.backward()  # 直接反向传播
             gn = torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)
             total_gn += float(gn)
-            scaler.step(optimizer)
-            scaler.update()
+            optimizer.step()  # 直接更新
 
             total_loss += loss.item()
             global_step += 1
