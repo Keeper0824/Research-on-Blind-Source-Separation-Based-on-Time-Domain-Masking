@@ -1,0 +1,32 @@
+Log file: ../../logs\train_convtasnet_20251221-190809.log (MultiScaleEncoderDecoder)
+Checkpoint directory: ../../checkpoints\train_convtasnet_20251221-190809
+Output directory: ../../outputs\train_convtasnet_20251221-190809
+Using device: cuda
+
+===== Epoch 1/100 =====
+Epoch 1 | Step 100 (100/2500) | Train loss (−SI-SNR): -1.5690
+Epoch 1 | Step 200 (200/2500) | Train loss (−SI-SNR): -1.4406
+Epoch 1 | Step 300 (300/2500) | Train loss (−SI-SNR): -3.0316
+Epoch 1 | Step 400 (400/2500) | Train loss (−SI-SNR): -3.1958
+Epoch 1 | Step 500 (500/2500) | Train loss (−SI-SNR): -2.9771
+Epoch 1 | Step 600 (600/2500) | Train loss (−SI-SNR): -4.1746
+Epoch 1 | Step 700 (700/2500) | Train loss (−SI-SNR): -3.3779
+Epoch 1 | Step 800 (800/2500) | Train loss (−SI-SNR): -5.5462
+Epoch 1 | Step 900 (900/2500) | Train loss (−SI-SNR): -4.3612
+Epoch 1 | Step 1000 (1000/2500) | Train loss (−SI-SNR): -5.1378
+Epoch 1 | Step 1100 (1100/2500) | Train loss (−SI-SNR): -6.4805
+Epoch 1 | Step 1200 (1200/2500) | Train loss (−SI-SNR): -6.0919
+Epoch 1 | Step 1300 (1300/2500) | Train loss (−SI-SNR): -4.5516
+Epoch 1 | Step 1400 (1400/2500) | Train loss (−SI-SNR): -4.6637
+Epoch 1 | Step 1500 (1500/2500) | Train loss (−SI-SNR): -4.8856
+Epoch 1 | Step 1600 (1600/2500) | Train loss (−SI-SNR): -4.6494
+Epoch 1 | Step 1700 (1700/2500) | Train loss (−SI-SNR): -6.0843
+Epoch 1 | Step 1800 (1800/2500) | Train loss (−SI-SNR): -5.9304
+Epoch 1 | Step 1900 (1900/2500) | Train loss (−SI-SNR): -5.3508
+Epoch 1 | Step 2000 (2000/2500) | Train loss (−SI-SNR): -6.3361
+Epoch 1 | Step 2100 (2100/2500) | Train loss (−SI-SNR): -6.4616
+Epoch 1 | Step 2200 (2200/2500) | Train loss (−SI-SNR): -6.5038
+Epoch 1 | Step 2300 (2300/2500) | Train loss (−SI-SNR): -7.1647
+Epoch 1 | Step 2400 (2400/2500) | Train loss (−SI-SNR): -5.4740
+Epoch 1 | Step 2500 (2500/2500) | Train loss (−SI-SNR): -8.7047
+Epoch 1 finished. Avg train loss: -4.6216

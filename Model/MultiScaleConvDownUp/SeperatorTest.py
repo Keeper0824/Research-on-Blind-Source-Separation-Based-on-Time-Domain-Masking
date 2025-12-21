@@ -5,7 +5,7 @@ import torch
 import torchaudio
 import numpy as np
 from tqdm import tqdm
-from Model.MultiScale.Model_TasNet_MultiScale import Model
+from Model.MultiScaleConvDownUp.Model_TasNet_MultiScale import Model
 from DataLoader.WSJDataLoader import MakeDataLoader
 from Evaluation.SI_SNR import si_snr
 from Evaluation.SI_SNR import si_snr_improvement
@@ -124,6 +124,7 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
 
             # PIT align
             est_aligned, perm, sisnr_best = pit_align_by_sisnr(est, targets)  # sisnr_best: [B]
+            est_aligned = est_aligned - est_aligned.mean(dim=-1, keepdim=True)
 
             # SI-SNR (mean over 2 spk) = sisnr_best
             si_snr_vals = sisnr_best  # [B]
@@ -247,7 +248,7 @@ def load_ckpt_into_model(model, model_path, device):
 
 def run_test(model_path, test_root, batch_size, sample_rate, device,
              output_dir, max_save_samples=20):
-    model = Model(enc_dim=512, enc_kernel=[16, 32, 64], enc_stride=8, bottleneck_channels=128, hidden_channels=256,
+    model = Model(enc_dim=512, enc_kernel=(5, 10, 20), enc_stride=8, bottleneck_channels=128, hidden_channels=256,
                   num_blocks=8, num_repeats=3, num_speakers=2).to(device)
 
     load_ckpt_into_model(model, model_path, device)
@@ -261,6 +262,7 @@ def run_test(model_path, test_root, batch_size, sample_rate, device,
 
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    run_test(model_path="../../checkpoints/train_convtasnet_20251219-090420/conv_tasnet_final.pt",
-             test_root="../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min", batch_size=128, sample_rate=8000,
-             device=device, output_dir="../../Results/train_convtasnet_20251219-090420", max_save_samples=20)
+    run_test(model_path="../../checkpoints/train_convtasnet_20251220-235031/conv_tasnet_final.pt",
+             test_root="../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min", batch_size=64, sample_rate=8000,
+             device=device, output_dir="../../Results/train_convtasnet_20251220-235031", max_save_samples=20)
+
