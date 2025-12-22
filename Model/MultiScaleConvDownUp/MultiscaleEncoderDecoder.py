@@ -1,22 +1,6 @@
 import torch
 import torch.nn as nn
 
-
-def crop_to_min_len(xs):
-    """
-    辅助函数：因为不同卷积核会导致输出长度有细微差别，
-    这里将所有分支裁剪到最短的那个长度，以便拼接。
-    """
-    min_len = min(x.size(-1) for x in xs)
-    return [x[..., :min_len].contiguous() for x in xs]
-
-
-def _deconv_padding_outpad(k):
-    pad = (k - 1) // 2
-    outpad = 1 if (k % 2 == 1) else 0
-    return pad, outpad
-
-
 class ConvGroupNormReLU(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size):
         super().__init__()
@@ -30,22 +14,36 @@ class ConvGroupNormReLU(nn.Module):
     def forward(self, x):
         return self.net(x)
 
-
-class PostRefine(nn.Module):
-    def __init__(self, C, depth=4, k=3):
+class ConvGroupNormGLU(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size):
         super().__init__()
-        pad = (k - 1) // 2
-        layers = []
-        for _ in range(depth):
-            layers += [
-                nn.Conv1d(C, C, k, padding=pad),
-                nn.GroupNorm(1, C),
-                nn.PReLU(C),
-            ]
-        self.net = nn.Sequential(*layers)
+        padding = (kernel_size - 1) // 2
+
+        # 卷积输出必须是 out_channels 的 2 倍
+        self.conv = nn.Conv1d(in_channels, out_channels * 2, kernel_size, padding=padding, bias=False)
+        self.norm = nn.GroupNorm(1, out_channels * 2, eps=1e-6)
+        self.glu = nn.GLU(dim=1)
 
     def forward(self, x):
-        return self.net(x)
+        x = self.conv(x)
+        x = self.norm(x)
+        return self.glu(x)  # GLU 执行后，通道数变回 out_channels
+
+
+class PostRefine(nn.Module):
+    def __init__(self, C, depth=3, k=3, scale=0.1):
+        super().__init__()
+        layers = []
+        for _ in range(depth):
+            layers.append(ConvGroupNormGLU(C, C, kernel_size=k))
+
+        self.layers = nn.ModuleList(layers)
+        self.scales = nn.Parameter(torch.zeros(depth))
+
+    def forward(self, x):
+        for i, blk in enumerate(self.layers):
+            x = x + torch.tanh(self.scales[i]) * blk(x)
+        return x
 
 
 # --- Encoder 部分 (修正了命名规范) ---
@@ -54,17 +52,17 @@ class ConvDownBlock(nn.Module):
         super().__init__()
         # Input: 1 -> Block1 -> Down1 -> Block2 -> Down2 -> Block3 -> Down3
         # 假设最终 out_channels 是 C
-        pad, outpad = _deconv_padding_outpad(kernel_size)
+        pad = (kernel_size - 1) // 2
         # Stage 1: 1 -> C/4
-        self.block1 = ConvGroupNormReLU(1, out_channels // 4, kernel_size)
-        self.down1 = nn.Conv1d(out_channels // 4, out_channels // 4, kernel_size=kernel_size, stride=2, padding=pad)
+        self.block1 = ConvGroupNormReLU(1, out_channels // 2, kernel_size)
+        self.down1 = nn.Conv1d(out_channels // 2, out_channels // 2, kernel_size=kernel_size, stride=2, padding=pad)
 
         # Stage 2: C/4 -> C/2
-        self.block2 = ConvGroupNormReLU(out_channels // 4, out_channels // 2, kernel_size)
-        self.down2 = nn.Conv1d(out_channels // 2, out_channels // 2, kernel_size=kernel_size, stride=2, padding=pad)
+        self.block2 = ConvGroupNormReLU(out_channels // 2, out_channels, kernel_size)
+        self.down2 = nn.Conv1d(out_channels, out_channels, kernel_size=kernel_size, stride=2, padding=pad)
 
         # Stage 3: C/2 -> C
-        self.block3 = ConvGroupNormReLU(out_channels // 2, out_channels, kernel_size)
+        self.block3 = ConvGroupNormReLU(out_channels, out_channels, kernel_size)
         self.down3 = nn.Conv1d(out_channels, out_channels, kernel_size=kernel_size, stride=2, padding=pad)
 
     def forward(self, x):
@@ -99,7 +97,7 @@ class MultiScaleEncoder(nn.Module):
         self.mid_branch = ConvDownBlock(branch_dim, kernel_size=kernel_sizes[1])
         self.long_branch = ConvDownBlock(last_dim, kernel_size=kernel_sizes[2])
 
-        # self.post_refine = PostRefine(enc_dim, depth=3)
+        self.post_refine = PostRefine(enc_dim, depth=3)
 
     def forward(self, x):
         # x: (B, 1, T)
@@ -107,45 +105,41 @@ class MultiScaleEncoder(nn.Module):
         m_out = self.mid_branch(x)
         l_out = self.long_branch(x)
 
-        # 裁剪对齐
-        outs = crop_to_min_len([s_out, m_out, l_out])
-
         # 拼接: (B, C_short, L) + (B, C_mid, L) + ... -> (B, enc_dim, L)
-        enc_feat = torch.cat(outs, dim=1)
+        enc_feat = torch.cat([s_out, m_out, l_out], dim=1)
         # enc_feat = self.post_refine(enc_feat)
         return enc_feat
 
 
 # --- Decoder 部分 (完全重写以修复逻辑) ---
+
 class ConvUpBlock(nn.Module):
     def __init__(self, in_channels, kernel_size):
         super().__init__()
-        # 这里的 in_channels 是 Encoder 输出的维度 (即 C)
-        # 我们需要完全逆向 Encoder 的过程:
-        # Encoder: 1 -> C/4 -> C/2 -> C
-        # Decoder: C -> C/2 -> C/4 -> Out (我们这里让它输出 C/4 作为特征)
+        pad = (kernel_size - 1) // 2
+        self.up3 = nn.Sequential(
+            nn.Upsample(scale_factor=2, mode='linear', align_corners=False),
+            nn.Conv1d(in_channels, in_channels, kernel_size=kernel_size, padding=pad, bias=False)
+        )
+        self.block3 = ConvGroupNormReLU(in_channels, in_channels, kernel_size)
 
-        # Stage 3 Inverse (对应的 Down3 逆向): C -> C/2
-        pad, outpad = _deconv_padding_outpad(kernel_size)
-        self.up3 = nn.ConvTranspose1d(in_channels, in_channels, kernel_size=kernel_size, stride=2, padding=pad,
-                                      output_padding=outpad)
-        self.block3 = ConvGroupNormReLU(in_channels, in_channels // 2, kernel_size)
+        # Stage 2 Inverse
+        self.up2 = nn.Sequential(
+            nn.Upsample(scale_factor=2, mode='linear', align_corners=False),
+            nn.Conv1d(in_channels, in_channels, kernel_size=kernel_size, padding=pad, bias=False)
+        )
+        self.block2 = ConvGroupNormReLU(in_channels, in_channels // 2, kernel_size)
 
-        # Stage 2 Inverse (对应的 Down2 逆向): C/2 -> C/4
-        self.up2 = nn.ConvTranspose1d(in_channels // 2, in_channels // 2, kernel_size=kernel_size, stride=2,
-                                      padding=pad, output_padding=outpad)
-        self.block2 = ConvGroupNormReLU(in_channels // 2, in_channels // 4, kernel_size)
+        # Stage 1 Inverse
+        self.up1 = nn.Sequential(
+            nn.Upsample(scale_factor=2, mode='linear', align_corners=False),
+            nn.Conv1d(in_channels // 2, in_channels // 2, kernel_size=kernel_size, padding=pad, bias=False)
+        )
+        self.block1 = ConvGroupNormReLU(in_channels // 2, in_channels // 2, kernel_size)
 
-        # Stage 1 Inverse (对应的 Down1 逆向): C/4 -> C/4 (保持特征维度以便最后融合)
-        self.up1 = nn.ConvTranspose1d(in_channels // 4, in_channels // 4, kernel_size=kernel_size, stride=2,
-                                      padding=pad, output_padding=outpad)
-        self.block1 = ConvGroupNormReLU(in_channels // 4, in_channels // 4, kernel_size)
-
-        # 记录最终输出通道数，供 Decoder 自动计算
-        self.out_channels = in_channels // 4
+        self.out_channels = in_channels // 2
 
     def forward(self, x):
-        # 顺序：Up3 -> Block3 -> Up2 -> Block2 -> Up1 -> Block1
         x = self.up3(x)
         x = self.block3(x)
         x = self.up2(x)
@@ -153,6 +147,44 @@ class ConvUpBlock(nn.Module):
         x = self.up1(x)
         x = self.block1(x)
         return x
+
+    # class ConvUpBlock(nn.Module):
+    #     def __init__(self, in_channels, kernel_size):
+    #         super().__init__()
+    #         # 这里的 in_channels 是 Encoder 输出的维度 (即 C)
+    #         # 我们需要完全逆向 Encoder 的过程:
+    #         # Encoder: 1 -> C/4 -> C/2 -> C
+    #         # Decoder: C -> C/2 -> C/4 -> Out (我们这里让它输出 C/4 作为特征)
+    #
+    #         # Stage 3 Inverse (对应的 Down3 逆向): C -> C/2
+    #         pad, outpad = _deconv_padding_outpad(kernel_size)
+    #         self.up3 = nn.ConvTranspose1d(in_channels, in_channels, kernel_size=kernel_size, stride=2, padding=pad,
+    #                                       output_padding=outpad)
+    #         self.block3 = ConvGroupNormReLU(in_channels, in_channels // 2, kernel_size)
+    #
+    #         # Stage 2 Inverse (对应的 Down2 逆向): C/2 -> C/4
+    #         self.up2 = nn.ConvTranspose1d(in_channels // 2, in_channels // 2, kernel_size=kernel_size, stride=2,
+    #                                       padding=pad, output_padding=outpad)
+    #         self.block2 = ConvGroupNormReLU(in_channels // 2, in_channels // 4, kernel_size)
+    #
+    #         # Stage 1 Inverse (对应的 Down1 逆向): C/4 -> C/4 (保持特征维度以便最后融合)
+    #         self.up1 = nn.ConvTranspose1d(in_channels // 4, in_channels // 4, kernel_size=kernel_size, stride=2,
+    #                                       padding=pad, output_padding=outpad)
+    #         self.block1 = ConvGroupNormReLU(in_channels // 4, in_channels // 4, kernel_size)
+    #
+    #         # 记录最终输出通道数，供 Decoder 自动计算
+    #         self.out_channels = in_channels // 4
+
+
+def forward(self, x):
+    # 顺序：Up3 -> Block3 -> Up2 -> Block2 -> Up1 -> Block1
+    x = self.up3(x)
+    x = self.block3(x)
+    x = self.up2(x)
+    x = self.block2(x)
+    x = self.up1(x)
+    x = self.block1(x)
+    return x
 
 
 class MultiScaleDecoder(nn.Module):
@@ -177,9 +209,9 @@ class MultiScaleDecoder(nn.Module):
                 self.mid_branch.out_channels +
                 self.long_branch.out_channels
         )
-
-        # self.post_refine = PostRefine(enc_dim, depth=3)
-        self.final_concat = nn.Conv1d(total_out_channels, 1, kernel_size=1)
+        self.fusion_conv = nn.Conv1d(total_out_channels, 96, 1)
+        self.post_refine = PostRefine(96, depth=3)
+        self.final_concat = nn.Conv1d(96, 1, kernel_size=1)
 
     def forward(self, masked_feat):
         # 如果输入是 4D (B, Source, N, L)，先并在 Batch 维度处理
@@ -191,7 +223,7 @@ class MultiScaleDecoder(nn.Module):
         else:
             x = masked_feat
 
-        # x = self.post_refine(x)
+
 
         # 1. 拆分特征
         cur = 0
@@ -207,11 +239,13 @@ class MultiScaleDecoder(nn.Module):
         l_out = self.long_branch(l_in)
 
         # 3. 裁剪 & 拼接
-        outs = crop_to_min_len([s_out, m_out, l_out])
-        decoded_feat = torch.cat(outs, dim=1)
+        decoded_feat = torch.cat([s_out, m_out, l_out], dim=1)
+        decoded_feat = self.fusion_conv(decoded_feat)
+        # decoded_feat = self.post_refine(decoded_feat)
 
         # 4. 融合输出
         waveform = self.final_concat(decoded_feat)
+
 
         if is_4d:
             waveform = waveform.view(B, S, -1)

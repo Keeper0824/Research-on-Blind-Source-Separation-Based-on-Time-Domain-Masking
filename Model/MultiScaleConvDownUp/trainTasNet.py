@@ -43,8 +43,8 @@ def eval_valid(model, valid_loader, loss_fn, device):
 
     with torch.no_grad():
         for mix, targets in valid_loader:
-            mix = mix.to(device)  # (B, T)
-            targets = targets.to(device)  # (B, 2, T)
+            mix = mix.to(device, non_blocking=True)  # (B, T)
+            targets = targets.to(device, non_blocking=True)  # (B, 2, T)
 
             # Use AMP for faster inference as well (optional but fine)
             with autocast(device_type="cuda", dtype=torch.bfloat16):
@@ -304,7 +304,7 @@ def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
 def main():
     # Basic run naming & logging setup
     timestamp = time.strftime("%Y%m%d-%H%M%S")
-    log_name = f"train_convtasnet_{timestamp}"  # base name without extension
+    log_name = f"train_MultiScale_{timestamp}"  # base name without extension
     log_file = os.path.join("../../logs", log_name + ".log")
 
     # Redirect stdout to logger
@@ -333,7 +333,7 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=16, num_workers=8, segment=4.0,
+    train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=8, num_workers=8, segment=4.0,
                                                              sample_rate=sample_rate)
     # 固定一个 valid 样例：每个 epoch 都用同一个，方便看训练进步
     fixed_mix, fixed_targets = next(iter(valid_loader))
@@ -342,7 +342,7 @@ def main():
 
     # Model, optimizer, loss, AMP scaler
     # MutiScaleEncoder
-    model = Model(enc_dim=512, enc_kernel=(5, 10, 20), enc_stride=8, bottleneck_channels=128, hidden_channels=256,
+    model = Model(enc_dim=516, enc_kernel=(5, 11, 21), enc_stride=8, bottleneck_channels=128, hidden_channels=256,
                   num_blocks=8,
                   num_repeats=3, num_speakers=2).to(device)
     ema_model = AveragedModel(model, multi_avg_fn=get_ema_multi_avg_fn(0.999)).to(device)
@@ -352,11 +352,15 @@ def main():
     loss_fn = pit_si_snr_loss
     num_epochs = 100
     global_step = 0
-    patience = 5
+    patience = 12
     best_val_loss = float("inf")
+    min_delta = 1e-3
+    early_stop_warmup = 20
     no_improve_epochs = 0
     best_state_dict = None
     epoch = 0
+    VIZ_EVERY = 5
+    CKPT_EVERY = 10
 
     steps_per_epoch = len(train_loader)
     scheduler = torch.optim.lr_scheduler.OneCycleLR(
@@ -377,8 +381,8 @@ def main():
         print(f"\n===== Epoch {epoch + 1}/{num_epochs} =====")
 
         for batch_idx, (mix, targets) in enumerate(train_loader, start=1):
-            mix = mix.to(device)  # (B, T)
-            targets = targets.to(device)  # (B, 2, T)
+            mix = mix.to(device, non_blocking=True)  # (B, T)
+            targets = targets.to(device, non_blocking=True)  # (B, 2, T)
 
             optimizer.zero_grad()
 
@@ -435,14 +439,15 @@ def main():
         plot_metrics(output_dir, epochs_hist, train_loss_hist, val_loss_hist, grad_norm_hist)
         print("[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png")
 
-        if avg_val_loss < best_val_loss - 1e-4:  # 可以加个很小的 margin 防止浮点抖动
+        if avg_val_loss < best_val_loss - min_delta:  # 可以加个很小的 margin 防止浮点抖动
             best_val_loss = avg_val_loss
             no_improve_epochs = 0
             best_state_dict = copy.deepcopy(
                 ema_model.module.state_dict() if hasattr(ema_model, "module") else ema_model.state_dict())
             print(f"Validation improved, new best val loss: {best_val_loss:.4f}")
         else:
-            no_improve_epochs += 1
+            if epoch >= early_stop_warmup:
+                no_improve_epochs += 1
             print(
                 f"No improvement on valid for {no_improve_epochs} epoch(s) "
                 f"(best: {best_val_loss:.4f})"
@@ -454,25 +459,27 @@ def main():
                 )
                 break
 
-        # Save checkpoint for this epoch into the per-run ckpt_dir
-        ckpt_path = os.path.join(ckpt_dir, f"conv_tasnet_epoch{epoch + 1}.pt")
-        torch.save(
-            {
-                "epoch": epoch + 1,
-                "model_state_dict": model.state_dict(),
-                "ema_state_dict": ema_model.state_dict(),
-                "optimizer_state_dict": optimizer.state_dict(),
-                "scheduler_state_dict": scheduler.state_dict(),
-                "avg_train_loss": avg_train_loss,
-                "avg_val_loss": avg_val_loss,
-            },
-            ckpt_path,
-        )
-        print(f"[Checkpoint] Saved: {ckpt_path}")
-        # 每轮保存一次可视化（波形+频谱）
-        viz_prefix = os.path.join(output_dir, f"viz_epoch{epoch + 1:03d}")
-        visualize_separation_epoch(ema_model, fixed_mix, fixed_targets, sample_rate, device, viz_prefix)
-        print(f"[Viz] Saved: {viz_prefix}_wave.png and {viz_prefix}_spec.png")
+        # Save checkpoint into the per-run ckpt_dir
+        if ((epoch + 1) % CKPT_EVERY == 0) and ((epoch + 1) > early_stop_warmup):
+            ckpt_path = os.path.join(ckpt_dir, f"conv_tasnet_epoch{epoch + 1}.pt")
+            torch.save(
+                {
+                    "epoch": epoch + 1,
+                    "model_state_dict": model.state_dict(),
+                    "ema_state_dict": ema_model.state_dict(),
+                    "optimizer_state_dict": optimizer.state_dict(),
+                    "scheduler_state_dict": scheduler.state_dict(),
+                    "avg_train_loss": avg_train_loss,
+                    "avg_val_loss": avg_val_loss,
+                },
+                ckpt_path,
+            )
+            print(f"[Checkpoint] Saved: {ckpt_path}")
+            # 每5轮保存一次可视化（波形+频谱）
+        if (epoch + 1) % VIZ_EVERY == 0 or (epoch + 1) == 1:
+            viz_prefix = os.path.join(output_dir, f"viz_epoch{epoch + 1:03d}")
+            visualize_separation_epoch(ema_model, fixed_mix, fixed_targets, sample_rate, device, viz_prefix)
+            print(f"[Viz] Saved: {viz_prefix}_wave.png and {viz_prefix}_spec.png")
 
     if best_state_dict is not None:
         model.load_state_dict(best_state_dict)

@@ -14,19 +14,19 @@ class TCNBlock(nn.Module):
         self.hidden_channels = hidden_channels
 
         # 1x1 conv: bottleneck → hidden
-        self.conv1x1 = nn.Conv1d(bottleneck_channels, hidden_channels, kernel_size=1)
+        self.conv1x1 = nn.Conv1d(bottleneck_channels, hidden_channels, kernel_size=1, bias=False)
 
-        self.prelu1 = nn.PReLU()
-        self.norm1 = nn.GroupNorm(1, hidden_channels, eps=1e-8)
+        self.prelu1 = nn.PReLU(hidden_channels)
+        self.norm1 = nn.GroupNorm(1, hidden_channels, eps=1e-6)
 
         # Depthwise dilated convolution: hidden → hidden
         # Padding ensures output length == input length
         padding = dilation * (kernel_size - 1) // 2
         self.dconv = nn.Conv1d(hidden_channels, hidden_channels, kernel_size=kernel_size, dilation=dilation,
-                               padding=padding, groups=hidden_channels)
+                               padding=padding, groups=hidden_channels, bias=False)
 
-        self.prelu2 = nn.PReLU()
-        self.norm2 = nn.GroupNorm(1, hidden_channels, eps=1e-8)
+        self.prelu2 = nn.PReLU(hidden_channels)
+        self.norm2 = nn.GroupNorm(1, hidden_channels, eps=1e-6)
 
         # 1x1 convs for residual and skip outputs
         self.res_out = nn.Conv1d(hidden_channels, bottleneck_channels, kernel_size=1)

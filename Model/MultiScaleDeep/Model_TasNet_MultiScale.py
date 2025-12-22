@@ -29,7 +29,6 @@ class Model(nn.Module):
         if rem == 0:
             return x, 0
         pad_len = divisor - rem
-        # 这里的 value=0 可以改为 padding_mode='replicate' 减少边缘突变，但 0 最稳
         return F.pad(x, (0, pad_len), value=0), pad_len
 
     def unpad(self, x, pad_len):

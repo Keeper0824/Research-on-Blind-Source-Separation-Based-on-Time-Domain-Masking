@@ -43,8 +43,8 @@ def eval_valid(model, valid_loader, loss_fn, device):
 
     with torch.no_grad():
         for mix, targets in valid_loader:
-            mix = mix.to(device)  # (B, T)
-            targets = targets.to(device)  # (B, 2, T)
+            mix = mix.to(device, non_blocking=True)  # (B, T)
+            targets = targets.to(device, non_blocking=True)  # (B, 2, T)
 
             # Use AMP for faster inference as well (optional but fine)
             with autocast(device_type="cuda", dtype=torch.bfloat16):
@@ -304,7 +304,7 @@ def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
 def main():
     # Basic run naming & logging setup
     timestamp = time.strftime("%Y%m%d-%H%M%S")
-    log_name = f"train_convtasnet_{timestamp}"  # base name without extension
+    log_name = f"train_MultiDeep_{timestamp}"  # base name without extension
     log_file = os.path.join("../../logs", log_name + ".log")
 
     # Redirect stdout to logger
@@ -357,6 +357,8 @@ def main():
     no_improve_epochs = 0
     best_state_dict = None
     epoch = 0
+    VIZ_EVERY = 5
+    CKPT_EVERY = 10
 
     steps_per_epoch = len(train_loader)
     scheduler = torch.optim.lr_scheduler.OneCycleLR(
@@ -377,8 +379,8 @@ def main():
         print(f"\n===== Epoch {epoch + 1}/{num_epochs} =====")
 
         for batch_idx, (mix, targets) in enumerate(train_loader, start=1):
-            mix = mix.to(device)  # (B, T)
-            targets = targets.to(device)  # (B, 2, T)
+            mix = mix.to(device, non_blocking=True)  # (B, T)
+            targets = targets.to(device, non_blocking=True)  # (B, 2, T)
 
             optimizer.zero_grad(set_to_none=True)
 
@@ -455,25 +457,27 @@ def main():
                 )
                 break
 
-        # Save checkpoint for this epoch into the per-run ckpt_dir
-        ckpt_path = os.path.join(ckpt_dir, f"conv_tasnet_epoch{epoch + 1}.pt")
-        torch.save(
-            {
-                "epoch": epoch + 1,
-                "model_state_dict": model.state_dict(),
-                "ema_state_dict": ema_model.state_dict(),
-                "optimizer_state_dict": optimizer.state_dict(),
-                "scheduler_state_dict": scheduler.state_dict(),
-                "avg_train_loss": avg_train_loss,
-                "avg_val_loss": avg_val_loss,
-            },
-            ckpt_path,
-        )
-        print(f"[Checkpoint] Saved: {ckpt_path}")
-        # 每轮保存一次可视化（波形+频谱）
-        viz_prefix = os.path.join(output_dir, f"viz_epoch{epoch + 1:03d}")
-        visualize_separation_epoch(ema_model, fixed_mix, fixed_targets, sample_rate, device, viz_prefix)
-        print(f"[Viz] Saved: {viz_prefix}_wave.png and {viz_prefix}_spec.png")
+        # Save checkpoint into the per-run ckpt_dir
+        if ((epoch + 1) % CKPT_EVERY == 0) and ((epoch + 1) > early_stop_warmup):
+            ckpt_path = os.path.join(ckpt_dir, f"conv_tasnet_epoch{epoch + 1}.pt")
+            torch.save(
+                {
+                    "epoch": epoch + 1,
+                    "model_state_dict": model.state_dict(),
+                    "ema_state_dict": ema_model.state_dict(),
+                    "optimizer_state_dict": optimizer.state_dict(),
+                    "scheduler_state_dict": scheduler.state_dict(),
+                    "avg_train_loss": avg_train_loss,
+                    "avg_val_loss": avg_val_loss,
+                },
+                ckpt_path,
+            )
+            print(f"[Checkpoint] Saved: {ckpt_path}")
+        # 每5轮保存一次可视化（波形+频谱）
+        if (epoch + 1) % VIZ_EVERY == 0 or (epoch + 1) == 1:
+            viz_prefix = os.path.join(output_dir, f"viz_epoch{epoch + 1:03d}")
+            visualize_separation_epoch(ema_model, fixed_mix, fixed_targets, sample_rate, device, viz_prefix)
+            print(f"[Viz] Saved: {viz_prefix}_wave.png and {viz_prefix}_spec.png")
 
     if best_state_dict is not None:
         model.load_state_dict(best_state_dict)

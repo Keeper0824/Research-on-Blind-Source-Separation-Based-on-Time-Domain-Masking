@@ -1,4 +1,5 @@
 from torch import nn
+import torch.nn.functional as F
 import Model.MultiScaleConvDownUp.MultiscaleEncoderDecoder as EncoderDecoder
 import Model.MultiScaleConvDownUp.TasNet_TCN as TCNModel
 
@@ -22,13 +23,28 @@ class Model(nn.Module):
                                                num_repeats=num_repeats, num_speakers=num_speakers)
         self.decoder = EncoderDecoder.MultiScaleDecoder(enc_dim=enc_dim, kernel_sizes=enc_kernel, stride=8)
 
+    def pad_to_divisor(self, x, divisor=8):
+        T = x.size(-1)
+        rem = T % divisor
+        if rem == 0:
+            return x, 0
+        pad_len = divisor - rem
+        return F.pad(x, (0, pad_len), value=0), pad_len
+
+    def unpad(self, x, pad_len):
+        if pad_len > 0:
+            return x[..., :-pad_len]
+        return x
+
     def forward(self, mixture):
         """
         mixture: (B, 1, T)
         return:  (B, num_speakers, T_est)
         """
+        x_padded, pad_len = self.pad_to_divisor(mixture, divisor=8)
         enc_feat = self.encoder(mixture)  # (B, N, L)
         masks = self.separator(enc_feat)  # (B, S, N, L)
         masked_feat = masks * enc_feat.unsqueeze(1)  # (B, S, N, L)
         out = self.decoder(masked_feat)  # (B, S, T_est)
+        out = self.unpad(out, pad_len)
         return out
