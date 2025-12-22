@@ -309,7 +309,7 @@ def main():
 
     # Redirect stdout to logger
     sys.stdout = Logger(log_file)
-    print(f"Log file: {log_file} (MultiScaleEncoderDecoder)")
+    print(f"Log file: {log_file} (MultiDeep)")
 
     # Create per-run directories for checkpoints and outputs
     ckpt_root = "../../checkpoints"
