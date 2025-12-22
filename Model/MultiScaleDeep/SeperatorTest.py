@@ -248,7 +248,7 @@ def load_ckpt_into_model(model, model_path, device):
 
 def run_test(model_path, test_root, batch_size, sample_rate, device,
              output_dir, max_save_samples=20):
-    model = Model(enc_dim=512, enc_kernel=(5, 10, 20), enc_stride=8, bottleneck_channels=128, hidden_channels=256,
+    model = Model(enc_dim=516, enc_kernel=(5, 11, 21), enc_stride=8, bottleneck_channels=128, hidden_channels=256,
                   num_blocks=8, num_repeats=3, num_speakers=2).to(device)
 
     load_ckpt_into_model(model, model_path, device)
@@ -262,7 +262,7 @@ def run_test(model_path, test_root, batch_size, sample_rate, device,
 
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    run_test(model_path="../../checkpoints/train_convtasnet_20251220-235031/conv_tasnet_final.pt",
-             test_root="../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min", batch_size=64, sample_rate=8000,
-             device=device, output_dir="../../Results/train_convtasnet_20251220-235031", max_save_samples=20)
+    run_test(model_path="../../checkpoints/train_multideep_20251221-205751/conv_tasnet_final.pt",
+             test_root="../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min", batch_size=32, sample_rate=8000,
+             device=device, output_dir="../../Results/train_multideep_20251221-205751", max_save_samples=20)
 

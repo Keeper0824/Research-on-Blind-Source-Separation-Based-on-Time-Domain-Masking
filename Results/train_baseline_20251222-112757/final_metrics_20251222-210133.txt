@@ -1,0 +1,11 @@
+Final Metrics (PIT-aligned, mean over utterances)
+Saved wav samples: 20
+Evaluated utterances: 2944
+Sample rate: 8000
+----------------------------------------
+SI-SNR  : 14.7379
+SI-SNRi : 14.7385
+SNR     : 14.9980
+PESQ    : 3.0207
+STOI    : 0.9531
+----------------------------------------

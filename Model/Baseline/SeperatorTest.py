@@ -261,6 +261,6 @@ def run_test(model_path, test_root, batch_size, sample_rate, device,
 
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    run_test(model_path="../../checkpoints/train_convtasnet_20251221-123019/conv_tasnet_final.pt",
-             test_root="../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min", batch_size=16, sample_rate=8000,
-             device=device, output_dir="../../Results/train_convtasnet_20251221-123019", max_save_samples=20)
+    run_test(model_path="../../checkpoints/train_baseline_20251222-112757/conv_tasnet_final.pt",
+             test_root="../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min", batch_size=128, sample_rate=8000,
+             device=device, output_dir="../../Results/train_baseline_20251222-112757", max_save_samples=20)
