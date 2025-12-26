@@ -304,7 +304,7 @@ def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
 def main():
     # Basic run naming & logging setup
     timestamp = time.strftime("%Y%m%d-%H%M%S")
-    log_name = f"train_MultiScale_{timestamp}"  # base name without extension
+    log_name = f"train_multiscale_{timestamp}"  # base name without extension
     log_file = os.path.join("../../logs", log_name + ".log")
 
     # Redirect stdout to logger
