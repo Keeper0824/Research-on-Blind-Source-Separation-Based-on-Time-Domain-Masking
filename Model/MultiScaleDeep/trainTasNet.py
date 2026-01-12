@@ -11,7 +11,7 @@ from torch.amp import GradScaler, autocast
 from Model.MultiScaleDeep.Model_TasNet_MultiScale import Model
 from torch.optim.swa_utils import AveragedModel, get_ema_multi_avg_fn
 from LossFunction.SI_SNR import pit_si_snr_loss, si_snr
-from DataLoader.WSJDataLoader import MakeDataLoader
+from DataLoader.CommDataLoader import MakeDataLoader
 
 
 class Logger(object):
@@ -328,13 +328,16 @@ def main():
 
     torch.backends.cudnn.benchmark = True
     # Data & device setup
-    root = "../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
+    # root = "../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
+    root = "../../Scripts/CommDataset"
     sample_rate = 8000
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=8, num_workers=8, segment=4.0,
-                                                             sample_rate=sample_rate)
+    # train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=8, num_workers=8, segment=4.0,
+    #                                                          sample_rate=sample_rate)
+
+    train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=8, num_workers=8, segment=4.0)
     # 固定一个 valid 样例：每个 epoch 都用同一个，方便看训练进步
     fixed_mix, fixed_targets = next(iter(valid_loader))
     fixed_mix = fixed_mix[0]  # [T]
@@ -348,7 +351,7 @@ def main():
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     # scaler = GradScaler()
     loss_fn = pit_si_snr_loss
-    num_epochs = 100
+    num_epochs = 1
     global_step = 0
     patience = 12
     min_delta = 1e-3
