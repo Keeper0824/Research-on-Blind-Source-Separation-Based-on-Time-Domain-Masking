@@ -1,4 +1,4 @@
-Log file: ../../logs/train_MultiDeep_20260113-055240.log (MultiDeep)
+Log file: ../../logs/train_MultiDeep_20260113-055240.log (MultiDeep Comm enc_stride=1)
 Checkpoint directory: ../../checkpoints/train_MultiDeep_20260113-055240
 Output directory: ../../outputs/train_MultiDeep_20260113-055240
 Using device: cuda
