@@ -325,33 +325,33 @@ def main():
     train_loss_hist = []
     val_loss_hist = []
     grad_norm_hist = []
+    # root = "../../Dataset
 
     torch.backends.cudnn.benchmark = True
-    # Data & device setup
-    # root = "../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
-    root = "../../Scripts/CommDataset"
-    sample_rate = 8000
+    # Data & device setup/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
+    root = "../../Dataset/CommDataset"
+    sample_rate = 100000
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
     # train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=8, num_workers=8, segment=4.0,
     #                                                          sample_rate=sample_rate)
 
-    train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=8, num_workers=8, segment=4.0)
+    train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=8, num_workers=8, segment=32000)
     # 固定一个 valid 样例：每个 epoch 都用同一个，方便看训练进步
     fixed_mix, fixed_targets = next(iter(valid_loader))
     fixed_mix = fixed_mix[0]  # [T]
     fixed_targets = fixed_targets[0]  # [2, T]
 
     # Model, optimizer, loss, AMP scaler
-    model = Model(enc_dim=256, enc_kernel=(5, 11, 21), enc_stride=8, bottleneck_channels=128, hidden_channels=256,
+    model = Model(enc_dim=256, enc_kernel=(5, 11, 21), enc_stride=2, bottleneck_channels=128, hidden_channels=256,
                   num_blocks=8, num_repeats=3, num_speakers=2).to(device)
     ema_model = AveragedModel(model, multi_avg_fn=get_ema_multi_avg_fn(0.999)).to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     # scaler = GradScaler()
     loss_fn = pit_si_snr_loss
-    num_epochs = 1
+    num_epochs = 100
     global_step = 0
     patience = 12
     min_delta = 1e-3
