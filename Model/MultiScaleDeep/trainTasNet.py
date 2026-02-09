@@ -309,7 +309,7 @@ def main():
 
     # Redirect stdout to logger
     sys.stdout = Logger(log_file)
-    print(f"Log file: {log_file} (Ablation enc_dim=256 enc_kernel=(11, 21, 31))")
+    print(f"Log file: {log_file} (Ablation enc_dim=256 enc_kernel=(5, 11, 21) enc_stride=8 PostRefine Depth=5)")
 
     # Create per-run directories for checkpoints and outputs
     ckpt_root = "../../checkpoints"
@@ -341,7 +341,7 @@ def main():
     fixed_targets = fixed_targets[0]  # [2, T]
 
     # Model, optimizer, loss, AMP scaler
-    model = Model(enc_dim=256, enc_kernel=(11, 21, 31), enc_stride=4, bottleneck_channels=128, hidden_channels=256,
+    model = Model(enc_dim=256, enc_kernel=(5, 11, 21), enc_stride=8, bottleneck_channels=128, hidden_channels=256,
                   num_blocks=8, num_repeats=3, num_speakers=2).to(device)
     ema_model = AveragedModel(model, multi_avg_fn=get_ema_multi_avg_fn(0.999)).to(device)
 
