@@ -309,7 +309,7 @@ def main():
 
     # Redirect stdout to logger
     sys.stdout = Logger(log_file)
-    print(f"Log file: {log_file} (Ablation enc_dim=256 enc_kernel=(5, 11, 21) enc_stride=8 PostRefine Depth=5)")
+    print(f"Log file: {log_file} (Ablation enc_dim=256 enc_kernel=(5, 11, 21) enc_stride=8 PostRefine Depth=1)")
 
     # Create per-run directories for checkpoints and outputs
     ckpt_root = "../../checkpoints"
