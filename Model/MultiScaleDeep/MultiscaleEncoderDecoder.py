@@ -99,7 +99,7 @@ class MultiScaleEncoder(nn.Module):
         self.mid_branch = ConvDownBlock(branch_dim, kernel_size=kernel_sizes[1])
         self.long_branch = ConvDownBlock(last_dim, kernel_size=kernel_sizes[2])
 
-        self.post_refine = PostRefine(enc_dim, depth=1)
+        self.post_refine = PostRefine(enc_dim, depth=3)
 
     def forward(self, x):
         # x: (B, 1, T)
@@ -171,7 +171,7 @@ class MultiScaleDecoder(nn.Module):
                 self.long_branch.out_channels
         )
         self.fusion_conv = nn.Conv1d(total_out_channels, 96, 1)
-        self.post_refine = PostRefine(96, depth=1)
+        self.post_refine = PostRefine(96, depth=3)
         self.final_concat = nn.Conv1d(96, 1, kernel_size=1, bias=False)
 
     def forward(self, masked_feat):

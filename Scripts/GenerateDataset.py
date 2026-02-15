@@ -73,7 +73,7 @@ def generate_single_source(length_limit, mod_type='QPSK', sps=8, fs=16000, fc=20
 # ==========================================
 # 2. 数据集生成器 (适配 WSJ0 目录结构)
 # ==========================================
-def create_comm_dataset(root_dir='./CommDataset', num_train=2000, num_val=200, num_test=200, sample_len=32000):
+def create_comm_dataset(root_dir='./CommDataset', num_train=50000, num_val=10000, num_test=10000, sample_len=32000):
     splits = {
         'tr': num_train,  # 训练集
         'cv': num_val,  # 验证集

@@ -118,8 +118,8 @@ def pit_snr_loss(preds, targets):
 def main():
     # === 配置 ===
     # 你的 CommDataset 路径
-    # root = "../../Dataset/CommDataset"
-    root = "../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
+    root = "../../Dataset/CommDataset"
+    # root = "../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
     # 如果要跑 WSJ，把这里改成 WSJ 路径，下面 loader 也改一下
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -130,14 +130,14 @@ def main():
 
     # === 数据加载 ===
     # 使用 CommLoader
-    # train_loader, valid_loader, _ = MakeCommLoader(root=root, batch_size=batch_size, num_workers=4, segment=32000)
-    train_loader, valid_loader, _ = MakeWSJLoader(
-        root=root,
-        batch_size=batch_size,
-        num_workers=4,
-        segment=4,
-        sample_rate=8000
-    )
+    train_loader, valid_loader, _ = MakeCommLoader(root=root, batch_size=batch_size, num_workers=4, segment=32000)
+    # train_loader, valid_loader, _ = MakeWSJLoader(
+    #     root=root,
+    #     batch_size=batch_size,
+    #     num_workers=4,
+    #     segment=4,
+    #     sample_rate=8000
+    # )
     # === 模型 ===
     model = STFTMaskNet().to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)

@@ -5,37 +5,58 @@ import torch
 import torchaudio
 import numpy as np
 from tqdm import tqdm
+
+# 你特有的模型引入
 from Model.MultiScaleConvDownUp.Model_TasNet_MultiScale import Model
-from DataLoader.WSJDataLoader import MakeDataLoader
+
+# 数据加载器引入 (双重兼容)
+from DataLoader.WSJDataLoader import MakeDataLoader as MakeWSJLoader
+
+try:
+    from DataLoader.CommDataLoader import MakeDataLoader as MakeCommLoader
+except ImportError:
+    pass
+
 from Evaluation.SI_SNR import si_snr
 from Evaluation.SI_SNR import si_snr_improvement
 from Evaluation.SI_SNR import pit_align_by_sisnr
 from Evaluation.SNR import snr
-from Evaluation.PESQ import pesqTest
-from Evaluation.STOI import stoiTest
+
+try:
+    from Evaluation.PESQ import pesqTest
+    from Evaluation.STOI import stoiTest
+except ImportError:
+    pass
+
+
+# ==========================================
+# 新增：通信信号误比特率 (BER) 计算函数
+# ==========================================
+def compute_ber(est_waveform, ref_waveform):
+    """
+    计算误比特率 (Bit Error Rate, BER) 的简易占位函数。
+    基于零点交叉的极性判决，适用于 BPSK 基带信号。
+    """
+    est_bits = (est_waveform > 0).float()
+    ref_bits = (ref_waveform > 0).float()
+
+    # 统计错误比特数
+    errors = torch.sum(torch.abs(est_bits - ref_bits))
+    total_bits = torch.numel(ref_bits)
+
+    ber = (errors / total_bits).item()
+    return ber
 
 
 def ensure_mix_bt(mix):
-    """
-    Ensure mixture is [B, T] (float tensor).
-    Accepts common shapes:
-      [T] -> [1, T]
-      [B, T] -> [B, T]
-      [B, 1, T] -> [B, T]
-      [1, B, T] -> [B, T]   (你之前那个坑)
-    """
     if mix.dim() == 1:
         mix = mix.unsqueeze(0)
     elif mix.dim() == 3:
-        # [B,1,T]
         if mix.size(1) == 1:
             mix = mix.squeeze(1)
-        # [1,B,T] -> [B,T]
         elif mix.size(0) == 1 and mix.size(2) > mix.size(1):
             mix = mix.squeeze(0)
         else:
-            # 其他奇怪情况：尽量把最后一维当 T
-            # 优先 squeeze 掉为 1 的维度
             mix = mix.squeeze()
             if mix.dim() == 1:
                 mix = mix.unsqueeze(0)
@@ -45,19 +66,9 @@ def ensure_mix_bt(mix):
 
 
 def ensure_ref_b2t(ref):
-    """
-    Ensure reference sources is [B, 2, T]
-    Accepts:
-      [2, T] -> [1,2,T]
-      [B,2,T] -> ok
-      [B,T,2] -> permute
-      [2,B,T] -> permute
-    """
     if ref.dim() == 2:
-        # [2,T]
         if ref.size(0) == 2:
             ref = ref.unsqueeze(0)
-        # [T,2]
         elif ref.size(1) == 2:
             ref = ref.transpose(0, 1).unsqueeze(0)
         else:
@@ -65,11 +76,11 @@ def ensure_ref_b2t(ref):
 
     elif ref.dim() == 3:
         if ref.size(1) == 2:
-            pass  # [B,2,T]
+            pass
         elif ref.size(2) == 2:
-            ref = ref.permute(0, 2, 1)  # [B,2,T]
+            ref = ref.permute(0, 2, 1)
         elif ref.size(0) == 2:
-            ref = ref.permute(1, 0, 2)  # [B,2,T]
+            ref = ref.permute(1, 0, 2)
         else:
             raise ValueError(f"Unsupported ref shape: {tuple(ref.shape)}")
     else:
@@ -78,27 +89,32 @@ def ensure_ref_b2t(ref):
     return ref.contiguous()
 
 
-def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, max_save_samples, min_len_needed=16):
+def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, max_save_samples, min_len_needed=16,
+                           dataset_type="speech"):
     """
     - 对 test set 跑完整个 epoch
-    - 保存前 max_save_samples 个样本（mix/ref/est，对齐后）
-    - 计算 SI-SNR / SI-SNRi / SNR / PESQ / STOI（均做 PIT 对齐）
+    - dataset_type: "comm" (算BER) 或 "speech" (算PESQ, STOI)
     """
     model.eval()
     os.makedirs(output_dir, exist_ok=True)
 
+    # 1. 动态初始化指标字典
     all_metrics = {
         "SI-SNR": [],
         "SI-SNRi": [],
         "SNR": [],
-        "PESQ": [],
-        "STOI": [],
     }
+
+    if dataset_type == "speech":
+        all_metrics["PESQ"] = []
+        all_metrics["STOI"] = []
+    elif dataset_type == "comm":
+        all_metrics["BER"] = []
 
     saved = 0
 
     with torch.no_grad():
-        for mix, targets in tqdm(test_loader, desc="Evaluating"):
+        for mix, targets in tqdm(test_loader, desc=f"Evaluating ({dataset_type.upper()})"):
             mix = ensure_mix_bt(mix)
             targets = ensure_ref_b2t(targets)
 
@@ -111,8 +127,8 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
             mix = mix.to(device)  # [B,T]
             targets = targets.to(device)  # [B,2,T]
 
-            # forward: your model expects [B,1,T]
-            est = model(mix.unsqueeze(1))  # likely [B,2,T’] or [B,2,T]
+            # forward
+            est = model(mix.unsqueeze(1))
             if est.dim() == 3 and est.size(1) != 2:
                 raise RuntimeError(f"Model output unexpected: {tuple(est.shape)}")
 
@@ -124,42 +140,52 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
 
             # PIT align
             est_aligned, perm, sisnr_best = pit_align_by_sisnr(est, targets)  # sisnr_best: [B]
+
+            # 保留你原本代码中的 DC offset removal (去直流操作)
             est_aligned = est_aligned - est_aligned.mean(dim=-1, keepdim=True)
 
-            # SI-SNR (mean over 2 spk) = sisnr_best
+            # 公共指标计算
             si_snr_vals = sisnr_best  # [B]
-
-            # SI-SNRi
             si_snri_vals = si_snr_improvement(est_aligned, targets, mix)  # [B]
-
-            # SNR (mean over 2 spk)
             snr_vals = 0.5 * (snr(est_aligned[:, 0, :], targets[:, 0, :]) + snr(est_aligned[:, 1, :], targets[:, 1, :]))
 
-            # PESQ / STOI：逐条算（CPU + numpy）
-            pesq_vals = []
-            stoi_vals = []
-            est_cpu = est_aligned.detach().cpu().float().numpy()
-            ref_cpu = targets.detach().cpu().float().numpy()
-
-            for b in range(est_cpu.shape[0]):
-                # each sample: average over 2 speakers
-                p_list, s_list = [], []
-                for spk in range(2):
-                    e = est_cpu[b, spk]
-                    r = ref_cpu[b, spk]
-                    p_list.append(pesqTest(e.astype(np.float32), r.astype(np.float32), sample_rate))
-                    s_list.append(stoiTest(e.astype(np.float32), r.astype(np.float32), sample_rate))
-                pesq_vals.append(float(np.nanmean(p_list)))
-                stoi_vals.append(float(np.nanmean(s_list)))
-
-            # collect
             all_metrics["SI-SNR"].extend(si_snr_vals.detach().cpu().tolist())
             all_metrics["SI-SNRi"].extend(si_snri_vals.detach().cpu().tolist())
             all_metrics["SNR"].extend(snr_vals.detach().cpu().tolist())
-            all_metrics["PESQ"].extend(pesq_vals)
-            all_metrics["STOI"].extend(stoi_vals)
 
-            # save wav (first N)
+            # 2. 差异化指标计算
+            if dataset_type == "speech":
+                # PESQ / STOI：逐条算（CPU + numpy）
+                pesq_vals = []
+                stoi_vals = []
+                est_cpu = est_aligned.detach().cpu().float().numpy()
+                ref_cpu = targets.detach().cpu().float().numpy()
+
+                for b in range(est_cpu.shape[0]):
+                    p_list, s_list = [], []
+                    for spk in range(2):
+                        e = est_cpu[b, spk]
+                        r = ref_cpu[b, spk]
+                        p_list.append(pesqTest(e.astype(np.float32), r.astype(np.float32), sample_rate))
+                        s_list.append(stoiTest(e.astype(np.float32), r.astype(np.float32), sample_rate))
+                    pesq_vals.append(float(np.nanmean(p_list)))
+                    stoi_vals.append(float(np.nanmean(s_list)))
+
+                all_metrics["PESQ"].extend(pesq_vals)
+                all_metrics["STOI"].extend(stoi_vals)
+
+            elif dataset_type == "comm":
+                # BER：计算误比特率
+                ber_vals = []
+                for b in range(est_aligned.shape[0]):
+                    b_err = 0.5 * (
+                            compute_ber(est_aligned[b, 0], targets[b, 0]) +
+                            compute_ber(est_aligned[b, 1], targets[b, 1])
+                    )
+                    ber_vals.append(b_err)
+                all_metrics["BER"].extend(ber_vals)
+
+            # 3. 保存波形
             B = mix.size(0)
             for i in range(B):
                 if saved >= max_save_samples:
@@ -180,7 +206,7 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
 
                 saved += 1
 
-    # summarize (nan-safe)
+    # 汇总结果 (nan-safe)
     def nanmean(x):
         x = np.array(x, dtype=np.float64)
         return float(np.nanmean(x)) if x.size else float("nan")
@@ -189,31 +215,37 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
 
     print("\n" + "=" * 40)
     print(f"[Test] Saved {saved} samples to: {output_dir}")
-    print("[Test] Final Metrics (PIT-aligned, mean over utterances):")
+    print(f"[Test] Final Metrics ({dataset_type.upper()} Mode, PIT-aligned):")
     for k, v in results.items():
-        print(f"  {k:8s}: {v:.4f}")
+        if k == "BER":
+            print(f"  {k:8s}: {v:.6f} ({v * 100:.4f}%) - 误比特率")
+        else:
+            print(f"  {k:8s}: {v:.4f}")
     print("=" * 40 + "\n")
 
     # extra hint if PESQ/STOI missing
-    if math.isnan(results["PESQ"]):
-        print("PESQ 是 NaN：你环境可能没装 pesq。可尝试：pip install pesq")
-    if math.isnan(results["STOI"]):
-        print("STOI 是 NaN：你环境可能没装 pystoi。可尝试：pip install pystoi")
+    if dataset_type == "speech":
+        if math.isnan(results.get("PESQ", 0)):
+            print("PESQ 是 NaN：你环境可能没装 pesq。可尝试：pip install pesq")
+        if math.isnan(results.get("STOI", 0)):
+            print("STOI 是 NaN：你环境可能没装 pystoi。可尝试：pip install pystoi")
+
     # ========= 写入 outdir 的 txt =========
     ts = time.strftime("%Y%m%d-%H%M%S")
-    txt_path = os.path.join(output_dir, f"final_metrics_{ts}.txt")
+    txt_path = os.path.join(output_dir, f"final_metrics_{dataset_type}_{ts}.txt")
 
-    num_utts = len(all_metrics["SI-SNR"])  # 评估了多少条 utterance（逐条 append 的）
+    num_utts = len(all_metrics["SI-SNR"])
     with open(txt_path, "w", encoding="utf-8") as f:
-        f.write("Final Metrics (PIT-aligned, mean over utterances)\n")
+        f.write(f"Final Metrics (Mode: {dataset_type}, PIT-aligned, mean over utterances)\n")
         f.write(f"Saved wav samples: {saved}\n")
         f.write(f"Evaluated utterances: {num_utts}\n")
         f.write(f"Sample rate: {sample_rate}\n")
         f.write("-" * 40 + "\n")
         for k, v in results.items():
-            # NaN 也能写进去，别让它报错
             if isinstance(v, float) and math.isnan(v):
                 f.write(f"{k:8s}: NaN\n")
+            elif k == "BER":
+                f.write(f"{k:8s}: {v:.6f} ({v * 100:.4f}%)\n")
             else:
                 f.write(f"{k:8s}: {v:.4f}\n")
         f.write("-" * 40 + "\n")
@@ -223,46 +255,73 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
     return results
 
 
+# ==========================================
+# 完美版权重加载器
+# ==========================================
 def load_ckpt_into_model(model, model_path, device):
     print(f"Loading weights: {model_path}")
     ckpt = torch.load(model_path, map_location=device)
 
-    # pick state dict
     if isinstance(ckpt, dict):
-        if "model_state_dict" in ckpt:
+        if "ema_state" in ckpt:
+            print("Found 'ema_state'. Loading EMA weights...")
+            sd = ckpt["ema_state"]
+        elif "model_state" in ckpt:
+            print("Found 'model_state'. Loading best model weights...")
+            sd = ckpt["model_state"]
+        elif "model_state_dict" in ckpt:
+            print("Found 'model_state_dict'...")
             sd = ckpt["model_state_dict"]
         elif "state_dict" in ckpt:
+            print("Found 'state_dict'...")
             sd = ckpt["state_dict"]
         else:
             sd = ckpt
     else:
         sd = ckpt
 
-    # remove "module." prefix if needed
-    if isinstance(sd, dict) and any(k.startswith("module.") for k in sd.keys()):
+    if isinstance(sd, dict):
         sd = {k.replace("module.", "", 1): v for k, v in sd.items()}
+        if "n_averaged" in sd:
+            sd.pop("n_averaged")
 
     model.load_state_dict(sd, strict=True)
-    print("Model weights loaded.")
+    print("Model weights loaded successfully.")
 
 
 def run_test(model_path, test_root, batch_size, sample_rate, device,
-             output_dir, max_save_samples=20):
+             output_dir, max_save_samples=20, dataset_type="speech"):
+    # 按照你的代码，保留这里的 [5, 11, 21] 多尺度卷积核和 516 维配置
     model = Model(enc_dim=516, enc_kernel=[5, 11, 21], enc_stride=8, bottleneck_channels=128, hidden_channels=256,
                   num_blocks=8, num_repeats=3, num_speakers=2).to(device)
 
     load_ckpt_into_model(model, model_path, device)
 
-    _, _, test_loader = MakeDataLoader(root=test_root, batch_size=batch_size, num_workers=4, sample_rate=sample_rate,
-                                       segment=4.0)
+    # 动态加载对应的数据集 Loader
+    if dataset_type == "speech":
+        _, _, test_loader = MakeWSJLoader(root=test_root, batch_size=batch_size, num_workers=4, sample_rate=sample_rate,
+                                          segment=4.0)
+    elif dataset_type == "comm":
+        # 如果你想在这个脚本里跑通信信号，它也会自动调用 MakeCommLoader
+        _, _, test_loader = MakeCommLoader(root=test_root, batch_size=batch_size, num_workers=4, segment=32000)
+    else:
+        raise ValueError("dataset_type 必须是 'comm' 或 'speech'")
 
     return eval_test_full_metrics(model=model, test_loader=test_loader, sample_rate=sample_rate, device=device,
-                                  output_dir=output_dir, max_save_samples=max_save_samples)
+                                  output_dir=output_dir, max_save_samples=max_save_samples, dataset_type=dataset_type)
 
 
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    run_test(model_path="../../checkpoints/train_multiscale_20251223-114731/conv_tasnet_final.pt",
-             test_root="../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min", batch_size=32, sample_rate=8000,
-             device=device, output_dir="../../Results/train_multiscale_20251223-114731", max_save_samples=20)
 
+    # 按照你原代码的意图，这里测试的是 WSJ0-2Mix (Speech 模式)
+    run_test(
+        model_path="../../checkpoints/train_multiscale_20251223-114731/conv_tasnet_final.pt",
+        test_root="../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min",
+        batch_size=32,
+        sample_rate=8000,
+        device=device,
+        output_dir="../../Results/train_multiscale_20251223-114731",
+        max_save_samples=20,
+        dataset_type="speech"  # <-- 开启语音模式
+    )
