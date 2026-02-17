@@ -33,3 +33,6 @@ Initializing Dual-Path Transformer (DPTNet) from scratch...
   Step 1250/3125 | Train Loss (−SI-SNR): 0.0683
   Step 1300/3125 | Train Loss (−SI-SNR): -0.0684
   Step 1350/3125 | Train Loss (−SI-SNR): 0.2609
+  Step 1400/3125 | Train Loss (−SI-SNR): -0.1291
+  Step 1450/3125 | Train Loss (−SI-SNR): 0.0239
+  Step 1500/3125 | Train Loss (−SI-SNR): 0.2589
