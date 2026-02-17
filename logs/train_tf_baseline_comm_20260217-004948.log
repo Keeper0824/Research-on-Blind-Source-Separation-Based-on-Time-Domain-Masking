@@ -1,0 +1,131 @@
+Log file: ../../logs\train_tf_baseline_comm_20260217-004948.log (TF-BLSTM on Comm)
+
+===== Epoch 1/100 =====
+Epoch 1 | Train: -0.09 dB | Val: -0.19 dB
+-> Saved Best Model.
+
+===== Epoch 2/100 =====
+Epoch 2 | Train: -0.06 dB | Val: -0.17 dB
+-> Saved Best Model.
+
+===== Epoch 3/100 =====
+Epoch 3 | Train: -0.06 dB | Val: -0.15 dB
+-> Saved Best Model.
+
+===== Epoch 4/100 =====
+Epoch 4 | Train: -0.06 dB | Val: -0.12 dB
+-> Saved Best Model.
+
+===== Epoch 5/100 =====
+Epoch 5 | Train: -0.06 dB | Val: -0.10 dB
+-> Saved Best Model.
+
+===== Epoch 6/100 =====
+Epoch 6 | Train: -0.06 dB | Val: -0.08 dB
+-> Saved Best Model.
+
+===== Epoch 7/100 =====
+Epoch 7 | Train: -0.06 dB | Val: -0.07 dB
+-> Saved Best Model.
+
+===== Epoch 8/100 =====
+Epoch 8 | Train: -0.06 dB | Val: -0.07 dB
+-> Saved Best Model.
+
+===== Epoch 9/100 =====
+Epoch 9 | Train: -0.06 dB | Val: -0.06 dB
+-> Saved Best Model.
+
+===== Epoch 10/100 =====
+Epoch 10 | Train: -0.06 dB | Val: -0.06 dB
+-> Saved Best Model.
+
+===== Epoch 11/100 =====
+Epoch 11 | Train: -0.06 dB | Val: -0.06 dB
+-> Saved Best Model.
+
+===== Epoch 12/100 =====
+Epoch 12 | Train: -0.05 dB | Val: -0.06 dB
+
+===== Epoch 13/100 =====
+Epoch 13 | Train: -0.05 dB | Val: -0.06 dB
+-> Saved Best Model.
+
+===== Epoch 14/100 =====
+Epoch 14 | Train: -0.04 dB | Val: -0.06 dB
+
+===== Epoch 15/100 =====
+Epoch 15 | Train: -0.04 dB | Val: -0.06 dB
+
+===== Epoch 16/100 =====
+Epoch 16 | Train: -0.04 dB | Val: -0.06 dB
+-> Saved Best Model.
+
+===== Epoch 17/100 =====
+Epoch 17 | Train: -0.03 dB | Val: -0.05 dB
+
+===== Epoch 18/100 =====
+Epoch 18 | Train: -0.03 dB | Val: -0.05 dB
+-> Saved Best Model.
+
+===== Epoch 19/100 =====
+Epoch 19 | Train: -0.03 dB | Val: -0.05 dB
+-> Saved Best Model.
+
+===== Epoch 20/100 =====
+Epoch 20 | Train: -0.03 dB | Val: -0.05 dB
+-> Saved Best Model.
+
+===== Epoch 21/100 =====
+Epoch 21 | Train: -0.02 dB | Val: -0.05 dB
+-> Saved Best Model.
+
+===== Epoch 22/100 =====
+Epoch 22 | Train: -0.02 dB | Val: -0.04 dB
+-> Saved Best Model.
+
+===== Epoch 23/100 =====
+Epoch 23 | Train: -0.02 dB | Val: -0.04 dB
+-> Saved Best Model.
+
+===== Epoch 24/100 =====
+Epoch 24 | Train: -0.02 dB | Val: -0.04 dB
+-> Saved Best Model.
+
+===== Epoch 25/100 =====
+Epoch 25 | Train: -0.02 dB | Val: -0.04 dB
+-> Saved Best Model.
+
+===== Epoch 26/100 =====
+Epoch 26 | Train: -0.01 dB | Val: -0.03 dB
+-> Saved Best Model.
+
+===== Epoch 27/100 =====
+Epoch 27 | Train: -0.01 dB | Val: -0.03 dB
+-> Saved Best Model.
+
+===== Epoch 28/100 =====
+Epoch 28 | Train: -0.01 dB | Val: -0.03 dB
+-> Saved Best Model.
+
+===== Epoch 29/100 =====
+Epoch 29 | Train: -0.01 dB | Val: -0.03 dB
+-> Saved Best Model.
+
+===== Epoch 30/100 =====
+Epoch 30 | Train: -0.00 dB | Val: -0.03 dB
+-> Saved Best Model.
+
+===== Epoch 31/100 =====
+Epoch 31 | Train: -0.00 dB | Val: -0.03 dB
+-> Saved Best Model.
+
+===== Epoch 32/100 =====
+Epoch 32 | Train: 0.00 dB | Val: -0.02 dB
+-> Saved Best Model.
+
+===== Epoch 33/100 =====
+Epoch 33 | Train: 0.00 dB | Val: -0.02 dB
+-> Saved Best Model.
+
+===== Epoch 34/100 =====

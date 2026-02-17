@@ -1,110 +1,116 @@
 import os
+import time
+import math
 import torch
 import numpy as np
-import soundfile as sf
 from tqdm import tqdm
 from sklearn.decomposition import FastICA, NMF
-from itertools import permutations
 
-# 引入你的数据加载器和Loss
+# 数据加载
 from DataLoader.WSJDataLoader import MakeDataLoader
 
-# 假设你的 SI_SNR 在这个位置，如果不在请调整 import
-try:
-    from LossFunction.SI_SNR import si_snr
-except ImportError:
-    # 如果找不到，手写一个简单的 SI-SNR 以防万一
-    def si_snr(preds, target, eps=1e-8):
-        # preds: [T], target: [T]
-        def _dot(x, y): return torch.sum(x * y, dim=-1, keepdim=True)
-
-        target_energy = _dot(target, target) + eps
-        optimal_dot = _dot(preds, target)
-        s_target = (optimal_dot * target) / target_energy
-        e_noise = preds - s_target
-        snr = 10 * torch.log10(_dot(s_target, s_target) / (_dot(e_noise, e_noise) + eps))
-        return snr.mean()
+# 导入指标计算模块
+from Evaluation.SI_SNR import si_snr
+from Evaluation.SNR import snr
+from Evaluation.PESQ import pesqTest
+from Evaluation.STOI import stoiTest
 
 
-def compute_metrics(est_s1, est_s2, s1, s2):
+# ==========================================
+# 综合评估函数 (包含 PIT 排列对齐)
+# ==========================================
+def evaluate_metrics_pit_speech(est_s1, est_s2, s1, s2, mix, sample_rate=8000):
     """
-    计算 SI-SNR，因为统计学方法不知道哪个输出对应哪个说话人，
-    所以我们需要做一个简单的排列组合 (Permutation Invariant Training 思想) 找最大值。
+    计算 SI-SNR, SI-SNRi, SNR, PESQ, STOI
+    并自动处理 ICA/NMF 输出的通道随机排列问题 (PIT)
     """
-    # 转换为 Tensor
-    if isinstance(est_s1, np.ndarray): est_s1 = torch.from_numpy(est_s1).float()
-    if isinstance(est_s2, np.ndarray): est_s2 = torch.from_numpy(est_s2).float()
-    if isinstance(s1, np.ndarray): s1 = torch.from_numpy(s1).float()
-    if isinstance(s2, np.ndarray): s2 = torch.from_numpy(s2).float()
+    # 转换为 Tensor 计算 SNR 系列指标
+    e1 = torch.from_numpy(est_s1).float()
+    e2 = torch.from_numpy(est_s2).float()
+    t1 = torch.from_numpy(s1).float()
+    t2 = torch.from_numpy(s2).float()
+    m = torch.from_numpy(mix).float()
 
-    # 路径 1: est1->s1, est2->s2
-    snr_1 = (si_snr(est_s1, s1) + si_snr(est_s2, s2)) / 2
-    # 路径 2: est1->s2, est2->s1
-    snr_2 = (si_snr(est_s1, s2) + si_snr(est_s2, s1)) / 2
+    # 1. PIT 对齐 (基于 SI-SNR)
+    sisnr_11 = si_snr(e1, t1)
+    sisnr_22 = si_snr(e2, t2)
+    sisnr_12 = si_snr(e1, t2)
+    sisnr_21 = si_snr(e2, t1)
 
-    return max(snr_1, snr_2).item()
+    mean_sisnr_A = (sisnr_11 + sisnr_22) / 2
+    mean_sisnr_B = (sisnr_12 + sisnr_21) / 2
+
+    # 选择最佳排列
+    if mean_sisnr_A > mean_sisnr_B:
+        best_e1, best_e2 = e1, e2
+        best_sisnr = mean_sisnr_A
+    else:
+        best_e1, best_e2 = e2, e1
+        best_sisnr = mean_sisnr_B
+
+    # 2. 计算 SNR
+    snr_val = (snr(best_e1, t1) + snr(best_e2, t2)) / 2
+
+    # 3. 计算 SI-SNRi (Improvement)
+    base_sisnr_1 = si_snr(m, t1)
+    base_sisnr_2 = si_snr(m, t2)
+    mean_base_sisnr = (base_sisnr_1 + base_sisnr_2) / 2
+    sisnri = best_sisnr - mean_base_sisnr
+
+    # 4. 计算 PESQ 和 STOI (需要转回 numpy)
+    best_e1_np = best_e1.numpy()
+    best_e2_np = best_e2.numpy()
+
+    pesq_1 = pesqTest(best_e1_np, s1, sample_rate)
+    pesq_2 = pesqTest(best_e2_np, s2, sample_rate)
+    pesq_val = float(np.nanmean([pesq_1, pesq_2]))
+
+    stoi_1 = stoiTest(best_e1_np, s1, sample_rate)
+    stoi_2 = stoiTest(best_e2_np, s2, sample_rate)
+    stoi_val = float(np.nanmean([stoi_1, stoi_2]))
+
+    return best_sisnr.item(), sisnri.item(), snr_val.item(), pesq_val, stoi_val
 
 
+# ==========================================
+# 统计学分离核心逻辑
+# ==========================================
 def run_statistical_separation(mix_wav, method='nmf', n_fft=512, hop=256):
     """
-    对单条音频执行统计学分离
-    mix_wav: numpy array [T]
-    method: 'ica' 或 'nmf'
+    对单条信号执行统计学分离 (ICA / NMF)
     """
-    # 1. STFT 变换 (时域 -> 频域)
-    # mix_wav shape: (T,)
-    # stft shape: (F, Time) complex
-    # sklearn 需要 (n_samples, n_features)，通常我们把时间帧看作 samples
-
-    # 这里的 window 等参数尽量简单，只为了提取幅度谱
     spec_complex = torch.stft(
         torch.from_numpy(mix_wav).unsqueeze(0),
         n_fft=n_fft, hop_length=hop, win_length=n_fft,
         window=torch.hann_window(n_fft),
         return_complex=True
-    ).squeeze(0).numpy()  # (F, T)
+    ).squeeze(0).numpy()
 
-    # 提取幅度谱 (Magnitude) 和 相位 (Phase)
-    mag = np.abs(spec_complex)  # (F, T)
+    mag = np.abs(spec_complex)
     phase = np.angle(spec_complex)
+    X = mag.T  # (Samples, Features)
 
-    # 输入给 sklearn 的数据形状： (Samples=T, Features=F)
-    X = mag.T
-
-    # 2. 运行算法
     if method == 'ica':
-        # FastICA 容易不收敛，增加 max_iter
         model = FastICA(n_components=2, max_iter=800, tol=1e-2, random_state=42)
     elif method == 'nmf':
-        # NMF 是非负矩阵分解，更适合幅度谱
         model = NMF(n_components=2, init='random', random_state=42, max_iter=500)
     else:
         raise ValueError("Unknown method")
 
     try:
-        # transform 得到的是随时间变化的激活 (Time activations)
-        # components_ 得到的是频谱基向量 (Frequency basis)
-        W = model.fit_transform(X)  # (T, 2)
-        H = model.components_  # (2, F)
+        W = model.fit_transform(X)
+        H = model.components_
 
-        # 3. 重构幅度谱 (Reconstruction)
-        # Component 1
-        est_mag_1 = np.outer(W[:, 0], H[0, :]).T  # (F, T)
-        # Component 2
-        est_mag_2 = np.outer(W[:, 1], H[1, :]).T  # (F, T)
+        est_mag_1 = np.outer(W[:, 0], H[0, :]).T
+        est_mag_2 = np.outer(W[:, 1], H[1, :]).T
 
-        # 4. 维纳滤波 / Soft Masking (关键步骤：利用比例掩蔽恢复信号)
-        # 纯粹的矩阵乘积丢失了细节，用 Mask 效果更好
         sum_mag = est_mag_1 + est_mag_2 + 1e-8
         mask_1 = est_mag_1 / sum_mag
         mask_2 = est_mag_2 / sum_mag
 
-        # 应用原始幅度谱
         Y1_mag = mag * mask_1
         Y2_mag = mag * mask_2
 
-        # 5. iSTFT (频域 -> 时域)
-        # 使用原始混合语音的相位 (Phase-Aware)
         Y1_complex = Y1_mag * np.exp(1j * phase)
         Y2_complex = Y2_mag * np.exp(1j * phase)
 
@@ -125,27 +131,36 @@ def run_statistical_separation(mix_wav, method='nmf', n_fft=512, hop=256):
         return y1_wav, y2_wav
 
     except Exception as e:
-        # 如果算法不收敛 (ICA 常见)，返回混合语音作为失败的结果
-        # print(f"Algorithm failed: {e}")
         return mix_wav, mix_wav
 
 
 def main():
-    # 配置路径
     root = "../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
     sample_rate = 8000
+    segment_duration = 4.0
+    max_samples = 50  # ICA/NMF 很慢，建议限制测试数量 50~100 足以证明效果
 
-    print("加载测试集...")
-    _, _, test_loader = MakeDataLoader(root=root, batch_size=1, num_workers=4, segment=4.0, sample_rate=sample_rate)
+    # 结果保存路径设定
+    output_dir = "../../Results/Statistical_Baselines_WSJ"
+    os.makedirs(output_dir, exist_ok=True)
+    ts = time.strftime("%Y%m%d-%H%M%S")
+    txt_path = os.path.join(output_dir, f"metrics_{ts}.txt")
 
-    methods = ['ica', 'nmf']  # 你可以两个都跑，或者只跑 ica
-    results = {m: [] for m in methods}
+    print(f"加载 WSJ0-2Mix 测试集 (Sample Rate={sample_rate})...")
+    _, _, test_loader = MakeDataLoader(root=root, batch_size=1, num_workers=4, segment=segment_duration,
+                                       sample_rate=sample_rate)
 
-    # 为了节省时间，只跑前 100 个样本做评估 (足够发论文对比了，统计学方法很慢)
-    max_samples = 50
+    methods = ['ica', 'nmf']
+
+    # 记录字典
+    all_results = {}
 
     for method in methods:
-        print(f"\n正在运行 {method.upper()} 基准测试 (Max samples: {max_samples})...")
+        print(f"\n==============================================")
+        print(f" 正在运行 {method.upper()} 基准测试 (Max samples: {max_samples})")
+        print(f"==============================================")
+
+        metrics = {"SI-SNR": [], "SI-SNRi": [], "SNR": [], "PESQ": [], "STOI": []}
         count = 0
         pbar = tqdm(total=max_samples)
 
@@ -153,24 +168,68 @@ def main():
             if count >= max_samples:
                 break
 
-            mix_np = mix.squeeze().numpy()  # (T,)
+            mix_np = mix.squeeze().numpy()
             s1_np = targets[:, 0].squeeze().numpy()
             s2_np = targets[:, 1].squeeze().numpy()
 
             # 运行分离算法
             est_s1, est_s2 = run_statistical_separation(mix_np, method=method)
 
-            # 计算分数
-            score = compute_metrics(est_s1, est_s2, s1_np, s2_np)
-            results[method].append(score)
+            # 计算各项指标 (带 PIT 对齐)
+            sisnr_val, sisnri_val, snr_val, pesq_val, stoi_val = evaluate_metrics_pit_speech(
+                est_s1, est_s2, s1_np, s2_np, mix_np, sample_rate
+            )
+
+            metrics["SI-SNR"].append(sisnr_val)
+            metrics["SI-SNRi"].append(sisnri_val)
+            metrics["SNR"].append(snr_val)
+            metrics["PESQ"].append(pesq_val)
+            metrics["STOI"].append(stoi_val)
 
             count += 1
             pbar.update(1)
-            pbar.set_postfix({"Avg SI-SNR": f"{np.mean(results[method]):.2f}"})
+
+            # 安全计算平均显示，防止出现 nan
+            current_sisnr = np.nanmean(metrics['SI-SNR'])
+            current_pesq = np.nanmean(metrics['PESQ'])
+            pbar.set_postfix({
+                "SI-SNR": f"{current_sisnr:.2f}",
+                "PESQ": f"{current_pesq:.2f}"
+            })
 
         pbar.close()
-        avg_score = np.mean(results[method])
-        print(f"Independent Statistical Baseline [{method.upper()}] Average SI-SNR: {avg_score:.2f} dB")
+
+        # 汇总当前方法的平均值
+        avg_metrics = {k: float(np.nanmean(v)) for k, v in metrics.items()}
+        all_results[method] = avg_metrics
+
+        print(f"\n[{method.upper()}] 最终平均成绩:")
+        for k, v in avg_metrics.items():
+            if math.isnan(v):
+                print(f"  {k:8s}: NaN")
+            else:
+                print(f"  {k:8s}: {v:.4f}")
+
+    # ==========================================
+    # 将最终成绩写入 TXT 报告
+    # ==========================================
+    with open(txt_path, "w", encoding="utf-8") as f:
+        f.write("Statistical Baselines on WSJ0-2Mix Dataset\n")
+        f.write(f"Evaluated samples: {max_samples}\n")
+        f.write(f"Sample rate: {sample_rate} Hz\n")
+        f.write("-" * 40 + "\n")
+
+        for method in methods:
+            f.write(f"Method: {method.upper()}\n")
+            avg_metrics = all_results[method]
+            for k, v in avg_metrics.items():
+                if math.isnan(v):
+                    f.write(f"  {k:8s}: NaN\n")
+                else:
+                    f.write(f"  {k:8s}: {v:.4f}\n")
+            f.write("-" * 40 + "\n")
+
+    print(f"\n所有评估结果已保存至: {txt_path}")
 
 
 if __name__ == "__main__":

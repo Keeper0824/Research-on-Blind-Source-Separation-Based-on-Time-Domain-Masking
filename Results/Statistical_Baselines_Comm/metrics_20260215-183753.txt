@@ -1,0 +1,16 @@
+Statistical Baselines on CommDataset
+Evaluated samples: 50
+Segment points: 32000
+----------------------------------------
+Method: ICA
+  SI-SNR  : -34.6206 dB
+  SI-SNRi : -34.4099 dB
+  SNR     : 0.0031 dB
+  BER     : 0.454525 (45.4525%)
+----------------------------------------
+Method: NMF
+  SI-SNR  : -1.8373 dB
+  SI-SNRi : -1.6266 dB
+  SNR     : 2.3597 dB
+  BER     : 0.265788 (26.5788%)
+----------------------------------------

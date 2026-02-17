@@ -1,45 +1,86 @@
 import os
+import time
 import torch
 import numpy as np
 from tqdm import tqdm
 from sklearn.decomposition import FastICA, NMF
-from itertools import permutations
 
-# 【修改点1】引入 CommDataLoader
+# 数据加载
 from DataLoader.CommDataLoader import MakeDataLoader
 
-# 假设你的 SI_SNR 在这个位置
-try:
-    from LossFunction.SI_SNR import si_snr
-except ImportError:
-    def si_snr(preds, target, eps=1e-8):
-        def _dot(x, y): return torch.sum(x * y, dim=-1, keepdim=True)
-
-        target_energy = _dot(target, target) + eps
-        optimal_dot = _dot(preds, target)
-        s_target = (optimal_dot * target) / target_energy
-        e_noise = preds - s_target
-        snr = 10 * torch.log10(_dot(s_target, s_target) / (_dot(e_noise, e_noise) + eps))
-        return snr.mean()
+# 导入指标计算模块
+from Evaluation.SI_SNR import si_snr
+from Evaluation.SNR import snr
 
 
-def compute_metrics(est_s1, est_s2, s1, s2):
-    """ 计算 SI-SNR (PIT) """
-    if isinstance(est_s1, np.ndarray): est_s1 = torch.from_numpy(est_s1).float()
-    if isinstance(est_s2, np.ndarray): est_s2 = torch.from_numpy(est_s2).float()
-    if isinstance(s1, np.ndarray): s1 = torch.from_numpy(s1).float()
-    if isinstance(s2, np.ndarray): s2 = torch.from_numpy(s2).float()
+# ==========================================
+# 误比特率 (BER) 计算函数
+# ==========================================
+def compute_ber(est_waveform, ref_waveform):
+    """
+    计算误比特率的简易占位函数。
+    基于零点交叉的极性判决，适用于 BPSK 基带信号。
+    """
+    est_bits = (est_waveform > 0).float()
+    ref_bits = (ref_waveform > 0).float()
+    errors = torch.sum(torch.abs(est_bits - ref_bits))
+    total_bits = torch.numel(ref_bits)
+    return (errors / total_bits).item()
 
-    snr_1 = (si_snr(est_s1, s1) + si_snr(est_s2, s2)) / 2
-    snr_2 = (si_snr(est_s1, s2) + si_snr(est_s2, s1)) / 2
-    return max(snr_1, snr_2).item()
+
+# ==========================================
+# 综合评估函数 (包含 PIT 排列对齐)
+# ==========================================
+def evaluate_metrics_pit(est_s1, est_s2, s1, s2, mix):
+    """
+    计算 SI-SNR, SI-SNRi, SNR, BER
+    并自动处理 ICA/NMF 输出的通道随机排列问题 (PIT)
+    """
+    # 转换为 Tensor (保持 1D)
+    e1 = torch.from_numpy(est_s1).float()
+    e2 = torch.from_numpy(est_s2).float()
+    t1 = torch.from_numpy(s1).float()
+    t2 = torch.from_numpy(s2).float()
+    m = torch.from_numpy(mix).float()
+
+    # 1. PIT 对齐 (基于 SI-SNR)
+    sisnr_11 = si_snr(e1, t1)
+    sisnr_22 = si_snr(e2, t2)
+    sisnr_12 = si_snr(e1, t2)
+    sisnr_21 = si_snr(e2, t1)
+
+    mean_sisnr_A = (sisnr_11 + sisnr_22) / 2
+    mean_sisnr_B = (sisnr_12 + sisnr_21) / 2
+
+    # 选择最佳排列
+    if mean_sisnr_A > mean_sisnr_B:
+        best_e1, best_e2 = e1, e2
+        best_sisnr = mean_sisnr_A
+    else:
+        best_e1, best_e2 = e2, e1
+        best_sisnr = mean_sisnr_B
+
+    # 2. 计算 SNR
+    snr_val = (snr(best_e1, t1) + snr(best_e2, t2)) / 2
+
+    # 3. 计算 SI-SNRi (Improvement)
+    base_sisnr_1 = si_snr(m, t1)
+    base_sisnr_2 = si_snr(m, t2)
+    mean_base_sisnr = (base_sisnr_1 + base_sisnr_2) / 2
+    sisnri = best_sisnr - mean_base_sisnr
+
+    # 4. 计算 误比特率 (BER)
+    ber_val = (compute_ber(best_e1, t1) + compute_ber(best_e2, t2)) / 2
+
+    return best_sisnr.item(), sisnri.item(), snr_val.item(), ber_val
 
 
+# ==========================================
+# 统计学分离核心逻辑
+# ==========================================
 def run_statistical_separation(mix_wav, method='nmf', n_fft=512, hop=256):
     """
-    对单条信号执行统计学分离
-    注意：对于通讯信号，频谱特征可能不像语音那样有明显的谐波结构，
-    但这正好能测试传统方法是否具备泛化能力。
+    对单条信号执行统计学分离 (ICA / NMF)
     """
     # 1. STFT 变换
     spec_complex = torch.stft(
@@ -97,29 +138,35 @@ def run_statistical_separation(mix_wav, method='nmf', n_fft=512, hop=256):
         return y1_wav, y2_wav
 
     except Exception as e:
+        # 如果算法不收敛或抛出异常，返回原混合信号作为保底
         return mix_wav, mix_wav
 
 
 def main():
-    # 【修改点2】 配置 CommDataset 路径
     root = "../../Dataset/CommDataset"
-
-    # 【修改点3】 CommDataLoader 也不需要 sample_rate，segment 用点数
-    # 根据你之前的 trainTasNet2.py，segment=32000 是比较合理的点数
     segment_points = 32000
+    max_samples = 50  # 统计学算法在 CPU 跑比较慢，建议限制测试数量
+
+    # 结果保存路径设定
+    output_dir = "../../Results/Statistical_Baselines_Comm"
+    os.makedirs(output_dir, exist_ok=True)
+    ts = time.strftime("%Y%m%d-%H%M%S")
+    txt_path = os.path.join(output_dir, f"metrics_{ts}.txt")
 
     print(f"加载 CommDataset 测试集 (Segment={segment_points})...")
-
-    # 注意：这里调用的是 CommDataLoader 的 MakeDataLoader
-    # 它的签名通常是 (root, batch_size, num_workers, segment)
     _, _, test_loader = MakeDataLoader(root=root, batch_size=1, num_workers=4, segment=segment_points)
 
     methods = ['ica', 'nmf']
-    results = {m: [] for m in methods}
-    max_samples = 50
+
+    # 记录字典
+    all_results = {}
 
     for method in methods:
-        print(f"\n正在运行 {method.upper()} 基准测试 (Max samples: {max_samples})...")
+        print(f"\n==============================================")
+        print(f" 正在运行 {method.upper()} 基准测试 (Max samples: {max_samples})")
+        print(f"==============================================")
+
+        metrics = {"SI-SNR": [], "SI-SNRi": [], "SNR": [], "BER": []}
         count = 0
         pbar = tqdm(total=max_samples)
 
@@ -127,7 +174,6 @@ def main():
             if count >= max_samples:
                 break
 
-            # CommDataset 返回的数据是 float tensor
             mix_np = mix.squeeze().numpy()
             s1_np = targets[:, 0].squeeze().numpy()
             s2_np = targets[:, 1].squeeze().numpy()
@@ -135,17 +181,54 @@ def main():
             # 运行分离算法
             est_s1, est_s2 = run_statistical_separation(mix_np, method=method)
 
-            # 计算分数
-            score = compute_metrics(est_s1, est_s2, s1_np, s2_np)
-            results[method].append(score)
+            # 计算各项指标 (带 PIT 对齐)
+            sisnr_val, sisnri_val, snr_val, ber_val = evaluate_metrics_pit(est_s1, est_s2, s1_np, s2_np, mix_np)
+
+            metrics["SI-SNR"].append(sisnr_val)
+            metrics["SI-SNRi"].append(sisnri_val)
+            metrics["SNR"].append(snr_val)
+            metrics["BER"].append(ber_val)
 
             count += 1
             pbar.update(1)
-            pbar.set_postfix({"Avg SI-SNR": f"{np.mean(results[method]):.2f}"})
+            pbar.set_postfix({
+                "SI-SNR": f"{np.mean(metrics['SI-SNR']):.2f}",
+                "BER": f"{np.mean(metrics['BER']):.4f}"
+            })
 
         pbar.close()
-        avg_score = np.mean(results[method])
-        print(f"CommDataset Statistical Baseline [{method.upper()}] Average SI-SNR: {avg_score:.2f} dB")
+
+        # 汇总当前方法的平均值
+        avg_metrics = {k: np.mean(v) for k, v in metrics.items()}
+        all_results[method] = avg_metrics
+
+        print(f"\n[{method.upper()}] 最终平均成绩:")
+        for k, v in avg_metrics.items():
+            if k == "BER":
+                print(f"  {k:8s}: {v:.6f} ({v * 100:.4f}%) - 误比特率")
+            else:
+                print(f"  {k:8s}: {v:.4f} dB")
+
+    # ==========================================
+    # 将最终成绩写入 TXT 报告
+    # ==========================================
+    with open(txt_path, "w", encoding="utf-8") as f:
+        f.write("Statistical Baselines on CommDataset\n")
+        f.write(f"Evaluated samples: {max_samples}\n")
+        f.write(f"Segment points: {segment_points}\n")
+        f.write("-" * 40 + "\n")
+
+        for method in methods:
+            f.write(f"Method: {method.upper()}\n")
+            avg_metrics = all_results[method]
+            for k, v in avg_metrics.items():
+                if k == "BER":
+                    f.write(f"  {k:8s}: {v:.6f} ({v * 100:.4f}%)\n")
+                else:
+                    f.write(f"  {k:8s}: {v:.4f} dB\n")
+            f.write("-" * 40 + "\n")
+
+    print(f"\n所有评估结果已保存至: {txt_path}")
 
 
 if __name__ == "__main__":

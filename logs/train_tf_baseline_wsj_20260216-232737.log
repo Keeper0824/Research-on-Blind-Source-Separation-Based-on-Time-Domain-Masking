@@ -1,0 +1,362 @@
+Log file: ../../logs\train_tf_baseline_wsj_20260216-232737.log (TF-BLSTM on WSJ)
+
+===== Epoch 1/100 =====
+Epoch 1 | Train SI-SNR: 0.28 | Val SI-SNR: 0.02
+-> Saved Best Model.
+
+===== Epoch 2/100 =====
+Epoch 2 | Train SI-SNR: 1.56 | Val SI-SNR: 0.04
+-> Saved Best Model.
+
+===== Epoch 3/100 =====
+Epoch 3 | Train SI-SNR: 3.29 | Val SI-SNR: 0.07
+-> Saved Best Model.
+
+===== Epoch 4/100 =====
+Epoch 4 | Train SI-SNR: 4.15 | Val SI-SNR: 0.13
+-> Saved Best Model.
+
+===== Epoch 5/100 =====
+Epoch 5 | Train SI-SNR: 4.69 | Val SI-SNR: 0.22
+-> Saved Best Model.
+
+===== Epoch 6/100 =====
+Epoch 6 | Train SI-SNR: 5.60 | Val SI-SNR: 0.40
+-> Saved Best Model.
+
+===== Epoch 7/100 =====
+Epoch 7 | Train SI-SNR: 6.26 | Val SI-SNR: 0.69
+-> Saved Best Model.
+
+===== Epoch 8/100 =====
+Epoch 8 | Train SI-SNR: 6.78 | Val SI-SNR: 1.15
+-> Saved Best Model.
+
+===== Epoch 9/100 =====
+Epoch 9 | Train SI-SNR: 7.17 | Val SI-SNR: 1.73
+-> Saved Best Model.
+
+===== Epoch 10/100 =====
+Epoch 10 | Train SI-SNR: 7.53 | Val SI-SNR: 2.41
+-> Saved Best Model.
+
+===== Epoch 11/100 =====
+Epoch 11 | Train SI-SNR: 7.86 | Val SI-SNR: 3.16
+-> Saved Best Model.
+
+===== Epoch 12/100 =====
+Epoch 12 | Train SI-SNR: 8.15 | Val SI-SNR: 3.89
+-> Saved Best Model.
+
+===== Epoch 13/100 =====
+Epoch 13 | Train SI-SNR: 8.36 | Val SI-SNR: 4.62
+-> Saved Best Model.
+
+===== Epoch 14/100 =====
+Epoch 14 | Train SI-SNR: 8.59 | Val SI-SNR: 5.25
+-> Saved Best Model.
+
+===== Epoch 15/100 =====
+Epoch 15 | Train SI-SNR: 8.78 | Val SI-SNR: 5.79
+-> Saved Best Model.
+
+===== Epoch 16/100 =====
+Epoch 16 | Train SI-SNR: 8.96 | Val SI-SNR: 6.27
+-> Saved Best Model.
+
+===== Epoch 17/100 =====
+Epoch 17 | Train SI-SNR: 9.11 | Val SI-SNR: 6.69
+-> Saved Best Model.
+
+===== Epoch 18/100 =====
+Epoch 18 | Train SI-SNR: 9.19 | Val SI-SNR: 7.04
+-> Saved Best Model.
+
+===== Epoch 19/100 =====
+Epoch 19 | Train SI-SNR: 9.40 | Val SI-SNR: 7.40
+-> Saved Best Model.
+
+===== Epoch 20/100 =====
+Epoch 20 | Train SI-SNR: 9.61 | Val SI-SNR: 7.66
+-> Saved Best Model.
+
+===== Epoch 21/100 =====
+Epoch 21 | Train SI-SNR: 9.67 | Val SI-SNR: 7.93
+-> Saved Best Model.
+
+===== Epoch 22/100 =====
+Epoch 22 | Train SI-SNR: 9.82 | Val SI-SNR: 8.18
+-> Saved Best Model.
+
+===== Epoch 23/100 =====
+Epoch 23 | Train SI-SNR: 10.00 | Val SI-SNR: 8.37
+-> Saved Best Model.
+
+===== Epoch 24/100 =====
+Epoch 24 | Train SI-SNR: 10.04 | Val SI-SNR: 8.54
+-> Saved Best Model.
+
+===== Epoch 25/100 =====
+Epoch 25 | Train SI-SNR: 10.28 | Val SI-SNR: 8.70
+-> Saved Best Model.
+
+===== Epoch 26/100 =====
+Epoch 26 | Train SI-SNR: 10.33 | Val SI-SNR: 8.81
+-> Saved Best Model.
+
+===== Epoch 27/100 =====
+Epoch 27 | Train SI-SNR: 10.49 | Val SI-SNR: 8.93
+-> Saved Best Model.
+
+===== Epoch 28/100 =====
+Epoch 28 | Train SI-SNR: 10.50 | Val SI-SNR: 9.01
+-> Saved Best Model.
+
+===== Epoch 29/100 =====
+Epoch 29 | Train SI-SNR: 10.56 | Val SI-SNR: 9.10
+-> Saved Best Model.
+
+===== Epoch 30/100 =====
+Epoch 30 | Train SI-SNR: 10.63 | Val SI-SNR: 9.17
+-> Saved Best Model.
+
+===== Epoch 31/100 =====
+Epoch 31 | Train SI-SNR: 10.75 | Val SI-SNR: 9.23
+-> Saved Best Model.
+
+===== Epoch 32/100 =====
+Epoch 32 | Train SI-SNR: 10.70 | Val SI-SNR: 9.28
+-> Saved Best Model.
+
+===== Epoch 33/100 =====
+Epoch 33 | Train SI-SNR: 10.98 | Val SI-SNR: 9.36
+-> Saved Best Model.
+
+===== Epoch 34/100 =====
+Epoch 34 | Train SI-SNR: 11.14 | Val SI-SNR: 9.42
+-> Saved Best Model.
+
+===== Epoch 35/100 =====
+Epoch 35 | Train SI-SNR: 11.16 | Val SI-SNR: 9.45
+-> Saved Best Model.
+
+===== Epoch 36/100 =====
+Epoch 36 | Train SI-SNR: 11.29 | Val SI-SNR: 9.51
+-> Saved Best Model.
+
+===== Epoch 37/100 =====
+Epoch 37 | Train SI-SNR: 11.43 | Val SI-SNR: 9.53
+-> Saved Best Model.
+
+===== Epoch 38/100 =====
+Epoch 38 | Train SI-SNR: 11.48 | Val SI-SNR: 9.54
+-> Saved Best Model.
+
+===== Epoch 39/100 =====
+Epoch 39 | Train SI-SNR: 11.53 | Val SI-SNR: 9.59
+-> Saved Best Model.
+
+===== Epoch 40/100 =====
+Epoch 40 | Train SI-SNR: 11.48 | Val SI-SNR: 9.63
+-> Saved Best Model.
+
+===== Epoch 41/100 =====
+Epoch 41 | Train SI-SNR: 11.58 | Val SI-SNR: 9.64
+-> Saved Best Model.
+
+===== Epoch 42/100 =====
+Epoch 42 | Train SI-SNR: 11.59 | Val SI-SNR: 9.64
+-> Saved Best Model.
+
+===== Epoch 43/100 =====
+Epoch 43 | Train SI-SNR: 11.66 | Val SI-SNR: 9.68
+-> Saved Best Model.
+
+===== Epoch 44/100 =====
+Epoch 44 | Train SI-SNR: 11.70 | Val SI-SNR: 9.70
+-> Saved Best Model.
+
+===== Epoch 45/100 =====
+Epoch 45 | Train SI-SNR: 11.73 | Val SI-SNR: 9.73
+-> Saved Best Model.
+
+===== Epoch 46/100 =====
+Epoch 46 | Train SI-SNR: 11.74 | Val SI-SNR: 9.75
+-> Saved Best Model.
+
+===== Epoch 47/100 =====
+Epoch 47 | Train SI-SNR: 11.87 | Val SI-SNR: 9.77
+-> Saved Best Model.
+
+===== Epoch 48/100 =====
+Epoch 48 | Train SI-SNR: 11.93 | Val SI-SNR: 9.79
+-> Saved Best Model.
+
+===== Epoch 49/100 =====
+Epoch 49 | Train SI-SNR: 12.02 | Val SI-SNR: 9.81
+-> Saved Best Model.
+
+===== Epoch 50/100 =====
+Epoch 50 | Train SI-SNR: 11.98 | Val SI-SNR: 9.79
+
+===== Epoch 51/100 =====
+Epoch 51 | Train SI-SNR: 12.08 | Val SI-SNR: 9.82
+-> Saved Best Model.
+
+===== Epoch 52/100 =====
+Epoch 52 | Train SI-SNR: 12.10 | Val SI-SNR: 9.85
+-> Saved Best Model.
+
+===== Epoch 53/100 =====
+Epoch 53 | Train SI-SNR: 12.21 | Val SI-SNR: 9.85
+
+===== Epoch 54/100 =====
+Epoch 54 | Train SI-SNR: 12.26 | Val SI-SNR: 9.87
+-> Saved Best Model.
+
+===== Epoch 55/100 =====
+Epoch 55 | Train SI-SNR: 12.32 | Val SI-SNR: 9.85
+
+===== Epoch 56/100 =====
+Epoch 56 | Train SI-SNR: 12.37 | Val SI-SNR: 9.85
+
+===== Epoch 57/100 =====
+Epoch 57 | Train SI-SNR: 12.39 | Val SI-SNR: 9.83
+
+===== Epoch 58/100 =====
+Epoch 58 | Train SI-SNR: 12.41 | Val SI-SNR: 9.91
+-> Saved Best Model.
+
+===== Epoch 59/100 =====
+Epoch 59 | Train SI-SNR: 12.42 | Val SI-SNR: 9.90
+
+===== Epoch 60/100 =====
+Epoch 60 | Train SI-SNR: 12.43 | Val SI-SNR: 9.89
+
+===== Epoch 61/100 =====
+Epoch 61 | Train SI-SNR: 12.50 | Val SI-SNR: 9.89
+
+===== Epoch 62/100 =====
+Epoch 62 | Train SI-SNR: 12.44 | Val SI-SNR: 9.93
+-> Saved Best Model.
+
+===== Epoch 63/100 =====
+Epoch 63 | Train SI-SNR: 12.51 | Val SI-SNR: 9.91
+
+===== Epoch 64/100 =====
+Epoch 64 | Train SI-SNR: 12.55 | Val SI-SNR: 9.91
+
+===== Epoch 65/100 =====
+Epoch 65 | Train SI-SNR: 12.54 | Val SI-SNR: 9.94
+-> Saved Best Model.
+
+===== Epoch 66/100 =====
+Epoch 66 | Train SI-SNR: 12.59 | Val SI-SNR: 9.89
+
+===== Epoch 67/100 =====
+Epoch 67 | Train SI-SNR: 12.63 | Val SI-SNR: 9.95
+-> Saved Best Model.
+
+===== Epoch 68/100 =====
+Epoch 68 | Train SI-SNR: 12.61 | Val SI-SNR: 9.93
+
+===== Epoch 69/100 =====
+Epoch 69 | Train SI-SNR: 12.63 | Val SI-SNR: 9.92
+
+===== Epoch 70/100 =====
+Epoch 70 | Train SI-SNR: 12.67 | Val SI-SNR: 9.94
+
+===== Epoch 71/100 =====
+Epoch 71 | Train SI-SNR: 12.70 | Val SI-SNR: 9.94
+
+===== Epoch 72/100 =====
+Epoch 72 | Train SI-SNR: 12.70 | Val SI-SNR: 9.94
+
+===== Epoch 73/100 =====
+Epoch 73 | Train SI-SNR: 12.73 | Val SI-SNR: 9.97
+-> Saved Best Model.
+
+===== Epoch 74/100 =====
+Epoch 74 | Train SI-SNR: 12.75 | Val SI-SNR: 9.95
+
+===== Epoch 75/100 =====
+Epoch 75 | Train SI-SNR: 12.77 | Val SI-SNR: 9.93
+
+===== Epoch 76/100 =====
+Epoch 76 | Train SI-SNR: 12.78 | Val SI-SNR: 9.97
+-> Saved Best Model.
+
+===== Epoch 77/100 =====
+Epoch 77 | Train SI-SNR: 12.79 | Val SI-SNR: 9.92
+
+===== Epoch 78/100 =====
+Epoch 78 | Train SI-SNR: 12.79 | Val SI-SNR: 9.95
+
+===== Epoch 79/100 =====
+Epoch 79 | Train SI-SNR: 12.82 | Val SI-SNR: 9.97
+-> Saved Best Model.
+
+===== Epoch 80/100 =====
+Epoch 80 | Train SI-SNR: 12.83 | Val SI-SNR: 9.96
+
+===== Epoch 81/100 =====
+Epoch 81 | Train SI-SNR: 12.84 | Val SI-SNR: 9.96
+
+===== Epoch 82/100 =====
+Epoch 82 | Train SI-SNR: 12.86 | Val SI-SNR: 9.98
+-> Saved Best Model.
+
+===== Epoch 83/100 =====
+Epoch 83 | Train SI-SNR: 12.87 | Val SI-SNR: 9.97
+
+===== Epoch 84/100 =====
+Epoch 84 | Train SI-SNR: 12.87 | Val SI-SNR: 9.94
+
+===== Epoch 85/100 =====
+Epoch 85 | Train SI-SNR: 12.88 | Val SI-SNR: 9.96
+
+===== Epoch 86/100 =====
+Epoch 86 | Train SI-SNR: 12.88 | Val SI-SNR: 9.96
+
+===== Epoch 87/100 =====
+Epoch 87 | Train SI-SNR: 12.88 | Val SI-SNR: 9.94
+
+===== Epoch 88/100 =====
+Epoch 88 | Train SI-SNR: 12.90 | Val SI-SNR: 9.96
+
+===== Epoch 89/100 =====
+Epoch 89 | Train SI-SNR: 12.90 | Val SI-SNR: 9.95
+
+===== Epoch 90/100 =====
+Epoch 90 | Train SI-SNR: 12.90 | Val SI-SNR: 9.92
+
+===== Epoch 91/100 =====
+Epoch 91 | Train SI-SNR: 12.91 | Val SI-SNR: 9.92
+
+===== Epoch 92/100 =====
+Epoch 92 | Train SI-SNR: 12.91 | Val SI-SNR: 9.99
+-> Saved Best Model.
+
+===== Epoch 93/100 =====
+Epoch 93 | Train SI-SNR: 12.91 | Val SI-SNR: 9.95
+
+===== Epoch 94/100 =====
+Epoch 94 | Train SI-SNR: 12.92 | Val SI-SNR: 9.95
+
+===== Epoch 95/100 =====
+Epoch 95 | Train SI-SNR: 12.92 | Val SI-SNR: 9.91
+
+===== Epoch 96/100 =====
+Epoch 96 | Train SI-SNR: 12.91 | Val SI-SNR: 9.97
+
+===== Epoch 97/100 =====
+Epoch 97 | Train SI-SNR: 12.92 | Val SI-SNR: 9.92
+
+===== Epoch 98/100 =====
+Epoch 98 | Train SI-SNR: 12.92 | Val SI-SNR: 9.92
+
+===== Epoch 99/100 =====
+Epoch 99 | Train SI-SNR: 12.92 | Val SI-SNR: 9.96
+
+===== Epoch 100/100 =====
+Epoch 100 | Train SI-SNR: 12.92 | Val SI-SNR: 9.94

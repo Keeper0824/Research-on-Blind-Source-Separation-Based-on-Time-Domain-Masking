@@ -316,13 +316,14 @@ if __name__ == "__main__":
 
     # 按照你原代码的意图，这里测试的是 WSJ0-2Mix (Speech 模式)
     run_test(
-        model_path="../../checkpoints/train_MultiDeep_20260120-071822/conv_tasnet_final.pt",
-        # test_root="../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min",
-        test_root="../../Dataset/CommDataset",
+        model_path="../../checkpoints/train_MultiDeep_20260211-193833/conv_tasnet_final.pt",
+        test_root="../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min",
+        # test_root="../../Dataset/CommDataset",
         batch_size=32,
-        sample_rate=100000,
+        sample_rate=8000,
+        # sample_rate=100000,
         device=device,
-        output_dir="../../Results/train_MultiDeep_20260120-071822",
+        output_dir="../../Results/train_MultiDeep_20260211-193833",
         max_save_samples=20,
-        dataset_type="comm"  # <-- 开启语音模式
+        dataset_type="speech"  # <-- 开启语音模式
     )

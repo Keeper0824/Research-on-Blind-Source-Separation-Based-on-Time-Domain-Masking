@@ -1,0 +1,8 @@
+TF-Domain Baseline (PIT-BLSTM) on CommDataset
+Sample Rate: 100000
+----------------------------------------
+  SI-SNR  : 0.1226 dB
+  SI-SNRi : 0.3177 dB
+  SNR     : 3.2918 dB
+  BER     : 0.245889 (24.5889%)
+----------------------------------------

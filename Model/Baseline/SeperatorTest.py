@@ -315,12 +315,12 @@ if __name__ == "__main__":
     # 测试通信数据 (CommDataset) -> 只计算 SNR, SI-SNR, SI-SNRi, BER
     # -----------------------------------------------------
     run_test(
-        model_path="../../checkpoints/train_baseline_comm_20260213-000638/conv_tasnet_final.pt",
+        model_path="../../checkpoints/train_baseline_comm_20260214-203716/conv_tasnet_final.pt",
         test_root="../../Dataset/CommDataset",
         batch_size=128,
         sample_rate=100000,
         device=device,
-        output_dir="../../Results/train_baseline_comm_20260213-000638",
+        output_dir="../../Results/train_baseline_comm_20260214-203716",
         dataset_type="comm",  # <--- 切换为通信模式
         # speech
         max_save_samples=20

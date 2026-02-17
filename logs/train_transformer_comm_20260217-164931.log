@@ -1,0 +1,27 @@
+Log file: ../../logs\train_transformer_comm_20260217-164931.log
+Using device: cuda
+
+Initializing Dual-Path Transformer (DPTNet) from scratch...
+
+>>> 开始极限训练 Transformer 模型 <<<
+
+===== Epoch 1/100 =====
+  Step 50/3125 | Train Loss (−SI-SNR): 11.4822
+  Step 100/3125 | Train Loss (−SI-SNR): 7.7159
+  Step 150/3125 | Train Loss (−SI-SNR): 5.8595
+  Step 200/3125 | Train Loss (−SI-SNR): 4.3636
+  Step 250/3125 | Train Loss (−SI-SNR): 3.4809
+  Step 300/3125 | Train Loss (−SI-SNR): 2.9641
+  Step 350/3125 | Train Loss (−SI-SNR): 2.2548
+  Step 400/3125 | Train Loss (−SI-SNR): 1.8959
+  Step 450/3125 | Train Loss (−SI-SNR): 1.5450
+  Step 500/3125 | Train Loss (−SI-SNR): 1.1368
+  Step 550/3125 | Train Loss (−SI-SNR): 1.0457
+  Step 600/3125 | Train Loss (−SI-SNR): 0.7960
+  Step 650/3125 | Train Loss (−SI-SNR): 0.8343
+  Step 700/3125 | Train Loss (−SI-SNR): 0.5509
+  Step 750/3125 | Train Loss (−SI-SNR): 0.6231
+  Step 800/3125 | Train Loss (−SI-SNR): 0.3457
+  Step 850/3125 | Train Loss (−SI-SNR): 0.2374
+  Step 900/3125 | Train Loss (−SI-SNR): 0.3603
+  Step 950/3125 | Train Loss (−SI-SNR): 0.2305

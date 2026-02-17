@@ -1,0 +1,10 @@
+Final Metrics (Mode: comm, PIT-aligned, mean over utterances)
+Saved wav samples: 20
+Evaluated utterances: 9984
+Sample rate: 100000
+----------------------------------------
+SI-SNR  : 18.6033
+SI-SNRi : 18.7984
+SNR     : 19.1221
+BER     : 0.502738 (50.2738%)
+----------------------------------------

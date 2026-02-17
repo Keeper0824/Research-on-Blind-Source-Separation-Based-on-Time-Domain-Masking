@@ -1,0 +1,17 @@
+Oracle (IRM) & Mixture Baselines on WSJ0-2Mix Dataset
+Evaluated utterances: 2976
+Sample Rate: 8000 Hz
+--------------------------------------------------
+1. Input Mixture (Lower Bound - No Processing)
+  SI-SNR  : 0.0006 dB
+  SNR     : 3.3090 dB
+  PESQ    : 1.6190
+  STOI    : 0.7302
+
+2. IRM Oracle (Upper Bound for STFT based Masking)
+  SI-SNR  : 13.2697 dB
+  SI-SNRi : 13.2691 dB
+  SNR     : 13.4983 dB
+  PESQ    : 3.5758
+  STOI    : 0.9701
+--------------------------------------------------
