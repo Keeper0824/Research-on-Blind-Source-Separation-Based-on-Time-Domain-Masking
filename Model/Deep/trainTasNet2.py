@@ -332,7 +332,7 @@ def main():
     torch.backends.cudnn.benchmark = True
 
     # 【修改点3】适配数据路径与采样率
-    root = "../../Dataset/CommDataset"
+    root = "../../Dataset/Comm0-2Dataset"
     sample_rate = 100000  # 匹配通信信号 100k 采样率
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")

@@ -94,6 +94,7 @@ def eval_test_full(model, test_loader, loss_fn, sample_rate, device, output_dir,
             num_batches += 1
 
             B = mix.size(0)
+            S = targets.size(1)  # 获取说话人数
             for i in range(B):
                 if count >= max_samples:
                     print("[Test] Reached max_samples limit.")
@@ -102,22 +103,18 @@ def eval_test_full(model, test_loader, loss_fn, sample_rate, device, output_dir,
                     return
 
                 mix_i = mix[i].cpu()
-                s1_ref = targets[i, 0].cpu()
-                s2_ref = targets[i, 1].cpu()
-                s1_est = est_sources[i, 0].cpu()
-                s2_est = est_sources[i, 1].cpu()
-
                 base = f"test_{count}"
-                torchaudio.save(os.path.join(output_dir, f"{base}_mix.wav"),
-                                mix_i.unsqueeze(0), sample_rate)
-                torchaudio.save(os.path.join(output_dir, f"{base}_s1_ref.wav"),
-                                s1_ref.unsqueeze(0), sample_rate)
-                torchaudio.save(os.path.join(output_dir, f"{base}_s2_ref.wav"),
-                                s2_ref.unsqueeze(0), sample_rate)
-                torchaudio.save(os.path.join(output_dir, f"{base}_s1_est.wav"),
-                                s1_est.unsqueeze(0), sample_rate)
-                torchaudio.save(os.path.join(output_dir, f"{base}_s2_est.wav"),
-                                s2_est.unsqueeze(0), sample_rate)
+                torchaudio.save(os.path.join(output_dir, f"{base}_mix.wav"), mix_i.unsqueeze(0), sample_rate)
+
+                # 动态循环保存 S 个源
+                for s_idx in range(S):
+                    s_ref = targets[i, s_idx].cpu()
+                    s_est = est_sources[i, s_idx].cpu()
+                    torchaudio.save(os.path.join(output_dir, f"{base}_s{s_idx + 1}_ref.wav"), s_ref.unsqueeze(0),
+                                    sample_rate)
+                    torchaudio.save(os.path.join(output_dir, f"{base}_s{s_idx + 1}_est.wav"), s_est.unsqueeze(0),
+                                    sample_rate)
+
                 count += 1
 
     if num_batches > 0:
@@ -194,65 +191,52 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
         if mix.dim() == 1:
             mix = mix.unsqueeze(0)  # [1, T]
         if targets.dim() == 2:
-            targets = targets.unsqueeze(0)  # [1, 2, T]
+            targets = targets.unsqueeze(0)  # [1, S, T]
 
         mix = mix.to(device)
         targets = targets.to(device)
 
         with _safe_autocast(device):
-            est = model(mix.unsqueeze(1))  # [1, 2, T_est]
+            est = model(mix.unsqueeze(1))  # [1, S, T_est]
 
-        # 1. 对齐长度
         min_len = min(est.shape[-1], targets.shape[-1], mix.shape[-1])
         est = est[..., :min_len]
         targets = targets[..., :min_len]
         mix = mix[..., :min_len]
 
-        # 2. 【关键步骤】调用 PIT 重排，自动修正通道顺序
-        # est: [B, S, T], targets: [B, S, T]
         est, _ = pit_reorder(est, targets)
 
-        # 3. 提取单条数据
         mix_ = mix[0].detach().float().cpu()
-        s1_ref = targets[0, 0].detach().float().cpu()
-        s2_ref = targets[0, 1].detach().float().cpu()
+        S = targets.shape[1]  # 自动获取说话人数量 (比如 3)
 
-        # 此时 est[0,0] 已经确保是对应 s1_ref 的了
-        s1_est = est[0, 0].detach().float().cpu()
-        s2_est = est[0, 1].detach().float().cpu()
+        refs = [targets[0, i].detach().float().cpu() for i in range(S)]
+        ests = [est[0, i].detach().float().cpu() for i in range(S)]
 
-    # 4. 波形图 (加入 align_waveform 修正幅度和相位)
-    s1_est_aligned = align_waveform(s1_est, s1_ref)
-    s2_est_aligned = align_waveform(s2_est, s2_ref)
+    # 4. 波形图 (加入 align_waveform)
+    ests_aligned = [align_waveform(e, r) for e, r in zip(ests, refs)]
 
-    wavs = [mix_, s1_ref, s2_ref, s1_est_aligned, s2_est_aligned]
-    names = ["mix", "s1_ref", "s2_ref", "s1_est", "s2_est"]
+    wavs = [mix_] + refs + ests_aligned
+    names = ["mix"] + [f"s{i + 1}_ref" for i in range(S)] + [f"s{i + 1}_est" for i in range(S)]
 
-    plt.figure(figsize=(12, 10))
+    num_plots = 2 * S + 1  # 3 个源的话就是 1+3+3 = 7 个子图
+    plt.figure(figsize=(12, 2 * num_plots))
     for i, (w, n) in enumerate(zip(wavs, names), start=1):
-        plt.subplot(5, 1, i)
+        plt.subplot(num_plots, 1, i)
         plt.plot(w.numpy())
         plt.title(n)
         plt.tight_layout()
     plt.savefig(save_prefix + "_wave.png", dpi=200)
     plt.close()
 
-    # 5. 频谱图 (同理)
+    # 5. 频谱图
     def to_t(x):
         return x.to(torch.float32)
 
-    # 使用对齐后的波形画谱，看起来更直观
-    specs = [
-        _log_spec(to_t(mix_), sample_rate),
-        _log_spec(to_t(s1_ref), sample_rate),
-        _log_spec(to_t(s2_ref), sample_rate),
-        _log_spec(to_t(s1_est_aligned), sample_rate),
-        _log_spec(to_t(s2_est_aligned), sample_rate)
-    ]
+    specs = [_log_spec(to_t(w), sample_rate) for w in wavs]
 
-    plt.figure(figsize=(12, 10))
+    plt.figure(figsize=(12, 2 * num_plots))
     for i, (sp, n) in enumerate(zip(specs, names), start=1):
-        plt.subplot(5, 1, i)
+        plt.subplot(num_plots, 1, i)
         plt.imshow(sp.numpy(), origin="lower", aspect="auto")
         plt.title(n + " (Spectrogram)")
         plt.tight_layout()
@@ -309,7 +293,7 @@ def main():
 
     # Redirect stdout to logger
     sys.stdout = Logger(log_file)
-    print(f"Log file: {log_file} (Ablation enc_dim=256 enc_kernel=(5, 11, 21) enc_stride=8 PostRefine Depth=1)")
+    print(f"Log file: {log_file} (num_speaker=3)")
 
     # Create per-run directories for checkpoints and outputs
     ckpt_root = "../../checkpoints"
@@ -328,13 +312,14 @@ def main():
 
     torch.backends.cudnn.benchmark = True
     # Data & device setup
-    root = "../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
+    # root = "../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
+    root = "../../Dataset/WSJ0-3Mix/3speakers/wav8k/min"
     sample_rate = 8000
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=8, num_workers=8, segment=4.0,
-                                                             sample_rate=sample_rate)
+    train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=6, num_workers=8, segment=4.0,
+                                                             sample_rate=sample_rate,num_speakers=3)
     # 固定一个 valid 样例：每个 epoch 都用同一个，方便看训练进步
     fixed_mix, fixed_targets = next(iter(valid_loader))
     fixed_mix = fixed_mix[0]  # [T]
@@ -342,7 +327,7 @@ def main():
 
     # Model, optimizer, loss, AMP scaler
     model = Model(enc_dim=516, enc_kernel=(11, 21, 31), enc_stride=8, bottleneck_channels=128, hidden_channels=256,
-                  num_blocks=8, num_repeats=3, num_speakers=2).to(device)
+                  num_blocks=8, num_repeats=3, num_speakers=3).to(device)
     ema_model = AveragedModel(model, multi_avg_fn=get_ema_multi_avg_fn(0.999)).to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)

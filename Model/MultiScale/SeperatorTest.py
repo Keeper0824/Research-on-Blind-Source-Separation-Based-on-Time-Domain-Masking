@@ -306,7 +306,7 @@ if __name__ == "__main__":
     # ==== 当你需要跑 Comm 数据集时，按照如下配置 ====
     run_test(
         model_path="../../checkpoints/train_multiscale_comm_20260214-130236/best_model.pt",
-        test_root="../../Dataset/CommDataset",
+        test_root="../../Dataset/Comm0-2Dataset",
         batch_size=128,
         sample_rate=100000,
         device=device,

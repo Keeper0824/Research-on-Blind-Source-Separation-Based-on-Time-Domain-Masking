@@ -316,8 +316,8 @@ def main():
 
     torch.backends.cudnn.benchmark = True
 
-    # 【修改点2】 CommDataset 路径和参数
-    root = "../../Dataset/CommDataset"
+    # 【修改点2】 Comm0-2Dataset 路径和参数
+    root = "../../Dataset/Comm0-2Dataset"
     # 通讯信号通常使用较高的采样率进行模拟，这里保持一致
     sample_rate = 100000
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -333,7 +333,7 @@ def main():
     fixed_targets = fixed_targets[0]  # [2, T]
 
     # Model (Baseline TasNet)
-    # 这里的参数可以根据 CommDataset 的复杂度调整
+    # 这里的参数可以根据 Comm0-2Dataset 的复杂度调整
     # 如果信号很简单，可以减小 enc_dim 或 num_blocks
     model = Model(enc_dim=512, enc_kernel=16, enc_stride=8, bottleneck_channels=128, hidden_channels=256, num_blocks=8,
                   num_repeats=3, num_speakers=2).to(device)

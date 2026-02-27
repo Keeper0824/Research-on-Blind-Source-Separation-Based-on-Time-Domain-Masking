@@ -318,7 +318,7 @@ if __name__ == "__main__":
     run_test(
         model_path="../../checkpoints/train_MultiDeep_20260211-193833/conv_tasnet_final.pt",
         test_root="../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min",
-        # test_root="../../Dataset/CommDataset",
+        # test_root="../../Dataset/Comm0-2Dataset",
         batch_size=32,
         sample_rate=8000,
         # sample_rate=100000,

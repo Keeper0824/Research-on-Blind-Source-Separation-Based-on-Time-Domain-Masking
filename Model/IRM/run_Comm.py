@@ -77,7 +77,7 @@ def evaluate_baselines(loader, device, output_dir):
         "IRM_SI-SNR": [], "IRM_SI-SNRi": [], "IRM_SNR": [], "IRM_BER": []
     }
 
-    print("Running Oracle (IRM) and Mixture Baselines on CommDataset...")
+    print("Running Oracle (IRM) and Mixture Baselines on Comm0-2Dataset...")
 
     with torch.no_grad():
         for mix, targets in tqdm(loader, desc="Evaluating Baselines"):
@@ -126,7 +126,7 @@ def evaluate_baselines(loader, device, output_dir):
 
     # 打印至控制台
     print("\n" + "=" * 50)
-    print(f"[CommDataset Baselines Final Results]")
+    print(f"[Comm0-2Dataset Baselines Final Results]")
     print(f"--- 1. Input Mixture (理论下限 / 不做处理) ---")
     print(f"  SI-SNR  : {results['Mix_SI-SNR']:.4f} dB")
     print(f"  SNR     : {results['Mix_SNR']:.4f} dB")
@@ -144,7 +144,7 @@ def evaluate_baselines(loader, device, output_dir):
     txt_path = os.path.join(output_dir, f"oracle_baselines_comm_{ts}.txt")
 
     with open(txt_path, "w", encoding="utf-8") as f:
-        f.write("Oracle (IRM) & Mixture Baselines on CommDataset\n")
+        f.write("Oracle (IRM) & Mixture Baselines on Comm0-2Dataset\n")
         f.write(f"Evaluated utterances: {len(metrics['Mix_SI-SNR'])}\n")
         f.write("-" * 50 + "\n")
         f.write("1. Input Mixture (Lower Bound - No Processing)\n")
@@ -167,7 +167,7 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # 数据集路径
-    root = "../../Dataset/CommDataset"
+    root = "../../Dataset/Comm0-2Dataset"
 
     # 结果保存路径
     output_dir = "../../Results/Oracle_Baselines_Comm"

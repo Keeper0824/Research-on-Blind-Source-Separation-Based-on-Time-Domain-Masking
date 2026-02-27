@@ -149,7 +149,7 @@ def eval_valid(model, valid_loader, loss_fn, device):
 
 
 def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save_samples=20):
-    print(f"\n>>> 开始最终测试 (CommDataset 标准) <<<")
+    print(f"\n>>> 开始最终测试 (Comm0-2Dataset 标准) <<<")
     model.eval()
     os.makedirs(output_dir, exist_ok=True)
 
@@ -224,7 +224,7 @@ def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save
     txt_path = os.path.join(output_dir, f"final_metrics_comm_{ts}.txt")
 
     with open(txt_path, "w", encoding="utf-8") as f:
-        f.write("TF-Domain Baseline (PIT-BLSTM) on CommDataset\n")
+        f.write("TF-Domain Baseline (PIT-BLSTM) on Comm0-2Dataset\n")
         f.write(f"Sample Rate: {sample_rate}\n")
         f.write("-" * 40 + "\n")
         for k, v in results.items():
@@ -256,9 +256,9 @@ def main():
     os.makedirs(result_dir, exist_ok=True)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    root = "../../Dataset/CommDataset"
+    root = "../../Dataset/Comm0-2Dataset"
 
-    # CommDataset: segment 32000 points, batch_size 256 (显存允许的情况下尽量大)
+    # Comm0-2Dataset: segment 32000 points, batch_size 256 (显存允许的情况下尽量大)
     train_loader, valid_loader, test_loader = MakeDataLoader(
         root=root, batch_size=256, num_workers=8, segment=32000
     )

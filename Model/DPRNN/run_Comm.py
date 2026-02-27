@@ -101,7 +101,7 @@ def eval_valid(model, valid_loader, loss_fn, device):
 def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save_samples=20):
     """终极测试：计算 BER, SI-SNR, SI-SNRi, SNR"""
     print(f"\n==============================================")
-    print(f" 开始执行 DPRNN 终极测试 (CommDataset 标准)")
+    print(f" 开始执行 DPRNN 终极测试 (Comm0-2Dataset 标准)")
     print(f"==============================================")
 
     model.eval()
@@ -169,7 +169,7 @@ def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save
     results = {k: float(np.nanmean(v)) for k, v in all_metrics.items()}
 
     print("\n" + "=" * 40)
-    print(f"[DPRNN CommDataset] 最终成绩单:")
+    print(f"[DPRNN Comm0-2Dataset] 最终成绩单:")
     for k, v in results.items():
         if k == "BER":
             print(f"  {k:8s}: {v:.6f} ({v * 100:.4f}%) - 误比特率")
@@ -180,7 +180,7 @@ def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save
     ts = time.strftime("%Y%m%d-%H%M%S")
     txt_path = os.path.join(output_dir, f"final_metrics_dprnn_comm_{ts}.txt")
     with open(txt_path, "w", encoding="utf-8") as f:
-        f.write("DPRNNTasNet on CommDataset\n")
+        f.write("DPRNNTasNet on Comm0-2Dataset\n")
         f.write(f"Sample rate: {sample_rate} Hz\n")
         f.write("-" * 40 + "\n")
         for k, v in results.items():
@@ -216,7 +216,7 @@ def main():
     print(f"Using device: {device}")
 
     # --- 数据集加载 ---
-    root = "../../Dataset/CommDataset"
+    root = "../../Dataset/Comm0-2Dataset"
     sample_rate = 100000
 
     # 【极度关键】：DPRNN 非常吃显存！

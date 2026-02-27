@@ -327,7 +327,7 @@ def main():
     grad_norm_hist = []
 
     torch.backends.cudnn.benchmark = True
-    root = "../../Dataset/CommDataset"
+    root = "../../Dataset/Comm0-2Dataset"
     sample_rate = 100000
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")

@@ -8,7 +8,7 @@ from torch.utils.data import Dataset, DataLoader
 class CommMixDataset(Dataset):
     def __init__(self, root, split="tr", segment=None):
         """
-        root: 数据集根目录 (e.g., './CommDataset')
+        root: 数据集根目录 (e.g., './Comm0-2Dataset')
         split: 'tr', 'cv', or 'tt'
         segment: 裁剪长度 (秒)。注意：这里我们假设 sample_rate=1 来处理索引，或者直接传点数。
                  建议直接传 int 类型的点数 (e.g., 32000)。

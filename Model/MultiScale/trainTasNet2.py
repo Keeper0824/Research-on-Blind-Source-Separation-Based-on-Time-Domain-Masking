@@ -206,8 +206,8 @@ def main():
     os.makedirs(ckpt_dir, exist_ok=True)
     os.makedirs(output_dir, exist_ok=True)
 
-    # --- 2. Data Loading (CommDataset) ---
-    root = "../../Dataset/CommDataset"
+    # --- 2. Data Loading (Comm0-2Dataset) ---
+    root = "../../Dataset/Comm0-2Dataset"
     sample_rate = 100000  # Comm signal SR
     segment_points = 32000  # Input length in points
     batch_size = 16  # Adjust to 8 if OOM

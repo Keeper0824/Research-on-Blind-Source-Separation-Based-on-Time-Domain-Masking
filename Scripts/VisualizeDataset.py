@@ -5,7 +5,7 @@ import random
 from scipy.signal import welch
 
 
-def visualize_generated_data(root_dir='./CommDataset', split='tr', sample_idx=None):
+def visualize_generated_data(root_dir='./Comm0-2Dataset', split='tr', sample_idx=None):
     """
     可视化生成的通信信号数据集
     :param root_dir: 数据集根目录

@@ -312,11 +312,11 @@ if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     # -----------------------------------------------------
-    # 测试通信数据 (CommDataset) -> 只计算 SNR, SI-SNR, SI-SNRi, BER
+    # 测试通信数据 (Comm0-2Dataset) -> 只计算 SNR, SI-SNR, SI-SNRi, BER
     # -----------------------------------------------------
     run_test(
         model_path="../../checkpoints/train_deep_comm_20260215-184416/conv_tasnet_final.pt",
-        test_root="../../Dataset/CommDataset",
+        test_root="../../Dataset/Comm0-2Dataset",
         batch_size=32,
         sample_rate=100000,
         device=device,

@@ -143,7 +143,7 @@ def run_statistical_separation(mix_wav, method='nmf', n_fft=512, hop=256):
 
 
 def main():
-    root = "../../Dataset/CommDataset"
+    root = "../../Dataset/Comm0-2Dataset"
     segment_points = 32000
     max_samples = 50  # 统计学算法在 CPU 跑比较慢，建议限制测试数量
 
@@ -153,7 +153,7 @@ def main():
     ts = time.strftime("%Y%m%d-%H%M%S")
     txt_path = os.path.join(output_dir, f"metrics_{ts}.txt")
 
-    print(f"加载 CommDataset 测试集 (Segment={segment_points})...")
+    print(f"加载 Comm0-2Dataset 测试集 (Segment={segment_points})...")
     _, _, test_loader = MakeDataLoader(root=root, batch_size=1, num_workers=4, segment=segment_points)
 
     methods = ['ica', 'nmf']
@@ -213,7 +213,7 @@ def main():
     # 将最终成绩写入 TXT 报告
     # ==========================================
     with open(txt_path, "w", encoding="utf-8") as f:
-        f.write("Statistical Baselines on CommDataset\n")
+        f.write("Statistical Baselines on Comm0-2Dataset\n")
         f.write(f"Evaluated samples: {max_samples}\n")
         f.write(f"Segment points: {segment_points}\n")
         f.write("-" * 40 + "\n")
