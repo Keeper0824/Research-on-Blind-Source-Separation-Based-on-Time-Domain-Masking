@@ -313,13 +313,13 @@ def main():
     torch.backends.cudnn.benchmark = True
     # Data & device setup
     # root = "../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
-    root = "../../Dataset/WSJ0-3Mix/3speakers/wav8k/min"
+    root = "../../Dataset/WSJ0-4Mix/4speakers/wav8k/min"
     sample_rate = 8000
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=6, num_workers=8, segment=4.0,
-                                                             sample_rate=sample_rate,num_speakers=3)
+    train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=4, num_workers=8, segment=4.0,
+                                                             sample_rate=sample_rate,num_speakers=4)
     # 固定一个 valid 样例：每个 epoch 都用同一个，方便看训练进步
     fixed_mix, fixed_targets = next(iter(valid_loader))
     fixed_mix = fixed_mix[0]  # [T]
@@ -327,7 +327,7 @@ def main():
 
     # Model, optimizer, loss, AMP scaler
     model = Model(enc_dim=516, enc_kernel=(11, 21, 31), enc_stride=8, bottleneck_channels=128, hidden_channels=256,
-                  num_blocks=8, num_repeats=3, num_speakers=3).to(device)
+                  num_blocks=8, num_repeats=3, num_speakers=4).to(device)
     ema_model = AveragedModel(model, multi_avg_fn=get_ema_multi_avg_fn(0.999)).to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
