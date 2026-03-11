@@ -13,7 +13,7 @@ except ImportError:
 
 
 class UnifiedInferenceCore:
-    def __init__(self, model_type="multiscale_comm_2spk", ckpt_path=None, device=None):
+    def __init__(self, model_type="multiscale_speech_2spk", ckpt_path=None, device=None):
         """
         统一的纯推理接口，供 GUI 直接调用。
 
@@ -32,10 +32,10 @@ class UnifiedInferenceCore:
         self._build_and_load()
 
     def _build_and_load(self):
-        if self.model_type == "multiscale_comm_2spk":
+        if self.model_type == "multiscale_speech_2spk":
             # 严格对齐 trainTasNet2.py 的配置
             self.model = Model(
-                enc_dim=512, enc_kernel=(11, 21, 31), enc_stride=8,
+                enc_dim=516, enc_kernel=(5, 11, 21), enc_stride=8,
                 bottleneck_channels=128, hidden_channels=256,
                 num_blocks=8, num_repeats=3, num_speakers=2
             ).to(self.device)
@@ -58,14 +58,6 @@ class UnifiedInferenceCore:
                 num_blocks=8, num_repeats=3, num_speakers=4
             ).to(self.device)
             self._load_local_weights()
-
-        elif self.model_type == "pretrained_asteroid":
-            # 现成模型的调用接口 (例如 WHAM 数据集上预训练的 ConvTasNet)
-            if ConvTasNet is None:
-                raise ImportError("请先安装 asteroid: pip install asteroid")
-            print("正在从网络加载现成的预训练模型...")
-            self.model = ConvTasNet.from_pretrained("mpariente/ConvTasNet_WHAM!_sepclean").to(self.device)
-
         else:
             raise ValueError(f"不支持的模型类型: {self.model_type}")
 

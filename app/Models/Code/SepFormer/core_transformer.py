@@ -58,7 +58,6 @@ def _patched_symlink_to(self, target, target_is_directory=False):
 pathlib.Path.symlink_to = _patched_symlink_to
 # ========================================================
 
-# 尝试导入大模型库
 try:
     from asteroid.models import DPTNet
 except ImportError:
@@ -72,7 +71,7 @@ except ImportError:
 
 class DPTNetInferenceCore:
     def __init__(self, ckpt_path=None, device=None):
-        """Asteroid DPTNet 推理核心 (对应你的 run_Comm.py)"""
+        """Asteroid DPTNet 推理核心"""
         if DPTNet is None:
             raise ImportError("请先安装 asteroid: pip install asteroid")
 
@@ -91,7 +90,6 @@ class DPTNetInferenceCore:
         if self.ckpt_path and os.path.exists(self.ckpt_path):
             print(f"正在加载 DPTNet 本地权重: {self.ckpt_path}")
             sd = torch.load(self.ckpt_path, map_location=self.device)
-            # 兼容 ema_state 或 model_state
             if isinstance(sd, dict):
                 sd = sd.get("ema_state", sd.get("model_state_dict", sd))
                 sd = {k.replace('module.', ''): v for k, v in sd.items()}
@@ -102,21 +100,25 @@ class DPTNetInferenceCore:
 
     @torch.no_grad()
     def separate(self, mix_waveform):
-        # 整理形状为 (1, T)
+        # 🚀 修复核心：正确地把音频整理成 [Batch, Time] (即 [1, T]) 格式
         if mix_waveform.dim() == 1:
             mix_waveform = mix_waveform.unsqueeze(0)
-        elif mix_waveform.dim() > 1:
-            mix_waveform = mix_waveform.squeeze()[:1]
+        elif mix_waveform.dim() == 2 and mix_waveform.shape[0] != 1:
+            mix_waveform = mix_waveform.mean(dim=0, keepdim=True)
+        elif mix_waveform.dim() == 3:
+            mix_waveform = mix_waveform.squeeze(1)
 
-        with torch.autocast(device_type=self.device.type, dtype=torch.bfloat16):
-            est = self.model(mix_waveform.to(self.device))
+        mix_waveform = mix_waveform.to(self.device).float()
+
+        # 强制使用 float32，避免 DPTNet 内部的 Transformer 产生精度溢出
+        est = self.model(mix_waveform)
         if est.dim() == 3: est = est.squeeze(0)  # (Spk, T)
         return (est - est.mean(dim=-1, keepdim=True)).cpu()
 
 
 class SepFormerInferenceCore:
     def __init__(self, device=None):
-        """SpeechBrain SepFormer 现成模型推理核心 (对应你的 run_wsj.py)"""
+        """SpeechBrain SepFormer 现成模型推理核心"""
         if SepformerSeparation is None:
             raise ImportError("请先安装 speechbrain: pip install speechbrain")
 
@@ -131,16 +133,20 @@ class SepFormerInferenceCore:
 
     @torch.no_grad()
     def separate(self, mix_waveform):
-        # SepFormer 期望输入 (Batch, Time)
+        # 🚀 修复核心：同上，防止时间维度被一刀切成 1
         if mix_waveform.dim() == 1:
             mix_waveform = mix_waveform.unsqueeze(0)
-        elif mix_waveform.dim() > 1:
-            mix_waveform = mix_waveform.squeeze()[:1]
+        elif mix_waveform.dim() == 2 and mix_waveform.shape[0] != 1:
+            mix_waveform = mix_waveform.mean(dim=0, keepdim=True)
+        elif mix_waveform.dim() == 3:
+            mix_waveform = mix_waveform.squeeze(1)
 
-        # 调用模型专属的 separate_batch
-        est = self.model.separate_batch(mix_waveform.to(self.device))
+        mix_waveform = mix_waveform.to(self.device).float()
 
-        # 输出形状修正 (Batch, Time, Spk) -> (Spk, Time)
+        # 调用 SpeechBrain 专属的推理函数
+        est = self.model.separate_batch(mix_waveform)
+
+        # 修正输出形状 (Batch, Time, Spk) -> (Spk, Time)
         if est.dim() == 3:
             est = est.permute(0, 2, 1).squeeze(0)
 

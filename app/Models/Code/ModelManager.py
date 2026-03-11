@@ -64,14 +64,14 @@ pathlib.Path.symlink_to = _patched_symlink_to
 
 # 导入所有独立的推理核心
 try:
-    from Baseline.core_baseline import SignalSeparator
-    from Deep.core_deep import DeepSignalSeparator
-    from MultiScale.core_multiscale import MultiScaleInferenceCore
-    from MultiScaleDeep.core_multideep import UnifiedInferenceCore
-    from PITBLSTM.core_tf import TFBaselineInferenceCore
-    from DPRNN.core_asteroid import DPRNNSignalSeparator
-    from SepFormer.core_transformer import DPTNetInferenceCore, SepFormerInferenceCore
-    from IRM.core_irm import IRMInferenceCore
+    from app.Models.Code.Baseline.core_baseline import SignalSeparator
+    from app.Models.Code.Deep.core_deep import DeepSignalSeparator
+    from app.Models.Code.MultiScale.core_multiscale import MultiScaleInferenceCore
+    from app.Models.Code.MultiScaleDeep.core_multideep import UnifiedInferenceCore
+    from app.Models.Code.PITBLSTM.core_tf import TFBaselineInferenceCore
+    from app.Models.Code.DPRNN.core_asteroid import DPRNNSignalSeparator
+    from app.Models.Code.SepFormer.core_transformer import DPTNetInferenceCore, SepFormerInferenceCore
+    from app.Models.Code.IRM.core_irm import IRMInferenceCore
 except ImportError as e:
     print(f"导入 Core 模块失败，请确保 core_xxx.py 文件在正确位置: {e}")
 
@@ -89,25 +89,37 @@ class SeparationManager:
         self.current_model_name = ""
 
         # ==========================================
-        # ⚠️ 本地权重路径配置 (区分了语音和通信)
+        # 🚀 使用动态绝对路径，彻底告别路径报错！
         # ==========================================
+        # 1. 获取当前 ModelManager.py 所在的真实目录
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # 2. 向上追溯到项目根目录 (app文件夹)。
+        # 如果你的 ModelManager 和 Speech 文件夹在同一级，直接用 base_dir = current_dir 即可。
+        # 如果在 app/Models/Code 下，就需要向上退两级：
+        base_dir = os.path.normpath(os.path.join(current_dir, ".."))
+
+        # 打印出来检查一下到底对不对
+        print(f"[路径探针] 动态解析的项目根目录为: {base_dir}")
+
+        # 3. 动态拼接所有模型的绝对路径
         self.ckpt_paths = {
             # --- 语音部分 (Speech) ---
-            "tasnet_base": "./Speech/Baseline.pt",
-            "tasnet_deep": "./Speech/Deep.pt",
-            "tasnet_multideep": "./Speech/Multideep.pt",
-            "tf_baseline": "./Speech/PIT-BLSTM.pt",
-            "3speaker": "./Speech/3speaker.pt",
-            "4speaker": "./Speech/4speaker.pt",
-            # speech中 DPRNN/SEPFORM 使用预设模型
+            "tasnet_base": os.path.join(base_dir, "Speech", "Baseline.pt"),
+            "tasnet_deep": os.path.join(base_dir, "Speech", "Deep.pt"),
+            "tasnet_multi": os.path.join(base_dir, "Speech", "Multiscale.pt"),
+            "tasnet_multideep": os.path.join(base_dir, "Speech", "MultiDeep.pt"),
+            "tf_baseline": os.path.join(base_dir, "Speech", "PIT-BLSTM.pt"),
+            "3speaker": os.path.join(base_dir, "Speech", "3speaker.pt"),
+            "4speaker": os.path.join(base_dir, "Speech", "4speaker.pt"),
 
             # --- 通信部分 (Comm) ---
-            "tasnet_base_comm": "./Comm/baseline.pt",
-            "tasnet_deep_comm": "./Comm/deep.pt",
-            "tasnet_multi_comm": "./Comm/multiscale.pt",
-            "tf_baseline_comm": "./Comm/PIT-BLSTM.pt",
-            "dprnn_comm": "./Comm/DPRNN.pt",
-            "sep_comm": "./Comm/SepFormer.pt"
+            "tasnet_base_comm": os.path.join(base_dir, "Comm", "baseline.pt"),
+            "tasnet_deep_comm": os.path.join(base_dir, "Comm", "deep.pt"),
+            "tasnet_multi_comm": os.path.join(base_dir, "Comm", "multiscale.pt"),
+            "tf_baseline_comm": os.path.join(base_dir, "Comm", "PIT-BLSTM.pt"),
+            "dprnn_comm": os.path.join(base_dir, "Comm", "DPRNN.pt"),
+            "sep_comm": os.path.join(base_dir, "Comm", "SepFormer.pt")
         }
 
     def load_model(self, model_choice):
@@ -201,6 +213,7 @@ class SeparationManager:
                 waveform = waveform.squeeze()
                 if waveform.dim() == 1: waveform = waveform.unsqueeze(0)
             sr = 100000
+            sr = 8000
             return waveform, sr
         else:
             waveform, sr = torchaudio.load(file_path)
