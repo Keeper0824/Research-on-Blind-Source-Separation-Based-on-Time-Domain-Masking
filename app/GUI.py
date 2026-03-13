@@ -60,7 +60,7 @@ class AudioWorker(QThread):
 
     def run(self):
         try:
-            self.log_signal.emit("🚀 [Audio Mode] Loading model & executing 4s chunk inference...")
+            self.log_signal.emit("[Audio Mode] Loading model & executing 4s chunk inference...")
             self.manager.load_model(self.model_choice)
 
             mix_wav, sr = torchaudio.load(self.mix_path)
@@ -68,7 +68,7 @@ class AudioWorker(QThread):
                 mix_wav = mix_wav.mean(dim=0, keepdim=True)
 
             if sr != 8000:
-                self.log_signal.emit(f"🔄 Auto-resampling: {sr}Hz -> 8000Hz")
+                self.log_signal.emit(f"Auto-resampling: {sr}Hz -> 8000Hz")
                 mix_wav = torchaudio.functional.resample(mix_wav, sr, 8000)
                 sr = 8000
 
@@ -83,7 +83,7 @@ class AudioWorker(QThread):
                 torchaudio.save(out_path, est_sources[i].unsqueeze(0).float(), sr)
                 out_paths.append(out_path)
 
-            self.log_signal.emit("✅ Audio inference & reconstruction successful!")
+            self.log_signal.emit("Audio inference & reconstruction successful!")
             self.finished_signal.emit(out_paths, self.mix_path)
         except Exception as e:
             self.error_signal.emit(str(e))
@@ -106,7 +106,7 @@ class VideoWorker(QThread):
     def run(self):
         try:
             import moviepy.editor as mp
-            self.log_signal.emit("🎬 [Video Mode] Extracting original audio track...")
+            self.log_signal.emit("[Video Mode] Extracting original audio track...")
             out_dir = os.path.join(os.getcwd(), "GUI_Outputs", "Video")
             os.makedirs(out_dir, exist_ok=True)
 
@@ -114,7 +114,7 @@ class VideoWorker(QThread):
             temp_audio_path = os.path.join(out_dir, "temp_extracted.wav")
             video_clip.audio.write_audiofile(temp_audio_path, fps=8000, logger=None)
 
-            self.log_signal.emit("🚀 Starting smart chunked blind separation...")
+            self.log_signal.emit("Starting smart chunked blind separation...")
             self.manager.load_model(self.model_choice)
             mix_wav, sr = torchaudio.load(temp_audio_path)
             if mix_wav.shape[0] > 1: mix_wav = mix_wav.mean(dim=0, keepdim=True)
@@ -122,7 +122,7 @@ class VideoWorker(QThread):
             est_sources = process_long_audio_by_chunks(self.manager, self.model_choice, mix_wav, sr)
 
             num_spk = est_sources.shape[0]
-            self.log_signal.emit(f"✂️ Separation complete! Encoding {num_spk} independent video tracks...")
+            self.log_signal.emit(f"Separation complete! Encoding {num_spk} independent video tracks...")
             out_vid_paths = []
 
             for i in range(num_spk):
@@ -133,7 +133,7 @@ class VideoWorker(QThread):
                 new_video_clip = video_clip.set_audio(new_audio_clip)
 
                 out_vid_path = os.path.join(out_dir, f"Separated_Source_{i + 1}.mp4")
-                self.log_signal.emit(f"🔄 Encoding in progress: Separated_Source_{i + 1}.mp4")
+                self.log_signal.emit(f"Encoding in progress: Separated_Source_{i + 1}.mp4")
 
                 new_video_clip.write_videofile(
                     out_vid_path, codec="libx264", audio_codec="aac",
@@ -142,7 +142,7 @@ class VideoWorker(QThread):
                 out_vid_paths.append(out_vid_path)
 
             video_clip.close()
-            self.log_signal.emit("✅ Video processing fully complete!")
+            self.log_signal.emit("Video processing fully complete!")
             self.finished_signal.emit(out_vid_paths, self.video_path)
         except Exception as e:
             self.error_signal.emit(str(e))
@@ -164,7 +164,7 @@ class CommWorker(QThread):
 
     def run(self):
         try:
-            self.log_signal.emit("📡 [Comm Mode] Loading model & executing baseband inference...")
+            self.log_signal.emit("[Comm Mode] Loading model & executing baseband inference...")
 
             est_sources, _ = self.manager.separate_audio(
                 mix_path=self.mix_path,
@@ -180,7 +180,7 @@ class CommWorker(QThread):
                 np.save(out_path, est_sources[i].numpy())
                 out_paths.append(out_path)
 
-            self.log_signal.emit(f"✅ Comm signal separated! Saved to {out_dir}")
+            self.log_signal.emit(f"Comm signal separated! Saved to {out_dir}")
             self.finished_signal.emit(out_paths, self.mix_path)
         except Exception as e:
             self.error_signal.emit(str(e))
@@ -204,9 +204,9 @@ class SeparationApp(QMainWindow):
         self.tabs = QTabWidget()
         self.setCentralWidget(self.tabs)
 
-        self.tabs.addTab(self.create_audio_tab(), "🎵 Audio Separation")
-        self.tabs.addTab(self.create_video_tab(), "🎬 Video Vocal Extraction")
-        self.tabs.addTab(self.create_comm_tab(), "📡 Comm Signal Parsing")
+        self.tabs.addTab(self.create_audio_tab(), " Audio Separation ")
+        self.tabs.addTab(self.create_video_tab(), "  Video Vocal Extraction  ")
+        self.tabs.addTab(self.create_comm_tab(), " Comm Signal Parsing ")
 
     # ------------------ Tab 1: Audio ------------------
     def create_audio_tab(self):
