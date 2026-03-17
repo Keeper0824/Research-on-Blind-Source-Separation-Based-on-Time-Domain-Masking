@@ -192,7 +192,7 @@ class CommWorker(QThread):
 class SeparationApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("PRO Multi-Source Signal Separation Workstation (Audio/Video/Comm)")
+        self.setWindowTitle("Multi-Source Signal Separation Workstation (Audio/Video/Comm)")
         self.resize(1500, 950)  # 超大初始窗口，匹配大字体
         self.manager = SeparationManager()
         self.audio_player = QMediaPlayer()
@@ -243,7 +243,7 @@ class SeparationApp(QMainWindow):
         left.addWidget(self.a_mix_label)
 
         left.addStretch()
-        self.a_run_btn = QPushButton("⚡ Execute Chunked Separation")
+        self.a_run_btn = QPushButton("Execute Chunked Separation")
         self.a_run_btn.setMinimumHeight(75)  # 巨型执行按钮
         self.a_run_btn.setObjectName("runButtonAudio")
         self.a_run_btn.clicked.connect(self.run_audio)
@@ -263,7 +263,7 @@ class SeparationApp(QMainWindow):
         right.addWidget(self.a_canvas, stretch=5)
 
         self.a_play_layout = QHBoxLayout()
-        self.a_stop_btn = QPushButton("⏹️ Stop Playback")
+        self.a_stop_btn = QPushButton("Stop Playback")
         self.a_stop_btn.setMinimumHeight(55)
         self.a_stop_btn.setObjectName("stopButton")
         self.a_stop_btn.clicked.connect(self.audio_player.stop)
@@ -302,7 +302,7 @@ class SeparationApp(QMainWindow):
         left.addWidget(self.v_mix_label)
 
         left.addStretch()
-        self.v_run_btn = QPushButton("🎬 Start Video Audio Separation")
+        self.v_run_btn = QPushButton("Start Video Audio Separation")
         self.v_run_btn.setMinimumHeight(75)  # 巨型执行按钮
         self.v_run_btn.setObjectName("runButtonVideo")
         self.v_run_btn.clicked.connect(self.run_video)
@@ -358,7 +358,7 @@ class SeparationApp(QMainWindow):
         left.addWidget(self.c_mix_label)
 
         left.addStretch()
-        self.c_run_btn = QPushButton("📡 Parse Comm Signal")
+        self.c_run_btn = QPushButton("Parse Comm Signal")
         self.c_run_btn.setMinimumHeight(75)  # 巨型执行按钮
         self.c_run_btn.setObjectName("runButtonComm")
         self.c_run_btn.clicked.connect(self.run_comm)
@@ -484,13 +484,13 @@ class SeparationApp(QMainWindow):
         for i in reversed(range(1, self.a_play_layout.count())):
             self.a_play_layout.itemAt(i).widget().setParent(None)
 
-        btn_mix = QPushButton("▶️ Play Original Mix")
+        btn_mix = QPushButton("Play Original Mix")
         btn_mix.setMinimumHeight(55)
         btn_mix.clicked.connect(lambda: self.play_media(mix_path))
         self.a_play_layout.addWidget(btn_mix)
 
         for i, path in enumerate(sep_paths):
-            btn = QPushButton(f"▶️ Play Source {i + 1}")
+            btn = QPushButton(f"Play Source {i + 1}")
             btn.setMinimumHeight(55)
             btn.setStyleSheet("color: #00E676; font-weight: bold; border-color: #00E676;")
             btn.clicked.connect(lambda checked, p=path: self.play_media(p))
@@ -520,7 +520,7 @@ class SeparationApp(QMainWindow):
                 widget.setParent(None)
 
         all_vids = [mix_vid] + out_vids
-        titles = ["🎬 Original Video Mix"] + [f"✨ Separated Vocal Track {i + 1}" for i in range(len(out_vids))]
+        titles = ["Original Video Mix"] + [f"Separated Vocal Track {i + 1}" for i in range(len(out_vids))]
 
         for i, (path, title) in enumerate(zip(all_vids, titles)):
             row, col = i // 2, i % 2
@@ -530,7 +530,7 @@ class SeparationApp(QMainWindow):
             vbox.addStretch()
 
             abs_path = os.path.abspath(path).replace('\\', '/')
-            btn = QPushButton("🎬 Open in System Player")
+            btn = QPushButton("Open in System Player")
             btn.setMinimumHeight(70)
             btn.setStyleSheet(
                 "font-size: 20px; font-weight: bold; color: white; background-color: #007ACC; border-radius: 8px;")
