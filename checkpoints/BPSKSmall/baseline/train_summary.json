@@ -1,0 +1,7 @@
+{
+  "model_name": "baseline",
+  "best_val_loss": -21.20656986478009,
+  "best_epoch": 41,
+  "num_recorded_epochs": 51,
+  "checkpoint_path": "/home/jovyan/checkpoints/BPSKSmall/baseline/best.pt"
+}

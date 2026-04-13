@@ -224,9 +224,9 @@ def parse_args() -> argparse.Namespace:
         description="Generate a small two-source BPSK-only communication dataset."
     )
     parser.add_argument("--root", default="./Dataset/CommBPSK_4v16", help="Output dataset root directory.")
-    parser.add_argument("--num-train", type=int, default=4096, help="Number of training examples.")
-    parser.add_argument("--num-val", type=int, default=512, help="Number of validation examples.")
-    parser.add_argument("--num-test", type=int, default=512, help="Number of test examples.")
+    parser.add_argument("--num-train", type=int, default=20000, help="Number of training examples.")
+    parser.add_argument("--num-val", type=int, default=5000, help="Number of validation examples.")
+    parser.add_argument("--num-test", type=int, default=5000, help="Number of test examples.")
     parser.add_argument("--sample-len", type=int, default=32768, help="Waveform length in samples.")
     parser.add_argument("--sps", type=int, default=None, help="Shared samples per symbol for both sources.")
     parser.add_argument("--sps1", type=int, default=None, help="Samples per symbol for source 1.")

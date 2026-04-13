@@ -305,12 +305,12 @@ if __name__ == "__main__":
 
     # ==== 当你需要跑 Comm 数据集时，按照如下配置 ====
     run_test(
-        model_path="../../checkpoints/train_multiscale_comm_20260214-130236/best_model.pt",
-        test_root="../../Dataset/Comm0-2Dataset",
+        model_path="../../checkpoints/train_multiscale_comm_20260413-005206/best_model.pt",
+        test_root="../../Dataset/CommBPSK_4v16",
         batch_size=128,
         sample_rate=100000,
         device=device,
-        output_dir="../../Results/train_multiscale_comm_20260214-130236",
+        output_dir="../../Results/train_multiscale_comm_20260413-005206",
         max_save_samples=20,
         dataset_type="comm"  # <-- 关键：切换为通信模式，只计算 BER，不计算 PESQ/STOI
     )

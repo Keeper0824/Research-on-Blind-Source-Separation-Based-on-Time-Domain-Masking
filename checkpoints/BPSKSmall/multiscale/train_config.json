@@ -1,0 +1,16 @@
+{
+  "model_name": "multiscale",
+  "dataset_root": "../../Scripts/Dataset/CommBPSK_4v16",
+  "segment_len": 32768,
+  "batch_size": 16,
+  "eval_batch_size": 64,
+  "num_workers": 0,
+  "epochs": 100,
+  "lr": 0.001,
+  "max_lr": 0.001,
+  "weight_decay": 1e-05,
+  "patience": 10,
+  "warmup_epochs": 10,
+  "device": "cuda",
+  "seed": 42
+}

@@ -1,0 +1,7 @@
+{
+  "model_name": "multiscale",
+  "best_val_loss": -21.480446730987936,
+  "best_epoch": 98,
+  "num_recorded_epochs": 100,
+  "checkpoint_path": "/home/jovyan/checkpoints/BPSKSmall/multiscale/best.pt"
+}

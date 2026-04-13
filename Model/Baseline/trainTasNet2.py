@@ -317,7 +317,7 @@ def main():
     torch.backends.cudnn.benchmark = True
 
     # 【修改点2】 Comm0-2Dataset 路径和参数
-    root = "../../Dataset/Comm0-2Dataset"
+    root = "../../Dataset/CommBPSK_4v16"
     # 通讯信号通常使用较高的采样率进行模拟，这里保持一致
     sample_rate = 100000
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
