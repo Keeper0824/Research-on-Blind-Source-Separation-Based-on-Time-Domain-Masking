@@ -1,0 +1,1607 @@
+Log file: ../../logs\train_multiscale_comm_20260413-005206.log
+Device: cuda, Batch Size: 16
+Initializing Multi-Scale Model with Golden Config...
+
+===== Epoch 1/100 =====
+Step 100/1250 | Loss: -1.8359
+Step 200/1250 | Loss: -3.7067
+Step 300/1250 | Loss: -6.1597
+Step 400/1250 | Loss: -7.2963
+Step 500/1250 | Loss: -8.9611
+Step 600/1250 | Loss: -8.7608
+Step 700/1250 | Loss: -9.3969
+Step 800/1250 | Loss: -9.5243
+Step 900/1250 | Loss: -9.7282
+Step 1000/1250 | Loss: -10.4363
+Step 1100/1250 | Loss: -9.9091
+Step 1200/1250 | Loss: -10.4690
+Epoch 1 Done. Train Loss: -7.4625 | Val Loss: -5.9439 | Grad: inf
+-> New Best Model! Val Loss: -5.9439
+
+===== Epoch 2/100 =====
+Step 100/1250 | Loss: -10.9932
+Step 200/1250 | Loss: -10.4460
+Step 300/1250 | Loss: -10.6792
+Step 400/1250 | Loss: -9.8462
+Step 500/1250 | Loss: -10.1392
+Step 600/1250 | Loss: -10.4670
+Step 700/1250 | Loss: -11.0838
+Step 800/1250 | Loss: -10.2681
+Step 900/1250 | Loss: -11.6741
+Step 1000/1250 | Loss: -10.6474
+Step 1100/1250 | Loss: -11.3879
+Step 1200/1250 | Loss: -11.0228
+Epoch 2 Done. Train Loss: -10.7111 | Val Loss: -10.0238 | Grad: inf
+-> New Best Model! Val Loss: -10.0238
+
+===== Epoch 3/100 =====
+Step 100/1250 | Loss: -10.5029
+Step 200/1250 | Loss: -12.1701
+Step 300/1250 | Loss: -11.0087
+Step 400/1250 | Loss: -11.8591
+Step 500/1250 | Loss: -9.9070
+Step 600/1250 | Loss: -12.3483
+Step 700/1250 | Loss: -12.2563
+Step 800/1250 | Loss: -12.7686
+Step 900/1250 | Loss: -12.0954
+Step 1000/1250 | Loss: -12.9838
+Step 1100/1250 | Loss: -12.5683
+Step 1200/1250 | Loss: -13.5547
+Epoch 3 Done. Train Loss: -11.7473 | Val Loss: -11.3237 | Grad: 68.43
+-> New Best Model! Val Loss: -11.3237
+
+===== Epoch 4/100 =====
+Step 100/1250 | Loss: -12.3237
+Step 200/1250 | Loss: -12.9176
+Step 300/1250 | Loss: -11.1126
+Step 400/1250 | Loss: -13.3187
+Step 500/1250 | Loss: -12.9246
+Step 600/1250 | Loss: -12.7630
+Step 700/1250 | Loss: -13.3715
+Step 800/1250 | Loss: -13.3402
+Step 900/1250 | Loss: -12.6737
+Step 1000/1250 | Loss: -14.4930
+Step 1100/1250 | Loss: -14.3622
+Step 1200/1250 | Loss: -12.5873
+Epoch 4 Done. Train Loss: -13.3156 | Val Loss: -12.5885 | Grad: inf
+-> New Best Model! Val Loss: -12.5885
+
+===== Epoch 5/100 =====
+Step 100/1250 | Loss: -15.0097
+Step 200/1250 | Loss: -14.3353
+Step 300/1250 | Loss: -15.2425
+Step 400/1250 | Loss: -14.4709
+Step 500/1250 | Loss: -14.2611
+Step 600/1250 | Loss: -15.4786
+Step 700/1250 | Loss: -14.8319
+Step 800/1250 | Loss: -14.3486
+Step 900/1250 | Loss: -15.6083
+Step 1000/1250 | Loss: -15.0839
+Step 1100/1250 | Loss: -15.4302
+Step 1200/1250 | Loss: -15.0452
+Epoch 5 Done. Train Loss: -14.5229 | Val Loss: -14.4935 | Grad: inf
+-> New Best Model! Val Loss: -14.4935
+
+===== Epoch 6/100 =====
+Step 100/1250 | Loss: -15.0314
+Step 200/1250 | Loss: -14.2576
+Step 300/1250 | Loss: -15.1973
+Step 400/1250 | Loss: -15.5770
+Step 500/1250 | Loss: -14.3745
+Step 600/1250 | Loss: -14.3511
+Step 700/1250 | Loss: -17.4895
+Step 800/1250 | Loss: -14.8640
+Step 900/1250 | Loss: -15.3505
+Step 1000/1250 | Loss: -14.9507
+Step 1100/1250 | Loss: -15.6537
+Step 1200/1250 | Loss: -18.2319
+Epoch 6 Done. Train Loss: -15.6135 | Val Loss: -15.8191 | Grad: 28.77
+-> New Best Model! Val Loss: -15.8191
+
+===== Epoch 7/100 =====
+Step 100/1250 | Loss: -15.9837
+Step 200/1250 | Loss: -16.2142
+Step 300/1250 | Loss: -17.5144
+Step 400/1250 | Loss: -16.2330
+Step 500/1250 | Loss: -16.4464
+Step 600/1250 | Loss: -16.8448
+Step 700/1250 | Loss: -17.0787
+Step 800/1250 | Loss: -16.9027
+Step 900/1250 | Loss: -14.7170
+Step 1000/1250 | Loss: -15.4160
+Step 1100/1250 | Loss: -16.4299
+Step 1200/1250 | Loss: -16.6143
+Epoch 7 Done. Train Loss: -16.3388 | Val Loss: -16.9877 | Grad: inf
+-> New Best Model! Val Loss: -16.9877
+
+===== Epoch 8/100 =====
+Step 100/1250 | Loss: -14.2591
+Step 200/1250 | Loss: -16.5377
+Step 300/1250 | Loss: -15.3990
+Step 400/1250 | Loss: -15.6598
+Step 500/1250 | Loss: -16.7895
+Step 600/1250 | Loss: -17.1583
+Step 700/1250 | Loss: -15.2313
+Step 800/1250 | Loss: -16.9785
+Step 900/1250 | Loss: -16.1805
+Step 1000/1250 | Loss: -17.5968
+Step 1100/1250 | Loss: -16.7015
+Step 1200/1250 | Loss: -15.2008
+Epoch 8 Done. Train Loss: -16.7623 | Val Loss: -17.7069 | Grad: 21.20
+-> New Best Model! Val Loss: -17.7069
+
+===== Epoch 9/100 =====
+Step 100/1250 | Loss: -17.1961
+Step 200/1250 | Loss: -18.6208
+Step 300/1250 | Loss: -15.9803
+Step 400/1250 | Loss: -17.6030
+Step 500/1250 | Loss: -17.2393
+Step 600/1250 | Loss: -15.5669
+Step 700/1250 | Loss: -15.4215
+Step 800/1250 | Loss: -17.7000
+Step 900/1250 | Loss: -17.1032
+Step 1000/1250 | Loss: -15.7511
+Step 1100/1250 | Loss: -18.2007
+Step 1200/1250 | Loss: -17.0822
+Epoch 9 Done. Train Loss: -17.1182 | Val Loss: -18.1098 | Grad: inf
+-> New Best Model! Val Loss: -18.1098
+
+===== Epoch 10/100 =====
+Step 100/1250 | Loss: -16.9832
+Step 200/1250 | Loss: -17.9371
+Step 300/1250 | Loss: -18.6070
+Step 400/1250 | Loss: -15.5051
+Step 500/1250 | Loss: -17.2662
+Step 600/1250 | Loss: -15.5699
+Step 700/1250 | Loss: -15.9369
+Step 800/1250 | Loss: -17.4416
+Step 900/1250 | Loss: -18.0382
+Step 1000/1250 | Loss: -19.7821
+Step 1100/1250 | Loss: -18.1617
+Step 1200/1250 | Loss: -17.3507
+Epoch 10 Done. Train Loss: -17.4448 | Val Loss: -18.4008 | Grad: 16.32
+-> New Best Model! Val Loss: -18.4008
+
+===== Epoch 11/100 =====
+Step 100/1250 | Loss: -16.5140
+Step 200/1250 | Loss: -16.6362
+Step 300/1250 | Loss: -18.5474
+Step 400/1250 | Loss: -17.8338
+Step 500/1250 | Loss: -16.3381
+Step 600/1250 | Loss: -16.9755
+Step 700/1250 | Loss: -17.7136
+Step 800/1250 | Loss: -17.5694
+Step 900/1250 | Loss: -18.0652
+Step 1000/1250 | Loss: -17.8463
+Step 1100/1250 | Loss: -17.5019
+Step 1200/1250 | Loss: -18.3110
+Epoch 11 Done. Train Loss: -17.6634 | Val Loss: -18.6120 | Grad: inf
+-> New Best Model! Val Loss: -18.6120
+
+===== Epoch 12/100 =====
+Step 100/1250 | Loss: -19.0211
+Step 200/1250 | Loss: -14.8387
+Step 300/1250 | Loss: -16.8756
+Step 400/1250 | Loss: -17.1863
+Step 500/1250 | Loss: -18.9795
+Step 600/1250 | Loss: -17.0698
+Step 700/1250 | Loss: -17.4306
+Step 800/1250 | Loss: -16.1762
+Step 900/1250 | Loss: -17.6362
+Step 1000/1250 | Loss: -15.9135
+Step 1100/1250 | Loss: -15.8307
+Step 1200/1250 | Loss: -18.9954
+Epoch 12 Done. Train Loss: -17.8140 | Val Loss: -18.7619 | Grad: 14.71
+-> New Best Model! Val Loss: -18.7619
+
+===== Epoch 13/100 =====
+Step 100/1250 | Loss: -19.3459
+Step 200/1250 | Loss: -17.3581
+Step 300/1250 | Loss: -19.2247
+Step 400/1250 | Loss: -17.3581
+Step 500/1250 | Loss: -18.2374
+Step 600/1250 | Loss: -17.6829
+Step 700/1250 | Loss: -18.0569
+Step 800/1250 | Loss: -17.5196
+Step 900/1250 | Loss: -18.3353
+Step 1000/1250 | Loss: -18.1356
+Step 1100/1250 | Loss: -18.5393
+Step 1200/1250 | Loss: -18.6875
+Epoch 13 Done. Train Loss: -17.9690 | Val Loss: -18.8854 | Grad: 14.36
+-> New Best Model! Val Loss: -18.8854
+
+===== Epoch 14/100 =====
+Step 100/1250 | Loss: -16.3724
+Step 200/1250 | Loss: -17.7022
+Step 300/1250 | Loss: -18.7495
+Step 400/1250 | Loss: -17.9666
+Step 500/1250 | Loss: -17.0001
+Step 600/1250 | Loss: -18.0712
+Step 700/1250 | Loss: -18.9218
+Step 800/1250 | Loss: -17.3919
+Step 900/1250 | Loss: -18.9164
+Step 1000/1250 | Loss: -17.1322
+Step 1100/1250 | Loss: -18.7288
+Step 1200/1250 | Loss: -18.4858
+Epoch 14 Done. Train Loss: -18.0783 | Val Loss: -18.9936 | Grad: 14.24
+-> New Best Model! Val Loss: -18.9936
+
+===== Epoch 15/100 =====
+Step 100/1250 | Loss: -19.0234
+Step 200/1250 | Loss: -19.3563
+Step 300/1250 | Loss: -18.1692
+Step 400/1250 | Loss: -17.2548
+Step 500/1250 | Loss: -18.3467
+Step 600/1250 | Loss: -17.7319
+Step 700/1250 | Loss: -17.5389
+Step 800/1250 | Loss: -20.2896
+Step 900/1250 | Loss: -19.9471
+Step 1000/1250 | Loss: -19.8514
+Step 1100/1250 | Loss: -20.6725
+Step 1200/1250 | Loss: -18.3031
+Epoch 15 Done. Train Loss: -18.1786 | Val Loss: -19.0825 | Grad: inf
+-> New Best Model! Val Loss: -19.0825
+
+===== Epoch 16/100 =====
+Step 100/1250 | Loss: -18.3766
+Step 200/1250 | Loss: -17.5171
+Step 300/1250 | Loss: -17.5714
+Step 400/1250 | Loss: -18.4040
+Step 500/1250 | Loss: -18.6030
+Step 600/1250 | Loss: -19.5136
+Step 700/1250 | Loss: -18.0611
+Step 800/1250 | Loss: -18.8130
+Step 900/1250 | Loss: -17.3001
+Step 1000/1250 | Loss: -15.6544
+Step 1100/1250 | Loss: -17.6454
+Step 1200/1250 | Loss: -18.6858
+Epoch 16 Done. Train Loss: -18.2631 | Val Loss: -19.1459 | Grad: 13.84
+-> New Best Model! Val Loss: -19.1459
+
+===== Epoch 17/100 =====
+Step 100/1250 | Loss: -16.6847
+Step 200/1250 | Loss: -19.0904
+Step 300/1250 | Loss: -19.0601
+Step 400/1250 | Loss: -17.4966
+Step 500/1250 | Loss: -14.6049
+Step 600/1250 | Loss: -18.0246
+Step 700/1250 | Loss: -19.1403
+Step 800/1250 | Loss: -15.9692
+Step 900/1250 | Loss: -17.2727
+Step 1000/1250 | Loss: -17.2140
+Step 1100/1250 | Loss: -17.3174
+Step 1200/1250 | Loss: -17.8406
+Epoch 17 Done. Train Loss: -18.3267 | Val Loss: -19.2147 | Grad: 14.12
+-> New Best Model! Val Loss: -19.2147
+
+===== Epoch 18/100 =====
+Step 100/1250 | Loss: -16.8188
+Step 200/1250 | Loss: -17.7330
+Step 300/1250 | Loss: -18.9832
+Step 400/1250 | Loss: -18.2384
+Step 500/1250 | Loss: -18.5926
+Step 600/1250 | Loss: -16.6988
+Step 700/1250 | Loss: -18.0193
+Step 800/1250 | Loss: -17.9885
+Step 900/1250 | Loss: -19.0290
+Step 1000/1250 | Loss: -15.8328
+Step 1100/1250 | Loss: -17.3437
+Step 1200/1250 | Loss: -18.1860
+Epoch 18 Done. Train Loss: -18.3694 | Val Loss: -19.2691 | Grad: inf
+-> New Best Model! Val Loss: -19.2691
+
+===== Epoch 19/100 =====
+Step 100/1250 | Loss: -21.1758
+Step 200/1250 | Loss: -15.9368
+Step 300/1250 | Loss: -19.4334
+Step 400/1250 | Loss: -16.7943
+Step 500/1250 | Loss: -18.9732
+Step 600/1250 | Loss: -17.9181
+Step 700/1250 | Loss: -16.9054
+Step 800/1250 | Loss: -16.4457
+Step 900/1250 | Loss: -19.3398
+Step 1000/1250 | Loss: -18.3908
+Step 1100/1250 | Loss: -18.2579
+Step 1200/1250 | Loss: -16.5025
+Epoch 19 Done. Train Loss: -18.4333 | Val Loss: -19.3192 | Grad: 13.78
+-> New Best Model! Val Loss: -19.3192
+
+===== Epoch 20/100 =====
+Step 100/1250 | Loss: -18.0623
+Step 200/1250 | Loss: -17.4500
+Step 300/1250 | Loss: -18.6514
+Step 400/1250 | Loss: -17.5939
+Step 500/1250 | Loss: -17.9058
+Step 600/1250 | Loss: -18.7968
+Step 700/1250 | Loss: -18.7264
+Step 800/1250 | Loss: -21.0167
+Step 900/1250 | Loss: -19.8054
+Step 1000/1250 | Loss: -16.9486
+Step 1100/1250 | Loss: -20.0929
+Step 1200/1250 | Loss: -18.5337
+Epoch 20 Done. Train Loss: -18.4844 | Val Loss: -19.3539 | Grad: inf
+-> New Best Model! Val Loss: -19.3539
+
+===== Epoch 21/100 =====
+Step 100/1250 | Loss: -17.1600
+Step 200/1250 | Loss: -17.2819
+Step 300/1250 | Loss: -20.4396
+Step 400/1250 | Loss: -16.3832
+Step 500/1250 | Loss: -18.9719
+Step 600/1250 | Loss: -16.3143
+Step 700/1250 | Loss: -18.1335
+Step 800/1250 | Loss: -16.9895
+Step 900/1250 | Loss: -17.0653
+Step 1000/1250 | Loss: -16.4627
+Step 1100/1250 | Loss: -16.0740
+Step 1200/1250 | Loss: -17.7000
+Epoch 21 Done. Train Loss: -18.5180 | Val Loss: -19.4005 | Grad: 13.64
+-> New Best Model! Val Loss: -19.4005
+
+===== Epoch 22/100 =====
+Step 100/1250 | Loss: -18.9874
+Step 200/1250 | Loss: -17.9518
+Step 300/1250 | Loss: -19.6911
+Step 400/1250 | Loss: -17.2889
+Step 500/1250 | Loss: -18.6893
+Step 600/1250 | Loss: -21.6046
+Step 700/1250 | Loss: -16.6360
+Step 800/1250 | Loss: -17.2627
+Step 900/1250 | Loss: -18.0117
+Step 1000/1250 | Loss: -22.8119
+Step 1100/1250 | Loss: -17.7701
+Step 1200/1250 | Loss: -20.4691
+Epoch 22 Done. Train Loss: -18.5625 | Val Loss: -19.4413 | Grad: inf
+-> New Best Model! Val Loss: -19.4413
+
+===== Epoch 23/100 =====
+Step 100/1250 | Loss: -19.7016
+Step 200/1250 | Loss: -17.8741
+Step 300/1250 | Loss: -16.9768
+Step 400/1250 | Loss: -18.6711
+Step 500/1250 | Loss: -16.8624
+Step 600/1250 | Loss: -16.1591
+Step 700/1250 | Loss: -19.5102
+Step 800/1250 | Loss: -18.6075
+Step 900/1250 | Loss: -19.9497
+Step 1000/1250 | Loss: -19.8784
+Step 1100/1250 | Loss: -17.9717
+Step 1200/1250 | Loss: -17.5467
+Epoch 23 Done. Train Loss: -18.6073 | Val Loss: -19.4624 | Grad: 13.66
+-> New Best Model! Val Loss: -19.4624
+
+===== Epoch 24/100 =====
+Step 100/1250 | Loss: -17.3362
+Step 200/1250 | Loss: -18.3341
+Step 300/1250 | Loss: -18.8531
+Step 400/1250 | Loss: -20.8934
+Step 500/1250 | Loss: -18.6002
+Step 600/1250 | Loss: -19.9296
+Step 700/1250 | Loss: -19.2284
+Step 800/1250 | Loss: -18.5767
+Step 900/1250 | Loss: -17.7685
+Step 1000/1250 | Loss: -19.7201
+Step 1100/1250 | Loss: -19.1611
+Step 1200/1250 | Loss: -15.9629
+Epoch 24 Done. Train Loss: -18.6396 | Val Loss: -19.4970 | Grad: 13.46
+-> New Best Model! Val Loss: -19.4970
+
+===== Epoch 25/100 =====
+Step 100/1250 | Loss: -19.6957
+Step 200/1250 | Loss: -18.7361
+Step 300/1250 | Loss: -21.5403
+Step 400/1250 | Loss: -22.0475
+Step 500/1250 | Loss: -20.3126
+Step 600/1250 | Loss: -16.1954
+Step 700/1250 | Loss: -17.7385
+Step 800/1250 | Loss: -17.7795
+Step 900/1250 | Loss: -17.4486
+Step 1000/1250 | Loss: -18.6594
+Step 1100/1250 | Loss: -17.9666
+Step 1200/1250 | Loss: -18.2337
+Epoch 25 Done. Train Loss: -18.6862 | Val Loss: -19.5315 | Grad: inf
+-> New Best Model! Val Loss: -19.5315
+
+===== Epoch 26/100 =====
+Step 100/1250 | Loss: -17.0392
+Step 200/1250 | Loss: -17.6135
+Step 300/1250 | Loss: -20.0022
+Step 400/1250 | Loss: -17.4663
+Step 500/1250 | Loss: -17.7098
+Step 600/1250 | Loss: -19.7028
+Step 700/1250 | Loss: -19.6170
+Step 800/1250 | Loss: -17.3566
+Step 900/1250 | Loss: -17.9283
+Step 1000/1250 | Loss: -19.4192
+Step 1100/1250 | Loss: -19.0038
+Step 1200/1250 | Loss: -15.9390
+Epoch 26 Done. Train Loss: -18.7026 | Val Loss: -19.5559 | Grad: 13.69
+-> New Best Model! Val Loss: -19.5559
+
+===== Epoch 27/100 =====
+Step 100/1250 | Loss: -21.7686
+Step 200/1250 | Loss: -16.4728
+Step 300/1250 | Loss: -16.9770
+Step 400/1250 | Loss: -23.5340
+Step 500/1250 | Loss: -18.5845
+Step 600/1250 | Loss: -18.7390
+Step 700/1250 | Loss: -20.4689
+Step 800/1250 | Loss: -20.3295
+Step 900/1250 | Loss: -18.8333
+Step 1000/1250 | Loss: -20.2189
+Step 1100/1250 | Loss: -18.2054
+Step 1200/1250 | Loss: -18.1309
+Epoch 27 Done. Train Loss: -18.7296 | Val Loss: -19.5933 | Grad: inf
+-> New Best Model! Val Loss: -19.5933
+
+===== Epoch 28/100 =====
+Step 100/1250 | Loss: -16.8561
+Step 200/1250 | Loss: -18.4780
+Step 300/1250 | Loss: -18.6185
+Step 400/1250 | Loss: -21.2150
+Step 500/1250 | Loss: -19.0254
+Step 600/1250 | Loss: -18.3102
+Step 700/1250 | Loss: -18.0339
+Step 800/1250 | Loss: -19.5376
+Step 900/1250 | Loss: -19.9458
+Step 1000/1250 | Loss: -19.9345
+Step 1100/1250 | Loss: -20.1234
+Step 1200/1250 | Loss: -16.7920
+Epoch 28 Done. Train Loss: -18.7746 | Val Loss: -19.6000 | Grad: 13.61
+-> New Best Model! Val Loss: -19.6000
+
+===== Epoch 29/100 =====
+Step 100/1250 | Loss: -18.3247
+Step 200/1250 | Loss: -20.2299
+Step 300/1250 | Loss: -17.1276
+Step 400/1250 | Loss: -18.9716
+Step 500/1250 | Loss: -19.4012
+Step 600/1250 | Loss: -19.2444
+Step 700/1250 | Loss: -17.3527
+Step 800/1250 | Loss: -17.4128
+Step 900/1250 | Loss: -21.0761
+Step 1000/1250 | Loss: -20.1188
+Step 1100/1250 | Loss: -17.1141
+Step 1200/1250 | Loss: -19.8196
+Epoch 29 Done. Train Loss: -18.7781 | Val Loss: -19.6293 | Grad: inf
+-> New Best Model! Val Loss: -19.6293
+
+===== Epoch 30/100 =====
+Step 100/1250 | Loss: -19.4878
+Step 200/1250 | Loss: -19.4503
+Step 300/1250 | Loss: -16.2292
+Step 400/1250 | Loss: -22.2833
+Step 500/1250 | Loss: -17.7085
+Step 600/1250 | Loss: -19.3862
+Step 700/1250 | Loss: -19.6881
+Step 800/1250 | Loss: -20.6160
+Step 900/1250 | Loss: -21.8463
+Step 1000/1250 | Loss: -15.8776
+Step 1100/1250 | Loss: -16.8534
+Step 1200/1250 | Loss: -19.2740
+Epoch 30 Done. Train Loss: -18.8291 | Val Loss: -19.6459 | Grad: 13.59
+-> New Best Model! Val Loss: -19.6459
+
+===== Epoch 31/100 =====
+Step 100/1250 | Loss: -18.0815
+Step 200/1250 | Loss: -22.5456
+Step 300/1250 | Loss: -19.1936
+Step 400/1250 | Loss: -17.4954
+Step 500/1250 | Loss: -21.3463
+Step 600/1250 | Loss: -18.7837
+Step 700/1250 | Loss: -17.4965
+Step 800/1250 | Loss: -18.8431
+Step 900/1250 | Loss: -20.1954
+Step 1000/1250 | Loss: -19.6852
+Step 1100/1250 | Loss: -18.1613
+Step 1200/1250 | Loss: -18.0200
+Epoch 31 Done. Train Loss: -18.8450 | Val Loss: -19.6634 | Grad: inf
+-> New Best Model! Val Loss: -19.6634
+
+===== Epoch 32/100 =====
+Step 100/1250 | Loss: -18.9141
+Step 200/1250 | Loss: -18.3005
+Step 300/1250 | Loss: -18.0148
+Step 400/1250 | Loss: -18.0839
+Step 500/1250 | Loss: -20.0134
+Step 600/1250 | Loss: -21.7041
+Step 700/1250 | Loss: -19.5402
+Step 800/1250 | Loss: -20.1176
+Step 900/1250 | Loss: -20.4656
+Step 1000/1250 | Loss: -21.3085
+Step 1100/1250 | Loss: -18.8466
+Step 1200/1250 | Loss: -19.5348
+Epoch 32 Done. Train Loss: -18.8743 | Val Loss: -19.7035 | Grad: 13.72
+-> New Best Model! Val Loss: -19.7035
+
+===== Epoch 33/100 =====
+Step 100/1250 | Loss: -19.1084
+Step 200/1250 | Loss: -19.3083
+Step 300/1250 | Loss: -18.6748
+Step 400/1250 | Loss: -17.2271
+Step 500/1250 | Loss: -20.5056
+Step 600/1250 | Loss: -19.2152
+Step 700/1250 | Loss: -18.9430
+Step 800/1250 | Loss: -17.5881
+Step 900/1250 | Loss: -19.9490
+Step 1000/1250 | Loss: -18.5926
+Step 1100/1250 | Loss: -18.0403
+Step 1200/1250 | Loss: -17.1920
+Epoch 33 Done. Train Loss: -18.9071 | Val Loss: -19.6978 | Grad: inf
+-> No improve for 1 epochs.
+
+===== Epoch 34/100 =====
+Step 100/1250 | Loss: -21.2972
+Step 200/1250 | Loss: -19.3377
+Step 300/1250 | Loss: -19.5975
+Step 400/1250 | Loss: -17.3533
+Step 500/1250 | Loss: -20.0290
+Step 600/1250 | Loss: -17.1171
+Step 700/1250 | Loss: -17.6508
+Step 800/1250 | Loss: -20.2993
+Step 900/1250 | Loss: -19.9930
+Step 1000/1250 | Loss: -16.9577
+Step 1100/1250 | Loss: -17.7270
+Step 1200/1250 | Loss: -17.8244
+Epoch 34 Done. Train Loss: -18.9346 | Val Loss: -19.7358 | Grad: inf
+-> New Best Model! Val Loss: -19.7358
+
+===== Epoch 35/100 =====
+Step 100/1250 | Loss: -16.9398
+Step 200/1250 | Loss: -17.7005
+Step 300/1250 | Loss: -17.2990
+Step 400/1250 | Loss: -19.5383
+Step 500/1250 | Loss: -20.8079
+Step 600/1250 | Loss: -17.2386
+Step 700/1250 | Loss: -16.0243
+Step 800/1250 | Loss: -18.3811
+Step 900/1250 | Loss: -18.2206
+Step 1000/1250 | Loss: -18.5704
+Step 1100/1250 | Loss: -15.3779
+Step 1200/1250 | Loss: -21.8461
+Epoch 35 Done. Train Loss: -18.9340 | Val Loss: -19.7572 | Grad: 13.93
+-> New Best Model! Val Loss: -19.7572
+
+===== Epoch 36/100 =====
+Step 100/1250 | Loss: -18.1925
+Step 200/1250 | Loss: -22.0070
+Step 300/1250 | Loss: -17.1645
+Step 400/1250 | Loss: -19.2370
+Step 500/1250 | Loss: -21.5692
+Step 600/1250 | Loss: -18.9747
+Step 700/1250 | Loss: -20.4687
+Step 800/1250 | Loss: -18.7539
+Step 900/1250 | Loss: -17.4698
+Step 1000/1250 | Loss: -18.5732
+Step 1100/1250 | Loss: -19.5694
+Step 1200/1250 | Loss: -18.6762
+Epoch 36 Done. Train Loss: -18.9601 | Val Loss: -19.7695 | Grad: inf
+-> New Best Model! Val Loss: -19.7695
+
+===== Epoch 37/100 =====
+Step 100/1250 | Loss: -20.8026
+Step 200/1250 | Loss: -19.2400
+Step 300/1250 | Loss: -19.2922
+Step 400/1250 | Loss: -16.2890
+Step 500/1250 | Loss: -19.2277
+Step 600/1250 | Loss: -17.8920
+Step 700/1250 | Loss: -22.0292
+Step 800/1250 | Loss: -16.7280
+Step 900/1250 | Loss: -21.6545
+Step 1000/1250 | Loss: -17.9312
+Step 1100/1250 | Loss: -18.0098
+Step 1200/1250 | Loss: -20.8603
+Epoch 37 Done. Train Loss: -18.9996 | Val Loss: -19.7977 | Grad: inf
+-> New Best Model! Val Loss: -19.7977
+
+===== Epoch 38/100 =====
+Step 100/1250 | Loss: -19.1622
+Step 200/1250 | Loss: -16.7671
+Step 300/1250 | Loss: -19.2971
+Step 400/1250 | Loss: -20.3221
+Step 500/1250 | Loss: -21.4092
+Step 600/1250 | Loss: -18.3596
+Step 700/1250 | Loss: -22.0886
+Step 800/1250 | Loss: -17.2657
+Step 900/1250 | Loss: -19.2071
+Step 1000/1250 | Loss: -19.9060
+Step 1100/1250 | Loss: -17.4099
+Step 1200/1250 | Loss: -16.6395
+Epoch 38 Done. Train Loss: -19.0166 | Val Loss: -19.7919 | Grad: 14.06
+-> No improve for 1 epochs.
+
+===== Epoch 39/100 =====
+Step 100/1250 | Loss: -17.5305
+Step 200/1250 | Loss: -18.9347
+Step 300/1250 | Loss: -19.4387
+Step 400/1250 | Loss: -20.7857
+Step 500/1250 | Loss: -18.8403
+Step 600/1250 | Loss: -19.0282
+Step 700/1250 | Loss: -17.7110
+Step 800/1250 | Loss: -17.3218
+Step 900/1250 | Loss: -19.4465
+Step 1000/1250 | Loss: -16.1589
+Step 1100/1250 | Loss: -20.0845
+Step 1200/1250 | Loss: -16.6909
+Epoch 39 Done. Train Loss: -19.0335 | Val Loss: -19.7975 | Grad: 14.18
+-> No improve for 2 epochs.
+
+===== Epoch 40/100 =====
+Step 100/1250 | Loss: -19.4706
+Step 200/1250 | Loss: -17.4102
+Step 300/1250 | Loss: -15.5281
+Step 400/1250 | Loss: -15.7576
+Step 500/1250 | Loss: -20.9539
+Step 600/1250 | Loss: -19.6982
+Step 700/1250 | Loss: -20.0935
+Step 800/1250 | Loss: -23.0301
+Step 900/1250 | Loss: -17.6669
+Step 1000/1250 | Loss: -20.1609
+Step 1100/1250 | Loss: -19.3050
+Step 1200/1250 | Loss: -19.4005
+Epoch 40 Done. Train Loss: -19.0676 | Val Loss: -19.8244 | Grad: 14.39
+-> New Best Model! Val Loss: -19.8244
+
+===== Epoch 41/100 =====
+Step 100/1250 | Loss: -21.4412
+Step 200/1250 | Loss: -18.5949
+Step 300/1250 | Loss: -18.8451
+Step 400/1250 | Loss: -20.5757
+Step 500/1250 | Loss: -17.6110
+Step 600/1250 | Loss: -16.0506
+Step 700/1250 | Loss: -17.6694
+Step 800/1250 | Loss: -17.4551
+Step 900/1250 | Loss: -19.4639
+Step 1000/1250 | Loss: -19.7524
+Step 1100/1250 | Loss: -22.4212
+Step 1200/1250 | Loss: -18.6196
+Epoch 41 Done. Train Loss: -19.0712 | Val Loss: -19.8524 | Grad: 14.61
+-> New Best Model! Val Loss: -19.8524
+
+===== Epoch 42/100 =====
+Step 100/1250 | Loss: -17.7221
+Step 200/1250 | Loss: -18.4374
+Step 300/1250 | Loss: -17.1496
+Step 400/1250 | Loss: -16.6258
+Step 500/1250 | Loss: -19.3308
+Step 600/1250 | Loss: -16.7562
+Step 700/1250 | Loss: -17.9285
+Step 800/1250 | Loss: -19.2702
+Step 900/1250 | Loss: -16.7693
+Step 1000/1250 | Loss: -19.1130
+Step 1100/1250 | Loss: -19.3598
+Step 1200/1250 | Loss: -20.2484
+Epoch 42 Done. Train Loss: -19.1056 | Val Loss: -19.8732 | Grad: inf
+-> New Best Model! Val Loss: -19.8732
+
+===== Epoch 43/100 =====
+Step 100/1250 | Loss: -19.6541
+Step 200/1250 | Loss: -18.4744
+Step 300/1250 | Loss: -19.9028
+Step 400/1250 | Loss: -22.0531
+Step 500/1250 | Loss: -18.3776
+Step 600/1250 | Loss: -20.4767
+Step 700/1250 | Loss: -20.0558
+Step 800/1250 | Loss: -18.3136
+Step 900/1250 | Loss: -20.8916
+Step 1000/1250 | Loss: -17.7495
+Step 1100/1250 | Loss: -19.7193
+Step 1200/1250 | Loss: -18.3425
+Epoch 43 Done. Train Loss: -19.1237 | Val Loss: -19.8655 | Grad: inf
+-> No improve for 1 epochs.
+
+===== Epoch 44/100 =====
+Step 100/1250 | Loss: -21.0874
+Step 200/1250 | Loss: -17.7537
+Step 300/1250 | Loss: -17.3895
+Step 400/1250 | Loss: -18.0739
+Step 500/1250 | Loss: -19.0339
+Step 600/1250 | Loss: -18.1455
+Step 700/1250 | Loss: -18.7371
+Step 800/1250 | Loss: -20.4015
+Step 900/1250 | Loss: -18.6047
+Step 1000/1250 | Loss: -17.8899
+Step 1100/1250 | Loss: -18.4662
+Step 1200/1250 | Loss: -20.3332
+Epoch 44 Done. Train Loss: -19.1409 | Val Loss: -19.8983 | Grad: 14.66
+-> New Best Model! Val Loss: -19.8983
+
+===== Epoch 45/100 =====
+Step 100/1250 | Loss: -16.5051
+Step 200/1250 | Loss: -21.1842
+Step 300/1250 | Loss: -19.5805
+Step 400/1250 | Loss: -19.8742
+Step 500/1250 | Loss: -17.6373
+Step 600/1250 | Loss: -18.3148
+Step 700/1250 | Loss: -22.2264
+Step 800/1250 | Loss: -18.9385
+Step 900/1250 | Loss: -19.4114
+Step 1000/1250 | Loss: -20.3688
+Step 1100/1250 | Loss: -20.4519
+Step 1200/1250 | Loss: -20.4516
+Epoch 45 Done. Train Loss: -19.1617 | Val Loss: -19.9010 | Grad: inf
+-> New Best Model! Val Loss: -19.9010
+
+===== Epoch 46/100 =====
+Step 100/1250 | Loss: -18.1995
+Step 200/1250 | Loss: -16.1908
+Step 300/1250 | Loss: -17.9359
+Step 400/1250 | Loss: -17.8605
+Step 500/1250 | Loss: -19.9299
+Step 600/1250 | Loss: -20.1415
+Step 700/1250 | Loss: -20.8938
+Step 800/1250 | Loss: -19.0539
+Step 900/1250 | Loss: -19.7851
+Step 1000/1250 | Loss: -20.2117
+Step 1100/1250 | Loss: -18.6611
+Step 1200/1250 | Loss: -18.5840
+Epoch 46 Done. Train Loss: -19.1917 | Val Loss: -19.9279 | Grad: 15.22
+-> New Best Model! Val Loss: -19.9279
+
+===== Epoch 47/100 =====
+Step 100/1250 | Loss: -17.8212
+Step 200/1250 | Loss: -18.6551
+Step 300/1250 | Loss: -19.2963
+Step 400/1250 | Loss: -20.8599
+Step 500/1250 | Loss: -18.9089
+Step 600/1250 | Loss: -20.3204
+Step 700/1250 | Loss: -19.7894
+Step 800/1250 | Loss: -17.9783
+Step 900/1250 | Loss: -18.4583
+Step 1000/1250 | Loss: -17.7686
+Step 1100/1250 | Loss: -18.4816
+Step 1200/1250 | Loss: -20.7451
+Epoch 47 Done. Train Loss: -19.1995 | Val Loss: -19.9326 | Grad: inf
+-> New Best Model! Val Loss: -19.9326
+
+===== Epoch 48/100 =====
+Step 100/1250 | Loss: -19.7490
+Step 200/1250 | Loss: -18.6063
+Step 300/1250 | Loss: -19.2868
+Step 400/1250 | Loss: -20.9278
+Step 500/1250 | Loss: -18.6683
+Step 600/1250 | Loss: -19.3492
+Step 700/1250 | Loss: -16.4156
+Step 800/1250 | Loss: -18.7510
+Step 900/1250 | Loss: -20.2658
+Step 1000/1250 | Loss: -16.6211
+Step 1100/1250 | Loss: -20.9966
+Step 1200/1250 | Loss: -17.3107
+Epoch 48 Done. Train Loss: -19.2317 | Val Loss: -19.9569 | Grad: 15.61
+-> New Best Model! Val Loss: -19.9569
+
+===== Epoch 49/100 =====
+Step 100/1250 | Loss: -18.5183
+Step 200/1250 | Loss: -19.8820
+Step 300/1250 | Loss: -16.8417
+Step 400/1250 | Loss: -18.7412
+Step 500/1250 | Loss: -17.2836
+Step 600/1250 | Loss: -18.0313
+Step 700/1250 | Loss: -20.2338
+Step 800/1250 | Loss: -20.0341
+Step 900/1250 | Loss: -19.4240
+Step 1000/1250 | Loss: -20.0874
+Step 1100/1250 | Loss: -21.2932
+Step 1200/1250 | Loss: -17.3202
+Epoch 49 Done. Train Loss: -19.2603 | Val Loss: -19.9858 | Grad: inf
+-> New Best Model! Val Loss: -19.9858
+
+===== Epoch 50/100 =====
+Step 100/1250 | Loss: -20.6703
+Step 200/1250 | Loss: -19.9669
+Step 300/1250 | Loss: -16.9551
+Step 400/1250 | Loss: -19.1954
+Step 500/1250 | Loss: -18.6144
+Step 600/1250 | Loss: -18.9230
+Step 700/1250 | Loss: -18.9695
+Step 800/1250 | Loss: -19.7643
+Step 900/1250 | Loss: -19.0954
+Step 1000/1250 | Loss: -20.4940
+Step 1100/1250 | Loss: -18.7546
+Step 1200/1250 | Loss: -21.2451
+Epoch 50 Done. Train Loss: -19.2854 | Val Loss: -19.9933 | Grad: 15.85
+-> New Best Model! Val Loss: -19.9933
+
+===== Epoch 51/100 =====
+Step 100/1250 | Loss: -18.4173
+Step 200/1250 | Loss: -19.5442
+Step 300/1250 | Loss: -20.3546
+Step 400/1250 | Loss: -19.7137
+Step 500/1250 | Loss: -19.5806
+Step 600/1250 | Loss: -19.7076
+Step 700/1250 | Loss: -22.3530
+Step 800/1250 | Loss: -23.1522
+Step 900/1250 | Loss: -23.1257
+Step 1000/1250 | Loss: -16.4492
+Step 1100/1250 | Loss: -15.8641
+Step 1200/1250 | Loss: -19.0154
+Epoch 51 Done. Train Loss: -19.2953 | Val Loss: -20.0050 | Grad: 16.20
+-> New Best Model! Val Loss: -20.0050
+
+===== Epoch 52/100 =====
+Step 100/1250 | Loss: -19.8503
+Step 200/1250 | Loss: -20.3888
+Step 300/1250 | Loss: -23.9770
+Step 400/1250 | Loss: -17.8228
+Step 500/1250 | Loss: -20.0002
+Step 600/1250 | Loss: -18.0746
+Step 700/1250 | Loss: -19.1048
+Step 800/1250 | Loss: -15.6575
+Step 900/1250 | Loss: -21.8196
+Step 1000/1250 | Loss: -18.6464
+Step 1100/1250 | Loss: -17.6454
+Step 1200/1250 | Loss: -17.9827
+Epoch 52 Done. Train Loss: -19.3305 | Val Loss: -20.0451 | Grad: inf
+-> New Best Model! Val Loss: -20.0451
+
+===== Epoch 53/100 =====
+Step 100/1250 | Loss: -18.3451
+Step 200/1250 | Loss: -22.5446
+Step 300/1250 | Loss: -20.5093
+Step 400/1250 | Loss: -18.3498
+Step 500/1250 | Loss: -20.2562
+Step 600/1250 | Loss: -17.8906
+Step 700/1250 | Loss: -19.6604
+Step 800/1250 | Loss: -22.4526
+Step 900/1250 | Loss: -24.4929
+Step 1000/1250 | Loss: -16.1951
+Step 1100/1250 | Loss: -17.7473
+Step 1200/1250 | Loss: -18.6401
+Epoch 53 Done. Train Loss: -19.3354 | Val Loss: -20.0322 | Grad: 16.34
+-> No improve for 1 epochs.
+
+===== Epoch 54/100 =====
+Step 100/1250 | Loss: -18.7872
+Step 200/1250 | Loss: -20.8860
+Step 300/1250 | Loss: -19.9226
+Step 400/1250 | Loss: -16.7589
+Step 500/1250 | Loss: -18.5746
+Step 600/1250 | Loss: -18.6302
+Step 700/1250 | Loss: -18.7097
+Step 800/1250 | Loss: -19.4694
+Step 900/1250 | Loss: -21.3435
+Step 1000/1250 | Loss: -20.6739
+Step 1100/1250 | Loss: -20.6045
+Step 1200/1250 | Loss: -19.0880
+Epoch 54 Done. Train Loss: -19.3605 | Val Loss: -20.0318 | Grad: inf
+-> No improve for 2 epochs.
+
+===== Epoch 55/100 =====
+Step 100/1250 | Loss: -21.3724
+Step 200/1250 | Loss: -20.6550
+Step 300/1250 | Loss: -20.2703
+Step 400/1250 | Loss: -19.3331
+Step 500/1250 | Loss: -18.7658
+Step 600/1250 | Loss: -19.3903
+Step 700/1250 | Loss: -20.4563
+Step 800/1250 | Loss: -20.8585
+Step 900/1250 | Loss: -16.8579
+Step 1000/1250 | Loss: -18.8117
+Step 1100/1250 | Loss: -21.0689
+Step 1200/1250 | Loss: -19.9925
+Epoch 55 Done. Train Loss: -19.3926 | Val Loss: -20.0611 | Grad: 17.12
+-> New Best Model! Val Loss: -20.0611
+
+===== Epoch 56/100 =====
+Step 100/1250 | Loss: -19.1979
+Step 200/1250 | Loss: -19.0622
+Step 300/1250 | Loss: -21.8119
+Step 400/1250 | Loss: -20.9065
+Step 500/1250 | Loss: -19.3166
+Step 600/1250 | Loss: -18.1782
+Step 700/1250 | Loss: -20.8158
+Step 800/1250 | Loss: -18.3583
+Step 900/1250 | Loss: -17.2996
+Step 1000/1250 | Loss: -20.4307
+Step 1100/1250 | Loss: -20.0162
+Step 1200/1250 | Loss: -19.8299
+Epoch 56 Done. Train Loss: -19.4049 | Val Loss: -20.0587 | Grad: inf
+-> No improve for 1 epochs.
+
+===== Epoch 57/100 =====
+Step 100/1250 | Loss: -18.1449
+Step 200/1250 | Loss: -20.8164
+Step 300/1250 | Loss: -18.3582
+Step 400/1250 | Loss: -20.6353
+Step 500/1250 | Loss: -21.6817
+Step 600/1250 | Loss: -21.2895
+Step 700/1250 | Loss: -17.6297
+Step 800/1250 | Loss: -21.2997
+Step 900/1250 | Loss: -19.6093
+Step 1000/1250 | Loss: -23.2520
+Step 1100/1250 | Loss: -18.8934
+Step 1200/1250 | Loss: -17.6005
+Epoch 57 Done. Train Loss: -19.4415 | Val Loss: -20.0807 | Grad: 17.44
+-> New Best Model! Val Loss: -20.0807
+
+===== Epoch 58/100 =====
+Step 100/1250 | Loss: -17.7092
+Step 200/1250 | Loss: -18.5901
+Step 300/1250 | Loss: -16.4921
+Step 400/1250 | Loss: -21.6251
+Step 500/1250 | Loss: -20.7014
+Step 600/1250 | Loss: -16.6261
+Step 700/1250 | Loss: -16.2609
+Step 800/1250 | Loss: -15.8989
+Step 900/1250 | Loss: -20.2156
+Step 1000/1250 | Loss: -16.8021
+Step 1100/1250 | Loss: -18.1228
+Step 1200/1250 | Loss: -22.4245
+Epoch 58 Done. Train Loss: -19.4603 | Val Loss: -20.0839 | Grad: inf
+-> New Best Model! Val Loss: -20.0839
+
+===== Epoch 59/100 =====
+Step 100/1250 | Loss: -20.1704
+Step 200/1250 | Loss: -15.9455
+Step 300/1250 | Loss: -15.5163
+Step 400/1250 | Loss: -18.2316
+Step 500/1250 | Loss: -20.5960
+Step 600/1250 | Loss: -19.2704
+Step 700/1250 | Loss: -20.9871
+Step 800/1250 | Loss: -20.0901
+Step 900/1250 | Loss: -18.8965
+Step 1000/1250 | Loss: -19.5668
+Step 1100/1250 | Loss: -21.4408
+Step 1200/1250 | Loss: -18.5412
+Epoch 59 Done. Train Loss: -19.4767 | Val Loss: -20.1234 | Grad: 18.21
+-> New Best Model! Val Loss: -20.1234
+
+===== Epoch 60/100 =====
+Step 100/1250 | Loss: -20.5920
+Step 200/1250 | Loss: -21.8410
+Step 300/1250 | Loss: -21.7917
+Step 400/1250 | Loss: -20.7028
+Step 500/1250 | Loss: -19.5045
+Step 600/1250 | Loss: -20.4993
+Step 700/1250 | Loss: -18.1193
+Step 800/1250 | Loss: -21.2975
+Step 900/1250 | Loss: -17.6440
+Step 1000/1250 | Loss: -20.3554
+Step 1100/1250 | Loss: -21.0285
+Step 1200/1250 | Loss: -20.2783
+Epoch 60 Done. Train Loss: -19.5043 | Val Loss: -20.1225 | Grad: 18.54
+-> No improve for 1 epochs.
+
+===== Epoch 61/100 =====
+Step 100/1250 | Loss: -21.2507
+Step 200/1250 | Loss: -23.1280
+Step 300/1250 | Loss: -19.7236
+Step 400/1250 | Loss: -17.5247
+Step 500/1250 | Loss: -19.4320
+Step 600/1250 | Loss: -19.4449
+Step 700/1250 | Loss: -17.2657
+Step 800/1250 | Loss: -19.1859
+Step 900/1250 | Loss: -19.9093
+Step 1000/1250 | Loss: -21.3032
+Step 1100/1250 | Loss: -20.6495
+Step 1200/1250 | Loss: -19.4121
+Epoch 61 Done. Train Loss: -19.5394 | Val Loss: -20.1496 | Grad: inf
+-> New Best Model! Val Loss: -20.1496
+
+===== Epoch 62/100 =====
+Step 100/1250 | Loss: -21.5123
+Step 200/1250 | Loss: -20.1565
+Step 300/1250 | Loss: -18.9180
+Step 400/1250 | Loss: -21.6919
+Step 500/1250 | Loss: -17.3186
+Step 600/1250 | Loss: -21.4325
+Step 700/1250 | Loss: -25.0584
+Step 800/1250 | Loss: -18.4028
+Step 900/1250 | Loss: -19.5937
+Step 1000/1250 | Loss: -18.6681
+Step 1100/1250 | Loss: -23.4536
+Step 1200/1250 | Loss: -17.2316
+Epoch 62 Done. Train Loss: -19.5634 | Val Loss: -20.1587 | Grad: 19.90
+-> New Best Model! Val Loss: -20.1587
+
+===== Epoch 63/100 =====
+Step 100/1250 | Loss: -18.0248
+Step 200/1250 | Loss: -17.9856
+Step 300/1250 | Loss: -18.2388
+Step 400/1250 | Loss: -18.0365
+Step 500/1250 | Loss: -18.4290
+Step 600/1250 | Loss: -20.6128
+Step 700/1250 | Loss: -18.1740
+Step 800/1250 | Loss: -18.5848
+Step 900/1250 | Loss: -21.0766
+Step 1000/1250 | Loss: -17.2553
+Step 1100/1250 | Loss: -18.5731
+Step 1200/1250 | Loss: -22.2821
+Epoch 63 Done. Train Loss: -19.5981 | Val Loss: -20.1851 | Grad: inf
+-> New Best Model! Val Loss: -20.1851
+
+===== Epoch 64/100 =====
+Step 100/1250 | Loss: -18.4882
+Step 200/1250 | Loss: -18.4480
+Step 300/1250 | Loss: -18.9282
+Step 400/1250 | Loss: -17.9928
+Step 500/1250 | Loss: -19.2016
+Step 600/1250 | Loss: -20.4408
+Step 700/1250 | Loss: -19.5141
+Step 800/1250 | Loss: -19.4642
+Step 900/1250 | Loss: -20.8966
+Step 1000/1250 | Loss: -20.7707
+Step 1100/1250 | Loss: -19.5292
+Step 1200/1250 | Loss: -19.5916
+Epoch 64 Done. Train Loss: -19.6226 | Val Loss: -20.1722 | Grad: 20.06
+-> No improve for 1 epochs.
+
+===== Epoch 65/100 =====
+Step 100/1250 | Loss: -19.3384
+Step 200/1250 | Loss: -17.1263
+Step 300/1250 | Loss: -19.8466
+Step 400/1250 | Loss: -20.5887
+Step 500/1250 | Loss: -17.7966
+Step 600/1250 | Loss: -23.4743
+Step 700/1250 | Loss: -20.2207
+Step 800/1250 | Loss: -16.5263
+Step 900/1250 | Loss: -18.4981
+Step 1000/1250 | Loss: -18.3567
+Step 1100/1250 | Loss: -17.9377
+Step 1200/1250 | Loss: -20.4113
+Epoch 65 Done. Train Loss: -19.6519 | Val Loss: -20.1955 | Grad: 20.16
+-> New Best Model! Val Loss: -20.1955
+
+===== Epoch 66/100 =====
+Step 100/1250 | Loss: -22.6854
+Step 200/1250 | Loss: -20.4321
+Step 300/1250 | Loss: -20.0072
+Step 400/1250 | Loss: -23.5449
+Step 500/1250 | Loss: -21.5866
+Step 600/1250 | Loss: -17.8193
+Step 700/1250 | Loss: -18.5680
+Step 800/1250 | Loss: -21.8160
+Step 900/1250 | Loss: -16.9891
+Step 1000/1250 | Loss: -19.5302
+Step 1100/1250 | Loss: -22.3518
+Step 1200/1250 | Loss: -21.1933
+Epoch 66 Done. Train Loss: -19.6842 | Val Loss: -20.2242 | Grad: inf
+-> New Best Model! Val Loss: -20.2242
+
+===== Epoch 67/100 =====
+Step 100/1250 | Loss: -19.7535
+Step 200/1250 | Loss: -19.9582
+Step 300/1250 | Loss: -19.7892
+Step 400/1250 | Loss: -18.2009
+Step 500/1250 | Loss: -21.6313
+Step 600/1250 | Loss: -16.6204
+Step 700/1250 | Loss: -17.6665
+Step 800/1250 | Loss: -16.7435
+Step 900/1250 | Loss: -20.7829
+Step 1000/1250 | Loss: -19.0397
+Step 1100/1250 | Loss: -22.0288
+Step 1200/1250 | Loss: -18.1903
+Epoch 67 Done. Train Loss: -19.6945 | Val Loss: -20.2046 | Grad: inf
+-> No improve for 1 epochs.
+
+===== Epoch 68/100 =====
+Step 100/1250 | Loss: -16.1868
+Step 200/1250 | Loss: -20.6933
+Step 300/1250 | Loss: -17.1313
+Step 400/1250 | Loss: -18.6621
+Step 500/1250 | Loss: -18.4644
+Step 600/1250 | Loss: -19.6970
+Step 700/1250 | Loss: -17.6284
+Step 800/1250 | Loss: -22.6175
+Step 900/1250 | Loss: -21.0088
+Step 1000/1250 | Loss: -19.0044
+Step 1100/1250 | Loss: -21.2899
+Step 1200/1250 | Loss: -18.8535
+Epoch 68 Done. Train Loss: -19.7310 | Val Loss: -20.2389 | Grad: 22.02
+-> New Best Model! Val Loss: -20.2389
+
+===== Epoch 69/100 =====
+Step 100/1250 | Loss: -20.4845
+Step 200/1250 | Loss: -20.8853
+Step 300/1250 | Loss: -18.8430
+Step 400/1250 | Loss: -20.9378
+Step 500/1250 | Loss: -19.1781
+Step 600/1250 | Loss: -20.8161
+Step 700/1250 | Loss: -20.5614
+Step 800/1250 | Loss: -20.6460
+Step 900/1250 | Loss: -17.2885
+Step 1000/1250 | Loss: -20.3382
+Step 1100/1250 | Loss: -17.9657
+Step 1200/1250 | Loss: -21.9914
+Epoch 69 Done. Train Loss: -19.7756 | Val Loss: -20.2373 | Grad: inf
+-> No improve for 1 epochs.
+
+===== Epoch 70/100 =====
+Step 100/1250 | Loss: -21.7314
+Step 200/1250 | Loss: -18.8685
+Step 300/1250 | Loss: -21.0994
+Step 400/1250 | Loss: -18.5525
+Step 500/1250 | Loss: -19.4022
+Step 600/1250 | Loss: -21.4187
+Step 700/1250 | Loss: -20.3979
+Step 800/1250 | Loss: -17.7763
+Step 900/1250 | Loss: -16.9445
+Step 1000/1250 | Loss: -19.1214
+Step 1100/1250 | Loss: -23.6847
+Step 1200/1250 | Loss: -20.3013
+Epoch 70 Done. Train Loss: -19.7890 | Val Loss: -20.2514 | Grad: 23.16
+-> New Best Model! Val Loss: -20.2514
+
+===== Epoch 71/100 =====
+Step 100/1250 | Loss: -17.5222
+Step 200/1250 | Loss: -21.0664
+Step 300/1250 | Loss: -21.9230
+Step 400/1250 | Loss: -19.3603
+Step 500/1250 | Loss: -18.6112
+Step 600/1250 | Loss: -18.3231
+Step 700/1250 | Loss: -20.7358
+Step 800/1250 | Loss: -19.5068
+Step 900/1250 | Loss: -19.0170
+Step 1000/1250 | Loss: -21.7616
+Step 1100/1250 | Loss: -21.0846
+Step 1200/1250 | Loss: -18.3889
+Epoch 71 Done. Train Loss: -19.8368 | Val Loss: -20.2614 | Grad: inf
+-> New Best Model! Val Loss: -20.2614
+
+===== Epoch 72/100 =====
+Step 100/1250 | Loss: -20.4929
+Step 200/1250 | Loss: -17.8282
+Step 300/1250 | Loss: -19.7263
+Step 400/1250 | Loss: -23.8945
+Step 500/1250 | Loss: -21.2768
+Step 600/1250 | Loss: -19.1623
+Step 700/1250 | Loss: -21.5456
+Step 800/1250 | Loss: -16.5705
+Step 900/1250 | Loss: -20.4583
+Step 1000/1250 | Loss: -18.9779
+Step 1100/1250 | Loss: -19.4605
+Step 1200/1250 | Loss: -16.9329
+Epoch 72 Done. Train Loss: -19.8647 | Val Loss: -20.2874 | Grad: 24.36
+-> New Best Model! Val Loss: -20.2874
+
+===== Epoch 73/100 =====
+Step 100/1250 | Loss: -19.9832
+Step 200/1250 | Loss: -22.6424
+Step 300/1250 | Loss: -19.1998
+Step 400/1250 | Loss: -21.2015
+Step 500/1250 | Loss: -19.2698
+Step 600/1250 | Loss: -20.0552
+Step 700/1250 | Loss: -15.2329
+Step 800/1250 | Loss: -22.6996
+Step 900/1250 | Loss: -18.4674
+Step 1000/1250 | Loss: -18.5204
+Step 1100/1250 | Loss: -25.2510
+Step 1200/1250 | Loss: -17.2586
+Epoch 73 Done. Train Loss: -19.9247 | Val Loss: -20.2860 | Grad: inf
+-> No improve for 1 epochs.
+
+===== Epoch 74/100 =====
+Step 100/1250 | Loss: -18.4169
+Step 200/1250 | Loss: -19.1277
+Step 300/1250 | Loss: -19.0024
+Step 400/1250 | Loss: -18.2755
+Step 500/1250 | Loss: -19.4725
+Step 600/1250 | Loss: -23.2117
+Step 700/1250 | Loss: -23.0911
+Step 800/1250 | Loss: -18.4800
+Step 900/1250 | Loss: -20.7821
+Step 1000/1250 | Loss: -18.3325
+Step 1100/1250 | Loss: -17.4437
+Step 1200/1250 | Loss: -17.4256
+Epoch 74 Done. Train Loss: -19.9427 | Val Loss: -20.2995 | Grad: 25.82
+-> New Best Model! Val Loss: -20.2995
+
+===== Epoch 75/100 =====
+Step 100/1250 | Loss: -18.9060
+Step 200/1250 | Loss: -19.9262
+Step 300/1250 | Loss: -21.6801
+Step 400/1250 | Loss: -21.2734
+Step 500/1250 | Loss: -19.1332
+Step 600/1250 | Loss: -19.4452
+Step 700/1250 | Loss: -20.2216
+Step 800/1250 | Loss: -18.6127
+Step 900/1250 | Loss: -18.8067
+Step 1000/1250 | Loss: -19.9145
+Step 1100/1250 | Loss: -22.1770
+Step 1200/1250 | Loss: -19.4974
+Epoch 75 Done. Train Loss: -19.9950 | Val Loss: -20.3257 | Grad: inf
+-> New Best Model! Val Loss: -20.3257
+
+===== Epoch 76/100 =====
+Step 100/1250 | Loss: -20.9099
+Step 200/1250 | Loss: -17.2100
+Step 300/1250 | Loss: -20.1812
+Step 400/1250 | Loss: -20.6955
+Step 500/1250 | Loss: -20.3917
+Step 600/1250 | Loss: -21.1421
+Step 700/1250 | Loss: -19.3334
+Step 800/1250 | Loss: -18.6429
+Step 900/1250 | Loss: -20.8605
+Step 1000/1250 | Loss: -22.5799
+Step 1100/1250 | Loss: -21.0044
+Step 1200/1250 | Loss: -24.1069
+Epoch 76 Done. Train Loss: -20.0159 | Val Loss: -20.3221 | Grad: 27.53
+-> No improve for 1 epochs.
+
+===== Epoch 77/100 =====
+Step 100/1250 | Loss: -18.3558
+Step 200/1250 | Loss: -21.3973
+Step 300/1250 | Loss: -20.0503
+Step 400/1250 | Loss: -19.4794
+Step 500/1250 | Loss: -18.0804
+Step 600/1250 | Loss: -19.4594
+Step 700/1250 | Loss: -19.3495
+Step 800/1250 | Loss: -21.5563
+Step 900/1250 | Loss: -19.6113
+Step 1000/1250 | Loss: -16.6799
+Step 1100/1250 | Loss: -20.1264
+Step 1200/1250 | Loss: -19.1386
+Epoch 77 Done. Train Loss: -20.0437 | Val Loss: -20.3545 | Grad: 27.94
+-> New Best Model! Val Loss: -20.3545
+
+===== Epoch 78/100 =====
+Step 100/1250 | Loss: -19.1967
+Step 200/1250 | Loss: -22.3189
+Step 300/1250 | Loss: -18.3639
+Step 400/1250 | Loss: -17.7605
+Step 500/1250 | Loss: -19.7904
+Step 600/1250 | Loss: -19.4300
+Step 700/1250 | Loss: -19.5456
+Step 800/1250 | Loss: -25.4123
+Step 900/1250 | Loss: -19.1067
+Step 1000/1250 | Loss: -20.3399
+Step 1100/1250 | Loss: -19.1181
+Step 1200/1250 | Loss: -16.6543
+Epoch 78 Done. Train Loss: -20.1068 | Val Loss: -20.3469 | Grad: inf
+-> No improve for 1 epochs.
+
+===== Epoch 79/100 =====
+Step 100/1250 | Loss: -19.3071
+Step 200/1250 | Loss: -17.5706
+Step 300/1250 | Loss: -18.6070
+Step 400/1250 | Loss: -17.8108
+Step 500/1250 | Loss: -23.6849
+Step 600/1250 | Loss: -21.1210
+Step 700/1250 | Loss: -20.7125
+Step 800/1250 | Loss: -19.0231
+Step 900/1250 | Loss: -22.4916
+Step 1000/1250 | Loss: -21.1178
+Step 1100/1250 | Loss: -20.8038
+Step 1200/1250 | Loss: -23.5513
+Epoch 79 Done. Train Loss: -20.1226 | Val Loss: -20.4039 | Grad: 28.60
+-> New Best Model! Val Loss: -20.4039
+
+===== Epoch 80/100 =====
+Step 100/1250 | Loss: -18.4893
+Step 200/1250 | Loss: -21.3946
+Step 300/1250 | Loss: -21.2066
+Step 400/1250 | Loss: -20.6043
+Step 500/1250 | Loss: -20.7585
+Step 600/1250 | Loss: -20.7635
+Step 700/1250 | Loss: -21.6330
+Step 800/1250 | Loss: -17.2912
+Step 900/1250 | Loss: -20.0032
+Step 1000/1250 | Loss: -22.9994
+Step 1100/1250 | Loss: -20.3880
+Step 1200/1250 | Loss: -24.8640
+Epoch 80 Done. Train Loss: -20.1592 | Val Loss: -20.3572 | Grad: 29.75
+-> No improve for 1 epochs.
+
+===== Epoch 81/100 =====
+Step 100/1250 | Loss: -20.3691
+Step 200/1250 | Loss: -22.8356
+Step 300/1250 | Loss: -16.1941
+Step 400/1250 | Loss: -20.9325
+Step 500/1250 | Loss: -23.6037
+Step 600/1250 | Loss: -19.2863
+Step 700/1250 | Loss: -20.5190
+Step 800/1250 | Loss: -19.8886
+Step 900/1250 | Loss: -22.0090
+Step 1000/1250 | Loss: -18.6684
+Step 1100/1250 | Loss: -18.1919
+Step 1200/1250 | Loss: -21.1944
+Epoch 81 Done. Train Loss: -20.2019 | Val Loss: -20.3900 | Grad: inf
+-> No improve for 2 epochs.
+
+===== Epoch 82/100 =====
+Step 100/1250 | Loss: -19.6331
+Step 200/1250 | Loss: -21.3178
+Step 300/1250 | Loss: -17.1747
+Step 400/1250 | Loss: -20.6284
+Step 500/1250 | Loss: -18.6269
+Step 600/1250 | Loss: -22.3337
+Step 700/1250 | Loss: -19.2282
+Step 800/1250 | Loss: -18.3427
+Step 900/1250 | Loss: -21.4587
+Step 1000/1250 | Loss: -18.0924
+Step 1100/1250 | Loss: -20.9824
+Step 1200/1250 | Loss: -16.7966
+Epoch 82 Done. Train Loss: -20.2277 | Val Loss: -20.3735 | Grad: 31.88
+-> No improve for 3 epochs.
+
+===== Epoch 83/100 =====
+Step 100/1250 | Loss: -23.6704
+Step 200/1250 | Loss: -22.1477
+Step 300/1250 | Loss: -22.4057
+Step 400/1250 | Loss: -18.4133
+Step 500/1250 | Loss: -24.9766
+Step 600/1250 | Loss: -19.6229
+Step 700/1250 | Loss: -19.3852
+Step 800/1250 | Loss: -18.5998
+Step 900/1250 | Loss: -18.8342
+Step 1000/1250 | Loss: -21.8496
+Step 1100/1250 | Loss: -20.2297
+Step 1200/1250 | Loss: -23.3899
+Epoch 83 Done. Train Loss: -20.2417 | Val Loss: -20.4111 | Grad: 30.64
+-> New Best Model! Val Loss: -20.4111
+
+===== Epoch 84/100 =====
+Step 100/1250 | Loss: -17.0353
+Step 200/1250 | Loss: -18.5472
+Step 300/1250 | Loss: -18.7462
+Step 400/1250 | Loss: -20.5222
+Step 500/1250 | Loss: -19.5600
+Step 600/1250 | Loss: -19.0507
+Step 700/1250 | Loss: -18.4945
+Step 800/1250 | Loss: -18.6551
+Step 900/1250 | Loss: -19.6680
+Step 1000/1250 | Loss: -21.7194
+Step 1100/1250 | Loss: -22.1407
+Step 1200/1250 | Loss: -21.0415
+Epoch 84 Done. Train Loss: -20.3303 | Val Loss: -20.4253 | Grad: inf
+-> New Best Model! Val Loss: -20.4253
+
+===== Epoch 85/100 =====
+Step 100/1250 | Loss: -20.5084
+Step 200/1250 | Loss: -20.2878
+Step 300/1250 | Loss: -17.9024
+Step 400/1250 | Loss: -20.9433
+Step 500/1250 | Loss: -20.3964
+Step 600/1250 | Loss: -20.7769
+Step 700/1250 | Loss: -21.1902
+Step 800/1250 | Loss: -17.5641
+Step 900/1250 | Loss: -19.1120
+Step 1000/1250 | Loss: -20.7650
+Step 1100/1250 | Loss: -21.0092
+Step 1200/1250 | Loss: -25.7901
+Epoch 85 Done. Train Loss: -20.3427 | Val Loss: -20.4264 | Grad: 32.30
+-> New Best Model! Val Loss: -20.4264
+
+===== Epoch 86/100 =====
+Step 100/1250 | Loss: -19.2098
+Step 200/1250 | Loss: -23.7231
+Step 300/1250 | Loss: -18.1757
+Step 400/1250 | Loss: -22.8108
+Step 500/1250 | Loss: -20.9965
+Step 600/1250 | Loss: -22.3511
+Step 700/1250 | Loss: -19.0885
+Step 800/1250 | Loss: -23.1143
+Step 900/1250 | Loss: -21.6147
+Step 1000/1250 | Loss: -18.7159
+Step 1100/1250 | Loss: -19.3168
+Step 1200/1250 | Loss: -22.8592
+Epoch 86 Done. Train Loss: -20.3811 | Val Loss: -20.4217 | Grad: inf
+-> No improve for 1 epochs.
+
+===== Epoch 87/100 =====
+Step 100/1250 | Loss: -20.3297
+Step 200/1250 | Loss: -21.0555
+Step 300/1250 | Loss: -22.7342
+Step 400/1250 | Loss: -20.3690
+Step 500/1250 | Loss: -20.4169
+Step 600/1250 | Loss: -21.1042
+Step 700/1250 | Loss: -20.8255
+Step 800/1250 | Loss: -23.3198
+Step 900/1250 | Loss: -22.9558
+Step 1000/1250 | Loss: -17.8967
+Step 1100/1250 | Loss: -21.5004
+Step 1200/1250 | Loss: -19.8619
+Epoch 87 Done. Train Loss: -20.4254 | Val Loss: -20.4651 | Grad: 32.04
+-> New Best Model! Val Loss: -20.4651
+
+===== Epoch 88/100 =====
+Step 100/1250 | Loss: -22.2470
+Step 200/1250 | Loss: -21.4346
+Step 300/1250 | Loss: -21.7363
+Step 400/1250 | Loss: -19.5892
+Step 500/1250 | Loss: -20.1892
+Step 600/1250 | Loss: -21.1364
+Step 700/1250 | Loss: -22.7880
+Step 800/1250 | Loss: -22.7369
+Step 900/1250 | Loss: -21.7647
+Step 1000/1250 | Loss: -18.9746
+Step 1100/1250 | Loss: -18.2412
+Step 1200/1250 | Loss: -23.6245
+Epoch 88 Done. Train Loss: -20.4466 | Val Loss: -20.4380 | Grad: inf
+-> No improve for 1 epochs.
+
+===== Epoch 89/100 =====
+Step 100/1250 | Loss: -18.9557
+Step 200/1250 | Loss: -24.3508
+Step 300/1250 | Loss: -18.8896
+Step 400/1250 | Loss: -20.4813
+Step 500/1250 | Loss: -19.6312
+Step 600/1250 | Loss: -19.2556
+Step 700/1250 | Loss: -20.2233
+Step 800/1250 | Loss: -20.1952
+Step 900/1250 | Loss: -18.8650
+Step 1000/1250 | Loss: -21.1906
+Step 1100/1250 | Loss: -23.1338
+Step 1200/1250 | Loss: -23.3602
+Epoch 89 Done. Train Loss: -20.4803 | Val Loss: -20.4412 | Grad: 32.24
+-> No improve for 2 epochs.
+
+===== Epoch 90/100 =====
+Step 100/1250 | Loss: -18.2897
+Step 200/1250 | Loss: -22.6322
+Step 300/1250 | Loss: -17.2091
+Step 400/1250 | Loss: -16.1859
+Step 500/1250 | Loss: -19.7230
+Step 600/1250 | Loss: -22.8758
+Step 700/1250 | Loss: -19.5089
+Step 800/1250 | Loss: -17.2366
+Step 900/1250 | Loss: -22.2597
+Step 1000/1250 | Loss: -22.4843
+Step 1100/1250 | Loss: -19.6321
+Step 1200/1250 | Loss: -23.1215
+Epoch 90 Done. Train Loss: -20.5038 | Val Loss: -20.4730 | Grad: inf
+-> New Best Model! Val Loss: -20.4730
+
+===== Epoch 91/100 =====
+Step 100/1250 | Loss: -19.0515
+Step 200/1250 | Loss: -19.1822
+Step 300/1250 | Loss: -20.4658
+Step 400/1250 | Loss: -21.4180
+Step 500/1250 | Loss: -24.6901
+Step 600/1250 | Loss: -18.4748
+Step 700/1250 | Loss: -23.8148
+Step 800/1250 | Loss: -22.3269
+Step 900/1250 | Loss: -18.3492
+Step 1000/1250 | Loss: -21.3108
+Step 1100/1250 | Loss: -16.4836
+Step 1200/1250 | Loss: -17.2180
+Epoch 91 Done. Train Loss: -20.5225 | Val Loss: -20.4842 | Grad: inf
+-> New Best Model! Val Loss: -20.4842
+
+===== Epoch 92/100 =====
+Step 100/1250 | Loss: -18.8517
+Step 200/1250 | Loss: -19.1683
+Step 300/1250 | Loss: -19.9298
+Step 400/1250 | Loss: -19.5526
+Step 500/1250 | Loss: -16.5471
+Step 600/1250 | Loss: -17.9783
+Step 700/1250 | Loss: -22.0596
+Step 800/1250 | Loss: -21.2485
+Step 900/1250 | Loss: -19.6592
+Step 1000/1250 | Loss: -20.0395
+Step 1100/1250 | Loss: -22.7574
+Step 1200/1250 | Loss: -20.5540
+Epoch 92 Done. Train Loss: -20.5262 | Val Loss: -20.4604 | Grad: 31.16
+-> No improve for 1 epochs.
+
+===== Epoch 93/100 =====
+Step 100/1250 | Loss: -20.0407
+Step 200/1250 | Loss: -17.2348
+Step 300/1250 | Loss: -18.7181
+Step 400/1250 | Loss: -24.3178
+Step 500/1250 | Loss: -17.2577
+Step 600/1250 | Loss: -18.4268
+Step 700/1250 | Loss: -19.3843
+Step 800/1250 | Loss: -21.1380
+Step 900/1250 | Loss: -20.0319
+Step 1000/1250 | Loss: -16.3767
+Step 1100/1250 | Loss: -22.0856
+Step 1200/1250 | Loss: -20.3325
+Epoch 93 Done. Train Loss: -20.5648 | Val Loss: -20.5164 | Grad: inf
+-> New Best Model! Val Loss: -20.5164
+
+===== Epoch 94/100 =====
+Step 100/1250 | Loss: -19.9637
+Step 200/1250 | Loss: -20.5023
+Step 300/1250 | Loss: -19.7015
+Step 400/1250 | Loss: -22.3292
+Step 500/1250 | Loss: -23.9828
+Step 600/1250 | Loss: -18.5596
+Step 700/1250 | Loss: -23.1309
+Step 800/1250 | Loss: -18.4845
+Step 900/1250 | Loss: -18.2740
+Step 1000/1250 | Loss: -17.2069
+Step 1100/1250 | Loss: -22.0540
+Step 1200/1250 | Loss: -25.2195
+Epoch 94 Done. Train Loss: -20.5607 | Val Loss: -20.4793 | Grad: 29.58
+-> No improve for 1 epochs.
+
+===== Epoch 95/100 =====
+Step 100/1250 | Loss: -21.4793
+Step 200/1250 | Loss: -18.3902
+Step 300/1250 | Loss: -17.3061
+Step 400/1250 | Loss: -15.7183
+Step 500/1250 | Loss: -19.0719
+Step 600/1250 | Loss: -19.0621
+Step 700/1250 | Loss: -20.6933
+Step 800/1250 | Loss: -20.8223
+Step 900/1250 | Loss: -20.3384
+Step 1000/1250 | Loss: -16.6659
+Step 1100/1250 | Loss: -22.4042
+Step 1200/1250 | Loss: -25.4506
+Epoch 95 Done. Train Loss: -20.5916 | Val Loss: -20.5054 | Grad: inf
+-> No improve for 2 epochs.
+
+===== Epoch 96/100 =====
+Step 100/1250 | Loss: -22.1744
+Step 200/1250 | Loss: -21.0037
+Step 300/1250 | Loss: -20.0245
+Step 400/1250 | Loss: -17.4268
+Step 500/1250 | Loss: -17.6332
+Step 600/1250 | Loss: -21.1573
+Step 700/1250 | Loss: -19.8947
+Step 800/1250 | Loss: -19.8051
+Step 900/1250 | Loss: -22.0774
+Step 1000/1250 | Loss: -19.5691
+Step 1100/1250 | Loss: -23.1017
+Step 1200/1250 | Loss: -19.9136
+Epoch 96 Done. Train Loss: -20.5844 | Val Loss: -20.5086 | Grad: inf
+-> No improve for 3 epochs.
+
+===== Epoch 97/100 =====
+Step 100/1250 | Loss: -21.9866
+Step 200/1250 | Loss: -18.3704
+Step 300/1250 | Loss: -20.2300
+Step 400/1250 | Loss: -18.3580
+Step 500/1250 | Loss: -19.7658
+Step 600/1250 | Loss: -18.8055
+Step 700/1250 | Loss: -19.7898
+Step 800/1250 | Loss: -22.3145
+Step 900/1250 | Loss: -19.2929
+Step 1000/1250 | Loss: -20.3685
+Step 1100/1250 | Loss: -20.3025
+Step 1200/1250 | Loss: -22.1533
+Epoch 97 Done. Train Loss: -20.5907 | Val Loss: -20.4951 | Grad: inf
+-> No improve for 4 epochs.
+
+===== Epoch 98/100 =====
+Step 100/1250 | Loss: -23.6873
+Step 200/1250 | Loss: -18.2609
+Step 300/1250 | Loss: -16.5211
+Step 400/1250 | Loss: -23.6757
+Step 500/1250 | Loss: -20.6564
+Step 600/1250 | Loss: -23.7353
+Step 700/1250 | Loss: -22.5570
+Step 800/1250 | Loss: -22.6082
+Step 900/1250 | Loss: -21.9014
+Step 1000/1250 | Loss: -21.9472
+Step 1100/1250 | Loss: -20.8407
+Step 1200/1250 | Loss: -18.7384
+Epoch 98 Done. Train Loss: -20.5969 | Val Loss: -20.4731 | Grad: 29.02
+-> No improve for 5 epochs.
+
+===== Epoch 99/100 =====
+Step 100/1250 | Loss: -18.3480
+Step 200/1250 | Loss: -16.8067
+Step 300/1250 | Loss: -19.4061
+Step 400/1250 | Loss: -16.6318
+Step 500/1250 | Loss: -20.3321
+Step 600/1250 | Loss: -21.0856
+Step 700/1250 | Loss: -21.4522
+Step 800/1250 | Loss: -19.5465
+Step 900/1250 | Loss: -18.4718
+Step 1000/1250 | Loss: -21.7952
+Step 1100/1250 | Loss: -20.2533
+Step 1200/1250 | Loss: -20.0948
+Epoch 99 Done. Train Loss: -20.6023 | Val Loss: -20.5010 | Grad: inf
+-> No improve for 6 epochs.
+
+===== Epoch 100/100 =====
+Step 100/1250 | Loss: -20.1212
+Step 200/1250 | Loss: -19.7337
+Step 300/1250 | Loss: -20.5421
+Step 400/1250 | Loss: -19.1401
+Step 500/1250 | Loss: -22.1378
+Step 600/1250 | Loss: -19.6352
+Step 700/1250 | Loss: -17.6531
+Step 800/1250 | Loss: -16.3635
+Step 900/1250 | Loss: -19.4192
+Step 1000/1250 | Loss: -19.4724
+Step 1100/1250 | Loss: -23.0091
+Step 1200/1250 | Loss: -24.8060
+Epoch 100 Done. Train Loss: -20.6091 | Val Loss: -20.5283 | Grad: 27.73
+-> New Best Model! Val Loss: -20.5283
+
+Training Finished.
+Loading best EMA model (Val Loss: -20.5283)...
+[Test] Saved 20 samples. Avg Test Loss (−SI-SNR): -20.4203 dB

@@ -330,7 +330,7 @@ def main():
     torch.backends.cudnn.benchmark = True
     # Data & device setup/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
     root = "../../Dataset/Comm0-2Dataset"
-    sample_rate = 100000
+    sample_rate = 32000
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 

@@ -1,0 +1,2721 @@
+Log file: ../../logs\train_baseline_comm_20260419-162912.log (Baseline Comm)
+Checkpoint directory: ../../checkpoints\train_baseline_comm_20260419-162912
+Output directory: ../../outputs\train_baseline_comm_20260419-162912
+Using device: cuda
+
+===== Epoch 1/100 =====
+Epoch 1 | Step 100 (100/2083) | Train loss (−SI-SNR): 0.1014
+Epoch 1 | Step 200 (200/2083) | Train loss (−SI-SNR): -0.0429
+Epoch 1 | Step 300 (300/2083) | Train loss (−SI-SNR): -0.4989
+Epoch 1 | Step 400 (400/2083) | Train loss (−SI-SNR): -0.4186
+Epoch 1 | Step 500 (500/2083) | Train loss (−SI-SNR): -0.5396
+Epoch 1 | Step 600 (600/2083) | Train loss (−SI-SNR): -0.3209
+Epoch 1 | Step 700 (700/2083) | Train loss (−SI-SNR): -0.8655
+Epoch 1 | Step 800 (800/2083) | Train loss (−SI-SNR): -1.0085
+Epoch 1 | Step 900 (900/2083) | Train loss (−SI-SNR): -1.5661
+Epoch 1 | Step 1000 (1000/2083) | Train loss (−SI-SNR): -0.7571
+Epoch 1 | Step 1100 (1100/2083) | Train loss (−SI-SNR): -1.5504
+Epoch 1 | Step 1200 (1200/2083) | Train loss (−SI-SNR): -1.0230
+Epoch 1 | Step 1300 (1300/2083) | Train loss (−SI-SNR): -1.1810
+Epoch 1 | Step 1400 (1400/2083) | Train loss (−SI-SNR): -1.7398
+Epoch 1 | Step 1500 (1500/2083) | Train loss (−SI-SNR): -1.2569
+Epoch 1 | Step 1600 (1600/2083) | Train loss (−SI-SNR): -2.1949
+Epoch 1 | Step 1700 (1700/2083) | Train loss (−SI-SNR): -2.1116
+Epoch 1 | Step 1800 (1800/2083) | Train loss (−SI-SNR): -1.7407
+Epoch 1 | Step 1900 (1900/2083) | Train loss (−SI-SNR): -1.5125
+Epoch 1 | Step 2000 (2000/2083) | Train loss (−SI-SNR): -2.6571
+Epoch 1 finished. Avg train loss: -1.0972
+Epoch 1 finished. Avg valid loss: -1.3399
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -1.3399
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch001_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch001_spec.png
+
+===== Epoch 2/100 =====
+Epoch 2 | Step 2100 (17/2083) | Train loss (−SI-SNR): -1.3966
+Epoch 2 | Step 2200 (117/2083) | Train loss (−SI-SNR): -2.0934
+Epoch 2 | Step 2300 (217/2083) | Train loss (−SI-SNR): -2.3900
+Epoch 2 | Step 2400 (317/2083) | Train loss (−SI-SNR): -2.5329
+Epoch 2 | Step 2500 (417/2083) | Train loss (−SI-SNR): -1.9715
+Epoch 2 | Step 2600 (517/2083) | Train loss (−SI-SNR): -2.6294
+Epoch 2 | Step 2700 (617/2083) | Train loss (−SI-SNR): -2.4713
+Epoch 2 | Step 2800 (717/2083) | Train loss (−SI-SNR): -1.9835
+Epoch 2 | Step 2900 (817/2083) | Train loss (−SI-SNR): -2.9476
+Epoch 2 | Step 3000 (917/2083) | Train loss (−SI-SNR): -2.6636
+Epoch 2 | Step 3100 (1017/2083) | Train loss (−SI-SNR): -2.9085
+Epoch 2 | Step 3200 (1117/2083) | Train loss (−SI-SNR): -2.1987
+Epoch 2 | Step 3300 (1217/2083) | Train loss (−SI-SNR): -5.3876
+Epoch 2 | Step 3400 (1317/2083) | Train loss (−SI-SNR): -2.9843
+Epoch 2 | Step 3500 (1417/2083) | Train loss (−SI-SNR): -2.7915
+Epoch 2 | Step 3600 (1517/2083) | Train loss (−SI-SNR): -3.1995
+Epoch 2 | Step 3700 (1617/2083) | Train loss (−SI-SNR): -3.7937
+Epoch 2 | Step 3800 (1717/2083) | Train loss (−SI-SNR): -2.1693
+Epoch 2 | Step 3900 (1817/2083) | Train loss (−SI-SNR): -4.1543
+Epoch 2 | Step 4000 (1917/2083) | Train loss (−SI-SNR): -2.9336
+Epoch 2 | Step 4100 (2017/2083) | Train loss (−SI-SNR): -4.5294
+Epoch 2 finished. Avg train loss: -3.1175
+Epoch 2 finished. Avg valid loss: -3.3498
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -3.3498
+
+===== Epoch 3/100 =====
+Epoch 3 | Step 4200 (34/2083) | Train loss (−SI-SNR): -3.0226
+Epoch 3 | Step 4300 (134/2083) | Train loss (−SI-SNR): -4.2260
+Epoch 3 | Step 4400 (234/2083) | Train loss (−SI-SNR): -5.2724
+Epoch 3 | Step 4500 (334/2083) | Train loss (−SI-SNR): -2.7039
+Epoch 3 | Step 4600 (434/2083) | Train loss (−SI-SNR): -5.3007
+Epoch 3 | Step 4700 (534/2083) | Train loss (−SI-SNR): -6.2779
+Epoch 3 | Step 4800 (634/2083) | Train loss (−SI-SNR): -6.0197
+Epoch 3 | Step 4900 (734/2083) | Train loss (−SI-SNR): -5.6341
+Epoch 3 | Step 5000 (834/2083) | Train loss (−SI-SNR): -3.5331
+Epoch 3 | Step 5100 (934/2083) | Train loss (−SI-SNR): -5.7235
+Epoch 3 | Step 5200 (1034/2083) | Train loss (−SI-SNR): -4.4815
+Epoch 3 | Step 5300 (1134/2083) | Train loss (−SI-SNR): -5.3902
+Epoch 3 | Step 5400 (1234/2083) | Train loss (−SI-SNR): -7.9218
+Epoch 3 | Step 5500 (1334/2083) | Train loss (−SI-SNR): -5.5169
+Epoch 3 | Step 5600 (1434/2083) | Train loss (−SI-SNR): -5.4406
+Epoch 3 | Step 5700 (1534/2083) | Train loss (−SI-SNR): -5.5749
+Epoch 3 | Step 5800 (1634/2083) | Train loss (−SI-SNR): -7.2822
+Epoch 3 | Step 5900 (1734/2083) | Train loss (−SI-SNR): -5.5062
+Epoch 3 | Step 6000 (1834/2083) | Train loss (−SI-SNR): -4.8902
+Epoch 3 | Step 6100 (1934/2083) | Train loss (−SI-SNR): -6.1314
+Epoch 3 | Step 6200 (2034/2083) | Train loss (−SI-SNR): -4.8913
+Epoch 3 finished. Avg train loss: -5.4009
+Epoch 3 finished. Avg valid loss: -6.2788
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -6.2788
+
+===== Epoch 4/100 =====
+Epoch 4 | Step 6300 (51/2083) | Train loss (−SI-SNR): -5.5496
+Epoch 4 | Step 6400 (151/2083) | Train loss (−SI-SNR): -5.2744
+Epoch 4 | Step 6500 (251/2083) | Train loss (−SI-SNR): -5.7550
+Epoch 4 | Step 6600 (351/2083) | Train loss (−SI-SNR): -6.9543
+Epoch 4 | Step 6700 (451/2083) | Train loss (−SI-SNR): -5.3211
+Epoch 4 | Step 6800 (551/2083) | Train loss (−SI-SNR): -4.5882
+Epoch 4 | Step 6900 (651/2083) | Train loss (−SI-SNR): -4.1583
+Epoch 4 | Step 7000 (751/2083) | Train loss (−SI-SNR): -7.4322
+Epoch 4 | Step 7100 (851/2083) | Train loss (−SI-SNR): -6.8677
+Epoch 4 | Step 7200 (951/2083) | Train loss (−SI-SNR): -5.9475
+Epoch 4 | Step 7300 (1051/2083) | Train loss (−SI-SNR): -7.5547
+Epoch 4 | Step 7400 (1151/2083) | Train loss (−SI-SNR): -7.5900
+Epoch 4 | Step 7500 (1251/2083) | Train loss (−SI-SNR): -7.5982
+Epoch 4 | Step 7600 (1351/2083) | Train loss (−SI-SNR): -9.0840
+Epoch 4 | Step 7700 (1451/2083) | Train loss (−SI-SNR): -7.0399
+Epoch 4 | Step 7800 (1551/2083) | Train loss (−SI-SNR): -7.6850
+Epoch 4 | Step 7900 (1651/2083) | Train loss (−SI-SNR): -7.1780
+Epoch 4 | Step 8000 (1751/2083) | Train loss (−SI-SNR): -7.5024
+Epoch 4 | Step 8100 (1851/2083) | Train loss (−SI-SNR): -7.3616
+Epoch 4 | Step 8200 (1951/2083) | Train loss (−SI-SNR): -8.0574
+Epoch 4 | Step 8300 (2051/2083) | Train loss (−SI-SNR): -9.3835
+Epoch 4 finished. Avg train loss: -7.3058
+Epoch 4 finished. Avg valid loss: -8.4557
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -8.4557
+
+===== Epoch 5/100 =====
+Epoch 5 | Step 8400 (68/2083) | Train loss (−SI-SNR): -9.1116
+Epoch 5 | Step 8500 (168/2083) | Train loss (−SI-SNR): -5.9066
+Epoch 5 | Step 8600 (268/2083) | Train loss (−SI-SNR): -8.2744
+Epoch 5 | Step 8700 (368/2083) | Train loss (−SI-SNR): -8.7188
+Epoch 5 | Step 8800 (468/2083) | Train loss (−SI-SNR): -8.8796
+Epoch 5 | Step 8900 (568/2083) | Train loss (−SI-SNR): -7.6281
+Epoch 5 | Step 9000 (668/2083) | Train loss (−SI-SNR): -8.4582
+Epoch 5 | Step 9100 (768/2083) | Train loss (−SI-SNR): -7.1915
+Epoch 5 | Step 9200 (868/2083) | Train loss (−SI-SNR): -8.6522
+Epoch 5 | Step 9300 (968/2083) | Train loss (−SI-SNR): -9.9269
+Epoch 5 | Step 9400 (1068/2083) | Train loss (−SI-SNR): -11.3226
+Epoch 5 | Step 9500 (1168/2083) | Train loss (−SI-SNR): -7.5375
+Epoch 5 | Step 9600 (1268/2083) | Train loss (−SI-SNR): -6.2447
+Epoch 5 | Step 9700 (1368/2083) | Train loss (−SI-SNR): -6.4615
+Epoch 5 | Step 9800 (1468/2083) | Train loss (−SI-SNR): -8.9473
+Epoch 5 | Step 9900 (1568/2083) | Train loss (−SI-SNR): -8.8245
+Epoch 5 | Step 10000 (1668/2083) | Train loss (−SI-SNR): -10.1815
+Epoch 5 | Step 10100 (1768/2083) | Train loss (−SI-SNR): -7.1548
+Epoch 5 | Step 10200 (1868/2083) | Train loss (−SI-SNR): -8.6960
+Epoch 5 | Step 10300 (1968/2083) | Train loss (−SI-SNR): -9.2175
+Epoch 5 | Step 10400 (2068/2083) | Train loss (−SI-SNR): -7.4298
+Epoch 5 finished. Avg train loss: -8.6661
+Epoch 5 finished. Avg valid loss: -9.0905
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -9.0905
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch005_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch005_spec.png
+
+===== Epoch 6/100 =====
+Epoch 6 | Step 10500 (85/2083) | Train loss (−SI-SNR): -6.8700
+Epoch 6 | Step 10600 (185/2083) | Train loss (−SI-SNR): -7.6245
+Epoch 6 | Step 10700 (285/2083) | Train loss (−SI-SNR): -8.2532
+Epoch 6 | Step 10800 (385/2083) | Train loss (−SI-SNR): -9.3021
+Epoch 6 | Step 10900 (485/2083) | Train loss (−SI-SNR): -9.8009
+Epoch 6 | Step 11000 (585/2083) | Train loss (−SI-SNR): -10.8824
+Epoch 6 | Step 11100 (685/2083) | Train loss (−SI-SNR): -10.7088
+Epoch 6 | Step 11200 (785/2083) | Train loss (−SI-SNR): -11.4285
+Epoch 6 | Step 11300 (885/2083) | Train loss (−SI-SNR): -8.9451
+Epoch 6 | Step 11400 (985/2083) | Train loss (−SI-SNR): -8.1484
+Epoch 6 | Step 11500 (1085/2083) | Train loss (−SI-SNR): -5.2155
+Epoch 6 | Step 11600 (1185/2083) | Train loss (−SI-SNR): -5.6979
+Epoch 6 | Step 11700 (1285/2083) | Train loss (−SI-SNR): -9.1823
+Epoch 6 | Step 11800 (1385/2083) | Train loss (−SI-SNR): -9.2301
+Epoch 6 | Step 11900 (1485/2083) | Train loss (−SI-SNR): -9.4029
+Epoch 6 | Step 12000 (1585/2083) | Train loss (−SI-SNR): -10.9452
+Epoch 6 | Step 12100 (1685/2083) | Train loss (−SI-SNR): -10.0370
+Epoch 6 | Step 12200 (1785/2083) | Train loss (−SI-SNR): -6.3799
+Epoch 6 | Step 12300 (1885/2083) | Train loss (−SI-SNR): -13.4810
+Epoch 6 | Step 12400 (1985/2083) | Train loss (−SI-SNR): -8.2460
+Epoch 6 finished. Avg train loss: -9.0703
+Epoch 6 finished. Avg valid loss: -10.1542
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -10.1542
+
+===== Epoch 7/100 =====
+Epoch 7 | Step 12500 (2/2083) | Train loss (−SI-SNR): -13.5307
+Epoch 7 | Step 12600 (102/2083) | Train loss (−SI-SNR): -13.7054
+Epoch 7 | Step 12700 (202/2083) | Train loss (−SI-SNR): -10.7910
+Epoch 7 | Step 12800 (302/2083) | Train loss (−SI-SNR): -7.7280
+Epoch 7 | Step 12900 (402/2083) | Train loss (−SI-SNR): -10.4267
+Epoch 7 | Step 13000 (502/2083) | Train loss (−SI-SNR): -11.3971
+Epoch 7 | Step 13100 (602/2083) | Train loss (−SI-SNR): -8.6580
+Epoch 7 | Step 13200 (702/2083) | Train loss (−SI-SNR): -10.8345
+Epoch 7 | Step 13300 (802/2083) | Train loss (−SI-SNR): -9.8422
+Epoch 7 | Step 13400 (902/2083) | Train loss (−SI-SNR): -9.8982
+Epoch 7 | Step 13500 (1002/2083) | Train loss (−SI-SNR): -10.1391
+Epoch 7 | Step 13600 (1102/2083) | Train loss (−SI-SNR): -11.2462
+Epoch 7 | Step 13700 (1202/2083) | Train loss (−SI-SNR): -12.2749
+Epoch 7 | Step 13800 (1302/2083) | Train loss (−SI-SNR): -9.6189
+Epoch 7 | Step 13900 (1402/2083) | Train loss (−SI-SNR): -10.8887
+Epoch 7 | Step 14000 (1502/2083) | Train loss (−SI-SNR): -10.7033
+Epoch 7 | Step 14100 (1602/2083) | Train loss (−SI-SNR): -6.8241
+Epoch 7 | Step 14200 (1702/2083) | Train loss (−SI-SNR): -8.1619
+Epoch 7 | Step 14300 (1802/2083) | Train loss (−SI-SNR): -7.9618
+Epoch 7 | Step 14400 (1902/2083) | Train loss (−SI-SNR): -12.7047
+Epoch 7 | Step 14500 (2002/2083) | Train loss (−SI-SNR): -8.0363
+Epoch 7 finished. Avg train loss: -9.8345
+Epoch 7 finished. Avg valid loss: -10.8997
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -10.8997
+
+===== Epoch 8/100 =====
+Epoch 8 | Step 14600 (19/2083) | Train loss (−SI-SNR): -8.9185
+Epoch 8 | Step 14700 (119/2083) | Train loss (−SI-SNR): -8.8972
+Epoch 8 | Step 14800 (219/2083) | Train loss (−SI-SNR): -11.0963
+Epoch 8 | Step 14900 (319/2083) | Train loss (−SI-SNR): -9.9830
+Epoch 8 | Step 15000 (419/2083) | Train loss (−SI-SNR): -9.5760
+Epoch 8 | Step 15100 (519/2083) | Train loss (−SI-SNR): -9.9146
+Epoch 8 | Step 15200 (619/2083) | Train loss (−SI-SNR): -11.3132
+Epoch 8 | Step 15300 (719/2083) | Train loss (−SI-SNR): -8.0245
+Epoch 8 | Step 15400 (819/2083) | Train loss (−SI-SNR): -9.4769
+Epoch 8 | Step 15500 (919/2083) | Train loss (−SI-SNR): -7.2057
+Epoch 8 | Step 15600 (1019/2083) | Train loss (−SI-SNR): -10.5182
+Epoch 8 | Step 15700 (1119/2083) | Train loss (−SI-SNR): -7.5510
+Epoch 8 | Step 15800 (1219/2083) | Train loss (−SI-SNR): -7.4975
+Epoch 8 | Step 15900 (1319/2083) | Train loss (−SI-SNR): -8.6782
+Epoch 8 | Step 16000 (1419/2083) | Train loss (−SI-SNR): -8.7555
+Epoch 8 | Step 16100 (1519/2083) | Train loss (−SI-SNR): -10.6140
+Epoch 8 | Step 16200 (1619/2083) | Train loss (−SI-SNR): -10.7554
+Epoch 8 | Step 16300 (1719/2083) | Train loss (−SI-SNR): -8.6607
+Epoch 8 | Step 16400 (1819/2083) | Train loss (−SI-SNR): -9.1172
+Epoch 8 | Step 16500 (1919/2083) | Train loss (−SI-SNR): -11.2165
+Epoch 8 | Step 16600 (2019/2083) | Train loss (−SI-SNR): -8.4454
+Epoch 8 finished. Avg train loss: -9.5391
+Epoch 8 finished. Avg valid loss: -10.7080
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 0 epoch(s) (best: -10.8997)
+
+===== Epoch 9/100 =====
+Epoch 9 | Step 16700 (36/2083) | Train loss (−SI-SNR): -9.3886
+Epoch 9 | Step 16800 (136/2083) | Train loss (−SI-SNR): -11.4718
+Epoch 9 | Step 16900 (236/2083) | Train loss (−SI-SNR): -8.9208
+Epoch 9 | Step 17000 (336/2083) | Train loss (−SI-SNR): -9.0507
+Epoch 9 | Step 17100 (436/2083) | Train loss (−SI-SNR): -10.1355
+Epoch 9 | Step 17200 (536/2083) | Train loss (−SI-SNR): -8.2821
+Epoch 9 | Step 17300 (636/2083) | Train loss (−SI-SNR): -7.9515
+Epoch 9 | Step 17400 (736/2083) | Train loss (−SI-SNR): -9.1794
+Epoch 9 | Step 17500 (836/2083) | Train loss (−SI-SNR): -11.4262
+Epoch 9 | Step 17600 (936/2083) | Train loss (−SI-SNR): -7.5324
+Epoch 9 | Step 17700 (1036/2083) | Train loss (−SI-SNR): -7.9391
+Epoch 9 | Step 17800 (1136/2083) | Train loss (−SI-SNR): -11.2112
+Epoch 9 | Step 17900 (1236/2083) | Train loss (−SI-SNR): -6.5216
+Epoch 9 | Step 18000 (1336/2083) | Train loss (−SI-SNR): -8.2523
+Epoch 9 | Step 18100 (1436/2083) | Train loss (−SI-SNR): -9.4718
+Epoch 9 | Step 18200 (1536/2083) | Train loss (−SI-SNR): -9.9592
+Epoch 9 | Step 18300 (1636/2083) | Train loss (−SI-SNR): -13.2276
+Epoch 9 | Step 18400 (1736/2083) | Train loss (−SI-SNR): -11.8742
+Epoch 9 | Step 18500 (1836/2083) | Train loss (−SI-SNR): -9.4330
+Epoch 9 | Step 18600 (1936/2083) | Train loss (−SI-SNR): -11.3749
+Epoch 9 | Step 18700 (2036/2083) | Train loss (−SI-SNR): -13.3814
+Epoch 9 finished. Avg train loss: -10.3295
+Epoch 9 finished. Avg valid loss: -11.5649
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -11.5649
+
+===== Epoch 10/100 =====
+Epoch 10 | Step 18800 (53/2083) | Train loss (−SI-SNR): -12.6931
+Epoch 10 | Step 18900 (153/2083) | Train loss (−SI-SNR): -7.3883
+Epoch 10 | Step 19000 (253/2083) | Train loss (−SI-SNR): -10.7908
+Epoch 10 | Step 19100 (353/2083) | Train loss (−SI-SNR): -9.5590
+Epoch 10 | Step 19200 (453/2083) | Train loss (−SI-SNR): -9.8515
+Epoch 10 | Step 19300 (553/2083) | Train loss (−SI-SNR): -10.6888
+Epoch 10 | Step 19400 (653/2083) | Train loss (−SI-SNR): -11.7437
+Epoch 10 | Step 19500 (753/2083) | Train loss (−SI-SNR): -11.2456
+Epoch 10 | Step 19600 (853/2083) | Train loss (−SI-SNR): -9.8726
+Epoch 10 | Step 19700 (953/2083) | Train loss (−SI-SNR): -9.5966
+Epoch 10 | Step 19800 (1053/2083) | Train loss (−SI-SNR): -11.9554
+Epoch 10 | Step 19900 (1153/2083) | Train loss (−SI-SNR): -7.5766
+Epoch 10 | Step 20000 (1253/2083) | Train loss (−SI-SNR): -12.0593
+Epoch 10 | Step 20100 (1353/2083) | Train loss (−SI-SNR): -11.1698
+Epoch 10 | Step 20200 (1453/2083) | Train loss (−SI-SNR): -8.1011
+Epoch 10 | Step 20300 (1553/2083) | Train loss (−SI-SNR): -8.9632
+Epoch 10 | Step 20400 (1653/2083) | Train loss (−SI-SNR): -8.9098
+Epoch 10 | Step 20500 (1753/2083) | Train loss (−SI-SNR): -9.0284
+Epoch 10 | Step 20600 (1853/2083) | Train loss (−SI-SNR): -10.2127
+Epoch 10 | Step 20700 (1953/2083) | Train loss (−SI-SNR): -11.9273
+Epoch 10 | Step 20800 (2053/2083) | Train loss (−SI-SNR): -12.3621
+Epoch 10 finished. Avg train loss: -10.5737
+Epoch 10 finished. Avg valid loss: -11.6561
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -11.6561
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch010_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch010_spec.png
+
+===== Epoch 11/100 =====
+Epoch 11 | Step 20900 (70/2083) | Train loss (−SI-SNR): -11.8956
+Epoch 11 | Step 21000 (170/2083) | Train loss (−SI-SNR): -12.0788
+Epoch 11 | Step 21100 (270/2083) | Train loss (−SI-SNR): -11.2902
+Epoch 11 | Step 21200 (370/2083) | Train loss (−SI-SNR): -10.4601
+Epoch 11 | Step 21300 (470/2083) | Train loss (−SI-SNR): -9.8284
+Epoch 11 | Step 21400 (570/2083) | Train loss (−SI-SNR): -10.2026
+Epoch 11 | Step 21500 (670/2083) | Train loss (−SI-SNR): -10.1005
+Epoch 11 | Step 21600 (770/2083) | Train loss (−SI-SNR): -11.6360
+Epoch 11 | Step 21700 (870/2083) | Train loss (−SI-SNR): -8.5849
+Epoch 11 | Step 21800 (970/2083) | Train loss (−SI-SNR): -7.2050
+Epoch 11 | Step 21900 (1070/2083) | Train loss (−SI-SNR): -6.6829
+Epoch 11 | Step 22000 (1170/2083) | Train loss (−SI-SNR): -12.5994
+Epoch 11 | Step 22100 (1270/2083) | Train loss (−SI-SNR): -10.1855
+Epoch 11 | Step 22200 (1370/2083) | Train loss (−SI-SNR): -10.6112
+Epoch 11 | Step 22300 (1470/2083) | Train loss (−SI-SNR): -10.1968
+Epoch 11 | Step 22400 (1570/2083) | Train loss (−SI-SNR): -7.2300
+Epoch 11 | Step 22500 (1670/2083) | Train loss (−SI-SNR): -9.6183
+Epoch 11 | Step 22600 (1770/2083) | Train loss (−SI-SNR): -10.0529
+Epoch 11 | Step 22700 (1870/2083) | Train loss (−SI-SNR): -10.1379
+Epoch 11 | Step 22800 (1970/2083) | Train loss (−SI-SNR): -10.2036
+Epoch 11 | Step 22900 (2070/2083) | Train loss (−SI-SNR): -9.9063
+Epoch 11 finished. Avg train loss: -10.0754
+Epoch 11 finished. Avg valid loss: -10.7619
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 0 epoch(s) (best: -11.6561)
+
+===== Epoch 12/100 =====
+Epoch 12 | Step 23000 (87/2083) | Train loss (−SI-SNR): -11.6059
+Epoch 12 | Step 23100 (187/2083) | Train loss (−SI-SNR): -9.3835
+Epoch 12 | Step 23200 (287/2083) | Train loss (−SI-SNR): -8.7811
+Epoch 12 | Step 23300 (387/2083) | Train loss (−SI-SNR): -9.0537
+Epoch 12 | Step 23400 (487/2083) | Train loss (−SI-SNR): -9.1528
+Epoch 12 | Step 23500 (587/2083) | Train loss (−SI-SNR): -9.3475
+Epoch 12 | Step 23600 (687/2083) | Train loss (−SI-SNR): -8.8844
+Epoch 12 | Step 23700 (787/2083) | Train loss (−SI-SNR): -10.7841
+Epoch 12 | Step 23800 (887/2083) | Train loss (−SI-SNR): -10.8088
+Epoch 12 | Step 23900 (987/2083) | Train loss (−SI-SNR): -12.0118
+Epoch 12 | Step 24000 (1087/2083) | Train loss (−SI-SNR): -5.9500
+Epoch 12 | Step 24100 (1187/2083) | Train loss (−SI-SNR): -8.0763
+Epoch 12 | Step 24200 (1287/2083) | Train loss (−SI-SNR): -8.9077
+Epoch 12 | Step 24300 (1387/2083) | Train loss (−SI-SNR): -8.4478
+Epoch 12 | Step 24400 (1487/2083) | Train loss (−SI-SNR): -10.8978
+Epoch 12 | Step 24500 (1587/2083) | Train loss (−SI-SNR): -9.7936
+Epoch 12 | Step 24600 (1687/2083) | Train loss (−SI-SNR): -11.9049
+Epoch 12 | Step 24700 (1787/2083) | Train loss (−SI-SNR): -9.5542
+Epoch 12 | Step 24800 (1887/2083) | Train loss (−SI-SNR): -8.4197
+Epoch 12 | Step 24900 (1987/2083) | Train loss (−SI-SNR): -9.2430
+Epoch 12 finished. Avg train loss: -9.0856
+Epoch 12 finished. Avg valid loss: -9.6326
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 0 epoch(s) (best: -11.6561)
+
+===== Epoch 13/100 =====
+Epoch 13 | Step 25000 (4/2083) | Train loss (−SI-SNR): -10.0265
+Epoch 13 | Step 25100 (104/2083) | Train loss (−SI-SNR): -8.5586
+Epoch 13 | Step 25200 (204/2083) | Train loss (−SI-SNR): -9.9323
+Epoch 13 | Step 25300 (304/2083) | Train loss (−SI-SNR): -8.3811
+Epoch 13 | Step 25400 (404/2083) | Train loss (−SI-SNR): -7.8242
+Epoch 13 | Step 25500 (504/2083) | Train loss (−SI-SNR): -9.5505
+Epoch 13 | Step 25600 (604/2083) | Train loss (−SI-SNR): -11.1753
+Epoch 13 | Step 25700 (704/2083) | Train loss (−SI-SNR): -8.1949
+Epoch 13 | Step 25800 (804/2083) | Train loss (−SI-SNR): -8.0319
+Epoch 13 | Step 25900 (904/2083) | Train loss (−SI-SNR): -7.9769
+Epoch 13 | Step 26000 (1004/2083) | Train loss (−SI-SNR): -6.0216
+Epoch 13 | Step 26100 (1104/2083) | Train loss (−SI-SNR): -10.0687
+Epoch 13 | Step 26200 (1204/2083) | Train loss (−SI-SNR): -10.1579
+Epoch 13 | Step 26300 (1304/2083) | Train loss (−SI-SNR): -9.8568
+Epoch 13 | Step 26400 (1404/2083) | Train loss (−SI-SNR): -7.0090
+Epoch 13 | Step 26500 (1504/2083) | Train loss (−SI-SNR): -8.9986
+Epoch 13 | Step 26600 (1604/2083) | Train loss (−SI-SNR): -11.0930
+Epoch 13 | Step 26700 (1704/2083) | Train loss (−SI-SNR): -10.5336
+Epoch 13 | Step 26800 (1804/2083) | Train loss (−SI-SNR): -8.4300
+Epoch 13 | Step 26900 (1904/2083) | Train loss (−SI-SNR): -9.5989
+Epoch 13 | Step 27000 (2004/2083) | Train loss (−SI-SNR): -8.0239
+Epoch 13 finished. Avg train loss: -9.2344
+Epoch 13 finished. Avg valid loss: -9.1843
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 0 epoch(s) (best: -11.6561)
+
+===== Epoch 14/100 =====
+Epoch 14 | Step 27100 (21/2083) | Train loss (−SI-SNR): -8.9476
+Epoch 14 | Step 27200 (121/2083) | Train loss (−SI-SNR): -10.6941
+Epoch 14 | Step 27300 (221/2083) | Train loss (−SI-SNR): -8.7613
+Epoch 14 | Step 27400 (321/2083) | Train loss (−SI-SNR): -8.9579
+Epoch 14 | Step 27500 (421/2083) | Train loss (−SI-SNR): -8.1411
+Epoch 14 | Step 27600 (521/2083) | Train loss (−SI-SNR): -9.4848
+Epoch 14 | Step 27700 (621/2083) | Train loss (−SI-SNR): -9.9364
+Epoch 14 | Step 27800 (721/2083) | Train loss (−SI-SNR): -6.2356
+Epoch 14 | Step 27900 (821/2083) | Train loss (−SI-SNR): -11.6312
+Epoch 14 | Step 28000 (921/2083) | Train loss (−SI-SNR): -9.8705
+Epoch 14 | Step 28100 (1021/2083) | Train loss (−SI-SNR): -7.7849
+Epoch 14 | Step 28200 (1121/2083) | Train loss (−SI-SNR): -11.5988
+Epoch 14 | Step 28300 (1221/2083) | Train loss (−SI-SNR): -7.7894
+Epoch 14 | Step 28400 (1321/2083) | Train loss (−SI-SNR): -4.8345
+Epoch 14 | Step 28500 (1421/2083) | Train loss (−SI-SNR): -8.7023
+Epoch 14 | Step 28600 (1521/2083) | Train loss (−SI-SNR): -9.8886
+Epoch 14 | Step 28700 (1621/2083) | Train loss (−SI-SNR): -7.3088
+Epoch 14 | Step 28800 (1721/2083) | Train loss (−SI-SNR): -8.6573
+Epoch 14 | Step 28900 (1821/2083) | Train loss (−SI-SNR): -9.1806
+Epoch 14 | Step 29000 (1921/2083) | Train loss (−SI-SNR): -9.1783
+Epoch 14 | Step 29100 (2021/2083) | Train loss (−SI-SNR): -9.1817
+Epoch 14 finished. Avg train loss: -9.2650
+Epoch 14 finished. Avg valid loss: -10.2270
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 0 epoch(s) (best: -11.6561)
+
+===== Epoch 15/100 =====
+Epoch 15 | Step 29200 (38/2083) | Train loss (−SI-SNR): -8.6005
+Epoch 15 | Step 29300 (138/2083) | Train loss (−SI-SNR): -10.4484
+Epoch 15 | Step 29400 (238/2083) | Train loss (−SI-SNR): -9.8551
+Epoch 15 | Step 29500 (338/2083) | Train loss (−SI-SNR): -7.6275
+Epoch 15 | Step 29600 (438/2083) | Train loss (−SI-SNR): -10.3026
+Epoch 15 | Step 29700 (538/2083) | Train loss (−SI-SNR): -9.7933
+Epoch 15 | Step 29800 (638/2083) | Train loss (−SI-SNR): -10.2659
+Epoch 15 | Step 29900 (738/2083) | Train loss (−SI-SNR): -10.2267
+Epoch 15 | Step 30000 (838/2083) | Train loss (−SI-SNR): -9.9202
+Epoch 15 | Step 30100 (938/2083) | Train loss (−SI-SNR): -11.7129
+Epoch 15 | Step 30200 (1038/2083) | Train loss (−SI-SNR): -10.7231
+Epoch 15 | Step 30300 (1138/2083) | Train loss (−SI-SNR): -11.9627
+Epoch 15 | Step 30400 (1238/2083) | Train loss (−SI-SNR): -9.9775
+Epoch 15 | Step 30500 (1338/2083) | Train loss (−SI-SNR): -8.1714
+Epoch 15 | Step 30600 (1438/2083) | Train loss (−SI-SNR): -12.9959
+Epoch 15 | Step 30700 (1538/2083) | Train loss (−SI-SNR): -7.4172
+Epoch 15 | Step 30800 (1638/2083) | Train loss (−SI-SNR): -8.2855
+Epoch 15 | Step 30900 (1738/2083) | Train loss (−SI-SNR): -9.6824
+Epoch 15 | Step 31000 (1838/2083) | Train loss (−SI-SNR): -9.4204
+Epoch 15 | Step 31100 (1938/2083) | Train loss (−SI-SNR): -8.5705
+Epoch 15 | Step 31200 (2038/2083) | Train loss (−SI-SNR): -9.2041
+Epoch 15 finished. Avg train loss: -9.9213
+Epoch 15 finished. Avg valid loss: -10.0329
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 0 epoch(s) (best: -11.6561)
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch015_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch015_spec.png
+
+===== Epoch 16/100 =====
+Epoch 16 | Step 31300 (55/2083) | Train loss (−SI-SNR): -10.9634
+Epoch 16 | Step 31400 (155/2083) | Train loss (−SI-SNR): -9.0648
+Epoch 16 | Step 31500 (255/2083) | Train loss (−SI-SNR): -10.2921
+Epoch 16 | Step 31600 (355/2083) | Train loss (−SI-SNR): -8.7414
+Epoch 16 | Step 31700 (455/2083) | Train loss (−SI-SNR): -7.1674
+Epoch 16 | Step 31800 (555/2083) | Train loss (−SI-SNR): -7.2834
+Epoch 16 | Step 31900 (655/2083) | Train loss (−SI-SNR): -8.0243
+Epoch 16 | Step 32000 (755/2083) | Train loss (−SI-SNR): -9.3881
+Epoch 16 | Step 32100 (855/2083) | Train loss (−SI-SNR): -7.6452
+Epoch 16 | Step 32200 (955/2083) | Train loss (−SI-SNR): -3.8105
+Epoch 16 | Step 32300 (1055/2083) | Train loss (−SI-SNR): -5.9034
+Epoch 16 | Step 32400 (1155/2083) | Train loss (−SI-SNR): -9.7710
+Epoch 16 | Step 32500 (1255/2083) | Train loss (−SI-SNR): -7.4994
+Epoch 16 | Step 32600 (1355/2083) | Train loss (−SI-SNR): -9.2131
+Epoch 16 | Step 32700 (1455/2083) | Train loss (−SI-SNR): -7.5566
+Epoch 16 | Step 32800 (1555/2083) | Train loss (−SI-SNR): -6.2110
+Epoch 16 | Step 32900 (1655/2083) | Train loss (−SI-SNR): -9.8127
+Epoch 16 | Step 33000 (1755/2083) | Train loss (−SI-SNR): -7.0052
+Epoch 16 | Step 33100 (1855/2083) | Train loss (−SI-SNR): -9.5832
+Epoch 16 | Step 33200 (1955/2083) | Train loss (−SI-SNR): -9.1897
+Epoch 16 | Step 33300 (2055/2083) | Train loss (−SI-SNR): -6.8485
+Epoch 16 finished. Avg train loss: -7.7681
+Epoch 16 finished. Avg valid loss: -3.6152
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 0 epoch(s) (best: -11.6561)
+
+===== Epoch 17/100 =====
+Epoch 17 | Step 33400 (72/2083) | Train loss (−SI-SNR): -10.3038
+Epoch 17 | Step 33500 (172/2083) | Train loss (−SI-SNR): -4.8071
+Epoch 17 | Step 33600 (272/2083) | Train loss (−SI-SNR): -8.9881
+Epoch 17 | Step 33700 (372/2083) | Train loss (−SI-SNR): -7.7436
+Epoch 17 | Step 33800 (472/2083) | Train loss (−SI-SNR): -7.9076
+Epoch 17 | Step 33900 (572/2083) | Train loss (−SI-SNR): -10.5964
+Epoch 17 | Step 34000 (672/2083) | Train loss (−SI-SNR): -8.4389
+Epoch 17 | Step 34100 (772/2083) | Train loss (−SI-SNR): -9.4016
+Epoch 17 | Step 34200 (872/2083) | Train loss (−SI-SNR): -6.9271
+Epoch 17 | Step 34300 (972/2083) | Train loss (−SI-SNR): -7.2602
+Epoch 17 | Step 34400 (1072/2083) | Train loss (−SI-SNR): -9.8675
+Epoch 17 | Step 34500 (1172/2083) | Train loss (−SI-SNR): -8.6855
+Epoch 17 | Step 34600 (1272/2083) | Train loss (−SI-SNR): -4.6211
+Epoch 17 | Step 34700 (1372/2083) | Train loss (−SI-SNR): -7.9649
+Epoch 17 | Step 34800 (1472/2083) | Train loss (−SI-SNR): -10.1727
+Epoch 17 | Step 34900 (1572/2083) | Train loss (−SI-SNR): -10.6284
+Epoch 17 | Step 35000 (1672/2083) | Train loss (−SI-SNR): -10.7549
+Epoch 17 | Step 35100 (1772/2083) | Train loss (−SI-SNR): -11.0423
+Epoch 17 | Step 35200 (1872/2083) | Train loss (−SI-SNR): -12.2483
+Epoch 17 | Step 35300 (1972/2083) | Train loss (−SI-SNR): -10.9921
+Epoch 17 | Step 35400 (2072/2083) | Train loss (−SI-SNR): -9.7809
+Epoch 17 finished. Avg train loss: -9.0261
+Epoch 17 finished. Avg valid loss: -9.3023
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 0 epoch(s) (best: -11.6561)
+
+===== Epoch 18/100 =====
+Epoch 18 | Step 35500 (89/2083) | Train loss (−SI-SNR): -10.9934
+Epoch 18 | Step 35600 (189/2083) | Train loss (−SI-SNR): -12.1876
+Epoch 18 | Step 35700 (289/2083) | Train loss (−SI-SNR): -8.7668
+Epoch 18 | Step 35800 (389/2083) | Train loss (−SI-SNR): -9.6643
+Epoch 18 | Step 35900 (489/2083) | Train loss (−SI-SNR): -10.2296
+Epoch 18 | Step 36000 (589/2083) | Train loss (−SI-SNR): -9.8249
+Epoch 18 | Step 36100 (689/2083) | Train loss (−SI-SNR): -12.5870
+Epoch 18 | Step 36200 (789/2083) | Train loss (−SI-SNR): -9.0785
+Epoch 18 | Step 36300 (889/2083) | Train loss (−SI-SNR): -10.3723
+Epoch 18 | Step 36400 (989/2083) | Train loss (−SI-SNR): -7.6192
+Epoch 18 | Step 36500 (1089/2083) | Train loss (−SI-SNR): -11.5793
+Epoch 18 | Step 36600 (1189/2083) | Train loss (−SI-SNR): -10.6739
+Epoch 18 | Step 36700 (1289/2083) | Train loss (−SI-SNR): -9.3894
+Epoch 18 | Step 36800 (1389/2083) | Train loss (−SI-SNR): -13.5712
+Epoch 18 | Step 36900 (1489/2083) | Train loss (−SI-SNR): -11.1836
+Epoch 18 | Step 37000 (1589/2083) | Train loss (−SI-SNR): -7.8644
+Epoch 18 | Step 37100 (1689/2083) | Train loss (−SI-SNR): -10.8324
+Epoch 18 | Step 37200 (1789/2083) | Train loss (−SI-SNR): -10.1198
+Epoch 18 | Step 37300 (1889/2083) | Train loss (−SI-SNR): -8.8921
+Epoch 18 | Step 37400 (1989/2083) | Train loss (−SI-SNR): -13.4209
+Epoch 18 finished. Avg train loss: -10.5920
+Epoch 18 finished. Avg valid loss: -11.4629
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 0 epoch(s) (best: -11.6561)
+
+===== Epoch 19/100 =====
+Epoch 19 | Step 37500 (6/2083) | Train loss (−SI-SNR): -9.1753
+Epoch 19 | Step 37600 (106/2083) | Train loss (−SI-SNR): -10.8266
+Epoch 19 | Step 37700 (206/2083) | Train loss (−SI-SNR): -12.3340
+Epoch 19 | Step 37800 (306/2083) | Train loss (−SI-SNR): -10.5948
+Epoch 19 | Step 37900 (406/2083) | Train loss (−SI-SNR): -11.4146
+Epoch 19 | Step 38000 (506/2083) | Train loss (−SI-SNR): -10.0321
+Epoch 19 | Step 38100 (606/2083) | Train loss (−SI-SNR): -13.7158
+Epoch 19 | Step 38200 (706/2083) | Train loss (−SI-SNR): -12.9431
+Epoch 19 | Step 38300 (806/2083) | Train loss (−SI-SNR): -12.8425
+Epoch 19 | Step 38400 (906/2083) | Train loss (−SI-SNR): -9.8644
+Epoch 19 | Step 38500 (1006/2083) | Train loss (−SI-SNR): -15.9496
+Epoch 19 | Step 38600 (1106/2083) | Train loss (−SI-SNR): -11.1999
+Epoch 19 | Step 38700 (1206/2083) | Train loss (−SI-SNR): -13.9658
+Epoch 19 | Step 38800 (1306/2083) | Train loss (−SI-SNR): -12.0301
+Epoch 19 | Step 38900 (1406/2083) | Train loss (−SI-SNR): -11.1104
+Epoch 19 | Step 39000 (1506/2083) | Train loss (−SI-SNR): -13.2356
+Epoch 19 | Step 39100 (1606/2083) | Train loss (−SI-SNR): -13.8895
+Epoch 19 | Step 39200 (1706/2083) | Train loss (−SI-SNR): -11.5370
+Epoch 19 | Step 39300 (1806/2083) | Train loss (−SI-SNR): -11.1726
+Epoch 19 | Step 39400 (1906/2083) | Train loss (−SI-SNR): -11.2561
+Epoch 19 | Step 39500 (2006/2083) | Train loss (−SI-SNR): -14.1000
+Epoch 19 finished. Avg train loss: -11.0265
+Epoch 19 finished. Avg valid loss: -12.0173
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -12.0173
+
+===== Epoch 20/100 =====
+Epoch 20 | Step 39600 (23/2083) | Train loss (−SI-SNR): -11.5011
+Epoch 20 | Step 39700 (123/2083) | Train loss (−SI-SNR): -11.9308
+Epoch 20 | Step 39800 (223/2083) | Train loss (−SI-SNR): -12.2306
+Epoch 20 | Step 39900 (323/2083) | Train loss (−SI-SNR): -10.6584
+Epoch 20 | Step 40000 (423/2083) | Train loss (−SI-SNR): -10.9601
+Epoch 20 | Step 40100 (523/2083) | Train loss (−SI-SNR): -10.6414
+Epoch 20 | Step 40200 (623/2083) | Train loss (−SI-SNR): -9.9875
+Epoch 20 | Step 40300 (723/2083) | Train loss (−SI-SNR): -14.5553
+Epoch 20 | Step 40400 (823/2083) | Train loss (−SI-SNR): -12.7122
+Epoch 20 | Step 40500 (923/2083) | Train loss (−SI-SNR): -10.9990
+Epoch 20 | Step 40600 (1023/2083) | Train loss (−SI-SNR): -9.9733
+Epoch 20 | Step 40700 (1123/2083) | Train loss (−SI-SNR): -14.0159
+Epoch 20 | Step 40800 (1223/2083) | Train loss (−SI-SNR): -10.4913
+Epoch 20 | Step 40900 (1323/2083) | Train loss (−SI-SNR): -14.7420
+Epoch 20 | Step 41000 (1423/2083) | Train loss (−SI-SNR): -12.5952
+Epoch 20 | Step 41100 (1523/2083) | Train loss (−SI-SNR): -11.7630
+Epoch 20 | Step 41200 (1623/2083) | Train loss (−SI-SNR): -12.9996
+Epoch 20 | Step 41300 (1723/2083) | Train loss (−SI-SNR): -10.8081
+Epoch 20 | Step 41400 (1823/2083) | Train loss (−SI-SNR): -14.6160
+Epoch 20 | Step 41500 (1923/2083) | Train loss (−SI-SNR): -6.5398
+Epoch 20 | Step 41600 (2023/2083) | Train loss (−SI-SNR): -9.9450
+Epoch 20 finished. Avg train loss: -11.4346
+Epoch 20 finished. Avg valid loss: -12.3950
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -12.3950
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch020_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch020_spec.png
+
+===== Epoch 21/100 =====
+Epoch 21 | Step 41700 (40/2083) | Train loss (−SI-SNR): -10.9807
+Epoch 21 | Step 41800 (140/2083) | Train loss (−SI-SNR): -13.5748
+Epoch 21 | Step 41900 (240/2083) | Train loss (−SI-SNR): -10.7130
+Epoch 21 | Step 42000 (340/2083) | Train loss (−SI-SNR): -9.4940
+Epoch 21 | Step 42100 (440/2083) | Train loss (−SI-SNR): -11.5476
+Epoch 21 | Step 42200 (540/2083) | Train loss (−SI-SNR): -11.8560
+Epoch 21 | Step 42300 (640/2083) | Train loss (−SI-SNR): -9.8101
+Epoch 21 | Step 42400 (740/2083) | Train loss (−SI-SNR): -11.3688
+Epoch 21 | Step 42500 (840/2083) | Train loss (−SI-SNR): -12.2658
+Epoch 21 | Step 42600 (940/2083) | Train loss (−SI-SNR): -13.0159
+Epoch 21 | Step 42700 (1040/2083) | Train loss (−SI-SNR): -10.2470
+Epoch 21 | Step 42800 (1140/2083) | Train loss (−SI-SNR): -14.3348
+Epoch 21 | Step 42900 (1240/2083) | Train loss (−SI-SNR): -9.4632
+Epoch 21 | Step 43000 (1340/2083) | Train loss (−SI-SNR): -8.9047
+Epoch 21 | Step 43100 (1440/2083) | Train loss (−SI-SNR): -12.7389
+Epoch 21 | Step 43200 (1540/2083) | Train loss (−SI-SNR): -12.3803
+Epoch 21 | Step 43300 (1640/2083) | Train loss (−SI-SNR): -11.8404
+Epoch 21 | Step 43400 (1740/2083) | Train loss (−SI-SNR): -11.5164
+Epoch 21 | Step 43500 (1840/2083) | Train loss (−SI-SNR): -12.0363
+Epoch 21 | Step 43600 (1940/2083) | Train loss (−SI-SNR): -11.4282
+Epoch 21 | Step 43700 (2040/2083) | Train loss (−SI-SNR): -9.1640
+Epoch 21 finished. Avg train loss: -11.7041
+Epoch 21 finished. Avg valid loss: -12.6510
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -12.6510
+
+===== Epoch 22/100 =====
+Epoch 22 | Step 43800 (57/2083) | Train loss (−SI-SNR): -11.3526
+Epoch 22 | Step 43900 (157/2083) | Train loss (−SI-SNR): -11.0392
+Epoch 22 | Step 44000 (257/2083) | Train loss (−SI-SNR): -13.4592
+Epoch 22 | Step 44100 (357/2083) | Train loss (−SI-SNR): -11.1847
+Epoch 22 | Step 44200 (457/2083) | Train loss (−SI-SNR): -11.8071
+Epoch 22 | Step 44300 (557/2083) | Train loss (−SI-SNR): -10.4039
+Epoch 22 | Step 44400 (657/2083) | Train loss (−SI-SNR): -10.7019
+Epoch 22 | Step 44500 (757/2083) | Train loss (−SI-SNR): -11.6882
+Epoch 22 | Step 44600 (857/2083) | Train loss (−SI-SNR): -13.9372
+Epoch 22 | Step 44700 (957/2083) | Train loss (−SI-SNR): -9.8848
+Epoch 22 | Step 44800 (1057/2083) | Train loss (−SI-SNR): -11.2735
+Epoch 22 | Step 44900 (1157/2083) | Train loss (−SI-SNR): -11.9366
+Epoch 22 | Step 45000 (1257/2083) | Train loss (−SI-SNR): -11.1681
+Epoch 22 | Step 45100 (1357/2083) | Train loss (−SI-SNR): -14.0700
+Epoch 22 | Step 45200 (1457/2083) | Train loss (−SI-SNR): -14.1186
+Epoch 22 | Step 45300 (1557/2083) | Train loss (−SI-SNR): -10.9820
+Epoch 22 | Step 45400 (1657/2083) | Train loss (−SI-SNR): -12.4465
+Epoch 22 | Step 45500 (1757/2083) | Train loss (−SI-SNR): -10.4539
+Epoch 22 | Step 45600 (1857/2083) | Train loss (−SI-SNR): -9.6383
+Epoch 22 | Step 45700 (1957/2083) | Train loss (−SI-SNR): -12.8286
+Epoch 22 | Step 45800 (2057/2083) | Train loss (−SI-SNR): -9.5558
+Epoch 22 finished. Avg train loss: -11.9714
+Epoch 22 finished. Avg valid loss: -12.8623
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -12.8623
+
+===== Epoch 23/100 =====
+Epoch 23 | Step 45900 (74/2083) | Train loss (−SI-SNR): -13.6148
+Epoch 23 | Step 46000 (174/2083) | Train loss (−SI-SNR): -16.0302
+Epoch 23 | Step 46100 (274/2083) | Train loss (−SI-SNR): -11.2761
+Epoch 23 | Step 46200 (374/2083) | Train loss (−SI-SNR): -8.7017
+Epoch 23 | Step 46300 (474/2083) | Train loss (−SI-SNR): -11.0254
+Epoch 23 | Step 46400 (574/2083) | Train loss (−SI-SNR): -14.6367
+Epoch 23 | Step 46500 (674/2083) | Train loss (−SI-SNR): -13.7002
+Epoch 23 | Step 46600 (774/2083) | Train loss (−SI-SNR): -10.4559
+Epoch 23 | Step 46700 (874/2083) | Train loss (−SI-SNR): -11.6412
+Epoch 23 | Step 46800 (974/2083) | Train loss (−SI-SNR): -10.1774
+Epoch 23 | Step 46900 (1074/2083) | Train loss (−SI-SNR): -10.3022
+Epoch 23 | Step 47000 (1174/2083) | Train loss (−SI-SNR): -14.2671
+Epoch 23 | Step 47100 (1274/2083) | Train loss (−SI-SNR): -12.4269
+Epoch 23 | Step 47200 (1374/2083) | Train loss (−SI-SNR): -13.9538
+Epoch 23 | Step 47300 (1474/2083) | Train loss (−SI-SNR): -13.9588
+Epoch 23 | Step 47400 (1574/2083) | Train loss (−SI-SNR): -12.0974
+Epoch 23 | Step 47500 (1674/2083) | Train loss (−SI-SNR): -13.3797
+Epoch 23 | Step 47600 (1774/2083) | Train loss (−SI-SNR): -12.8179
+Epoch 23 | Step 47700 (1874/2083) | Train loss (−SI-SNR): -13.6210
+Epoch 23 | Step 47800 (1974/2083) | Train loss (−SI-SNR): -9.2834
+Epoch 23 | Step 47900 (2074/2083) | Train loss (−SI-SNR): -10.6543
+Epoch 23 finished. Avg train loss: -12.1068
+Epoch 23 finished. Avg valid loss: -13.0526
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -13.0526
+
+===== Epoch 24/100 =====
+Epoch 24 | Step 48000 (91/2083) | Train loss (−SI-SNR): -9.1646
+Epoch 24 | Step 48100 (191/2083) | Train loss (−SI-SNR): -11.4255
+Epoch 24 | Step 48200 (291/2083) | Train loss (−SI-SNR): -15.5245
+Epoch 24 | Step 48300 (391/2083) | Train loss (−SI-SNR): -10.3327
+Epoch 24 | Step 48400 (491/2083) | Train loss (−SI-SNR): -13.0482
+Epoch 24 | Step 48500 (591/2083) | Train loss (−SI-SNR): -14.5303
+Epoch 24 | Step 48600 (691/2083) | Train loss (−SI-SNR): -11.0822
+Epoch 24 | Step 48700 (791/2083) | Train loss (−SI-SNR): -10.0481
+Epoch 24 | Step 48800 (891/2083) | Train loss (−SI-SNR): -11.8176
+Epoch 24 | Step 48900 (991/2083) | Train loss (−SI-SNR): -11.4330
+Epoch 24 | Step 49000 (1091/2083) | Train loss (−SI-SNR): -11.7004
+Epoch 24 | Step 49100 (1191/2083) | Train loss (−SI-SNR): -12.9067
+Epoch 24 | Step 49200 (1291/2083) | Train loss (−SI-SNR): -13.6624
+Epoch 24 | Step 49300 (1391/2083) | Train loss (−SI-SNR): -10.7144
+Epoch 24 | Step 49400 (1491/2083) | Train loss (−SI-SNR): -11.0796
+Epoch 24 | Step 49500 (1591/2083) | Train loss (−SI-SNR): -13.4261
+Epoch 24 | Step 49600 (1691/2083) | Train loss (−SI-SNR): -16.0195
+Epoch 24 | Step 49700 (1791/2083) | Train loss (−SI-SNR): -12.2638
+Epoch 24 | Step 49800 (1891/2083) | Train loss (−SI-SNR): -12.9256
+Epoch 24 | Step 49900 (1991/2083) | Train loss (−SI-SNR): -12.3475
+Epoch 24 finished. Avg train loss: -12.2615
+Epoch 24 finished. Avg valid loss: -13.1797
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -13.1797
+
+===== Epoch 25/100 =====
+Epoch 25 | Step 50000 (8/2083) | Train loss (−SI-SNR): -11.6875
+Epoch 25 | Step 50100 (108/2083) | Train loss (−SI-SNR): -12.1453
+Epoch 25 | Step 50200 (208/2083) | Train loss (−SI-SNR): -9.9557
+Epoch 25 | Step 50300 (308/2083) | Train loss (−SI-SNR): -11.8826
+Epoch 25 | Step 50400 (408/2083) | Train loss (−SI-SNR): -12.2948
+Epoch 25 | Step 50500 (508/2083) | Train loss (−SI-SNR): -10.4916
+Epoch 25 | Step 50600 (608/2083) | Train loss (−SI-SNR): -11.9539
+Epoch 25 | Step 50700 (708/2083) | Train loss (−SI-SNR): -12.9043
+Epoch 25 | Step 50800 (808/2083) | Train loss (−SI-SNR): -10.3888
+Epoch 25 | Step 50900 (908/2083) | Train loss (−SI-SNR): -12.7250
+Epoch 25 | Step 51000 (1008/2083) | Train loss (−SI-SNR): -11.2963
+Epoch 25 | Step 51100 (1108/2083) | Train loss (−SI-SNR): -10.0169
+Epoch 25 | Step 51200 (1208/2083) | Train loss (−SI-SNR): -13.5071
+Epoch 25 | Step 51300 (1308/2083) | Train loss (−SI-SNR): -10.0096
+Epoch 25 | Step 51400 (1408/2083) | Train loss (−SI-SNR): -15.5227
+Epoch 25 | Step 51500 (1508/2083) | Train loss (−SI-SNR): -16.0059
+Epoch 25 | Step 51600 (1608/2083) | Train loss (−SI-SNR): -12.0923
+Epoch 25 | Step 51700 (1708/2083) | Train loss (−SI-SNR): -9.8238
+Epoch 25 | Step 51800 (1808/2083) | Train loss (−SI-SNR): -11.6353
+Epoch 25 | Step 51900 (1908/2083) | Train loss (−SI-SNR): -12.9688
+Epoch 25 | Step 52000 (2008/2083) | Train loss (−SI-SNR): -13.8651
+Epoch 25 finished. Avg train loss: -12.4653
+Epoch 25 finished. Avg valid loss: -13.3518
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -13.3518
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch025_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch025_spec.png
+
+===== Epoch 26/100 =====
+Epoch 26 | Step 52100 (25/2083) | Train loss (−SI-SNR): -11.3304
+Epoch 26 | Step 52200 (125/2083) | Train loss (−SI-SNR): -14.9422
+Epoch 26 | Step 52300 (225/2083) | Train loss (−SI-SNR): -9.5851
+Epoch 26 | Step 52400 (325/2083) | Train loss (−SI-SNR): -11.4769
+Epoch 26 | Step 52500 (425/2083) | Train loss (−SI-SNR): -13.2605
+Epoch 26 | Step 52600 (525/2083) | Train loss (−SI-SNR): -11.2770
+Epoch 26 | Step 52700 (625/2083) | Train loss (−SI-SNR): -14.8487
+Epoch 26 | Step 52800 (725/2083) | Train loss (−SI-SNR): -14.6852
+Epoch 26 | Step 52900 (825/2083) | Train loss (−SI-SNR): -12.1363
+Epoch 26 | Step 53000 (925/2083) | Train loss (−SI-SNR): -13.5347
+Epoch 26 | Step 53100 (1025/2083) | Train loss (−SI-SNR): -13.2063
+Epoch 26 | Step 53200 (1125/2083) | Train loss (−SI-SNR): -12.6736
+Epoch 26 | Step 53300 (1225/2083) | Train loss (−SI-SNR): -13.4347
+Epoch 26 | Step 53400 (1325/2083) | Train loss (−SI-SNR): -10.8355
+Epoch 26 | Step 53500 (1425/2083) | Train loss (−SI-SNR): -11.6058
+Epoch 26 | Step 53600 (1525/2083) | Train loss (−SI-SNR): -9.8121
+Epoch 26 | Step 53700 (1625/2083) | Train loss (−SI-SNR): -13.9543
+Epoch 26 | Step 53800 (1725/2083) | Train loss (−SI-SNR): -14.0534
+Epoch 26 | Step 53900 (1825/2083) | Train loss (−SI-SNR): -11.3599
+Epoch 26 | Step 54000 (1925/2083) | Train loss (−SI-SNR): -13.1438
+Epoch 26 | Step 54100 (2025/2083) | Train loss (−SI-SNR): -14.1059
+Epoch 26 finished. Avg train loss: -12.5628
+Epoch 26 finished. Avg valid loss: -13.4351
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -13.4351
+
+===== Epoch 27/100 =====
+Epoch 27 | Step 54200 (42/2083) | Train loss (−SI-SNR): -12.2216
+Epoch 27 | Step 54300 (142/2083) | Train loss (−SI-SNR): -9.7257
+Epoch 27 | Step 54400 (242/2083) | Train loss (−SI-SNR): -13.9213
+Epoch 27 | Step 54500 (342/2083) | Train loss (−SI-SNR): -12.2443
+Epoch 27 | Step 54600 (442/2083) | Train loss (−SI-SNR): -13.6164
+Epoch 27 | Step 54700 (542/2083) | Train loss (−SI-SNR): -11.9021
+Epoch 27 | Step 54800 (642/2083) | Train loss (−SI-SNR): -11.7157
+Epoch 27 | Step 54900 (742/2083) | Train loss (−SI-SNR): -13.1329
+Epoch 27 | Step 55000 (842/2083) | Train loss (−SI-SNR): -13.5159
+Epoch 27 | Step 55100 (942/2083) | Train loss (−SI-SNR): -11.7379
+Epoch 27 | Step 55200 (1042/2083) | Train loss (−SI-SNR): -11.8367
+Epoch 27 | Step 55300 (1142/2083) | Train loss (−SI-SNR): -14.4907
+Epoch 27 | Step 55400 (1242/2083) | Train loss (−SI-SNR): -13.1704
+Epoch 27 | Step 55500 (1342/2083) | Train loss (−SI-SNR): -14.7943
+Epoch 27 | Step 55600 (1442/2083) | Train loss (−SI-SNR): -13.6225
+Epoch 27 | Step 55700 (1542/2083) | Train loss (−SI-SNR): -11.8601
+Epoch 27 | Step 55800 (1642/2083) | Train loss (−SI-SNR): -14.6556
+Epoch 27 | Step 55900 (1742/2083) | Train loss (−SI-SNR): -14.2394
+Epoch 27 | Step 56000 (1842/2083) | Train loss (−SI-SNR): -14.7805
+Epoch 27 | Step 56100 (1942/2083) | Train loss (−SI-SNR): -13.6531
+Epoch 27 | Step 56200 (2042/2083) | Train loss (−SI-SNR): -15.7335
+Epoch 27 finished. Avg train loss: -12.7158
+Epoch 27 finished. Avg valid loss: -13.5945
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -13.5945
+
+===== Epoch 28/100 =====
+Epoch 28 | Step 56300 (59/2083) | Train loss (−SI-SNR): -13.0129
+Epoch 28 | Step 56400 (159/2083) | Train loss (−SI-SNR): -14.4710
+Epoch 28 | Step 56500 (259/2083) | Train loss (−SI-SNR): -12.6449
+Epoch 28 | Step 56600 (359/2083) | Train loss (−SI-SNR): -10.5382
+Epoch 28 | Step 56700 (459/2083) | Train loss (−SI-SNR): -13.8270
+Epoch 28 | Step 56800 (559/2083) | Train loss (−SI-SNR): -15.3298
+Epoch 28 | Step 56900 (659/2083) | Train loss (−SI-SNR): -12.4234
+Epoch 28 | Step 57000 (759/2083) | Train loss (−SI-SNR): -14.9745
+Epoch 28 | Step 57100 (859/2083) | Train loss (−SI-SNR): -12.2688
+Epoch 28 | Step 57200 (959/2083) | Train loss (−SI-SNR): -12.6592
+Epoch 28 | Step 57300 (1059/2083) | Train loss (−SI-SNR): -13.1798
+Epoch 28 | Step 57400 (1159/2083) | Train loss (−SI-SNR): -14.3209
+Epoch 28 | Step 57500 (1259/2083) | Train loss (−SI-SNR): -13.4078
+Epoch 28 | Step 57600 (1359/2083) | Train loss (−SI-SNR): -10.5769
+Epoch 28 | Step 57700 (1459/2083) | Train loss (−SI-SNR): -12.4891
+Epoch 28 | Step 57800 (1559/2083) | Train loss (−SI-SNR): -12.9681
+Epoch 28 | Step 57900 (1659/2083) | Train loss (−SI-SNR): -12.9591
+Epoch 28 | Step 58000 (1759/2083) | Train loss (−SI-SNR): -15.9192
+Epoch 28 | Step 58100 (1859/2083) | Train loss (−SI-SNR): -14.0367
+Epoch 28 | Step 58200 (1959/2083) | Train loss (−SI-SNR): -13.3809
+Epoch 28 | Step 58300 (2059/2083) | Train loss (−SI-SNR): -10.6326
+Epoch 28 finished. Avg train loss: -12.9731
+Epoch 28 finished. Avg valid loss: -13.7559
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -13.7559
+
+===== Epoch 29/100 =====
+Epoch 29 | Step 58400 (76/2083) | Train loss (−SI-SNR): -15.4931
+Epoch 29 | Step 58500 (176/2083) | Train loss (−SI-SNR): -15.5562
+Epoch 29 | Step 58600 (276/2083) | Train loss (−SI-SNR): -12.4784
+Epoch 29 | Step 58700 (376/2083) | Train loss (−SI-SNR): -12.6497
+Epoch 29 | Step 58800 (476/2083) | Train loss (−SI-SNR): -11.3482
+Epoch 29 | Step 58900 (576/2083) | Train loss (−SI-SNR): -12.8201
+Epoch 29 | Step 59000 (676/2083) | Train loss (−SI-SNR): -16.1412
+Epoch 29 | Step 59100 (776/2083) | Train loss (−SI-SNR): -14.5509
+Epoch 29 | Step 59200 (876/2083) | Train loss (−SI-SNR): -11.7498
+Epoch 29 | Step 59300 (976/2083) | Train loss (−SI-SNR): -13.2949
+Epoch 29 | Step 59400 (1076/2083) | Train loss (−SI-SNR): -12.3530
+Epoch 29 | Step 59500 (1176/2083) | Train loss (−SI-SNR): -14.2757
+Epoch 29 | Step 59600 (1276/2083) | Train loss (−SI-SNR): -15.1948
+Epoch 29 | Step 59700 (1376/2083) | Train loss (−SI-SNR): -12.8416
+Epoch 29 | Step 59800 (1476/2083) | Train loss (−SI-SNR): -12.9699
+Epoch 29 | Step 59900 (1576/2083) | Train loss (−SI-SNR): -11.5351
+Epoch 29 | Step 60000 (1676/2083) | Train loss (−SI-SNR): -17.7051
+Epoch 29 | Step 60100 (1776/2083) | Train loss (−SI-SNR): -14.8135
+Epoch 29 | Step 60200 (1876/2083) | Train loss (−SI-SNR): -13.2706
+Epoch 29 | Step 60300 (1976/2083) | Train loss (−SI-SNR): -14.6825
+Epoch 29 | Step 60400 (2076/2083) | Train loss (−SI-SNR): -13.2703
+Epoch 29 finished. Avg train loss: -13.0950
+Epoch 29 finished. Avg valid loss: -13.8623
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -13.8623
+
+===== Epoch 30/100 =====
+Epoch 30 | Step 60500 (93/2083) | Train loss (−SI-SNR): -15.7533
+Epoch 30 | Step 60600 (193/2083) | Train loss (−SI-SNR): -15.4927
+Epoch 30 | Step 60700 (293/2083) | Train loss (−SI-SNR): -14.4544
+Epoch 30 | Step 60800 (393/2083) | Train loss (−SI-SNR): -14.0305
+Epoch 30 | Step 60900 (493/2083) | Train loss (−SI-SNR): -12.5483
+Epoch 30 | Step 61000 (593/2083) | Train loss (−SI-SNR): -12.7537
+Epoch 30 | Step 61100 (693/2083) | Train loss (−SI-SNR): -11.2437
+Epoch 30 | Step 61200 (793/2083) | Train loss (−SI-SNR): -13.0593
+Epoch 30 | Step 61300 (893/2083) | Train loss (−SI-SNR): -18.6422
+Epoch 30 | Step 61400 (993/2083) | Train loss (−SI-SNR): -12.4382
+Epoch 30 | Step 61500 (1093/2083) | Train loss (−SI-SNR): -13.9973
+Epoch 30 | Step 61600 (1193/2083) | Train loss (−SI-SNR): -11.3748
+Epoch 30 | Step 61700 (1293/2083) | Train loss (−SI-SNR): -14.7155
+Epoch 30 | Step 61800 (1393/2083) | Train loss (−SI-SNR): -12.7256
+Epoch 30 | Step 61900 (1493/2083) | Train loss (−SI-SNR): -18.6259
+Epoch 30 | Step 62000 (1593/2083) | Train loss (−SI-SNR): -12.2718
+Epoch 30 | Step 62100 (1693/2083) | Train loss (−SI-SNR): -12.6913
+Epoch 30 | Step 62200 (1793/2083) | Train loss (−SI-SNR): -10.9275
+Epoch 30 | Step 62300 (1893/2083) | Train loss (−SI-SNR): -12.4884
+Epoch 30 | Step 62400 (1993/2083) | Train loss (−SI-SNR): -13.8602
+Epoch 30 finished. Avg train loss: -13.1990
+Epoch 30 finished. Avg valid loss: -13.9521
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -13.9521
+[Checkpoint] Saved: ../../checkpoints\train_baseline_comm_20260419-162912\conv_tasnet_epoch30.pt
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch030_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch030_spec.png
+
+===== Epoch 31/100 =====
+Epoch 31 | Step 62500 (10/2083) | Train loss (−SI-SNR): -15.6383
+Epoch 31 | Step 62600 (110/2083) | Train loss (−SI-SNR): -13.9871
+Epoch 31 | Step 62700 (210/2083) | Train loss (−SI-SNR): -13.0282
+Epoch 31 | Step 62800 (310/2083) | Train loss (−SI-SNR): -13.9633
+Epoch 31 | Step 62900 (410/2083) | Train loss (−SI-SNR): -12.8351
+Epoch 31 | Step 63000 (510/2083) | Train loss (−SI-SNR): -11.6260
+Epoch 31 | Step 63100 (610/2083) | Train loss (−SI-SNR): -15.5043
+Epoch 31 | Step 63200 (710/2083) | Train loss (−SI-SNR): -12.8962
+Epoch 31 | Step 63300 (810/2083) | Train loss (−SI-SNR): -14.1151
+Epoch 31 | Step 63400 (910/2083) | Train loss (−SI-SNR): -12.5192
+Epoch 31 | Step 63500 (1010/2083) | Train loss (−SI-SNR): -8.9738
+Epoch 31 | Step 63600 (1110/2083) | Train loss (−SI-SNR): -15.0022
+Epoch 31 | Step 63700 (1210/2083) | Train loss (−SI-SNR): -12.4520
+Epoch 31 | Step 63800 (1310/2083) | Train loss (−SI-SNR): -10.9350
+Epoch 31 | Step 63900 (1410/2083) | Train loss (−SI-SNR): -14.4094
+Epoch 31 | Step 64000 (1510/2083) | Train loss (−SI-SNR): -15.8546
+Epoch 31 | Step 64100 (1610/2083) | Train loss (−SI-SNR): -14.4784
+Epoch 31 | Step 64200 (1710/2083) | Train loss (−SI-SNR): -13.7938
+Epoch 31 | Step 64300 (1810/2083) | Train loss (−SI-SNR): -13.9518
+Epoch 31 | Step 64400 (1910/2083) | Train loss (−SI-SNR): -13.8421
+Epoch 31 | Step 64500 (2010/2083) | Train loss (−SI-SNR): -12.6950
+Epoch 31 finished. Avg train loss: -13.3346
+Epoch 31 finished. Avg valid loss: -14.0665
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.0665
+
+===== Epoch 32/100 =====
+Epoch 32 | Step 64600 (27/2083) | Train loss (−SI-SNR): -11.7977
+Epoch 32 | Step 64700 (127/2083) | Train loss (−SI-SNR): -13.6563
+Epoch 32 | Step 64800 (227/2083) | Train loss (−SI-SNR): -16.0569
+Epoch 32 | Step 64900 (327/2083) | Train loss (−SI-SNR): -11.3698
+Epoch 32 | Step 65000 (427/2083) | Train loss (−SI-SNR): -16.9426
+Epoch 32 | Step 65100 (527/2083) | Train loss (−SI-SNR): -13.3635
+Epoch 32 | Step 65200 (627/2083) | Train loss (−SI-SNR): -14.8505
+Epoch 32 | Step 65300 (727/2083) | Train loss (−SI-SNR): -12.7632
+Epoch 32 | Step 65400 (827/2083) | Train loss (−SI-SNR): -15.2495
+Epoch 32 | Step 65500 (927/2083) | Train loss (−SI-SNR): -12.4790
+Epoch 32 | Step 65600 (1027/2083) | Train loss (−SI-SNR): -13.1951
+Epoch 32 | Step 65700 (1127/2083) | Train loss (−SI-SNR): -14.8323
+Epoch 32 | Step 65800 (1227/2083) | Train loss (−SI-SNR): -11.3667
+Epoch 32 | Step 65900 (1327/2083) | Train loss (−SI-SNR): -10.1291
+Epoch 32 | Step 66000 (1427/2083) | Train loss (−SI-SNR): -11.2576
+Epoch 32 | Step 66100 (1527/2083) | Train loss (−SI-SNR): -14.9700
+Epoch 32 | Step 66200 (1627/2083) | Train loss (−SI-SNR): -17.6144
+Epoch 32 | Step 66300 (1727/2083) | Train loss (−SI-SNR): -12.1665
+Epoch 32 | Step 66400 (1827/2083) | Train loss (−SI-SNR): -14.4177
+Epoch 32 | Step 66500 (1927/2083) | Train loss (−SI-SNR): -15.4054
+Epoch 32 | Step 66600 (2027/2083) | Train loss (−SI-SNR): -12.9990
+Epoch 32 finished. Avg train loss: -13.4644
+Epoch 32 finished. Avg valid loss: -14.1820
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.1820
+
+===== Epoch 33/100 =====
+Epoch 33 | Step 66700 (44/2083) | Train loss (−SI-SNR): -12.1990
+Epoch 33 | Step 66800 (144/2083) | Train loss (−SI-SNR): -12.6327
+Epoch 33 | Step 66900 (244/2083) | Train loss (−SI-SNR): -10.2050
+Epoch 33 | Step 67000 (344/2083) | Train loss (−SI-SNR): -12.9883
+Epoch 33 | Step 67100 (444/2083) | Train loss (−SI-SNR): -16.1026
+Epoch 33 | Step 67200 (544/2083) | Train loss (−SI-SNR): -13.2741
+Epoch 33 | Step 67300 (644/2083) | Train loss (−SI-SNR): -14.3581
+Epoch 33 | Step 67400 (744/2083) | Train loss (−SI-SNR): -11.2929
+Epoch 33 | Step 67500 (844/2083) | Train loss (−SI-SNR): -9.0083
+Epoch 33 | Step 67600 (944/2083) | Train loss (−SI-SNR): -12.4372
+Epoch 33 | Step 67700 (1044/2083) | Train loss (−SI-SNR): -15.5591
+Epoch 33 | Step 67800 (1144/2083) | Train loss (−SI-SNR): -13.2051
+Epoch 33 | Step 67900 (1244/2083) | Train loss (−SI-SNR): -13.9386
+Epoch 33 | Step 68000 (1344/2083) | Train loss (−SI-SNR): -12.8542
+Epoch 33 | Step 68100 (1444/2083) | Train loss (−SI-SNR): -14.0703
+Epoch 33 | Step 68200 (1544/2083) | Train loss (−SI-SNR): -12.0711
+Epoch 33 | Step 68300 (1644/2083) | Train loss (−SI-SNR): -12.3637
+Epoch 33 | Step 68400 (1744/2083) | Train loss (−SI-SNR): -14.5005
+Epoch 33 | Step 68500 (1844/2083) | Train loss (−SI-SNR): -14.3710
+Epoch 33 | Step 68600 (1944/2083) | Train loss (−SI-SNR): -12.3711
+Epoch 33 | Step 68700 (2044/2083) | Train loss (−SI-SNR): -13.4037
+Epoch 33 finished. Avg train loss: -13.6067
+Epoch 33 finished. Avg valid loss: -14.2677
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.2677
+
+===== Epoch 34/100 =====
+Epoch 34 | Step 68800 (61/2083) | Train loss (−SI-SNR): -14.3797
+Epoch 34 | Step 68900 (161/2083) | Train loss (−SI-SNR): -17.1819
+Epoch 34 | Step 69000 (261/2083) | Train loss (−SI-SNR): -17.2030
+Epoch 34 | Step 69100 (361/2083) | Train loss (−SI-SNR): -12.1196
+Epoch 34 | Step 69200 (461/2083) | Train loss (−SI-SNR): -11.3268
+Epoch 34 | Step 69300 (561/2083) | Train loss (−SI-SNR): -17.2869
+Epoch 34 | Step 69400 (661/2083) | Train loss (−SI-SNR): -10.6739
+Epoch 34 | Step 69500 (761/2083) | Train loss (−SI-SNR): -14.7631
+Epoch 34 | Step 69600 (861/2083) | Train loss (−SI-SNR): -12.1065
+Epoch 34 | Step 69700 (961/2083) | Train loss (−SI-SNR): -13.4113
+Epoch 34 | Step 69800 (1061/2083) | Train loss (−SI-SNR): -12.5872
+Epoch 34 | Step 69900 (1161/2083) | Train loss (−SI-SNR): -14.2426
+Epoch 34 | Step 70000 (1261/2083) | Train loss (−SI-SNR): -14.6382
+Epoch 34 | Step 70100 (1361/2083) | Train loss (−SI-SNR): -13.6631
+Epoch 34 | Step 70200 (1461/2083) | Train loss (−SI-SNR): -13.3752
+Epoch 34 | Step 70300 (1561/2083) | Train loss (−SI-SNR): -14.8353
+Epoch 34 | Step 70400 (1661/2083) | Train loss (−SI-SNR): -15.1608
+Epoch 34 | Step 70500 (1761/2083) | Train loss (−SI-SNR): -13.6220
+Epoch 34 | Step 70600 (1861/2083) | Train loss (−SI-SNR): -11.0620
+Epoch 34 | Step 70700 (1961/2083) | Train loss (−SI-SNR): -12.1118
+Epoch 34 | Step 70800 (2061/2083) | Train loss (−SI-SNR): -17.8620
+Epoch 34 finished. Avg train loss: -13.6864
+Epoch 34 finished. Avg valid loss: -14.3715
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.3715
+
+===== Epoch 35/100 =====
+Epoch 35 | Step 70900 (78/2083) | Train loss (−SI-SNR): -13.2731
+Epoch 35 | Step 71000 (178/2083) | Train loss (−SI-SNR): -12.1048
+Epoch 35 | Step 71100 (278/2083) | Train loss (−SI-SNR): -12.5707
+Epoch 35 | Step 71200 (378/2083) | Train loss (−SI-SNR): -16.1568
+Epoch 35 | Step 71300 (478/2083) | Train loss (−SI-SNR): -11.3788
+Epoch 35 | Step 71400 (578/2083) | Train loss (−SI-SNR): -13.7535
+Epoch 35 | Step 71500 (678/2083) | Train loss (−SI-SNR): -14.4236
+Epoch 35 | Step 71600 (778/2083) | Train loss (−SI-SNR): -7.3225
+Epoch 35 | Step 71700 (878/2083) | Train loss (−SI-SNR): -15.2108
+Epoch 35 | Step 71800 (978/2083) | Train loss (−SI-SNR): -13.2180
+Epoch 35 | Step 71900 (1078/2083) | Train loss (−SI-SNR): -15.3487
+Epoch 35 | Step 72000 (1178/2083) | Train loss (−SI-SNR): -16.2631
+Epoch 35 | Step 72100 (1278/2083) | Train loss (−SI-SNR): -15.7848
+Epoch 35 | Step 72200 (1378/2083) | Train loss (−SI-SNR): -13.9723
+Epoch 35 | Step 72300 (1478/2083) | Train loss (−SI-SNR): -16.6285
+Epoch 35 | Step 72400 (1578/2083) | Train loss (−SI-SNR): -12.0204
+Epoch 35 | Step 72500 (1678/2083) | Train loss (−SI-SNR): -16.6317
+Epoch 35 | Step 72600 (1778/2083) | Train loss (−SI-SNR): -11.2781
+Epoch 35 | Step 72700 (1878/2083) | Train loss (−SI-SNR): -14.2699
+Epoch 35 | Step 72800 (1978/2083) | Train loss (−SI-SNR): -12.2329
+Epoch 35 | Step 72900 (2078/2083) | Train loss (−SI-SNR): -10.5645
+Epoch 35 finished. Avg train loss: -13.7898
+Epoch 35 finished. Avg valid loss: -14.4602
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.4602
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch035_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch035_spec.png
+
+===== Epoch 36/100 =====
+Epoch 36 | Step 73000 (95/2083) | Train loss (−SI-SNR): -14.0422
+Epoch 36 | Step 73100 (195/2083) | Train loss (−SI-SNR): -13.4645
+Epoch 36 | Step 73200 (295/2083) | Train loss (−SI-SNR): -13.9735
+Epoch 36 | Step 73300 (395/2083) | Train loss (−SI-SNR): -17.6067
+Epoch 36 | Step 73400 (495/2083) | Train loss (−SI-SNR): -13.3872
+Epoch 36 | Step 73500 (595/2083) | Train loss (−SI-SNR): -12.0752
+Epoch 36 | Step 73600 (695/2083) | Train loss (−SI-SNR): -11.8549
+Epoch 36 | Step 73700 (795/2083) | Train loss (−SI-SNR): -13.2706
+Epoch 36 | Step 73800 (895/2083) | Train loss (−SI-SNR): -11.2232
+Epoch 36 | Step 73900 (995/2083) | Train loss (−SI-SNR): -16.5340
+Epoch 36 | Step 74000 (1095/2083) | Train loss (−SI-SNR): -12.0991
+Epoch 36 | Step 74100 (1195/2083) | Train loss (−SI-SNR): -12.8227
+Epoch 36 | Step 74200 (1295/2083) | Train loss (−SI-SNR): -17.9699
+Epoch 36 | Step 74300 (1395/2083) | Train loss (−SI-SNR): -12.5853
+Epoch 36 | Step 74400 (1495/2083) | Train loss (−SI-SNR): -11.3199
+Epoch 36 | Step 74500 (1595/2083) | Train loss (−SI-SNR): -13.3904
+Epoch 36 | Step 74600 (1695/2083) | Train loss (−SI-SNR): -13.8961
+Epoch 36 | Step 74700 (1795/2083) | Train loss (−SI-SNR): -16.3669
+Epoch 36 | Step 74800 (1895/2083) | Train loss (−SI-SNR): -12.8397
+Epoch 36 | Step 74900 (1995/2083) | Train loss (−SI-SNR): -12.1986
+Epoch 36 finished. Avg train loss: -13.8911
+Epoch 36 finished. Avg valid loss: -14.5183
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.5183
+
+===== Epoch 37/100 =====
+Epoch 37 | Step 75000 (12/2083) | Train loss (−SI-SNR): -15.9274
+Epoch 37 | Step 75100 (112/2083) | Train loss (−SI-SNR): -13.0749
+Epoch 37 | Step 75200 (212/2083) | Train loss (−SI-SNR): -10.4727
+Epoch 37 | Step 75300 (312/2083) | Train loss (−SI-SNR): -18.1806
+Epoch 37 | Step 75400 (412/2083) | Train loss (−SI-SNR): -16.8199
+Epoch 37 | Step 75500 (512/2083) | Train loss (−SI-SNR): -14.5015
+Epoch 37 | Step 75600 (612/2083) | Train loss (−SI-SNR): -13.6477
+Epoch 37 | Step 75700 (712/2083) | Train loss (−SI-SNR): -14.2158
+Epoch 37 | Step 75800 (812/2083) | Train loss (−SI-SNR): -14.0319
+Epoch 37 | Step 75900 (912/2083) | Train loss (−SI-SNR): -14.4061
+Epoch 37 | Step 76000 (1012/2083) | Train loss (−SI-SNR): -13.0615
+Epoch 37 | Step 76100 (1112/2083) | Train loss (−SI-SNR): -14.2337
+Epoch 37 | Step 76200 (1212/2083) | Train loss (−SI-SNR): -15.6259
+Epoch 37 | Step 76300 (1312/2083) | Train loss (−SI-SNR): -14.0093
+Epoch 37 | Step 76400 (1412/2083) | Train loss (−SI-SNR): -15.4848
+Epoch 37 | Step 76500 (1512/2083) | Train loss (−SI-SNR): -13.5607
+Epoch 37 | Step 76600 (1612/2083) | Train loss (−SI-SNR): -13.6037
+Epoch 37 | Step 76700 (1712/2083) | Train loss (−SI-SNR): -17.4707
+Epoch 37 | Step 76800 (1812/2083) | Train loss (−SI-SNR): -11.6695
+Epoch 37 | Step 76900 (1912/2083) | Train loss (−SI-SNR): -13.0778
+Epoch 37 | Step 77000 (2012/2083) | Train loss (−SI-SNR): -13.1830
+Epoch 37 finished. Avg train loss: -13.9232
+Epoch 37 finished. Avg valid loss: -14.5642
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.5642
+
+===== Epoch 38/100 =====
+Epoch 38 | Step 77100 (29/2083) | Train loss (−SI-SNR): -13.9293
+Epoch 38 | Step 77200 (129/2083) | Train loss (−SI-SNR): -14.5816
+Epoch 38 | Step 77300 (229/2083) | Train loss (−SI-SNR): -15.3574
+Epoch 38 | Step 77400 (329/2083) | Train loss (−SI-SNR): -12.5791
+Epoch 38 | Step 77500 (429/2083) | Train loss (−SI-SNR): -10.4925
+Epoch 38 | Step 77600 (529/2083) | Train loss (−SI-SNR): -16.1106
+Epoch 38 | Step 77700 (629/2083) | Train loss (−SI-SNR): -12.2757
+Epoch 38 | Step 77800 (729/2083) | Train loss (−SI-SNR): -14.3016
+Epoch 38 | Step 77900 (829/2083) | Train loss (−SI-SNR): -9.6300
+Epoch 38 | Step 78000 (929/2083) | Train loss (−SI-SNR): -13.2754
+Epoch 38 | Step 78100 (1029/2083) | Train loss (−SI-SNR): -16.3902
+Epoch 38 | Step 78200 (1129/2083) | Train loss (−SI-SNR): -13.4822
+Epoch 38 | Step 78300 (1229/2083) | Train loss (−SI-SNR): -14.5607
+Epoch 38 | Step 78400 (1329/2083) | Train loss (−SI-SNR): -14.2597
+Epoch 38 | Step 78500 (1429/2083) | Train loss (−SI-SNR): -15.4280
+Epoch 38 | Step 78600 (1529/2083) | Train loss (−SI-SNR): -15.1651
+Epoch 38 | Step 78700 (1629/2083) | Train loss (−SI-SNR): -14.9014
+Epoch 38 | Step 78800 (1729/2083) | Train loss (−SI-SNR): -10.6880
+Epoch 38 | Step 78900 (1829/2083) | Train loss (−SI-SNR): -14.4865
+Epoch 38 | Step 79000 (1929/2083) | Train loss (−SI-SNR): -15.7843
+Epoch 38 | Step 79100 (2029/2083) | Train loss (−SI-SNR): -16.3946
+Epoch 38 finished. Avg train loss: -13.9525
+Epoch 38 finished. Avg valid loss: -14.6067
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.6067
+
+===== Epoch 39/100 =====
+Epoch 39 | Step 79200 (46/2083) | Train loss (−SI-SNR): -13.4592
+Epoch 39 | Step 79300 (146/2083) | Train loss (−SI-SNR): -10.5039
+Epoch 39 | Step 79400 (246/2083) | Train loss (−SI-SNR): -12.0616
+Epoch 39 | Step 79500 (346/2083) | Train loss (−SI-SNR): -14.0103
+Epoch 39 | Step 79600 (446/2083) | Train loss (−SI-SNR): -13.0714
+Epoch 39 | Step 79700 (546/2083) | Train loss (−SI-SNR): -12.4972
+Epoch 39 | Step 79800 (646/2083) | Train loss (−SI-SNR): -16.8324
+Epoch 39 | Step 79900 (746/2083) | Train loss (−SI-SNR): -12.3735
+Epoch 39 | Step 80000 (846/2083) | Train loss (−SI-SNR): -15.0037
+Epoch 39 | Step 80100 (946/2083) | Train loss (−SI-SNR): -16.6943
+Epoch 39 | Step 80200 (1046/2083) | Train loss (−SI-SNR): -13.2424
+Epoch 39 | Step 80300 (1146/2083) | Train loss (−SI-SNR): -15.5802
+Epoch 39 | Step 80400 (1246/2083) | Train loss (−SI-SNR): -16.2157
+Epoch 39 | Step 80500 (1346/2083) | Train loss (−SI-SNR): -13.2606
+Epoch 39 | Step 80600 (1446/2083) | Train loss (−SI-SNR): -10.1978
+Epoch 39 | Step 80700 (1546/2083) | Train loss (−SI-SNR): -13.6943
+Epoch 39 | Step 80800 (1646/2083) | Train loss (−SI-SNR): -14.3620
+Epoch 39 | Step 80900 (1746/2083) | Train loss (−SI-SNR): -14.0291
+Epoch 39 | Step 81000 (1846/2083) | Train loss (−SI-SNR): -13.6729
+Epoch 39 | Step 81100 (1946/2083) | Train loss (−SI-SNR): -14.6397
+Epoch 39 | Step 81200 (2046/2083) | Train loss (−SI-SNR): -15.2320
+Epoch 39 finished. Avg train loss: -14.1321
+Epoch 39 finished. Avg valid loss: -14.7093
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.7093
+
+===== Epoch 40/100 =====
+Epoch 40 | Step 81300 (63/2083) | Train loss (−SI-SNR): -12.5851
+Epoch 40 | Step 81400 (163/2083) | Train loss (−SI-SNR): -15.6470
+Epoch 40 | Step 81500 (263/2083) | Train loss (−SI-SNR): -15.0079
+Epoch 40 | Step 81600 (363/2083) | Train loss (−SI-SNR): -15.4045
+Epoch 40 | Step 81700 (463/2083) | Train loss (−SI-SNR): -13.8552
+Epoch 40 | Step 81800 (563/2083) | Train loss (−SI-SNR): -15.2467
+Epoch 40 | Step 81900 (663/2083) | Train loss (−SI-SNR): -9.3951
+Epoch 40 | Step 82000 (763/2083) | Train loss (−SI-SNR): -14.7714
+Epoch 40 | Step 82100 (863/2083) | Train loss (−SI-SNR): -12.4777
+Epoch 40 | Step 82200 (963/2083) | Train loss (−SI-SNR): -12.8281
+Epoch 40 | Step 82300 (1063/2083) | Train loss (−SI-SNR): -16.6472
+Epoch 40 | Step 82400 (1163/2083) | Train loss (−SI-SNR): -14.8708
+Epoch 40 | Step 82500 (1263/2083) | Train loss (−SI-SNR): -14.2619
+Epoch 40 | Step 82600 (1363/2083) | Train loss (−SI-SNR): -11.5036
+Epoch 40 | Step 82700 (1463/2083) | Train loss (−SI-SNR): -16.3005
+Epoch 40 | Step 82800 (1563/2083) | Train loss (−SI-SNR): -13.2655
+Epoch 40 | Step 82900 (1663/2083) | Train loss (−SI-SNR): -12.7408
+Epoch 40 | Step 83000 (1763/2083) | Train loss (−SI-SNR): -15.9530
+Epoch 40 | Step 83100 (1863/2083) | Train loss (−SI-SNR): -17.1096
+Epoch 40 | Step 83200 (1963/2083) | Train loss (−SI-SNR): -17.0979
+Epoch 40 | Step 83300 (2063/2083) | Train loss (−SI-SNR): -16.5819
+Epoch 40 finished. Avg train loss: -14.2296
+Epoch 40 finished. Avg valid loss: -14.7528
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.7528
+[Checkpoint] Saved: ../../checkpoints\train_baseline_comm_20260419-162912\conv_tasnet_epoch40.pt
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch040_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch040_spec.png
+
+===== Epoch 41/100 =====
+Epoch 41 | Step 83400 (80/2083) | Train loss (−SI-SNR): -14.6004
+Epoch 41 | Step 83500 (180/2083) | Train loss (−SI-SNR): -14.5916
+Epoch 41 | Step 83600 (280/2083) | Train loss (−SI-SNR): -13.3233
+Epoch 41 | Step 83700 (380/2083) | Train loss (−SI-SNR): -16.6057
+Epoch 41 | Step 83800 (480/2083) | Train loss (−SI-SNR): -15.8799
+Epoch 41 | Step 83900 (580/2083) | Train loss (−SI-SNR): -13.9013
+Epoch 41 | Step 84000 (680/2083) | Train loss (−SI-SNR): -16.9309
+Epoch 41 | Step 84100 (780/2083) | Train loss (−SI-SNR): -14.5427
+Epoch 41 | Step 84200 (880/2083) | Train loss (−SI-SNR): -12.7850
+Epoch 41 | Step 84300 (980/2083) | Train loss (−SI-SNR): -15.4418
+Epoch 41 | Step 84400 (1080/2083) | Train loss (−SI-SNR): -13.8144
+Epoch 41 | Step 84500 (1180/2083) | Train loss (−SI-SNR): -10.0571
+Epoch 41 | Step 84600 (1280/2083) | Train loss (−SI-SNR): -14.0088
+Epoch 41 | Step 84700 (1380/2083) | Train loss (−SI-SNR): -14.4956
+Epoch 41 | Step 84800 (1480/2083) | Train loss (−SI-SNR): -14.5086
+Epoch 41 | Step 84900 (1580/2083) | Train loss (−SI-SNR): -13.9118
+Epoch 41 | Step 85000 (1680/2083) | Train loss (−SI-SNR): -14.8876
+Epoch 41 | Step 85100 (1780/2083) | Train loss (−SI-SNR): -13.4283
+Epoch 41 | Step 85200 (1880/2083) | Train loss (−SI-SNR): -13.1586
+Epoch 41 | Step 85300 (1980/2083) | Train loss (−SI-SNR): -12.1257
+Epoch 41 | Step 85400 (2080/2083) | Train loss (−SI-SNR): -15.4541
+Epoch 41 finished. Avg train loss: -14.2533
+Epoch 41 finished. Avg valid loss: -14.8091
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.8091
+
+===== Epoch 42/100 =====
+Epoch 42 | Step 85500 (97/2083) | Train loss (−SI-SNR): -15.3022
+Epoch 42 | Step 85600 (197/2083) | Train loss (−SI-SNR): -11.9241
+Epoch 42 | Step 85700 (297/2083) | Train loss (−SI-SNR): -13.8582
+Epoch 42 | Step 85800 (397/2083) | Train loss (−SI-SNR): -13.9606
+Epoch 42 | Step 85900 (497/2083) | Train loss (−SI-SNR): -18.3101
+Epoch 42 | Step 86000 (597/2083) | Train loss (−SI-SNR): -14.4779
+Epoch 42 | Step 86100 (697/2083) | Train loss (−SI-SNR): -13.5668
+Epoch 42 | Step 86200 (797/2083) | Train loss (−SI-SNR): -12.6517
+Epoch 42 | Step 86300 (897/2083) | Train loss (−SI-SNR): -15.1232
+Epoch 42 | Step 86400 (997/2083) | Train loss (−SI-SNR): -12.6005
+Epoch 42 | Step 86500 (1097/2083) | Train loss (−SI-SNR): -12.6130
+Epoch 42 | Step 86600 (1197/2083) | Train loss (−SI-SNR): -14.9488
+Epoch 42 | Step 86700 (1297/2083) | Train loss (−SI-SNR): -13.7302
+Epoch 42 | Step 86800 (1397/2083) | Train loss (−SI-SNR): -13.8242
+Epoch 42 | Step 86900 (1497/2083) | Train loss (−SI-SNR): -14.2345
+Epoch 42 | Step 87000 (1597/2083) | Train loss (−SI-SNR): -11.2404
+Epoch 42 | Step 87100 (1697/2083) | Train loss (−SI-SNR): -15.8599
+Epoch 42 | Step 87200 (1797/2083) | Train loss (−SI-SNR): -13.9272
+Epoch 42 | Step 87300 (1897/2083) | Train loss (−SI-SNR): -11.0384
+Epoch 42 | Step 87400 (1997/2083) | Train loss (−SI-SNR): -15.1288
+Epoch 42 finished. Avg train loss: -14.3506
+Epoch 42 finished. Avg valid loss: -14.8686
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.8686
+
+===== Epoch 43/100 =====
+Epoch 43 | Step 87500 (14/2083) | Train loss (−SI-SNR): -10.4022
+Epoch 43 | Step 87600 (114/2083) | Train loss (−SI-SNR): -15.5140
+Epoch 43 | Step 87700 (214/2083) | Train loss (−SI-SNR): -13.5742
+Epoch 43 | Step 87800 (314/2083) | Train loss (−SI-SNR): -15.8788
+Epoch 43 | Step 87900 (414/2083) | Train loss (−SI-SNR): -13.8590
+Epoch 43 | Step 88000 (514/2083) | Train loss (−SI-SNR): -12.7221
+Epoch 43 | Step 88100 (614/2083) | Train loss (−SI-SNR): -13.8650
+Epoch 43 | Step 88200 (714/2083) | Train loss (−SI-SNR): -14.8356
+Epoch 43 | Step 88300 (814/2083) | Train loss (−SI-SNR): -13.7337
+Epoch 43 | Step 88400 (914/2083) | Train loss (−SI-SNR): -13.4925
+Epoch 43 | Step 88500 (1014/2083) | Train loss (−SI-SNR): -14.0689
+Epoch 43 | Step 88600 (1114/2083) | Train loss (−SI-SNR): -13.2818
+Epoch 43 | Step 88700 (1214/2083) | Train loss (−SI-SNR): -13.9573
+Epoch 43 | Step 88800 (1314/2083) | Train loss (−SI-SNR): -14.6267
+Epoch 43 | Step 88900 (1414/2083) | Train loss (−SI-SNR): -17.9941
+Epoch 43 | Step 89000 (1514/2083) | Train loss (−SI-SNR): -11.8576
+Epoch 43 | Step 89100 (1614/2083) | Train loss (−SI-SNR): -15.6270
+Epoch 43 | Step 89200 (1714/2083) | Train loss (−SI-SNR): -16.3484
+Epoch 43 | Step 89300 (1814/2083) | Train loss (−SI-SNR): -17.7760
+Epoch 43 | Step 89400 (1914/2083) | Train loss (−SI-SNR): -12.1773
+Epoch 43 | Step 89500 (2014/2083) | Train loss (−SI-SNR): -13.0452
+Epoch 43 finished. Avg train loss: -14.4229
+Epoch 43 finished. Avg valid loss: -14.9244
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.9244
+
+===== Epoch 44/100 =====
+Epoch 44 | Step 89600 (31/2083) | Train loss (−SI-SNR): -11.4911
+Epoch 44 | Step 89700 (131/2083) | Train loss (−SI-SNR): -16.1461
+Epoch 44 | Step 89800 (231/2083) | Train loss (−SI-SNR): -14.6452
+Epoch 44 | Step 89900 (331/2083) | Train loss (−SI-SNR): -15.9599
+Epoch 44 | Step 90000 (431/2083) | Train loss (−SI-SNR): -15.9893
+Epoch 44 | Step 90100 (531/2083) | Train loss (−SI-SNR): -16.2012
+Epoch 44 | Step 90200 (631/2083) | Train loss (−SI-SNR): -14.2260
+Epoch 44 | Step 90300 (731/2083) | Train loss (−SI-SNR): -15.6528
+Epoch 44 | Step 90400 (831/2083) | Train loss (−SI-SNR): -12.9148
+Epoch 44 | Step 90500 (931/2083) | Train loss (−SI-SNR): -13.8306
+Epoch 44 | Step 90600 (1031/2083) | Train loss (−SI-SNR): -10.1636
+Epoch 44 | Step 90700 (1131/2083) | Train loss (−SI-SNR): -14.0279
+Epoch 44 | Step 90800 (1231/2083) | Train loss (−SI-SNR): -15.9983
+Epoch 44 | Step 90900 (1331/2083) | Train loss (−SI-SNR): -15.8187
+Epoch 44 | Step 91000 (1431/2083) | Train loss (−SI-SNR): -16.4189
+Epoch 44 | Step 91100 (1531/2083) | Train loss (−SI-SNR): -15.5684
+Epoch 44 | Step 91200 (1631/2083) | Train loss (−SI-SNR): -11.7135
+Epoch 44 | Step 91300 (1731/2083) | Train loss (−SI-SNR): -11.0466
+Epoch 44 | Step 91400 (1831/2083) | Train loss (−SI-SNR): -17.5627
+Epoch 44 | Step 91500 (1931/2083) | Train loss (−SI-SNR): -12.3796
+Epoch 44 | Step 91600 (2031/2083) | Train loss (−SI-SNR): -15.2469
+Epoch 44 finished. Avg train loss: -14.5100
+Epoch 44 finished. Avg valid loss: -14.9784
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -14.9784
+
+===== Epoch 45/100 =====
+Epoch 45 | Step 91700 (48/2083) | Train loss (−SI-SNR): -10.4738
+Epoch 45 | Step 91800 (148/2083) | Train loss (−SI-SNR): -12.7419
+Epoch 45 | Step 91900 (248/2083) | Train loss (−SI-SNR): -15.1697
+Epoch 45 | Step 92000 (348/2083) | Train loss (−SI-SNR): -13.5203
+Epoch 45 | Step 92100 (448/2083) | Train loss (−SI-SNR): -13.1814
+Epoch 45 | Step 92200 (548/2083) | Train loss (−SI-SNR): -11.3830
+Epoch 45 | Step 92300 (648/2083) | Train loss (−SI-SNR): -16.1566
+Epoch 45 | Step 92400 (748/2083) | Train loss (−SI-SNR): -13.2273
+Epoch 45 | Step 92500 (848/2083) | Train loss (−SI-SNR): -14.9427
+Epoch 45 | Step 92600 (948/2083) | Train loss (−SI-SNR): -13.1364
+Epoch 45 | Step 92700 (1048/2083) | Train loss (−SI-SNR): -14.3974
+Epoch 45 | Step 92800 (1148/2083) | Train loss (−SI-SNR): -13.5800
+Epoch 45 | Step 92900 (1248/2083) | Train loss (−SI-SNR): -12.3938
+Epoch 45 | Step 93000 (1348/2083) | Train loss (−SI-SNR): -15.0502
+Epoch 45 | Step 93100 (1448/2083) | Train loss (−SI-SNR): -15.4407
+Epoch 45 | Step 93200 (1548/2083) | Train loss (−SI-SNR): -12.4615
+Epoch 45 | Step 93300 (1648/2083) | Train loss (−SI-SNR): -15.5156
+Epoch 45 | Step 93400 (1748/2083) | Train loss (−SI-SNR): -15.4842
+Epoch 45 | Step 93500 (1848/2083) | Train loss (−SI-SNR): -18.4908
+Epoch 45 | Step 93600 (1948/2083) | Train loss (−SI-SNR): -13.7090
+Epoch 45 | Step 93700 (2048/2083) | Train loss (−SI-SNR): -17.4964
+Epoch 45 finished. Avg train loss: -14.5795
+Epoch 45 finished. Avg valid loss: -15.0124
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.0124
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch045_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch045_spec.png
+
+===== Epoch 46/100 =====
+Epoch 46 | Step 93800 (65/2083) | Train loss (−SI-SNR): -13.5657
+Epoch 46 | Step 93900 (165/2083) | Train loss (−SI-SNR): -16.7058
+Epoch 46 | Step 94000 (265/2083) | Train loss (−SI-SNR): -13.4408
+Epoch 46 | Step 94100 (365/2083) | Train loss (−SI-SNR): -12.1185
+Epoch 46 | Step 94200 (465/2083) | Train loss (−SI-SNR): -15.8834
+Epoch 46 | Step 94300 (565/2083) | Train loss (−SI-SNR): -14.5879
+Epoch 46 | Step 94400 (665/2083) | Train loss (−SI-SNR): -16.5492
+Epoch 46 | Step 94500 (765/2083) | Train loss (−SI-SNR): -11.7523
+Epoch 46 | Step 94600 (865/2083) | Train loss (−SI-SNR): -13.6709
+Epoch 46 | Step 94700 (965/2083) | Train loss (−SI-SNR): -17.7062
+Epoch 46 | Step 94800 (1065/2083) | Train loss (−SI-SNR): -13.7439
+Epoch 46 | Step 94900 (1165/2083) | Train loss (−SI-SNR): -12.7193
+Epoch 46 | Step 95000 (1265/2083) | Train loss (−SI-SNR): -14.7406
+Epoch 46 | Step 95100 (1365/2083) | Train loss (−SI-SNR): -19.0463
+Epoch 46 | Step 95200 (1465/2083) | Train loss (−SI-SNR): -14.9935
+Epoch 46 | Step 95300 (1565/2083) | Train loss (−SI-SNR): -18.9626
+Epoch 46 | Step 95400 (1665/2083) | Train loss (−SI-SNR): -11.9987
+Epoch 46 | Step 95500 (1765/2083) | Train loss (−SI-SNR): -16.0459
+Epoch 46 | Step 95600 (1865/2083) | Train loss (−SI-SNR): -14.3617
+Epoch 46 | Step 95700 (1965/2083) | Train loss (−SI-SNR): -13.6275
+Epoch 46 | Step 95800 (2065/2083) | Train loss (−SI-SNR): -14.7288
+Epoch 46 finished. Avg train loss: -14.5772
+Epoch 46 finished. Avg valid loss: -15.0110
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 1 epoch(s) (best: -15.0124)
+
+===== Epoch 47/100 =====
+Epoch 47 | Step 95900 (82/2083) | Train loss (−SI-SNR): -12.0512
+Epoch 47 | Step 96000 (182/2083) | Train loss (−SI-SNR): -10.5746
+Epoch 47 | Step 96100 (282/2083) | Train loss (−SI-SNR): -15.5334
+Epoch 47 | Step 96200 (382/2083) | Train loss (−SI-SNR): -15.5668
+Epoch 47 | Step 96300 (482/2083) | Train loss (−SI-SNR): -10.9910
+Epoch 47 | Step 96400 (582/2083) | Train loss (−SI-SNR): -14.0063
+Epoch 47 | Step 96500 (682/2083) | Train loss (−SI-SNR): -13.3430
+Epoch 47 | Step 96600 (782/2083) | Train loss (−SI-SNR): -15.6001
+Epoch 47 | Step 96700 (882/2083) | Train loss (−SI-SNR): -15.0616
+Epoch 47 | Step 96800 (982/2083) | Train loss (−SI-SNR): -14.7234
+Epoch 47 | Step 96900 (1082/2083) | Train loss (−SI-SNR): -9.9200
+Epoch 47 | Step 97000 (1182/2083) | Train loss (−SI-SNR): -15.9766
+Epoch 47 | Step 97100 (1282/2083) | Train loss (−SI-SNR): -14.8345
+Epoch 47 | Step 97200 (1382/2083) | Train loss (−SI-SNR): -15.5108
+Epoch 47 | Step 97300 (1482/2083) | Train loss (−SI-SNR): -14.7042
+Epoch 47 | Step 97400 (1582/2083) | Train loss (−SI-SNR): -12.2920
+Epoch 47 | Step 97500 (1682/2083) | Train loss (−SI-SNR): -14.5965
+Epoch 47 | Step 97600 (1782/2083) | Train loss (−SI-SNR): -12.2400
+Epoch 47 | Step 97700 (1882/2083) | Train loss (−SI-SNR): -13.9415
+Epoch 47 | Step 97800 (1982/2083) | Train loss (−SI-SNR): -16.4035
+Epoch 47 | Step 97900 (2082/2083) | Train loss (−SI-SNR): -12.6775
+Epoch 47 finished. Avg train loss: -14.6916
+Epoch 47 finished. Avg valid loss: -15.0795
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.0795
+
+===== Epoch 48/100 =====
+Epoch 48 | Step 98000 (99/2083) | Train loss (−SI-SNR): -17.1098
+Epoch 48 | Step 98100 (199/2083) | Train loss (−SI-SNR): -15.0067
+Epoch 48 | Step 98200 (299/2083) | Train loss (−SI-SNR): -14.2947
+Epoch 48 | Step 98300 (399/2083) | Train loss (−SI-SNR): -17.0222
+Epoch 48 | Step 98400 (499/2083) | Train loss (−SI-SNR): -17.0344
+Epoch 48 | Step 98500 (599/2083) | Train loss (−SI-SNR): -18.0754
+Epoch 48 | Step 98600 (699/2083) | Train loss (−SI-SNR): -8.8558
+Epoch 48 | Step 98700 (799/2083) | Train loss (−SI-SNR): -13.9734
+Epoch 48 | Step 98800 (899/2083) | Train loss (−SI-SNR): -15.9713
+Epoch 48 | Step 98900 (999/2083) | Train loss (−SI-SNR): -16.9505
+Epoch 48 | Step 99000 (1099/2083) | Train loss (−SI-SNR): -15.5692
+Epoch 48 | Step 99100 (1199/2083) | Train loss (−SI-SNR): -15.5478
+Epoch 48 | Step 99200 (1299/2083) | Train loss (−SI-SNR): -15.8431
+Epoch 48 | Step 99300 (1399/2083) | Train loss (−SI-SNR): -19.3504
+Epoch 48 | Step 99400 (1499/2083) | Train loss (−SI-SNR): -16.6836
+Epoch 48 | Step 99500 (1599/2083) | Train loss (−SI-SNR): -14.6222
+Epoch 48 | Step 99600 (1699/2083) | Train loss (−SI-SNR): -13.0806
+Epoch 48 | Step 99700 (1799/2083) | Train loss (−SI-SNR): -15.8258
+Epoch 48 | Step 99800 (1899/2083) | Train loss (−SI-SNR): -15.7196
+Epoch 48 | Step 99900 (1999/2083) | Train loss (−SI-SNR): -12.2995
+Epoch 48 finished. Avg train loss: -14.7716
+Epoch 48 finished. Avg valid loss: -15.1345
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.1345
+
+===== Epoch 49/100 =====
+Epoch 49 | Step 100000 (16/2083) | Train loss (−SI-SNR): -13.3802
+Epoch 49 | Step 100100 (116/2083) | Train loss (−SI-SNR): -17.0578
+Epoch 49 | Step 100200 (216/2083) | Train loss (−SI-SNR): -14.3115
+Epoch 49 | Step 100300 (316/2083) | Train loss (−SI-SNR): -14.1872
+Epoch 49 | Step 100400 (416/2083) | Train loss (−SI-SNR): -16.9676
+Epoch 49 | Step 100500 (516/2083) | Train loss (−SI-SNR): -11.1246
+Epoch 49 | Step 100600 (616/2083) | Train loss (−SI-SNR): -14.6855
+Epoch 49 | Step 100700 (716/2083) | Train loss (−SI-SNR): -14.6324
+Epoch 49 | Step 100800 (816/2083) | Train loss (−SI-SNR): -13.8133
+Epoch 49 | Step 100900 (916/2083) | Train loss (−SI-SNR): -14.9881
+Epoch 49 | Step 101000 (1016/2083) | Train loss (−SI-SNR): -16.7283
+Epoch 49 | Step 101100 (1116/2083) | Train loss (−SI-SNR): -13.1501
+Epoch 49 | Step 101200 (1216/2083) | Train loss (−SI-SNR): -17.3947
+Epoch 49 | Step 101300 (1316/2083) | Train loss (−SI-SNR): -16.9165
+Epoch 49 | Step 101400 (1416/2083) | Train loss (−SI-SNR): -14.2823
+Epoch 49 | Step 101500 (1516/2083) | Train loss (−SI-SNR): -15.8672
+Epoch 49 | Step 101600 (1616/2083) | Train loss (−SI-SNR): -14.1483
+Epoch 49 | Step 101700 (1716/2083) | Train loss (−SI-SNR): -16.5053
+Epoch 49 | Step 101800 (1816/2083) | Train loss (−SI-SNR): -12.2982
+Epoch 49 | Step 101900 (1916/2083) | Train loss (−SI-SNR): -15.1500
+Epoch 49 | Step 102000 (2016/2083) | Train loss (−SI-SNR): -11.8888
+Epoch 49 finished. Avg train loss: -14.8798
+Epoch 49 finished. Avg valid loss: -15.1954
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.1954
+
+===== Epoch 50/100 =====
+Epoch 50 | Step 102100 (33/2083) | Train loss (−SI-SNR): -15.1960
+Epoch 50 | Step 102200 (133/2083) | Train loss (−SI-SNR): -17.6128
+Epoch 50 | Step 102300 (233/2083) | Train loss (−SI-SNR): -16.9808
+Epoch 50 | Step 102400 (333/2083) | Train loss (−SI-SNR): -12.2249
+Epoch 50 | Step 102500 (433/2083) | Train loss (−SI-SNR): -14.4589
+Epoch 50 | Step 102600 (533/2083) | Train loss (−SI-SNR): -13.3347
+Epoch 50 | Step 102700 (633/2083) | Train loss (−SI-SNR): -17.0831
+Epoch 50 | Step 102800 (733/2083) | Train loss (−SI-SNR): -11.5177
+Epoch 50 | Step 102900 (833/2083) | Train loss (−SI-SNR): -16.3281
+Epoch 50 | Step 103000 (933/2083) | Train loss (−SI-SNR): -14.8771
+Epoch 50 | Step 103100 (1033/2083) | Train loss (−SI-SNR): -17.1955
+Epoch 50 | Step 103200 (1133/2083) | Train loss (−SI-SNR): -12.3532
+Epoch 50 | Step 103300 (1233/2083) | Train loss (−SI-SNR): -14.0305
+Epoch 50 | Step 103400 (1333/2083) | Train loss (−SI-SNR): -13.4514
+Epoch 50 | Step 103500 (1433/2083) | Train loss (−SI-SNR): -17.3140
+Epoch 50 | Step 103600 (1533/2083) | Train loss (−SI-SNR): -15.7499
+Epoch 50 | Step 103700 (1633/2083) | Train loss (−SI-SNR): -14.5421
+Epoch 50 | Step 103800 (1733/2083) | Train loss (−SI-SNR): -16.7337
+Epoch 50 | Step 103900 (1833/2083) | Train loss (−SI-SNR): -16.8853
+Epoch 50 | Step 104000 (1933/2083) | Train loss (−SI-SNR): -14.0296
+Epoch 50 | Step 104100 (2033/2083) | Train loss (−SI-SNR): -13.2600
+Epoch 50 finished. Avg train loss: -14.9173
+Epoch 50 finished. Avg valid loss: -15.2370
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.2370
+[Checkpoint] Saved: ../../checkpoints\train_baseline_comm_20260419-162912\conv_tasnet_epoch50.pt
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch050_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch050_spec.png
+
+===== Epoch 51/100 =====
+Epoch 51 | Step 104200 (50/2083) | Train loss (−SI-SNR): -15.8883
+Epoch 51 | Step 104300 (150/2083) | Train loss (−SI-SNR): -16.6444
+Epoch 51 | Step 104400 (250/2083) | Train loss (−SI-SNR): -15.1362
+Epoch 51 | Step 104500 (350/2083) | Train loss (−SI-SNR): -17.4942
+Epoch 51 | Step 104600 (450/2083) | Train loss (−SI-SNR): -14.4147
+Epoch 51 | Step 104700 (550/2083) | Train loss (−SI-SNR): -19.2317
+Epoch 51 | Step 104800 (650/2083) | Train loss (−SI-SNR): -15.9929
+Epoch 51 | Step 104900 (750/2083) | Train loss (−SI-SNR): -15.0941
+Epoch 51 | Step 105000 (850/2083) | Train loss (−SI-SNR): -16.9635
+Epoch 51 | Step 105100 (950/2083) | Train loss (−SI-SNR): -12.6053
+Epoch 51 | Step 105200 (1050/2083) | Train loss (−SI-SNR): -18.0826
+Epoch 51 | Step 105300 (1150/2083) | Train loss (−SI-SNR): -16.8253
+Epoch 51 | Step 105400 (1250/2083) | Train loss (−SI-SNR): -18.0726
+Epoch 51 | Step 105500 (1350/2083) | Train loss (−SI-SNR): -18.2296
+Epoch 51 | Step 105600 (1450/2083) | Train loss (−SI-SNR): -18.1497
+Epoch 51 | Step 105700 (1550/2083) | Train loss (−SI-SNR): -15.5453
+Epoch 51 | Step 105800 (1650/2083) | Train loss (−SI-SNR): -11.3968
+Epoch 51 | Step 105900 (1750/2083) | Train loss (−SI-SNR): -14.7266
+Epoch 51 | Step 106000 (1850/2083) | Train loss (−SI-SNR): -15.9628
+Epoch 51 | Step 106100 (1950/2083) | Train loss (−SI-SNR): -12.5348
+Epoch 51 | Step 106200 (2050/2083) | Train loss (−SI-SNR): -12.6834
+Epoch 51 finished. Avg train loss: -15.0296
+Epoch 51 finished. Avg valid loss: -15.2966
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.2966
+
+===== Epoch 52/100 =====
+Epoch 52 | Step 106300 (67/2083) | Train loss (−SI-SNR): -15.9246
+Epoch 52 | Step 106400 (167/2083) | Train loss (−SI-SNR): -15.4080
+Epoch 52 | Step 106500 (267/2083) | Train loss (−SI-SNR): -14.0204
+Epoch 52 | Step 106600 (367/2083) | Train loss (−SI-SNR): -14.8590
+Epoch 52 | Step 106700 (467/2083) | Train loss (−SI-SNR): -10.0671
+Epoch 52 | Step 106800 (567/2083) | Train loss (−SI-SNR): -16.6782
+Epoch 52 | Step 106900 (667/2083) | Train loss (−SI-SNR): -18.9676
+Epoch 52 | Step 107000 (767/2083) | Train loss (−SI-SNR): -17.0556
+Epoch 52 | Step 107100 (867/2083) | Train loss (−SI-SNR): -14.8707
+Epoch 52 | Step 107200 (967/2083) | Train loss (−SI-SNR): -15.8733
+Epoch 52 | Step 107300 (1067/2083) | Train loss (−SI-SNR): -18.9566
+Epoch 52 | Step 107400 (1167/2083) | Train loss (−SI-SNR): -10.9186
+Epoch 52 | Step 107500 (1267/2083) | Train loss (−SI-SNR): -12.8457
+Epoch 52 | Step 107600 (1367/2083) | Train loss (−SI-SNR): -18.5186
+Epoch 52 | Step 107700 (1467/2083) | Train loss (−SI-SNR): -13.8416
+Epoch 52 | Step 107800 (1567/2083) | Train loss (−SI-SNR): -16.3929
+Epoch 52 | Step 107900 (1667/2083) | Train loss (−SI-SNR): -15.8311
+Epoch 52 | Step 108000 (1767/2083) | Train loss (−SI-SNR): -14.6677
+Epoch 52 | Step 108100 (1867/2083) | Train loss (−SI-SNR): -11.3436
+Epoch 52 | Step 108200 (1967/2083) | Train loss (−SI-SNR): -15.6789
+Epoch 52 | Step 108300 (2067/2083) | Train loss (−SI-SNR): -18.1819
+Epoch 52 finished. Avg train loss: -15.1081
+Epoch 52 finished. Avg valid loss: -15.3229
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.3229
+
+===== Epoch 53/100 =====
+Epoch 53 | Step 108400 (84/2083) | Train loss (−SI-SNR): -15.0351
+Epoch 53 | Step 108500 (184/2083) | Train loss (−SI-SNR): -17.0408
+Epoch 53 | Step 108600 (284/2083) | Train loss (−SI-SNR): -12.1080
+Epoch 53 | Step 108700 (384/2083) | Train loss (−SI-SNR): -9.4700
+Epoch 53 | Step 108800 (484/2083) | Train loss (−SI-SNR): -15.5599
+Epoch 53 | Step 108900 (584/2083) | Train loss (−SI-SNR): -16.3209
+Epoch 53 | Step 109000 (684/2083) | Train loss (−SI-SNR): -10.7810
+Epoch 53 | Step 109100 (784/2083) | Train loss (−SI-SNR): -14.3752
+Epoch 53 | Step 109200 (884/2083) | Train loss (−SI-SNR): -16.4715
+Epoch 53 | Step 109300 (984/2083) | Train loss (−SI-SNR): -16.2709
+Epoch 53 | Step 109400 (1084/2083) | Train loss (−SI-SNR): -13.9628
+Epoch 53 | Step 109500 (1184/2083) | Train loss (−SI-SNR): -13.7082
+Epoch 53 | Step 109600 (1284/2083) | Train loss (−SI-SNR): -18.6234
+Epoch 53 | Step 109700 (1384/2083) | Train loss (−SI-SNR): -17.2423
+Epoch 53 | Step 109800 (1484/2083) | Train loss (−SI-SNR): -13.4066
+Epoch 53 | Step 109900 (1584/2083) | Train loss (−SI-SNR): -15.9161
+Epoch 53 | Step 110000 (1684/2083) | Train loss (−SI-SNR): -12.0133
+Epoch 53 | Step 110100 (1784/2083) | Train loss (−SI-SNR): -11.0665
+Epoch 53 | Step 110200 (1884/2083) | Train loss (−SI-SNR): -18.8124
+Epoch 53 | Step 110300 (1984/2083) | Train loss (−SI-SNR): -17.7009
+Epoch 53 finished. Avg train loss: -15.1878
+Epoch 53 finished. Avg valid loss: -15.3837
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.3837
+
+===== Epoch 54/100 =====
+Epoch 54 | Step 110400 (1/2083) | Train loss (−SI-SNR): -14.9859
+Epoch 54 | Step 110500 (101/2083) | Train loss (−SI-SNR): -15.3285
+Epoch 54 | Step 110600 (201/2083) | Train loss (−SI-SNR): -16.4664
+Epoch 54 | Step 110700 (301/2083) | Train loss (−SI-SNR): -13.0523
+Epoch 54 | Step 110800 (401/2083) | Train loss (−SI-SNR): -14.9257
+Epoch 54 | Step 110900 (501/2083) | Train loss (−SI-SNR): -14.8874
+Epoch 54 | Step 111000 (601/2083) | Train loss (−SI-SNR): -13.2995
+Epoch 54 | Step 111100 (701/2083) | Train loss (−SI-SNR): -14.4868
+Epoch 54 | Step 111200 (801/2083) | Train loss (−SI-SNR): -12.2371
+Epoch 54 | Step 111300 (901/2083) | Train loss (−SI-SNR): -18.3648
+Epoch 54 | Step 111400 (1001/2083) | Train loss (−SI-SNR): -16.7950
+Epoch 54 | Step 111500 (1101/2083) | Train loss (−SI-SNR): -12.8178
+Epoch 54 | Step 111600 (1201/2083) | Train loss (−SI-SNR): -15.5374
+Epoch 54 | Step 111700 (1301/2083) | Train loss (−SI-SNR): -13.7986
+Epoch 54 | Step 111800 (1401/2083) | Train loss (−SI-SNR): -15.6166
+Epoch 54 | Step 111900 (1501/2083) | Train loss (−SI-SNR): -15.5323
+Epoch 54 | Step 112000 (1601/2083) | Train loss (−SI-SNR): -11.8297
+Epoch 54 | Step 112100 (1701/2083) | Train loss (−SI-SNR): -15.0281
+Epoch 54 | Step 112200 (1801/2083) | Train loss (−SI-SNR): -15.9926
+Epoch 54 | Step 112300 (1901/2083) | Train loss (−SI-SNR): -13.6242
+Epoch 54 | Step 112400 (2001/2083) | Train loss (−SI-SNR): -14.8905
+Epoch 54 finished. Avg train loss: -15.2205
+Epoch 54 finished. Avg valid loss: -15.4102
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.4102
+
+===== Epoch 55/100 =====
+Epoch 55 | Step 112500 (18/2083) | Train loss (−SI-SNR): -15.3534
+Epoch 55 | Step 112600 (118/2083) | Train loss (−SI-SNR): -13.6877
+Epoch 55 | Step 112700 (218/2083) | Train loss (−SI-SNR): -17.2565
+Epoch 55 | Step 112800 (318/2083) | Train loss (−SI-SNR): -18.0111
+Epoch 55 | Step 112900 (418/2083) | Train loss (−SI-SNR): -14.4810
+Epoch 55 | Step 113000 (518/2083) | Train loss (−SI-SNR): -14.1317
+Epoch 55 | Step 113100 (618/2083) | Train loss (−SI-SNR): -15.2682
+Epoch 55 | Step 113200 (718/2083) | Train loss (−SI-SNR): -14.5072
+Epoch 55 | Step 113300 (818/2083) | Train loss (−SI-SNR): -19.1073
+Epoch 55 | Step 113400 (918/2083) | Train loss (−SI-SNR): -17.7736
+Epoch 55 | Step 113500 (1018/2083) | Train loss (−SI-SNR): -16.6622
+Epoch 55 | Step 113600 (1118/2083) | Train loss (−SI-SNR): -14.8050
+Epoch 55 | Step 113700 (1218/2083) | Train loss (−SI-SNR): -12.4784
+Epoch 55 | Step 113800 (1318/2083) | Train loss (−SI-SNR): -13.1372
+Epoch 55 | Step 113900 (1418/2083) | Train loss (−SI-SNR): -15.4342
+Epoch 55 | Step 114000 (1518/2083) | Train loss (−SI-SNR): -14.6852
+Epoch 55 | Step 114100 (1618/2083) | Train loss (−SI-SNR): -17.1286
+Epoch 55 | Step 114200 (1718/2083) | Train loss (−SI-SNR): -11.3252
+Epoch 55 | Step 114300 (1818/2083) | Train loss (−SI-SNR): -15.5603
+Epoch 55 | Step 114400 (1918/2083) | Train loss (−SI-SNR): -14.6787
+Epoch 55 | Step 114500 (2018/2083) | Train loss (−SI-SNR): -14.6383
+Epoch 55 finished. Avg train loss: -15.3053
+Epoch 55 finished. Avg valid loss: -15.4509
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.4509
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch055_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch055_spec.png
+
+===== Epoch 56/100 =====
+Epoch 56 | Step 114600 (35/2083) | Train loss (−SI-SNR): -12.9039
+Epoch 56 | Step 114700 (135/2083) | Train loss (−SI-SNR): -12.9829
+Epoch 56 | Step 114800 (235/2083) | Train loss (−SI-SNR): -16.8945
+Epoch 56 | Step 114900 (335/2083) | Train loss (−SI-SNR): -18.4490
+Epoch 56 | Step 115000 (435/2083) | Train loss (−SI-SNR): -15.0765
+Epoch 56 | Step 115100 (535/2083) | Train loss (−SI-SNR): -13.5385
+Epoch 56 | Step 115200 (635/2083) | Train loss (−SI-SNR): -17.4938
+Epoch 56 | Step 115300 (735/2083) | Train loss (−SI-SNR): -18.4542
+Epoch 56 | Step 115400 (835/2083) | Train loss (−SI-SNR): -14.5534
+Epoch 56 | Step 115500 (935/2083) | Train loss (−SI-SNR): -14.5133
+Epoch 56 | Step 115600 (1035/2083) | Train loss (−SI-SNR): -14.9067
+Epoch 56 | Step 115700 (1135/2083) | Train loss (−SI-SNR): -14.1758
+Epoch 56 | Step 115800 (1235/2083) | Train loss (−SI-SNR): -16.9632
+Epoch 56 | Step 115900 (1335/2083) | Train loss (−SI-SNR): -17.6404
+Epoch 56 | Step 116000 (1435/2083) | Train loss (−SI-SNR): -14.3743
+Epoch 56 | Step 116100 (1535/2083) | Train loss (−SI-SNR): -15.1994
+Epoch 56 | Step 116200 (1635/2083) | Train loss (−SI-SNR): -13.8211
+Epoch 56 | Step 116300 (1735/2083) | Train loss (−SI-SNR): -13.9226
+Epoch 56 | Step 116400 (1835/2083) | Train loss (−SI-SNR): -15.9933
+Epoch 56 | Step 116500 (1935/2083) | Train loss (−SI-SNR): -13.6254
+Epoch 56 | Step 116600 (2035/2083) | Train loss (−SI-SNR): -11.6183
+Epoch 56 finished. Avg train loss: -15.3988
+Epoch 56 finished. Avg valid loss: -15.4890
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.4890
+
+===== Epoch 57/100 =====
+Epoch 57 | Step 116700 (52/2083) | Train loss (−SI-SNR): -18.2492
+Epoch 57 | Step 116800 (152/2083) | Train loss (−SI-SNR): -15.2531
+Epoch 57 | Step 116900 (252/2083) | Train loss (−SI-SNR): -17.8249
+Epoch 57 | Step 117000 (352/2083) | Train loss (−SI-SNR): -14.6936
+Epoch 57 | Step 117100 (452/2083) | Train loss (−SI-SNR): -14.5968
+Epoch 57 | Step 117200 (552/2083) | Train loss (−SI-SNR): -14.3102
+Epoch 57 | Step 117300 (652/2083) | Train loss (−SI-SNR): -15.0740
+Epoch 57 | Step 117400 (752/2083) | Train loss (−SI-SNR): -18.3783
+Epoch 57 | Step 117500 (852/2083) | Train loss (−SI-SNR): -17.6065
+Epoch 57 | Step 117600 (952/2083) | Train loss (−SI-SNR): -15.0135
+Epoch 57 | Step 117700 (1052/2083) | Train loss (−SI-SNR): -14.9132
+Epoch 57 | Step 117800 (1152/2083) | Train loss (−SI-SNR): -14.9559
+Epoch 57 | Step 117900 (1252/2083) | Train loss (−SI-SNR): -14.8625
+Epoch 57 | Step 118000 (1352/2083) | Train loss (−SI-SNR): -17.4093
+Epoch 57 | Step 118100 (1452/2083) | Train loss (−SI-SNR): -10.8831
+Epoch 57 | Step 118200 (1552/2083) | Train loss (−SI-SNR): -13.9067
+Epoch 57 | Step 118300 (1652/2083) | Train loss (−SI-SNR): -17.0072
+Epoch 57 | Step 118400 (1752/2083) | Train loss (−SI-SNR): -12.2691
+Epoch 57 | Step 118500 (1852/2083) | Train loss (−SI-SNR): -8.3997
+Epoch 57 | Step 118600 (1952/2083) | Train loss (−SI-SNR): -18.3855
+Epoch 57 | Step 118700 (2052/2083) | Train loss (−SI-SNR): -12.4377
+Epoch 57 finished. Avg train loss: -15.4069
+Epoch 57 finished. Avg valid loss: -15.4756
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 1 epoch(s) (best: -15.4890)
+
+===== Epoch 58/100 =====
+Epoch 58 | Step 118800 (69/2083) | Train loss (−SI-SNR): -13.7619
+Epoch 58 | Step 118900 (169/2083) | Train loss (−SI-SNR): -13.5147
+Epoch 58 | Step 119000 (269/2083) | Train loss (−SI-SNR): -16.0997
+Epoch 58 | Step 119100 (369/2083) | Train loss (−SI-SNR): -17.4925
+Epoch 58 | Step 119200 (469/2083) | Train loss (−SI-SNR): -12.8042
+Epoch 58 | Step 119300 (569/2083) | Train loss (−SI-SNR): -15.0433
+Epoch 58 | Step 119400 (669/2083) | Train loss (−SI-SNR): -18.6401
+Epoch 58 | Step 119500 (769/2083) | Train loss (−SI-SNR): -16.7354
+Epoch 58 | Step 119600 (869/2083) | Train loss (−SI-SNR): -12.2797
+Epoch 58 | Step 119700 (969/2083) | Train loss (−SI-SNR): -16.4672
+Epoch 58 | Step 119800 (1069/2083) | Train loss (−SI-SNR): -16.1984
+Epoch 58 | Step 119900 (1169/2083) | Train loss (−SI-SNR): -14.2803
+Epoch 58 | Step 120000 (1269/2083) | Train loss (−SI-SNR): -14.8160
+Epoch 58 | Step 120100 (1369/2083) | Train loss (−SI-SNR): -12.4293
+Epoch 58 | Step 120200 (1469/2083) | Train loss (−SI-SNR): -9.9197
+Epoch 58 | Step 120300 (1569/2083) | Train loss (−SI-SNR): -15.8302
+Epoch 58 | Step 120400 (1669/2083) | Train loss (−SI-SNR): -18.9066
+Epoch 58 | Step 120500 (1769/2083) | Train loss (−SI-SNR): -14.8465
+Epoch 58 | Step 120600 (1869/2083) | Train loss (−SI-SNR): -15.3946
+Epoch 58 | Step 120700 (1969/2083) | Train loss (−SI-SNR): -16.2776
+Epoch 58 | Step 120800 (2069/2083) | Train loss (−SI-SNR): -17.4205
+Epoch 58 finished. Avg train loss: -15.4370
+Epoch 58 finished. Avg valid loss: -15.5114
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.5114
+
+===== Epoch 59/100 =====
+Epoch 59 | Step 120900 (86/2083) | Train loss (−SI-SNR): -13.5874
+Epoch 59 | Step 121000 (186/2083) | Train loss (−SI-SNR): -13.3017
+Epoch 59 | Step 121100 (286/2083) | Train loss (−SI-SNR): -17.5301
+Epoch 59 | Step 121200 (386/2083) | Train loss (−SI-SNR): -17.0258
+Epoch 59 | Step 121300 (486/2083) | Train loss (−SI-SNR): -14.9597
+Epoch 59 | Step 121400 (586/2083) | Train loss (−SI-SNR): -14.9480
+Epoch 59 | Step 121500 (686/2083) | Train loss (−SI-SNR): -14.7923
+Epoch 59 | Step 121600 (786/2083) | Train loss (−SI-SNR): -14.4449
+Epoch 59 | Step 121700 (886/2083) | Train loss (−SI-SNR): -15.2055
+Epoch 59 | Step 121800 (986/2083) | Train loss (−SI-SNR): -14.5533
+Epoch 59 | Step 121900 (1086/2083) | Train loss (−SI-SNR): -15.8316
+Epoch 59 | Step 122000 (1186/2083) | Train loss (−SI-SNR): -12.5004
+Epoch 59 | Step 122100 (1286/2083) | Train loss (−SI-SNR): -18.1353
+Epoch 59 | Step 122200 (1386/2083) | Train loss (−SI-SNR): -13.7826
+Epoch 59 | Step 122300 (1486/2083) | Train loss (−SI-SNR): -13.7638
+Epoch 59 | Step 122400 (1586/2083) | Train loss (−SI-SNR): -12.5939
+Epoch 59 | Step 122500 (1686/2083) | Train loss (−SI-SNR): -13.5048
+Epoch 59 | Step 122600 (1786/2083) | Train loss (−SI-SNR): -16.1653
+Epoch 59 | Step 122700 (1886/2083) | Train loss (−SI-SNR): -14.1259
+Epoch 59 | Step 122800 (1986/2083) | Train loss (−SI-SNR): -14.4092
+Epoch 59 finished. Avg train loss: -15.5862
+Epoch 59 finished. Avg valid loss: -15.5768
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.5768
+
+===== Epoch 60/100 =====
+Epoch 60 | Step 122900 (3/2083) | Train loss (−SI-SNR): -15.1862
+Epoch 60 | Step 123000 (103/2083) | Train loss (−SI-SNR): -11.6497
+Epoch 60 | Step 123100 (203/2083) | Train loss (−SI-SNR): -15.2148
+Epoch 60 | Step 123200 (303/2083) | Train loss (−SI-SNR): -16.4060
+Epoch 60 | Step 123300 (403/2083) | Train loss (−SI-SNR): -15.3630
+Epoch 60 | Step 123400 (503/2083) | Train loss (−SI-SNR): -15.6829
+Epoch 60 | Step 123500 (603/2083) | Train loss (−SI-SNR): -15.8551
+Epoch 60 | Step 123600 (703/2083) | Train loss (−SI-SNR): -16.1579
+Epoch 60 | Step 123700 (803/2083) | Train loss (−SI-SNR): -14.9173
+Epoch 60 | Step 123800 (903/2083) | Train loss (−SI-SNR): -18.3466
+Epoch 60 | Step 123900 (1003/2083) | Train loss (−SI-SNR): -17.5482
+Epoch 60 | Step 124000 (1103/2083) | Train loss (−SI-SNR): -16.7094
+Epoch 60 | Step 124100 (1203/2083) | Train loss (−SI-SNR): -16.2722
+Epoch 60 | Step 124200 (1303/2083) | Train loss (−SI-SNR): -17.8567
+Epoch 60 | Step 124300 (1403/2083) | Train loss (−SI-SNR): -17.3887
+Epoch 60 | Step 124400 (1503/2083) | Train loss (−SI-SNR): -14.5692
+Epoch 60 | Step 124500 (1603/2083) | Train loss (−SI-SNR): -14.0579
+Epoch 60 | Step 124600 (1703/2083) | Train loss (−SI-SNR): -16.4338
+Epoch 60 | Step 124700 (1803/2083) | Train loss (−SI-SNR): -17.7521
+Epoch 60 | Step 124800 (1903/2083) | Train loss (−SI-SNR): -16.9379
+Epoch 60 | Step 124900 (2003/2083) | Train loss (−SI-SNR): -14.0474
+Epoch 60 finished. Avg train loss: -15.6547
+Epoch 60 finished. Avg valid loss: -15.5897
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.5897
+[Checkpoint] Saved: ../../checkpoints\train_baseline_comm_20260419-162912\conv_tasnet_epoch60.pt
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch060_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch060_spec.png
+
+===== Epoch 61/100 =====
+Epoch 61 | Step 125000 (20/2083) | Train loss (−SI-SNR): -10.9812
+Epoch 61 | Step 125100 (120/2083) | Train loss (−SI-SNR): -16.2414
+Epoch 61 | Step 125200 (220/2083) | Train loss (−SI-SNR): -17.3251
+Epoch 61 | Step 125300 (320/2083) | Train loss (−SI-SNR): -13.3430
+Epoch 61 | Step 125400 (420/2083) | Train loss (−SI-SNR): -15.5279
+Epoch 61 | Step 125500 (520/2083) | Train loss (−SI-SNR): -14.4288
+Epoch 61 | Step 125600 (620/2083) | Train loss (−SI-SNR): -18.6565
+Epoch 61 | Step 125700 (720/2083) | Train loss (−SI-SNR): -18.5453
+Epoch 61 | Step 125800 (820/2083) | Train loss (−SI-SNR): -12.1672
+Epoch 61 | Step 125900 (920/2083) | Train loss (−SI-SNR): -15.0865
+Epoch 61 | Step 126000 (1020/2083) | Train loss (−SI-SNR): -15.6131
+Epoch 61 | Step 126100 (1120/2083) | Train loss (−SI-SNR): -13.3861
+Epoch 61 | Step 126200 (1220/2083) | Train loss (−SI-SNR): -12.6158
+Epoch 61 | Step 126300 (1320/2083) | Train loss (−SI-SNR): -17.4845
+Epoch 61 | Step 126400 (1420/2083) | Train loss (−SI-SNR): -15.1488
+Epoch 61 | Step 126500 (1520/2083) | Train loss (−SI-SNR): -13.0008
+Epoch 61 | Step 126600 (1620/2083) | Train loss (−SI-SNR): -16.1414
+Epoch 61 | Step 126700 (1720/2083) | Train loss (−SI-SNR): -17.1225
+Epoch 61 | Step 126800 (1820/2083) | Train loss (−SI-SNR): -15.1475
+Epoch 61 | Step 126900 (1920/2083) | Train loss (−SI-SNR): -17.5938
+Epoch 61 | Step 127000 (2020/2083) | Train loss (−SI-SNR): -14.5469
+Epoch 61 finished. Avg train loss: -15.6836
+Epoch 61 finished. Avg valid loss: -15.6124
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.6124
+
+===== Epoch 62/100 =====
+Epoch 62 | Step 127100 (37/2083) | Train loss (−SI-SNR): -18.2179
+Epoch 62 | Step 127200 (137/2083) | Train loss (−SI-SNR): -13.4171
+Epoch 62 | Step 127300 (237/2083) | Train loss (−SI-SNR): -17.3573
+Epoch 62 | Step 127400 (337/2083) | Train loss (−SI-SNR): -14.6756
+Epoch 62 | Step 127500 (437/2083) | Train loss (−SI-SNR): -17.7343
+Epoch 62 | Step 127600 (537/2083) | Train loss (−SI-SNR): -17.1171
+Epoch 62 | Step 127700 (637/2083) | Train loss (−SI-SNR): -11.4909
+Epoch 62 | Step 127800 (737/2083) | Train loss (−SI-SNR): -18.4652
+Epoch 62 | Step 127900 (837/2083) | Train loss (−SI-SNR): -13.3665
+Epoch 62 | Step 128000 (937/2083) | Train loss (−SI-SNR): -15.4129
+Epoch 62 | Step 128100 (1037/2083) | Train loss (−SI-SNR): -16.5929
+Epoch 62 | Step 128200 (1137/2083) | Train loss (−SI-SNR): -13.5679
+Epoch 62 | Step 128300 (1237/2083) | Train loss (−SI-SNR): -16.5638
+Epoch 62 | Step 128400 (1337/2083) | Train loss (−SI-SNR): -13.3936
+Epoch 62 | Step 128500 (1437/2083) | Train loss (−SI-SNR): -16.5014
+Epoch 62 | Step 128600 (1537/2083) | Train loss (−SI-SNR): -15.3237
+Epoch 62 | Step 128700 (1637/2083) | Train loss (−SI-SNR): -18.1701
+Epoch 62 | Step 128800 (1737/2083) | Train loss (−SI-SNR): -15.9179
+Epoch 62 | Step 128900 (1837/2083) | Train loss (−SI-SNR): -16.5973
+Epoch 62 | Step 129000 (1937/2083) | Train loss (−SI-SNR): -17.5443
+Epoch 62 | Step 129100 (2037/2083) | Train loss (−SI-SNR): -18.2211
+Epoch 62 finished. Avg train loss: -15.7453
+Epoch 62 finished. Avg valid loss: -15.6422
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.6422
+
+===== Epoch 63/100 =====
+Epoch 63 | Step 129200 (54/2083) | Train loss (−SI-SNR): -13.2880
+Epoch 63 | Step 129300 (154/2083) | Train loss (−SI-SNR): -14.9159
+Epoch 63 | Step 129400 (254/2083) | Train loss (−SI-SNR): -17.5363
+Epoch 63 | Step 129500 (354/2083) | Train loss (−SI-SNR): -13.5253
+Epoch 63 | Step 129600 (454/2083) | Train loss (−SI-SNR): -15.0539
+Epoch 63 | Step 129700 (554/2083) | Train loss (−SI-SNR): -14.3678
+Epoch 63 | Step 129800 (654/2083) | Train loss (−SI-SNR): -13.1425
+Epoch 63 | Step 129900 (754/2083) | Train loss (−SI-SNR): -18.6106
+Epoch 63 | Step 130000 (854/2083) | Train loss (−SI-SNR): -14.5979
+Epoch 63 | Step 130100 (954/2083) | Train loss (−SI-SNR): -13.5109
+Epoch 63 | Step 130200 (1054/2083) | Train loss (−SI-SNR): -17.8104
+Epoch 63 | Step 130300 (1154/2083) | Train loss (−SI-SNR): -19.8843
+Epoch 63 | Step 130400 (1254/2083) | Train loss (−SI-SNR): -17.6470
+Epoch 63 | Step 130500 (1354/2083) | Train loss (−SI-SNR): -14.3178
+Epoch 63 | Step 130600 (1454/2083) | Train loss (−SI-SNR): -17.5625
+Epoch 63 | Step 130700 (1554/2083) | Train loss (−SI-SNR): -13.9068
+Epoch 63 | Step 130800 (1654/2083) | Train loss (−SI-SNR): -15.2114
+Epoch 63 | Step 130900 (1754/2083) | Train loss (−SI-SNR): -20.0612
+Epoch 63 | Step 131000 (1854/2083) | Train loss (−SI-SNR): -14.0266
+Epoch 63 | Step 131100 (1954/2083) | Train loss (−SI-SNR): -14.7317
+Epoch 63 | Step 131200 (2054/2083) | Train loss (−SI-SNR): -18.0057
+Epoch 63 finished. Avg train loss: -15.8498
+Epoch 63 finished. Avg valid loss: -15.6726
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.6726
+
+===== Epoch 64/100 =====
+Epoch 64 | Step 131300 (71/2083) | Train loss (−SI-SNR): -15.1844
+Epoch 64 | Step 131400 (171/2083) | Train loss (−SI-SNR): -16.7255
+Epoch 64 | Step 131500 (271/2083) | Train loss (−SI-SNR): -18.5114
+Epoch 64 | Step 131600 (371/2083) | Train loss (−SI-SNR): -15.3717
+Epoch 64 | Step 131700 (471/2083) | Train loss (−SI-SNR): -14.5665
+Epoch 64 | Step 131800 (571/2083) | Train loss (−SI-SNR): -17.7110
+Epoch 64 | Step 131900 (671/2083) | Train loss (−SI-SNR): -14.4466
+Epoch 64 | Step 132000 (771/2083) | Train loss (−SI-SNR): -16.1476
+Epoch 64 | Step 132100 (871/2083) | Train loss (−SI-SNR): -12.0992
+Epoch 64 | Step 132200 (971/2083) | Train loss (−SI-SNR): -16.0226
+Epoch 64 | Step 132300 (1071/2083) | Train loss (−SI-SNR): -16.4148
+Epoch 64 | Step 132400 (1171/2083) | Train loss (−SI-SNR): -13.1594
+Epoch 64 | Step 132500 (1271/2083) | Train loss (−SI-SNR): -16.6032
+Epoch 64 | Step 132600 (1371/2083) | Train loss (−SI-SNR): -15.1136
+Epoch 64 | Step 132700 (1471/2083) | Train loss (−SI-SNR): -10.5483
+Epoch 64 | Step 132800 (1571/2083) | Train loss (−SI-SNR): -16.0228
+Epoch 64 | Step 132900 (1671/2083) | Train loss (−SI-SNR): -13.9117
+Epoch 64 | Step 133000 (1771/2083) | Train loss (−SI-SNR): -13.6098
+Epoch 64 | Step 133100 (1871/2083) | Train loss (−SI-SNR): -15.9200
+Epoch 64 | Step 133200 (1971/2083) | Train loss (−SI-SNR): -14.6905
+Epoch 64 | Step 133300 (2071/2083) | Train loss (−SI-SNR): -17.8339
+Epoch 64 finished. Avg train loss: -15.9105
+Epoch 64 finished. Avg valid loss: -15.6872
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.6872
+
+===== Epoch 65/100 =====
+Epoch 65 | Step 133400 (88/2083) | Train loss (−SI-SNR): -12.1425
+Epoch 65 | Step 133500 (188/2083) | Train loss (−SI-SNR): -20.0997
+Epoch 65 | Step 133600 (288/2083) | Train loss (−SI-SNR): -17.2714
+Epoch 65 | Step 133700 (388/2083) | Train loss (−SI-SNR): -14.0643
+Epoch 65 | Step 133800 (488/2083) | Train loss (−SI-SNR): -14.6208
+Epoch 65 | Step 133900 (588/2083) | Train loss (−SI-SNR): -14.3273
+Epoch 65 | Step 134000 (688/2083) | Train loss (−SI-SNR): -18.1707
+Epoch 65 | Step 134100 (788/2083) | Train loss (−SI-SNR): -18.8717
+Epoch 65 | Step 134200 (888/2083) | Train loss (−SI-SNR): -16.1393
+Epoch 65 | Step 134300 (988/2083) | Train loss (−SI-SNR): -14.5473
+Epoch 65 | Step 134400 (1088/2083) | Train loss (−SI-SNR): -19.0530
+Epoch 65 | Step 134500 (1188/2083) | Train loss (−SI-SNR): -16.2500
+Epoch 65 | Step 134600 (1288/2083) | Train loss (−SI-SNR): -17.1765
+Epoch 65 | Step 134700 (1388/2083) | Train loss (−SI-SNR): -13.5749
+Epoch 65 | Step 134800 (1488/2083) | Train loss (−SI-SNR): -16.3789
+Epoch 65 | Step 134900 (1588/2083) | Train loss (−SI-SNR): -16.8240
+Epoch 65 | Step 135000 (1688/2083) | Train loss (−SI-SNR): -17.1876
+Epoch 65 | Step 135100 (1788/2083) | Train loss (−SI-SNR): -16.3847
+Epoch 65 | Step 135200 (1888/2083) | Train loss (−SI-SNR): -12.9461
+Epoch 65 | Step 135300 (1988/2083) | Train loss (−SI-SNR): -17.9314
+Epoch 65 finished. Avg train loss: -15.9863
+Epoch 65 finished. Avg valid loss: -15.7196
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.7196
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch065_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch065_spec.png
+
+===== Epoch 66/100 =====
+Epoch 66 | Step 135400 (5/2083) | Train loss (−SI-SNR): -16.4321
+Epoch 66 | Step 135500 (105/2083) | Train loss (−SI-SNR): -13.4529
+Epoch 66 | Step 135600 (205/2083) | Train loss (−SI-SNR): -14.5869
+Epoch 66 | Step 135700 (305/2083) | Train loss (−SI-SNR): -15.8612
+Epoch 66 | Step 135800 (405/2083) | Train loss (−SI-SNR): -19.1114
+Epoch 66 | Step 135900 (505/2083) | Train loss (−SI-SNR): -14.4335
+Epoch 66 | Step 136000 (605/2083) | Train loss (−SI-SNR): -19.4681
+Epoch 66 | Step 136100 (705/2083) | Train loss (−SI-SNR): -14.8761
+Epoch 66 | Step 136200 (805/2083) | Train loss (−SI-SNR): -16.5852
+Epoch 66 | Step 136300 (905/2083) | Train loss (−SI-SNR): -14.3330
+Epoch 66 | Step 136400 (1005/2083) | Train loss (−SI-SNR): -15.8441
+Epoch 66 | Step 136500 (1105/2083) | Train loss (−SI-SNR): -21.8020
+Epoch 66 | Step 136600 (1205/2083) | Train loss (−SI-SNR): -20.9860
+Epoch 66 | Step 136700 (1305/2083) | Train loss (−SI-SNR): -18.1994
+Epoch 66 | Step 136800 (1405/2083) | Train loss (−SI-SNR): -18.4271
+Epoch 66 | Step 136900 (1505/2083) | Train loss (−SI-SNR): -17.7032
+Epoch 66 | Step 137000 (1605/2083) | Train loss (−SI-SNR): -13.6911
+Epoch 66 | Step 137100 (1705/2083) | Train loss (−SI-SNR): -14.7799
+Epoch 66 | Step 137200 (1805/2083) | Train loss (−SI-SNR): -12.8034
+Epoch 66 | Step 137300 (1905/2083) | Train loss (−SI-SNR): -15.5056
+Epoch 66 | Step 137400 (2005/2083) | Train loss (−SI-SNR): -13.9615
+Epoch 66 finished. Avg train loss: -16.0353
+Epoch 66 finished. Avg valid loss: -15.7469
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.7469
+
+===== Epoch 67/100 =====
+Epoch 67 | Step 137500 (22/2083) | Train loss (−SI-SNR): -12.3026
+Epoch 67 | Step 137600 (122/2083) | Train loss (−SI-SNR): -15.1937
+Epoch 67 | Step 137700 (222/2083) | Train loss (−SI-SNR): -14.2211
+Epoch 67 | Step 137800 (322/2083) | Train loss (−SI-SNR): -15.1615
+Epoch 67 | Step 137900 (422/2083) | Train loss (−SI-SNR): -14.3914
+Epoch 67 | Step 138000 (522/2083) | Train loss (−SI-SNR): -12.5683
+Epoch 67 | Step 138100 (622/2083) | Train loss (−SI-SNR): -18.2671
+Epoch 67 | Step 138200 (722/2083) | Train loss (−SI-SNR): -15.1731
+Epoch 67 | Step 138300 (822/2083) | Train loss (−SI-SNR): -10.7695
+Epoch 67 | Step 138400 (922/2083) | Train loss (−SI-SNR): -13.2865
+Epoch 67 | Step 138500 (1022/2083) | Train loss (−SI-SNR): -15.1133
+Epoch 67 | Step 138600 (1122/2083) | Train loss (−SI-SNR): -17.5520
+Epoch 67 | Step 138700 (1222/2083) | Train loss (−SI-SNR): -15.6768
+Epoch 67 | Step 138800 (1322/2083) | Train loss (−SI-SNR): -17.5429
+Epoch 67 | Step 138900 (1422/2083) | Train loss (−SI-SNR): -19.1310
+Epoch 67 | Step 139000 (1522/2083) | Train loss (−SI-SNR): -14.9494
+Epoch 67 | Step 139100 (1622/2083) | Train loss (−SI-SNR): -16.4680
+Epoch 67 | Step 139200 (1722/2083) | Train loss (−SI-SNR): -15.3056
+Epoch 67 | Step 139300 (1822/2083) | Train loss (−SI-SNR): -16.8835
+Epoch 67 | Step 139400 (1922/2083) | Train loss (−SI-SNR): -13.8509
+Epoch 67 | Step 139500 (2022/2083) | Train loss (−SI-SNR): -18.1634
+Epoch 67 finished. Avg train loss: -16.1031
+Epoch 67 finished. Avg valid loss: -15.7779
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.7779
+
+===== Epoch 68/100 =====
+Epoch 68 | Step 139600 (39/2083) | Train loss (−SI-SNR): -15.0830
+Epoch 68 | Step 139700 (139/2083) | Train loss (−SI-SNR): -15.5544
+Epoch 68 | Step 139800 (239/2083) | Train loss (−SI-SNR): -18.3018
+Epoch 68 | Step 139900 (339/2083) | Train loss (−SI-SNR): -17.6398
+Epoch 68 | Step 140000 (439/2083) | Train loss (−SI-SNR): -18.0085
+Epoch 68 | Step 140100 (539/2083) | Train loss (−SI-SNR): -11.0914
+Epoch 68 | Step 140200 (639/2083) | Train loss (−SI-SNR): -14.6444
+Epoch 68 | Step 140300 (739/2083) | Train loss (−SI-SNR): -17.3017
+Epoch 68 | Step 140400 (839/2083) | Train loss (−SI-SNR): -16.8934
+Epoch 68 | Step 140500 (939/2083) | Train loss (−SI-SNR): -18.8220
+Epoch 68 | Step 140600 (1039/2083) | Train loss (−SI-SNR): -16.7555
+Epoch 68 | Step 140700 (1139/2083) | Train loss (−SI-SNR): -21.4595
+Epoch 68 | Step 140800 (1239/2083) | Train loss (−SI-SNR): -12.6317
+Epoch 68 | Step 140900 (1339/2083) | Train loss (−SI-SNR): -15.8440
+Epoch 68 | Step 141000 (1439/2083) | Train loss (−SI-SNR): -11.9454
+Epoch 68 | Step 141100 (1539/2083) | Train loss (−SI-SNR): -17.9762
+Epoch 68 | Step 141200 (1639/2083) | Train loss (−SI-SNR): -13.7259
+Epoch 68 | Step 141300 (1739/2083) | Train loss (−SI-SNR): -19.2386
+Epoch 68 | Step 141400 (1839/2083) | Train loss (−SI-SNR): -17.5837
+Epoch 68 | Step 141500 (1939/2083) | Train loss (−SI-SNR): -18.5069
+Epoch 68 | Step 141600 (2039/2083) | Train loss (−SI-SNR): -17.0809
+Epoch 68 finished. Avg train loss: -16.1954
+Epoch 68 finished. Avg valid loss: -15.7990
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.7990
+
+===== Epoch 69/100 =====
+Epoch 69 | Step 141700 (56/2083) | Train loss (−SI-SNR): -17.3281
+Epoch 69 | Step 141800 (156/2083) | Train loss (−SI-SNR): -19.7739
+Epoch 69 | Step 141900 (256/2083) | Train loss (−SI-SNR): -16.2142
+Epoch 69 | Step 142000 (356/2083) | Train loss (−SI-SNR): -17.7273
+Epoch 69 | Step 142100 (456/2083) | Train loss (−SI-SNR): -16.4744
+Epoch 69 | Step 142200 (556/2083) | Train loss (−SI-SNR): -17.9904
+Epoch 69 | Step 142300 (656/2083) | Train loss (−SI-SNR): -14.5351
+Epoch 69 | Step 142400 (756/2083) | Train loss (−SI-SNR): -17.8030
+Epoch 69 | Step 142500 (856/2083) | Train loss (−SI-SNR): -17.8237
+Epoch 69 | Step 142600 (956/2083) | Train loss (−SI-SNR): -15.8993
+Epoch 69 | Step 142700 (1056/2083) | Train loss (−SI-SNR): -14.9452
+Epoch 69 | Step 142800 (1156/2083) | Train loss (−SI-SNR): -15.0240
+Epoch 69 | Step 142900 (1256/2083) | Train loss (−SI-SNR): -22.0896
+Epoch 69 | Step 143000 (1356/2083) | Train loss (−SI-SNR): -11.9064
+Epoch 69 | Step 143100 (1456/2083) | Train loss (−SI-SNR): -12.7954
+Epoch 69 | Step 143200 (1556/2083) | Train loss (−SI-SNR): -14.9520
+Epoch 69 | Step 143300 (1656/2083) | Train loss (−SI-SNR): -11.4012
+Epoch 69 | Step 143400 (1756/2083) | Train loss (−SI-SNR): -13.6668
+Epoch 69 | Step 143500 (1856/2083) | Train loss (−SI-SNR): -18.8481
+Epoch 69 | Step 143600 (1956/2083) | Train loss (−SI-SNR): -15.8887
+Epoch 69 | Step 143700 (2056/2083) | Train loss (−SI-SNR): -17.3151
+Epoch 69 finished. Avg train loss: -16.2488
+Epoch 69 finished. Avg valid loss: -15.8362
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.8362
+
+===== Epoch 70/100 =====
+Epoch 70 | Step 143800 (73/2083) | Train loss (−SI-SNR): -15.3387
+Epoch 70 | Step 143900 (173/2083) | Train loss (−SI-SNR): -14.8769
+Epoch 70 | Step 144000 (273/2083) | Train loss (−SI-SNR): -17.9435
+Epoch 70 | Step 144100 (373/2083) | Train loss (−SI-SNR): -18.9023
+Epoch 70 | Step 144200 (473/2083) | Train loss (−SI-SNR): -15.0240
+Epoch 70 | Step 144300 (573/2083) | Train loss (−SI-SNR): -18.2877
+Epoch 70 | Step 144400 (673/2083) | Train loss (−SI-SNR): -15.4578
+Epoch 70 | Step 144500 (773/2083) | Train loss (−SI-SNR): -17.9331
+Epoch 70 | Step 144600 (873/2083) | Train loss (−SI-SNR): -18.0032
+Epoch 70 | Step 144700 (973/2083) | Train loss (−SI-SNR): -17.5219
+Epoch 70 | Step 144800 (1073/2083) | Train loss (−SI-SNR): -15.0730
+Epoch 70 | Step 144900 (1173/2083) | Train loss (−SI-SNR): -14.3753
+Epoch 70 | Step 145000 (1273/2083) | Train loss (−SI-SNR): -15.3570
+Epoch 70 | Step 145100 (1373/2083) | Train loss (−SI-SNR): -16.6308
+Epoch 70 | Step 145200 (1473/2083) | Train loss (−SI-SNR): -15.2046
+Epoch 70 | Step 145300 (1573/2083) | Train loss (−SI-SNR): -17.3864
+Epoch 70 | Step 145400 (1673/2083) | Train loss (−SI-SNR): -17.0342
+Epoch 70 | Step 145500 (1773/2083) | Train loss (−SI-SNR): -17.7071
+Epoch 70 | Step 145600 (1873/2083) | Train loss (−SI-SNR): -18.1302
+Epoch 70 | Step 145700 (1973/2083) | Train loss (−SI-SNR): -17.4460
+Epoch 70 | Step 145800 (2073/2083) | Train loss (−SI-SNR): -20.0665
+Epoch 70 finished. Avg train loss: -16.3119
+Epoch 70 finished. Avg valid loss: -15.8653
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.8653
+[Checkpoint] Saved: ../../checkpoints\train_baseline_comm_20260419-162912\conv_tasnet_epoch70.pt
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch070_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch070_spec.png
+
+===== Epoch 71/100 =====
+Epoch 71 | Step 145900 (90/2083) | Train loss (−SI-SNR): -15.9558
+Epoch 71 | Step 146000 (190/2083) | Train loss (−SI-SNR): -19.2834
+Epoch 71 | Step 146100 (290/2083) | Train loss (−SI-SNR): -14.3956
+Epoch 71 | Step 146200 (390/2083) | Train loss (−SI-SNR): -15.8039
+Epoch 71 | Step 146300 (490/2083) | Train loss (−SI-SNR): -12.1242
+Epoch 71 | Step 146400 (590/2083) | Train loss (−SI-SNR): -14.9013
+Epoch 71 | Step 146500 (690/2083) | Train loss (−SI-SNR): -15.6590
+Epoch 71 | Step 146600 (790/2083) | Train loss (−SI-SNR): -18.3903
+Epoch 71 | Step 146700 (890/2083) | Train loss (−SI-SNR): -10.2251
+Epoch 71 | Step 146800 (990/2083) | Train loss (−SI-SNR): -17.3777
+Epoch 71 | Step 146900 (1090/2083) | Train loss (−SI-SNR): -16.7842
+Epoch 71 | Step 147000 (1190/2083) | Train loss (−SI-SNR): -16.1015
+Epoch 71 | Step 147100 (1290/2083) | Train loss (−SI-SNR): -11.9118
+Epoch 71 | Step 147200 (1390/2083) | Train loss (−SI-SNR): -16.5904
+Epoch 71 | Step 147300 (1490/2083) | Train loss (−SI-SNR): -19.0161
+Epoch 71 | Step 147400 (1590/2083) | Train loss (−SI-SNR): -19.5702
+Epoch 71 | Step 147500 (1690/2083) | Train loss (−SI-SNR): -16.8832
+Epoch 71 | Step 147600 (1790/2083) | Train loss (−SI-SNR): -20.5183
+Epoch 71 | Step 147700 (1890/2083) | Train loss (−SI-SNR): -18.8972
+Epoch 71 | Step 147800 (1990/2083) | Train loss (−SI-SNR): -16.1028
+Epoch 71 finished. Avg train loss: -16.3791
+Epoch 71 finished. Avg valid loss: -15.8743
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.8743
+
+===== Epoch 72/100 =====
+Epoch 72 | Step 147900 (7/2083) | Train loss (−SI-SNR): -15.9474
+Epoch 72 | Step 148000 (107/2083) | Train loss (−SI-SNR): -13.8835
+Epoch 72 | Step 148100 (207/2083) | Train loss (−SI-SNR): -9.6480
+Epoch 72 | Step 148200 (307/2083) | Train loss (−SI-SNR): -18.4571
+Epoch 72 | Step 148300 (407/2083) | Train loss (−SI-SNR): -15.2087
+Epoch 72 | Step 148400 (507/2083) | Train loss (−SI-SNR): -17.4691
+Epoch 72 | Step 148500 (607/2083) | Train loss (−SI-SNR): -17.1783
+Epoch 72 | Step 148600 (707/2083) | Train loss (−SI-SNR): -16.5031
+Epoch 72 | Step 148700 (807/2083) | Train loss (−SI-SNR): -14.3294
+Epoch 72 | Step 148800 (907/2083) | Train loss (−SI-SNR): -16.4617
+Epoch 72 | Step 148900 (1007/2083) | Train loss (−SI-SNR): -14.6027
+Epoch 72 | Step 149000 (1107/2083) | Train loss (−SI-SNR): -16.9891
+Epoch 72 | Step 149100 (1207/2083) | Train loss (−SI-SNR): -19.3565
+Epoch 72 | Step 149200 (1307/2083) | Train loss (−SI-SNR): -12.3676
+Epoch 72 | Step 149300 (1407/2083) | Train loss (−SI-SNR): -12.9550
+Epoch 72 | Step 149400 (1507/2083) | Train loss (−SI-SNR): -16.9541
+Epoch 72 | Step 149500 (1607/2083) | Train loss (−SI-SNR): -15.4366
+Epoch 72 | Step 149600 (1707/2083) | Train loss (−SI-SNR): -16.1373
+Epoch 72 | Step 149700 (1807/2083) | Train loss (−SI-SNR): -19.4045
+Epoch 72 | Step 149800 (1907/2083) | Train loss (−SI-SNR): -20.6495
+Epoch 72 | Step 149900 (2007/2083) | Train loss (−SI-SNR): -14.8658
+Epoch 72 finished. Avg train loss: -16.4498
+Epoch 72 finished. Avg valid loss: -15.8928
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.8928
+
+===== Epoch 73/100 =====
+Epoch 73 | Step 150000 (24/2083) | Train loss (−SI-SNR): -14.0857
+Epoch 73 | Step 150100 (124/2083) | Train loss (−SI-SNR): -14.5219
+Epoch 73 | Step 150200 (224/2083) | Train loss (−SI-SNR): -14.4324
+Epoch 73 | Step 150300 (324/2083) | Train loss (−SI-SNR): -13.9483
+Epoch 73 | Step 150400 (424/2083) | Train loss (−SI-SNR): -16.5851
+Epoch 73 | Step 150500 (524/2083) | Train loss (−SI-SNR): -20.2447
+Epoch 73 | Step 150600 (624/2083) | Train loss (−SI-SNR): -15.0513
+Epoch 73 | Step 150700 (724/2083) | Train loss (−SI-SNR): -14.0045
+Epoch 73 | Step 150800 (824/2083) | Train loss (−SI-SNR): -17.3267
+Epoch 73 | Step 150900 (924/2083) | Train loss (−SI-SNR): -14.8854
+Epoch 73 | Step 151000 (1024/2083) | Train loss (−SI-SNR): -20.4373
+Epoch 73 | Step 151100 (1124/2083) | Train loss (−SI-SNR): -17.1699
+Epoch 73 | Step 151200 (1224/2083) | Train loss (−SI-SNR): -14.2539
+Epoch 73 | Step 151300 (1324/2083) | Train loss (−SI-SNR): -13.9633
+Epoch 73 | Step 151400 (1424/2083) | Train loss (−SI-SNR): -12.8133
+Epoch 73 | Step 151500 (1524/2083) | Train loss (−SI-SNR): -16.9958
+Epoch 73 | Step 151600 (1624/2083) | Train loss (−SI-SNR): -14.5774
+Epoch 73 | Step 151700 (1724/2083) | Train loss (−SI-SNR): -15.8240
+Epoch 73 | Step 151800 (1824/2083) | Train loss (−SI-SNR): -16.3097
+Epoch 73 | Step 151900 (1924/2083) | Train loss (−SI-SNR): -18.8382
+Epoch 73 | Step 152000 (2024/2083) | Train loss (−SI-SNR): -17.6154
+Epoch 73 finished. Avg train loss: -16.4851
+Epoch 73 finished. Avg valid loss: -15.9130
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.9130
+
+===== Epoch 74/100 =====
+Epoch 74 | Step 152100 (41/2083) | Train loss (−SI-SNR): -17.4164
+Epoch 74 | Step 152200 (141/2083) | Train loss (−SI-SNR): -17.7269
+Epoch 74 | Step 152300 (241/2083) | Train loss (−SI-SNR): -15.4546
+Epoch 74 | Step 152400 (341/2083) | Train loss (−SI-SNR): -14.3112
+Epoch 74 | Step 152500 (441/2083) | Train loss (−SI-SNR): -15.0346
+Epoch 74 | Step 152600 (541/2083) | Train loss (−SI-SNR): -17.9345
+Epoch 74 | Step 152700 (641/2083) | Train loss (−SI-SNR): -16.1328
+Epoch 74 | Step 152800 (741/2083) | Train loss (−SI-SNR): -21.7578
+Epoch 74 | Step 152900 (841/2083) | Train loss (−SI-SNR): -19.3977
+Epoch 74 | Step 153000 (941/2083) | Train loss (−SI-SNR): -15.5893
+Epoch 74 | Step 153100 (1041/2083) | Train loss (−SI-SNR): -13.8745
+Epoch 74 | Step 153200 (1141/2083) | Train loss (−SI-SNR): -16.1160
+Epoch 74 | Step 153300 (1241/2083) | Train loss (−SI-SNR): -17.9914
+Epoch 74 | Step 153400 (1341/2083) | Train loss (−SI-SNR): -17.0105
+Epoch 74 | Step 153500 (1441/2083) | Train loss (−SI-SNR): -11.8902
+Epoch 74 | Step 153600 (1541/2083) | Train loss (−SI-SNR): -18.3901
+Epoch 74 | Step 153700 (1641/2083) | Train loss (−SI-SNR): -12.9227
+Epoch 74 | Step 153800 (1741/2083) | Train loss (−SI-SNR): -16.1993
+Epoch 74 | Step 153900 (1841/2083) | Train loss (−SI-SNR): -16.8213
+Epoch 74 | Step 154000 (1941/2083) | Train loss (−SI-SNR): -18.4880
+Epoch 74 | Step 154100 (2041/2083) | Train loss (−SI-SNR): -16.0283
+Epoch 74 finished. Avg train loss: -16.5606
+Epoch 74 finished. Avg valid loss: -15.9374
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.9374
+
+===== Epoch 75/100 =====
+Epoch 75 | Step 154200 (58/2083) | Train loss (−SI-SNR): -14.1936
+Epoch 75 | Step 154300 (158/2083) | Train loss (−SI-SNR): -13.3156
+Epoch 75 | Step 154400 (258/2083) | Train loss (−SI-SNR): -18.5683
+Epoch 75 | Step 154500 (358/2083) | Train loss (−SI-SNR): -18.2074
+Epoch 75 | Step 154600 (458/2083) | Train loss (−SI-SNR): -17.8509
+Epoch 75 | Step 154700 (558/2083) | Train loss (−SI-SNR): -17.1733
+Epoch 75 | Step 154800 (658/2083) | Train loss (−SI-SNR): -14.8285
+Epoch 75 | Step 154900 (758/2083) | Train loss (−SI-SNR): -17.4161
+Epoch 75 | Step 155000 (858/2083) | Train loss (−SI-SNR): -15.0679
+Epoch 75 | Step 155100 (958/2083) | Train loss (−SI-SNR): -18.6861
+Epoch 75 | Step 155200 (1058/2083) | Train loss (−SI-SNR): -18.7578
+Epoch 75 | Step 155300 (1158/2083) | Train loss (−SI-SNR): -16.0541
+Epoch 75 | Step 155400 (1258/2083) | Train loss (−SI-SNR): -17.9287
+Epoch 75 | Step 155500 (1358/2083) | Train loss (−SI-SNR): -15.3511
+Epoch 75 | Step 155600 (1458/2083) | Train loss (−SI-SNR): -17.1303
+Epoch 75 | Step 155700 (1558/2083) | Train loss (−SI-SNR): -15.4808
+Epoch 75 | Step 155800 (1658/2083) | Train loss (−SI-SNR): -16.8269
+Epoch 75 | Step 155900 (1758/2083) | Train loss (−SI-SNR): -20.3938
+Epoch 75 | Step 156000 (1858/2083) | Train loss (−SI-SNR): -16.2769
+Epoch 75 | Step 156100 (1958/2083) | Train loss (−SI-SNR): -18.1250
+Epoch 75 | Step 156200 (2058/2083) | Train loss (−SI-SNR): -17.1247
+Epoch 75 finished. Avg train loss: -16.6309
+Epoch 75 finished. Avg valid loss: -15.9516
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.9516
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch075_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch075_spec.png
+
+===== Epoch 76/100 =====
+Epoch 76 | Step 156300 (75/2083) | Train loss (−SI-SNR): -18.6546
+Epoch 76 | Step 156400 (175/2083) | Train loss (−SI-SNR): -16.0169
+Epoch 76 | Step 156500 (275/2083) | Train loss (−SI-SNR): -17.8857
+Epoch 76 | Step 156600 (375/2083) | Train loss (−SI-SNR): -16.6968
+Epoch 76 | Step 156700 (475/2083) | Train loss (−SI-SNR): -13.5185
+Epoch 76 | Step 156800 (575/2083) | Train loss (−SI-SNR): -16.6367
+Epoch 76 | Step 156900 (675/2083) | Train loss (−SI-SNR): -12.5128
+Epoch 76 | Step 157000 (775/2083) | Train loss (−SI-SNR): -16.9821
+Epoch 76 | Step 157100 (875/2083) | Train loss (−SI-SNR): -19.8628
+Epoch 76 | Step 157200 (975/2083) | Train loss (−SI-SNR): -20.8904
+Epoch 76 | Step 157300 (1075/2083) | Train loss (−SI-SNR): -16.1667
+Epoch 76 | Step 157400 (1175/2083) | Train loss (−SI-SNR): -19.9798
+Epoch 76 | Step 157500 (1275/2083) | Train loss (−SI-SNR): -16.1550
+Epoch 76 | Step 157600 (1375/2083) | Train loss (−SI-SNR): -16.0749
+Epoch 76 | Step 157700 (1475/2083) | Train loss (−SI-SNR): -17.8871
+Epoch 76 | Step 157800 (1575/2083) | Train loss (−SI-SNR): -18.4466
+Epoch 76 | Step 157900 (1675/2083) | Train loss (−SI-SNR): -17.9303
+Epoch 76 | Step 158000 (1775/2083) | Train loss (−SI-SNR): -19.0407
+Epoch 76 | Step 158100 (1875/2083) | Train loss (−SI-SNR): -19.6775
+Epoch 76 | Step 158200 (1975/2083) | Train loss (−SI-SNR): -12.0470
+Epoch 76 | Step 158300 (2075/2083) | Train loss (−SI-SNR): -11.4436
+Epoch 76 finished. Avg train loss: -16.6865
+Epoch 76 finished. Avg valid loss: -15.9711
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.9711
+
+===== Epoch 77/100 =====
+Epoch 77 | Step 158400 (92/2083) | Train loss (−SI-SNR): -18.5386
+Epoch 77 | Step 158500 (192/2083) | Train loss (−SI-SNR): -16.6994
+Epoch 77 | Step 158600 (292/2083) | Train loss (−SI-SNR): -14.4698
+Epoch 77 | Step 158700 (392/2083) | Train loss (−SI-SNR): -16.7882
+Epoch 77 | Step 158800 (492/2083) | Train loss (−SI-SNR): -20.3675
+Epoch 77 | Step 158900 (592/2083) | Train loss (−SI-SNR): -15.8009
+Epoch 77 | Step 159000 (692/2083) | Train loss (−SI-SNR): -15.2219
+Epoch 77 | Step 159100 (792/2083) | Train loss (−SI-SNR): -15.2843
+Epoch 77 | Step 159200 (892/2083) | Train loss (−SI-SNR): -15.9242
+Epoch 77 | Step 159300 (992/2083) | Train loss (−SI-SNR): -21.1043
+Epoch 77 | Step 159400 (1092/2083) | Train loss (−SI-SNR): -16.6149
+Epoch 77 | Step 159500 (1192/2083) | Train loss (−SI-SNR): -15.3316
+Epoch 77 | Step 159600 (1292/2083) | Train loss (−SI-SNR): -14.8230
+Epoch 77 | Step 159700 (1392/2083) | Train loss (−SI-SNR): -13.5850
+Epoch 77 | Step 159800 (1492/2083) | Train loss (−SI-SNR): -17.8481
+Epoch 77 | Step 159900 (1592/2083) | Train loss (−SI-SNR): -18.4950
+Epoch 77 | Step 160000 (1692/2083) | Train loss (−SI-SNR): -10.9450
+Epoch 77 | Step 160100 (1792/2083) | Train loss (−SI-SNR): -14.7639
+Epoch 77 | Step 160200 (1892/2083) | Train loss (−SI-SNR): -14.8620
+Epoch 77 | Step 160300 (1992/2083) | Train loss (−SI-SNR): -19.6688
+Epoch 77 finished. Avg train loss: -16.7387
+Epoch 77 finished. Avg valid loss: -15.9863
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -15.9863
+
+===== Epoch 78/100 =====
+Epoch 78 | Step 160400 (9/2083) | Train loss (−SI-SNR): -18.4141
+Epoch 78 | Step 160500 (109/2083) | Train loss (−SI-SNR): -16.5576
+Epoch 78 | Step 160600 (209/2083) | Train loss (−SI-SNR): -17.7782
+Epoch 78 | Step 160700 (309/2083) | Train loss (−SI-SNR): -18.4453
+Epoch 78 | Step 160800 (409/2083) | Train loss (−SI-SNR): -15.8681
+Epoch 78 | Step 160900 (509/2083) | Train loss (−SI-SNR): -18.1893
+Epoch 78 | Step 161000 (609/2083) | Train loss (−SI-SNR): -18.7155
+Epoch 78 | Step 161100 (709/2083) | Train loss (−SI-SNR): -15.1981
+Epoch 78 | Step 161200 (809/2083) | Train loss (−SI-SNR): -15.8313
+Epoch 78 | Step 161300 (909/2083) | Train loss (−SI-SNR): -20.7740
+Epoch 78 | Step 161400 (1009/2083) | Train loss (−SI-SNR): -17.4598
+Epoch 78 | Step 161500 (1109/2083) | Train loss (−SI-SNR): -12.7648
+Epoch 78 | Step 161600 (1209/2083) | Train loss (−SI-SNR): -20.4826
+Epoch 78 | Step 161700 (1309/2083) | Train loss (−SI-SNR): -15.1166
+Epoch 78 | Step 161800 (1409/2083) | Train loss (−SI-SNR): -13.0485
+Epoch 78 | Step 161900 (1509/2083) | Train loss (−SI-SNR): -15.0894
+Epoch 78 | Step 162000 (1609/2083) | Train loss (−SI-SNR): -15.1372
+Epoch 78 | Step 162100 (1709/2083) | Train loss (−SI-SNR): -19.2348
+Epoch 78 | Step 162200 (1809/2083) | Train loss (−SI-SNR): -17.7503
+Epoch 78 | Step 162300 (1909/2083) | Train loss (−SI-SNR): -17.3159
+Epoch 78 | Step 162400 (2009/2083) | Train loss (−SI-SNR): -14.7507
+Epoch 78 finished. Avg train loss: -16.7913
+Epoch 78 finished. Avg valid loss: -16.0043
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0043
+
+===== Epoch 79/100 =====
+Epoch 79 | Step 162500 (26/2083) | Train loss (−SI-SNR): -15.6070
+Epoch 79 | Step 162600 (126/2083) | Train loss (−SI-SNR): -16.4538
+Epoch 79 | Step 162700 (226/2083) | Train loss (−SI-SNR): -16.7492
+Epoch 79 | Step 162800 (326/2083) | Train loss (−SI-SNR): -18.7760
+Epoch 79 | Step 162900 (426/2083) | Train loss (−SI-SNR): -15.0890
+Epoch 79 | Step 163000 (526/2083) | Train loss (−SI-SNR): -16.9380
+Epoch 79 | Step 163100 (626/2083) | Train loss (−SI-SNR): -19.4103
+Epoch 79 | Step 163200 (726/2083) | Train loss (−SI-SNR): -14.3181
+Epoch 79 | Step 163300 (826/2083) | Train loss (−SI-SNR): -15.0819
+Epoch 79 | Step 163400 (926/2083) | Train loss (−SI-SNR): -17.1579
+Epoch 79 | Step 163500 (1026/2083) | Train loss (−SI-SNR): -17.9178
+Epoch 79 | Step 163600 (1126/2083) | Train loss (−SI-SNR): -19.0695
+Epoch 79 | Step 163700 (1226/2083) | Train loss (−SI-SNR): -12.9030
+Epoch 79 | Step 163800 (1326/2083) | Train loss (−SI-SNR): -12.9912
+Epoch 79 | Step 163900 (1426/2083) | Train loss (−SI-SNR): -13.9806
+Epoch 79 | Step 164000 (1526/2083) | Train loss (−SI-SNR): -17.4230
+Epoch 79 | Step 164100 (1626/2083) | Train loss (−SI-SNR): -15.5817
+Epoch 79 | Step 164200 (1726/2083) | Train loss (−SI-SNR): -16.0000
+Epoch 79 | Step 164300 (1826/2083) | Train loss (−SI-SNR): -13.0946
+Epoch 79 | Step 164400 (1926/2083) | Train loss (−SI-SNR): -15.3397
+Epoch 79 | Step 164500 (2026/2083) | Train loss (−SI-SNR): -14.1725
+Epoch 79 finished. Avg train loss: -16.8275
+Epoch 79 finished. Avg valid loss: -16.0068
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0068
+
+===== Epoch 80/100 =====
+Epoch 80 | Step 164600 (43/2083) | Train loss (−SI-SNR): -17.7893
+Epoch 80 | Step 164700 (143/2083) | Train loss (−SI-SNR): -18.1581
+Epoch 80 | Step 164800 (243/2083) | Train loss (−SI-SNR): -20.0927
+Epoch 80 | Step 164900 (343/2083) | Train loss (−SI-SNR): -23.0382
+Epoch 80 | Step 165000 (443/2083) | Train loss (−SI-SNR): -17.4702
+Epoch 80 | Step 165100 (543/2083) | Train loss (−SI-SNR): -15.7373
+Epoch 80 | Step 165200 (643/2083) | Train loss (−SI-SNR): -17.2993
+Epoch 80 | Step 165300 (743/2083) | Train loss (−SI-SNR): -14.7295
+Epoch 80 | Step 165400 (843/2083) | Train loss (−SI-SNR): -17.3195
+Epoch 80 | Step 165500 (943/2083) | Train loss (−SI-SNR): -18.0216
+Epoch 80 | Step 165600 (1043/2083) | Train loss (−SI-SNR): -17.5916
+Epoch 80 | Step 165700 (1143/2083) | Train loss (−SI-SNR): -21.4102
+Epoch 80 | Step 165800 (1243/2083) | Train loss (−SI-SNR): -18.7452
+Epoch 80 | Step 165900 (1343/2083) | Train loss (−SI-SNR): -17.1089
+Epoch 80 | Step 166000 (1443/2083) | Train loss (−SI-SNR): -14.3732
+Epoch 80 | Step 166100 (1543/2083) | Train loss (−SI-SNR): -17.1393
+Epoch 80 | Step 166200 (1643/2083) | Train loss (−SI-SNR): -16.0797
+Epoch 80 | Step 166300 (1743/2083) | Train loss (−SI-SNR): -15.4881
+Epoch 80 | Step 166400 (1843/2083) | Train loss (−SI-SNR): -17.8751
+Epoch 80 | Step 166500 (1943/2083) | Train loss (−SI-SNR): -21.5414
+Epoch 80 | Step 166600 (2043/2083) | Train loss (−SI-SNR): -21.9269
+Epoch 80 finished. Avg train loss: -16.8933
+Epoch 80 finished. Avg valid loss: -16.0258
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0258
+[Checkpoint] Saved: ../../checkpoints\train_baseline_comm_20260419-162912\conv_tasnet_epoch80.pt
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch080_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch080_spec.png
+
+===== Epoch 81/100 =====
+Epoch 81 | Step 166700 (60/2083) | Train loss (−SI-SNR): -14.3124
+Epoch 81 | Step 166800 (160/2083) | Train loss (−SI-SNR): -18.7344
+Epoch 81 | Step 166900 (260/2083) | Train loss (−SI-SNR): -19.2094
+Epoch 81 | Step 167000 (360/2083) | Train loss (−SI-SNR): -18.1504
+Epoch 81 | Step 167100 (460/2083) | Train loss (−SI-SNR): -13.7689
+Epoch 81 | Step 167200 (560/2083) | Train loss (−SI-SNR): -16.3391
+Epoch 81 | Step 167300 (660/2083) | Train loss (−SI-SNR): -15.4432
+Epoch 81 | Step 167400 (760/2083) | Train loss (−SI-SNR): -17.5863
+Epoch 81 | Step 167500 (860/2083) | Train loss (−SI-SNR): -14.6718
+Epoch 81 | Step 167600 (960/2083) | Train loss (−SI-SNR): -16.3336
+Epoch 81 | Step 167700 (1060/2083) | Train loss (−SI-SNR): -14.8126
+Epoch 81 | Step 167800 (1160/2083) | Train loss (−SI-SNR): -18.1705
+Epoch 81 | Step 167900 (1260/2083) | Train loss (−SI-SNR): -18.1448
+Epoch 81 | Step 168000 (1360/2083) | Train loss (−SI-SNR): -13.2432
+Epoch 81 | Step 168100 (1460/2083) | Train loss (−SI-SNR): -13.9227
+Epoch 81 | Step 168200 (1560/2083) | Train loss (−SI-SNR): -16.9003
+Epoch 81 | Step 168300 (1660/2083) | Train loss (−SI-SNR): -9.9149
+Epoch 81 | Step 168400 (1760/2083) | Train loss (−SI-SNR): -19.7267
+Epoch 81 | Step 168500 (1860/2083) | Train loss (−SI-SNR): -15.7304
+Epoch 81 | Step 168600 (1960/2083) | Train loss (−SI-SNR): -16.2686
+Epoch 81 | Step 168700 (2060/2083) | Train loss (−SI-SNR): -16.6925
+Epoch 81 finished. Avg train loss: -16.9367
+Epoch 81 finished. Avg valid loss: -16.0410
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0410
+
+===== Epoch 82/100 =====
+Epoch 82 | Step 168800 (77/2083) | Train loss (−SI-SNR): -20.7914
+Epoch 82 | Step 168900 (177/2083) | Train loss (−SI-SNR): -19.2397
+Epoch 82 | Step 169000 (277/2083) | Train loss (−SI-SNR): -19.6927
+Epoch 82 | Step 169100 (377/2083) | Train loss (−SI-SNR): -14.9755
+Epoch 82 | Step 169200 (477/2083) | Train loss (−SI-SNR): -13.9953
+Epoch 82 | Step 169300 (577/2083) | Train loss (−SI-SNR): -18.1196
+Epoch 82 | Step 169400 (677/2083) | Train loss (−SI-SNR): -17.3320
+Epoch 82 | Step 169500 (777/2083) | Train loss (−SI-SNR): -18.2703
+Epoch 82 | Step 169600 (877/2083) | Train loss (−SI-SNR): -17.8968
+Epoch 82 | Step 169700 (977/2083) | Train loss (−SI-SNR): -18.3363
+Epoch 82 | Step 169800 (1077/2083) | Train loss (−SI-SNR): -15.2527
+Epoch 82 | Step 169900 (1177/2083) | Train loss (−SI-SNR): -11.7719
+Epoch 82 | Step 170000 (1277/2083) | Train loss (−SI-SNR): -19.1197
+Epoch 82 | Step 170100 (1377/2083) | Train loss (−SI-SNR): -12.3227
+Epoch 82 | Step 170200 (1477/2083) | Train loss (−SI-SNR): -15.6877
+Epoch 82 | Step 170300 (1577/2083) | Train loss (−SI-SNR): -15.7276
+Epoch 82 | Step 170400 (1677/2083) | Train loss (−SI-SNR): -17.6573
+Epoch 82 | Step 170500 (1777/2083) | Train loss (−SI-SNR): -16.0587
+Epoch 82 | Step 170600 (1877/2083) | Train loss (−SI-SNR): -13.8329
+Epoch 82 | Step 170700 (1977/2083) | Train loss (−SI-SNR): -17.7218
+Epoch 82 | Step 170800 (2077/2083) | Train loss (−SI-SNR): -14.3889
+Epoch 82 finished. Avg train loss: -16.9838
+Epoch 82 finished. Avg valid loss: -16.0477
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0477
+
+===== Epoch 83/100 =====
+Epoch 83 | Step 170900 (94/2083) | Train loss (−SI-SNR): -16.7714
+Epoch 83 | Step 171000 (194/2083) | Train loss (−SI-SNR): -15.9095
+Epoch 83 | Step 171100 (294/2083) | Train loss (−SI-SNR): -16.2334
+Epoch 83 | Step 171200 (394/2083) | Train loss (−SI-SNR): -21.6370
+Epoch 83 | Step 171300 (494/2083) | Train loss (−SI-SNR): -15.4182
+Epoch 83 | Step 171400 (594/2083) | Train loss (−SI-SNR): -13.0472
+Epoch 83 | Step 171500 (694/2083) | Train loss (−SI-SNR): -18.4930
+Epoch 83 | Step 171600 (794/2083) | Train loss (−SI-SNR): -15.2362
+Epoch 83 | Step 171700 (894/2083) | Train loss (−SI-SNR): -16.9878
+Epoch 83 | Step 171800 (994/2083) | Train loss (−SI-SNR): -16.2550
+Epoch 83 | Step 171900 (1094/2083) | Train loss (−SI-SNR): -11.2214
+Epoch 83 | Step 172000 (1194/2083) | Train loss (−SI-SNR): -15.2242
+Epoch 83 | Step 172100 (1294/2083) | Train loss (−SI-SNR): -18.1926
+Epoch 83 | Step 172200 (1394/2083) | Train loss (−SI-SNR): -19.5098
+Epoch 83 | Step 172300 (1494/2083) | Train loss (−SI-SNR): -16.9599
+Epoch 83 | Step 172400 (1594/2083) | Train loss (−SI-SNR): -18.5194
+Epoch 83 | Step 172500 (1694/2083) | Train loss (−SI-SNR): -15.0921
+Epoch 83 | Step 172600 (1794/2083) | Train loss (−SI-SNR): -19.9449
+Epoch 83 | Step 172700 (1894/2083) | Train loss (−SI-SNR): -14.4829
+Epoch 83 | Step 172800 (1994/2083) | Train loss (−SI-SNR): -14.8050
+Epoch 83 finished. Avg train loss: -17.0269
+Epoch 83 finished. Avg valid loss: -16.0571
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0571
+
+===== Epoch 84/100 =====
+Epoch 84 | Step 172900 (11/2083) | Train loss (−SI-SNR): -15.7993
+Epoch 84 | Step 173000 (111/2083) | Train loss (−SI-SNR): -16.1081
+Epoch 84 | Step 173100 (211/2083) | Train loss (−SI-SNR): -16.8396
+Epoch 84 | Step 173200 (311/2083) | Train loss (−SI-SNR): -18.3255
+Epoch 84 | Step 173300 (411/2083) | Train loss (−SI-SNR): -17.8108
+Epoch 84 | Step 173400 (511/2083) | Train loss (−SI-SNR): -16.2928
+Epoch 84 | Step 173500 (611/2083) | Train loss (−SI-SNR): -13.3123
+Epoch 84 | Step 173600 (711/2083) | Train loss (−SI-SNR): -16.5459
+Epoch 84 | Step 173700 (811/2083) | Train loss (−SI-SNR): -19.3404
+Epoch 84 | Step 173800 (911/2083) | Train loss (−SI-SNR): -16.4281
+Epoch 84 | Step 173900 (1011/2083) | Train loss (−SI-SNR): -11.4605
+Epoch 84 | Step 174000 (1111/2083) | Train loss (−SI-SNR): -14.8112
+Epoch 84 | Step 174100 (1211/2083) | Train loss (−SI-SNR): -15.6264
+Epoch 84 | Step 174200 (1311/2083) | Train loss (−SI-SNR): -15.4835
+Epoch 84 | Step 174300 (1411/2083) | Train loss (−SI-SNR): -17.2860
+Epoch 84 | Step 174400 (1511/2083) | Train loss (−SI-SNR): -18.1330
+Epoch 84 | Step 174500 (1611/2083) | Train loss (−SI-SNR): -13.3684
+Epoch 84 | Step 174600 (1711/2083) | Train loss (−SI-SNR): -18.9625
+Epoch 84 | Step 174700 (1811/2083) | Train loss (−SI-SNR): -17.7452
+Epoch 84 | Step 174800 (1911/2083) | Train loss (−SI-SNR): -18.9054
+Epoch 84 | Step 174900 (2011/2083) | Train loss (−SI-SNR): -17.1858
+Epoch 84 finished. Avg train loss: -17.0654
+Epoch 84 finished. Avg valid loss: -16.0667
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0667
+
+===== Epoch 85/100 =====
+Epoch 85 | Step 175000 (28/2083) | Train loss (−SI-SNR): -18.5511
+Epoch 85 | Step 175100 (128/2083) | Train loss (−SI-SNR): -18.8467
+Epoch 85 | Step 175200 (228/2083) | Train loss (−SI-SNR): -18.2684
+Epoch 85 | Step 175300 (328/2083) | Train loss (−SI-SNR): -18.7142
+Epoch 85 | Step 175400 (428/2083) | Train loss (−SI-SNR): -20.5128
+Epoch 85 | Step 175500 (528/2083) | Train loss (−SI-SNR): -17.8432
+Epoch 85 | Step 175600 (628/2083) | Train loss (−SI-SNR): -19.4827
+Epoch 85 | Step 175700 (728/2083) | Train loss (−SI-SNR): -16.1369
+Epoch 85 | Step 175800 (828/2083) | Train loss (−SI-SNR): -20.3749
+Epoch 85 | Step 175900 (928/2083) | Train loss (−SI-SNR): -17.3556
+Epoch 85 | Step 176000 (1028/2083) | Train loss (−SI-SNR): -17.8254
+Epoch 85 | Step 176100 (1128/2083) | Train loss (−SI-SNR): -14.9735
+Epoch 85 | Step 176200 (1228/2083) | Train loss (−SI-SNR): -16.5931
+Epoch 85 | Step 176300 (1328/2083) | Train loss (−SI-SNR): -21.3322
+Epoch 85 | Step 176400 (1428/2083) | Train loss (−SI-SNR): -14.8781
+Epoch 85 | Step 176500 (1528/2083) | Train loss (−SI-SNR): -14.0743
+Epoch 85 | Step 176600 (1628/2083) | Train loss (−SI-SNR): -15.5451
+Epoch 85 | Step 176700 (1728/2083) | Train loss (−SI-SNR): -15.6146
+Epoch 85 | Step 176800 (1828/2083) | Train loss (−SI-SNR): -16.0293
+Epoch 85 | Step 176900 (1928/2083) | Train loss (−SI-SNR): -18.1961
+Epoch 85 | Step 177000 (2028/2083) | Train loss (−SI-SNR): -12.1932
+Epoch 85 finished. Avg train loss: -17.1022
+Epoch 85 finished. Avg valid loss: -16.0712
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0712
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch085_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch085_spec.png
+
+===== Epoch 86/100 =====
+Epoch 86 | Step 177100 (45/2083) | Train loss (−SI-SNR): -19.4587
+Epoch 86 | Step 177200 (145/2083) | Train loss (−SI-SNR): -21.1119
+Epoch 86 | Step 177300 (245/2083) | Train loss (−SI-SNR): -20.0489
+Epoch 86 | Step 177400 (345/2083) | Train loss (−SI-SNR): -16.5451
+Epoch 86 | Step 177500 (445/2083) | Train loss (−SI-SNR): -21.6499
+Epoch 86 | Step 177600 (545/2083) | Train loss (−SI-SNR): -17.8892
+Epoch 86 | Step 177700 (645/2083) | Train loss (−SI-SNR): -19.0000
+Epoch 86 | Step 177800 (745/2083) | Train loss (−SI-SNR): -16.3150
+Epoch 86 | Step 177900 (845/2083) | Train loss (−SI-SNR): -14.7460
+Epoch 86 | Step 178000 (945/2083) | Train loss (−SI-SNR): -20.1849
+Epoch 86 | Step 178100 (1045/2083) | Train loss (−SI-SNR): -15.7591
+Epoch 86 | Step 178200 (1145/2083) | Train loss (−SI-SNR): -20.1596
+Epoch 86 | Step 178300 (1245/2083) | Train loss (−SI-SNR): -19.3892
+Epoch 86 | Step 178400 (1345/2083) | Train loss (−SI-SNR): -21.2541
+Epoch 86 | Step 178500 (1445/2083) | Train loss (−SI-SNR): -17.3128
+Epoch 86 | Step 178600 (1545/2083) | Train loss (−SI-SNR): -19.2244
+Epoch 86 | Step 178700 (1645/2083) | Train loss (−SI-SNR): -13.3835
+Epoch 86 | Step 178800 (1745/2083) | Train loss (−SI-SNR): -16.2400
+Epoch 86 | Step 178900 (1845/2083) | Train loss (−SI-SNR): -15.7503
+Epoch 86 | Step 179000 (1945/2083) | Train loss (−SI-SNR): -14.8581
+Epoch 86 | Step 179100 (2045/2083) | Train loss (−SI-SNR): -15.8838
+Epoch 86 finished. Avg train loss: -17.1387
+Epoch 86 finished. Avg valid loss: -16.0781
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0781
+
+===== Epoch 87/100 =====
+Epoch 87 | Step 179200 (62/2083) | Train loss (−SI-SNR): -13.1097
+Epoch 87 | Step 179300 (162/2083) | Train loss (−SI-SNR): -18.5408
+Epoch 87 | Step 179400 (262/2083) | Train loss (−SI-SNR): -14.9282
+Epoch 87 | Step 179500 (362/2083) | Train loss (−SI-SNR): -16.4144
+Epoch 87 | Step 179600 (462/2083) | Train loss (−SI-SNR): -17.0923
+Epoch 87 | Step 179700 (562/2083) | Train loss (−SI-SNR): -18.3426
+Epoch 87 | Step 179800 (662/2083) | Train loss (−SI-SNR): -19.7290
+Epoch 87 | Step 179900 (762/2083) | Train loss (−SI-SNR): -17.1435
+Epoch 87 | Step 180000 (862/2083) | Train loss (−SI-SNR): -14.3738
+Epoch 87 | Step 180100 (962/2083) | Train loss (−SI-SNR): -16.5125
+Epoch 87 | Step 180200 (1062/2083) | Train loss (−SI-SNR): -19.1715
+Epoch 87 | Step 180300 (1162/2083) | Train loss (−SI-SNR): -15.8829
+Epoch 87 | Step 180400 (1262/2083) | Train loss (−SI-SNR): -15.6172
+Epoch 87 | Step 180500 (1362/2083) | Train loss (−SI-SNR): -16.3342
+Epoch 87 | Step 180600 (1462/2083) | Train loss (−SI-SNR): -16.6462
+Epoch 87 | Step 180700 (1562/2083) | Train loss (−SI-SNR): -17.0926
+Epoch 87 | Step 180800 (1662/2083) | Train loss (−SI-SNR): -17.5850
+Epoch 87 | Step 180900 (1762/2083) | Train loss (−SI-SNR): -12.7716
+Epoch 87 | Step 181000 (1862/2083) | Train loss (−SI-SNR): -18.8596
+Epoch 87 | Step 181100 (1962/2083) | Train loss (−SI-SNR): -12.3820
+Epoch 87 | Step 181200 (2062/2083) | Train loss (−SI-SNR): -19.0833
+Epoch 87 finished. Avg train loss: -17.1718
+Epoch 87 finished. Avg valid loss: -16.0874
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0874
+
+===== Epoch 88/100 =====
+Epoch 88 | Step 181300 (79/2083) | Train loss (−SI-SNR): -18.5551
+Epoch 88 | Step 181400 (179/2083) | Train loss (−SI-SNR): -17.8584
+Epoch 88 | Step 181500 (279/2083) | Train loss (−SI-SNR): -18.9377
+Epoch 88 | Step 181600 (379/2083) | Train loss (−SI-SNR): -15.7422
+Epoch 88 | Step 181700 (479/2083) | Train loss (−SI-SNR): -17.1991
+Epoch 88 | Step 181800 (579/2083) | Train loss (−SI-SNR): -14.6762
+Epoch 88 | Step 181900 (679/2083) | Train loss (−SI-SNR): -18.5959
+Epoch 88 | Step 182000 (779/2083) | Train loss (−SI-SNR): -16.1299
+Epoch 88 | Step 182100 (879/2083) | Train loss (−SI-SNR): -14.6035
+Epoch 88 | Step 182200 (979/2083) | Train loss (−SI-SNR): -17.5831
+Epoch 88 | Step 182300 (1079/2083) | Train loss (−SI-SNR): -17.7548
+Epoch 88 | Step 182400 (1179/2083) | Train loss (−SI-SNR): -12.1410
+Epoch 88 | Step 182500 (1279/2083) | Train loss (−SI-SNR): -18.4416
+Epoch 88 | Step 182600 (1379/2083) | Train loss (−SI-SNR): -17.9039
+Epoch 88 | Step 182700 (1479/2083) | Train loss (−SI-SNR): -20.9717
+Epoch 88 | Step 182800 (1579/2083) | Train loss (−SI-SNR): -17.6587
+Epoch 88 | Step 182900 (1679/2083) | Train loss (−SI-SNR): -22.6445
+Epoch 88 | Step 183000 (1779/2083) | Train loss (−SI-SNR): -17.1947
+Epoch 88 | Step 183100 (1879/2083) | Train loss (−SI-SNR): -19.7580
+Epoch 88 | Step 183200 (1979/2083) | Train loss (−SI-SNR): -18.2487
+Epoch 88 | Step 183300 (2079/2083) | Train loss (−SI-SNR): -15.0909
+Epoch 88 finished. Avg train loss: -17.1986
+Epoch 88 finished. Avg valid loss: -16.0927
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0927
+
+===== Epoch 89/100 =====
+Epoch 89 | Step 183400 (96/2083) | Train loss (−SI-SNR): -15.2693
+Epoch 89 | Step 183500 (196/2083) | Train loss (−SI-SNR): -18.7859
+Epoch 89 | Step 183600 (296/2083) | Train loss (−SI-SNR): -14.1577
+Epoch 89 | Step 183700 (396/2083) | Train loss (−SI-SNR): -19.4932
+Epoch 89 | Step 183800 (496/2083) | Train loss (−SI-SNR): -17.2396
+Epoch 89 | Step 183900 (596/2083) | Train loss (−SI-SNR): -21.1532
+Epoch 89 | Step 184000 (696/2083) | Train loss (−SI-SNR): -18.0448
+Epoch 89 | Step 184100 (796/2083) | Train loss (−SI-SNR): -17.1015
+Epoch 89 | Step 184200 (896/2083) | Train loss (−SI-SNR): -13.0104
+Epoch 89 | Step 184300 (996/2083) | Train loss (−SI-SNR): -17.4718
+Epoch 89 | Step 184400 (1096/2083) | Train loss (−SI-SNR): -18.1601
+Epoch 89 | Step 184500 (1196/2083) | Train loss (−SI-SNR): -13.6372
+Epoch 89 | Step 184600 (1296/2083) | Train loss (−SI-SNR): -18.8796
+Epoch 89 | Step 184700 (1396/2083) | Train loss (−SI-SNR): -18.2339
+Epoch 89 | Step 184800 (1496/2083) | Train loss (−SI-SNR): -13.8946
+Epoch 89 | Step 184900 (1596/2083) | Train loss (−SI-SNR): -13.8249
+Epoch 89 | Step 185000 (1696/2083) | Train loss (−SI-SNR): -15.5651
+Epoch 89 | Step 185100 (1796/2083) | Train loss (−SI-SNR): -15.3681
+Epoch 89 | Step 185200 (1896/2083) | Train loss (−SI-SNR): -11.9754
+Epoch 89 | Step 185300 (1996/2083) | Train loss (−SI-SNR): -13.4843
+Epoch 89 finished. Avg train loss: -17.2244
+Epoch 89 finished. Avg valid loss: -16.0963
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0963
+
+===== Epoch 90/100 =====
+Epoch 90 | Step 185400 (13/2083) | Train loss (−SI-SNR): -19.4732
+Epoch 90 | Step 185500 (113/2083) | Train loss (−SI-SNR): -16.4956
+Epoch 90 | Step 185600 (213/2083) | Train loss (−SI-SNR): -18.4274
+Epoch 90 | Step 185700 (313/2083) | Train loss (−SI-SNR): -15.4967
+Epoch 90 | Step 185800 (413/2083) | Train loss (−SI-SNR): -19.2807
+Epoch 90 | Step 185900 (513/2083) | Train loss (−SI-SNR): -15.9353
+Epoch 90 | Step 186000 (613/2083) | Train loss (−SI-SNR): -17.8734
+Epoch 90 | Step 186100 (713/2083) | Train loss (−SI-SNR): -16.3309
+Epoch 90 | Step 186200 (813/2083) | Train loss (−SI-SNR): -15.0463
+Epoch 90 | Step 186300 (913/2083) | Train loss (−SI-SNR): -13.7668
+Epoch 90 | Step 186400 (1013/2083) | Train loss (−SI-SNR): -19.0042
+Epoch 90 | Step 186500 (1113/2083) | Train loss (−SI-SNR): -15.5910
+Epoch 90 | Step 186600 (1213/2083) | Train loss (−SI-SNR): -20.9653
+Epoch 90 | Step 186700 (1313/2083) | Train loss (−SI-SNR): -17.1649
+Epoch 90 | Step 186800 (1413/2083) | Train loss (−SI-SNR): -19.4110
+Epoch 90 | Step 186900 (1513/2083) | Train loss (−SI-SNR): -18.6350
+Epoch 90 | Step 187000 (1613/2083) | Train loss (−SI-SNR): -18.7359
+Epoch 90 | Step 187100 (1713/2083) | Train loss (−SI-SNR): -16.8284
+Epoch 90 | Step 187200 (1813/2083) | Train loss (−SI-SNR): -17.8697
+Epoch 90 | Step 187300 (1913/2083) | Train loss (−SI-SNR): -16.9979
+Epoch 90 | Step 187400 (2013/2083) | Train loss (−SI-SNR): -11.6993
+Epoch 90 finished. Avg train loss: -17.2503
+Epoch 90 finished. Avg valid loss: -16.0975
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.0975
+[Checkpoint] Saved: ../../checkpoints\train_baseline_comm_20260419-162912\conv_tasnet_epoch90.pt
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch090_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch090_spec.png
+
+===== Epoch 91/100 =====
+Epoch 91 | Step 187500 (30/2083) | Train loss (−SI-SNR): -15.7185
+Epoch 91 | Step 187600 (130/2083) | Train loss (−SI-SNR): -20.5725
+Epoch 91 | Step 187700 (230/2083) | Train loss (−SI-SNR): -19.5632
+Epoch 91 | Step 187800 (330/2083) | Train loss (−SI-SNR): -19.4897
+Epoch 91 | Step 187900 (430/2083) | Train loss (−SI-SNR): -20.7719
+Epoch 91 | Step 188000 (530/2083) | Train loss (−SI-SNR): -17.7948
+Epoch 91 | Step 188100 (630/2083) | Train loss (−SI-SNR): -17.9177
+Epoch 91 | Step 188200 (730/2083) | Train loss (−SI-SNR): -16.0710
+Epoch 91 | Step 188300 (830/2083) | Train loss (−SI-SNR): -12.1733
+Epoch 91 | Step 188400 (930/2083) | Train loss (−SI-SNR): -14.2215
+Epoch 91 | Step 188500 (1030/2083) | Train loss (−SI-SNR): -18.7675
+Epoch 91 | Step 188600 (1130/2083) | Train loss (−SI-SNR): -18.4269
+Epoch 91 | Step 188700 (1230/2083) | Train loss (−SI-SNR): -21.3107
+Epoch 91 | Step 188800 (1330/2083) | Train loss (−SI-SNR): -14.6959
+Epoch 91 | Step 188900 (1430/2083) | Train loss (−SI-SNR): -18.6706
+Epoch 91 | Step 189000 (1530/2083) | Train loss (−SI-SNR): -19.2810
+Epoch 91 | Step 189100 (1630/2083) | Train loss (−SI-SNR): -15.8319
+Epoch 91 | Step 189200 (1730/2083) | Train loss (−SI-SNR): -17.2604
+Epoch 91 | Step 189300 (1830/2083) | Train loss (−SI-SNR): -16.9757
+Epoch 91 | Step 189400 (1930/2083) | Train loss (−SI-SNR): -19.2963
+Epoch 91 | Step 189500 (2030/2083) | Train loss (−SI-SNR): -17.3620
+Epoch 91 finished. Avg train loss: -17.2700
+Epoch 91 finished. Avg valid loss: -16.1023
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.1023
+
+===== Epoch 92/100 =====
+Epoch 92 | Step 189600 (47/2083) | Train loss (−SI-SNR): -16.4851
+Epoch 92 | Step 189700 (147/2083) | Train loss (−SI-SNR): -18.0038
+Epoch 92 | Step 189800 (247/2083) | Train loss (−SI-SNR): -18.1505
+Epoch 92 | Step 189900 (347/2083) | Train loss (−SI-SNR): -23.1911
+Epoch 92 | Step 190000 (447/2083) | Train loss (−SI-SNR): -22.8247
+Epoch 92 | Step 190100 (547/2083) | Train loss (−SI-SNR): -17.9030
+Epoch 92 | Step 190200 (647/2083) | Train loss (−SI-SNR): -21.4156
+Epoch 92 | Step 190300 (747/2083) | Train loss (−SI-SNR): -13.5182
+Epoch 92 | Step 190400 (847/2083) | Train loss (−SI-SNR): -19.5482
+Epoch 92 | Step 190500 (947/2083) | Train loss (−SI-SNR): -22.1010
+Epoch 92 | Step 190600 (1047/2083) | Train loss (−SI-SNR): -14.1986
+Epoch 92 | Step 190700 (1147/2083) | Train loss (−SI-SNR): -20.4028
+Epoch 92 | Step 190800 (1247/2083) | Train loss (−SI-SNR): -15.7408
+Epoch 92 | Step 190900 (1347/2083) | Train loss (−SI-SNR): -16.4412
+Epoch 92 | Step 191000 (1447/2083) | Train loss (−SI-SNR): -20.6047
+Epoch 92 | Step 191100 (1547/2083) | Train loss (−SI-SNR): -15.2687
+Epoch 92 | Step 191200 (1647/2083) | Train loss (−SI-SNR): -20.9821
+Epoch 92 | Step 191300 (1747/2083) | Train loss (−SI-SNR): -21.6042
+Epoch 92 | Step 191400 (1847/2083) | Train loss (−SI-SNR): -19.3780
+Epoch 92 | Step 191500 (1947/2083) | Train loss (−SI-SNR): -17.3840
+Epoch 92 | Step 191600 (2047/2083) | Train loss (−SI-SNR): -21.1706
+Epoch 92 finished. Avg train loss: -17.2891
+Epoch 92 finished. Avg valid loss: -16.1031
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 1 epoch(s) (best: -16.1023)
+
+===== Epoch 93/100 =====
+Epoch 93 | Step 191700 (64/2083) | Train loss (−SI-SNR): -15.4603
+Epoch 93 | Step 191800 (164/2083) | Train loss (−SI-SNR): -18.8208
+Epoch 93 | Step 191900 (264/2083) | Train loss (−SI-SNR): -14.9344
+Epoch 93 | Step 192000 (364/2083) | Train loss (−SI-SNR): -14.6777
+Epoch 93 | Step 192100 (464/2083) | Train loss (−SI-SNR): -15.2601
+Epoch 93 | Step 192200 (564/2083) | Train loss (−SI-SNR): -18.9487
+Epoch 93 | Step 192300 (664/2083) | Train loss (−SI-SNR): -19.1171
+Epoch 93 | Step 192400 (764/2083) | Train loss (−SI-SNR): -19.3965
+Epoch 93 | Step 192500 (864/2083) | Train loss (−SI-SNR): -17.7873
+Epoch 93 | Step 192600 (964/2083) | Train loss (−SI-SNR): -17.0793
+Epoch 93 | Step 192700 (1064/2083) | Train loss (−SI-SNR): -15.2941
+Epoch 93 | Step 192800 (1164/2083) | Train loss (−SI-SNR): -17.7719
+Epoch 93 | Step 192900 (1264/2083) | Train loss (−SI-SNR): -13.9961
+Epoch 93 | Step 193000 (1364/2083) | Train loss (−SI-SNR): -21.4388
+Epoch 93 | Step 193100 (1464/2083) | Train loss (−SI-SNR): -15.5723
+Epoch 93 | Step 193200 (1564/2083) | Train loss (−SI-SNR): -18.9816
+Epoch 93 | Step 193300 (1664/2083) | Train loss (−SI-SNR): -12.2756
+Epoch 93 | Step 193400 (1764/2083) | Train loss (−SI-SNR): -13.8986
+Epoch 93 | Step 193500 (1864/2083) | Train loss (−SI-SNR): -11.9313
+Epoch 93 | Step 193600 (1964/2083) | Train loss (−SI-SNR): -16.3517
+Epoch 93 | Step 193700 (2064/2083) | Train loss (−SI-SNR): -16.0711
+Epoch 93 finished. Avg train loss: -17.3043
+Epoch 93 finished. Avg valid loss: -16.1085
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.1085
+
+===== Epoch 94/100 =====
+Epoch 94 | Step 193800 (81/2083) | Train loss (−SI-SNR): -18.7649
+Epoch 94 | Step 193900 (181/2083) | Train loss (−SI-SNR): -15.0200
+Epoch 94 | Step 194000 (281/2083) | Train loss (−SI-SNR): -18.1487
+Epoch 94 | Step 194100 (381/2083) | Train loss (−SI-SNR): -12.9086
+Epoch 94 | Step 194200 (481/2083) | Train loss (−SI-SNR): -14.9751
+Epoch 94 | Step 194300 (581/2083) | Train loss (−SI-SNR): -16.2118
+Epoch 94 | Step 194400 (681/2083) | Train loss (−SI-SNR): -18.3989
+Epoch 94 | Step 194500 (781/2083) | Train loss (−SI-SNR): -15.8340
+Epoch 94 | Step 194600 (881/2083) | Train loss (−SI-SNR): -19.0485
+Epoch 94 | Step 194700 (981/2083) | Train loss (−SI-SNR): -17.7339
+Epoch 94 | Step 194800 (1081/2083) | Train loss (−SI-SNR): -18.5716
+Epoch 94 | Step 194900 (1181/2083) | Train loss (−SI-SNR): -18.0179
+Epoch 94 | Step 195000 (1281/2083) | Train loss (−SI-SNR): -21.1464
+Epoch 94 | Step 195100 (1381/2083) | Train loss (−SI-SNR): -15.9351
+Epoch 94 | Step 195200 (1481/2083) | Train loss (−SI-SNR): -20.7064
+Epoch 94 | Step 195300 (1581/2083) | Train loss (−SI-SNR): -17.9621
+Epoch 94 | Step 195400 (1681/2083) | Train loss (−SI-SNR): -15.4473
+Epoch 94 | Step 195500 (1781/2083) | Train loss (−SI-SNR): -17.9156
+Epoch 94 | Step 195600 (1881/2083) | Train loss (−SI-SNR): -20.1756
+Epoch 94 | Step 195700 (1981/2083) | Train loss (−SI-SNR): -17.2118
+Epoch 94 | Step 195800 (2081/2083) | Train loss (−SI-SNR): -15.3481
+Epoch 94 finished. Avg train loss: -17.3188
+Epoch 94 finished. Avg valid loss: -16.1079
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 1 epoch(s) (best: -16.1085)
+
+===== Epoch 95/100 =====
+Epoch 95 | Step 195900 (98/2083) | Train loss (−SI-SNR): -18.0975
+Epoch 95 | Step 196000 (198/2083) | Train loss (−SI-SNR): -15.8731
+Epoch 95 | Step 196100 (298/2083) | Train loss (−SI-SNR): -17.3004
+Epoch 95 | Step 196200 (398/2083) | Train loss (−SI-SNR): -15.8575
+Epoch 95 | Step 196300 (498/2083) | Train loss (−SI-SNR): -15.8985
+Epoch 95 | Step 196400 (598/2083) | Train loss (−SI-SNR): -16.8847
+Epoch 95 | Step 196500 (698/2083) | Train loss (−SI-SNR): -15.9431
+Epoch 95 | Step 196600 (798/2083) | Train loss (−SI-SNR): -13.7421
+Epoch 95 | Step 196700 (898/2083) | Train loss (−SI-SNR): -13.1994
+Epoch 95 | Step 196800 (998/2083) | Train loss (−SI-SNR): -17.2811
+Epoch 95 | Step 196900 (1098/2083) | Train loss (−SI-SNR): -13.5166
+Epoch 95 | Step 197000 (1198/2083) | Train loss (−SI-SNR): -19.7019
+Epoch 95 | Step 197100 (1298/2083) | Train loss (−SI-SNR): -16.5460
+Epoch 95 | Step 197200 (1398/2083) | Train loss (−SI-SNR): -17.5941
+Epoch 95 | Step 197300 (1498/2083) | Train loss (−SI-SNR): -18.8464
+Epoch 95 | Step 197400 (1598/2083) | Train loss (−SI-SNR): -14.9406
+Epoch 95 | Step 197500 (1698/2083) | Train loss (−SI-SNR): -16.4839
+Epoch 95 | Step 197600 (1798/2083) | Train loss (−SI-SNR): -12.1220
+Epoch 95 | Step 197700 (1898/2083) | Train loss (−SI-SNR): -18.9351
+Epoch 95 | Step 197800 (1998/2083) | Train loss (−SI-SNR): -16.2891
+Epoch 95 finished. Avg train loss: -17.3283
+Epoch 95 finished. Avg valid loss: -16.1088
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 2 epoch(s) (best: -16.1085)
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch095_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch095_spec.png
+
+===== Epoch 96/100 =====
+Epoch 96 | Step 197900 (15/2083) | Train loss (−SI-SNR): -15.9989
+Epoch 96 | Step 198000 (115/2083) | Train loss (−SI-SNR): -19.4614
+Epoch 96 | Step 198100 (215/2083) | Train loss (−SI-SNR): -20.6472
+Epoch 96 | Step 198200 (315/2083) | Train loss (−SI-SNR): -20.0970
+Epoch 96 | Step 198300 (415/2083) | Train loss (−SI-SNR): -15.5853
+Epoch 96 | Step 198400 (515/2083) | Train loss (−SI-SNR): -16.1994
+Epoch 96 | Step 198500 (615/2083) | Train loss (−SI-SNR): -20.3190
+Epoch 96 | Step 198600 (715/2083) | Train loss (−SI-SNR): -21.2003
+Epoch 96 | Step 198700 (815/2083) | Train loss (−SI-SNR): -14.0360
+Epoch 96 | Step 198800 (915/2083) | Train loss (−SI-SNR): -17.7458
+Epoch 96 | Step 198900 (1015/2083) | Train loss (−SI-SNR): -20.1554
+Epoch 96 | Step 199000 (1115/2083) | Train loss (−SI-SNR): -22.7509
+Epoch 96 | Step 199100 (1215/2083) | Train loss (−SI-SNR): -17.5913
+Epoch 96 | Step 199200 (1315/2083) | Train loss (−SI-SNR): -15.0368
+Epoch 96 | Step 199300 (1415/2083) | Train loss (−SI-SNR): -16.9289
+Epoch 96 | Step 199400 (1515/2083) | Train loss (−SI-SNR): -12.9520
+Epoch 96 | Step 199500 (1615/2083) | Train loss (−SI-SNR): -16.5549
+Epoch 96 | Step 199600 (1715/2083) | Train loss (−SI-SNR): -15.2662
+Epoch 96 | Step 199700 (1815/2083) | Train loss (−SI-SNR): -19.1481
+Epoch 96 | Step 199800 (1915/2083) | Train loss (−SI-SNR): -19.8382
+Epoch 96 | Step 199900 (2015/2083) | Train loss (−SI-SNR): -14.8874
+Epoch 96 finished. Avg train loss: -17.3391
+Epoch 96 finished. Avg valid loss: -16.1100
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.1100
+
+===== Epoch 97/100 =====
+Epoch 97 | Step 200000 (32/2083) | Train loss (−SI-SNR): -19.7453
+Epoch 97 | Step 200100 (132/2083) | Train loss (−SI-SNR): -15.8564
+Epoch 97 | Step 200200 (232/2083) | Train loss (−SI-SNR): -21.9747
+Epoch 97 | Step 200300 (332/2083) | Train loss (−SI-SNR): -16.3909
+Epoch 97 | Step 200400 (432/2083) | Train loss (−SI-SNR): -14.0684
+Epoch 97 | Step 200500 (532/2083) | Train loss (−SI-SNR): -21.8941
+Epoch 97 | Step 200600 (632/2083) | Train loss (−SI-SNR): -17.2280
+Epoch 97 | Step 200700 (732/2083) | Train loss (−SI-SNR): -16.5373
+Epoch 97 | Step 200800 (832/2083) | Train loss (−SI-SNR): -15.8679
+Epoch 97 | Step 200900 (932/2083) | Train loss (−SI-SNR): -12.0649
+Epoch 97 | Step 201000 (1032/2083) | Train loss (−SI-SNR): -19.4734
+Epoch 97 | Step 201100 (1132/2083) | Train loss (−SI-SNR): -15.4143
+Epoch 97 | Step 201200 (1232/2083) | Train loss (−SI-SNR): -14.8108
+Epoch 97 | Step 201300 (1332/2083) | Train loss (−SI-SNR): -14.3039
+Epoch 97 | Step 201400 (1432/2083) | Train loss (−SI-SNR): -15.4212
+Epoch 97 | Step 201500 (1532/2083) | Train loss (−SI-SNR): -19.3377
+Epoch 97 | Step 201600 (1632/2083) | Train loss (−SI-SNR): -16.5269
+Epoch 97 | Step 201700 (1732/2083) | Train loss (−SI-SNR): -18.3030
+Epoch 97 | Step 201800 (1832/2083) | Train loss (−SI-SNR): -19.4594
+Epoch 97 | Step 201900 (1932/2083) | Train loss (−SI-SNR): -13.9390
+Epoch 97 | Step 202000 (2032/2083) | Train loss (−SI-SNR): -15.0443
+Epoch 97 finished. Avg train loss: -17.3462
+Epoch 97 finished. Avg valid loss: -16.1123
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+Validation improved, new best val loss: -16.1123
+
+===== Epoch 98/100 =====
+Epoch 98 | Step 202100 (49/2083) | Train loss (−SI-SNR): -16.3150
+Epoch 98 | Step 202200 (149/2083) | Train loss (−SI-SNR): -20.3160
+Epoch 98 | Step 202300 (249/2083) | Train loss (−SI-SNR): -17.9193
+Epoch 98 | Step 202400 (349/2083) | Train loss (−SI-SNR): -17.9670
+Epoch 98 | Step 202500 (449/2083) | Train loss (−SI-SNR): -17.5370
+Epoch 98 | Step 202600 (549/2083) | Train loss (−SI-SNR): -19.2489
+Epoch 98 | Step 202700 (649/2083) | Train loss (−SI-SNR): -17.0759
+Epoch 98 | Step 202800 (749/2083) | Train loss (−SI-SNR): -18.3910
+Epoch 98 | Step 202900 (849/2083) | Train loss (−SI-SNR): -21.3693
+Epoch 98 | Step 203000 (949/2083) | Train loss (−SI-SNR): -16.4051
+Epoch 98 | Step 203100 (1049/2083) | Train loss (−SI-SNR): -19.7010
+Epoch 98 | Step 203200 (1149/2083) | Train loss (−SI-SNR): -14.2201
+Epoch 98 | Step 203300 (1249/2083) | Train loss (−SI-SNR): -21.9427
+Epoch 98 | Step 203400 (1349/2083) | Train loss (−SI-SNR): -19.1173
+Epoch 98 | Step 203500 (1449/2083) | Train loss (−SI-SNR): -18.9121
+Epoch 98 | Step 203600 (1549/2083) | Train loss (−SI-SNR): -18.0307
+Epoch 98 | Step 203700 (1649/2083) | Train loss (−SI-SNR): -16.2837
+Epoch 98 | Step 203800 (1749/2083) | Train loss (−SI-SNR): -18.1049
+Epoch 98 | Step 203900 (1849/2083) | Train loss (−SI-SNR): -16.0403
+Epoch 98 | Step 204000 (1949/2083) | Train loss (−SI-SNR): -18.3641
+Epoch 98 | Step 204100 (2049/2083) | Train loss (−SI-SNR): -13.6065
+Epoch 98 finished. Avg train loss: -17.3523
+Epoch 98 finished. Avg valid loss: -16.1120
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 1 epoch(s) (best: -16.1123)
+
+===== Epoch 99/100 =====
+Epoch 99 | Step 204200 (66/2083) | Train loss (−SI-SNR): -16.6250
+Epoch 99 | Step 204300 (166/2083) | Train loss (−SI-SNR): -16.9110
+Epoch 99 | Step 204400 (266/2083) | Train loss (−SI-SNR): -16.0280
+Epoch 99 | Step 204500 (366/2083) | Train loss (−SI-SNR): -16.1108
+Epoch 99 | Step 204600 (466/2083) | Train loss (−SI-SNR): -17.3187
+Epoch 99 | Step 204700 (566/2083) | Train loss (−SI-SNR): -19.4443
+Epoch 99 | Step 204800 (666/2083) | Train loss (−SI-SNR): -18.0360
+Epoch 99 | Step 204900 (766/2083) | Train loss (−SI-SNR): -12.9725
+Epoch 99 | Step 205000 (866/2083) | Train loss (−SI-SNR): -15.9444
+Epoch 99 | Step 205100 (966/2083) | Train loss (−SI-SNR): -18.4153
+Epoch 99 | Step 205200 (1066/2083) | Train loss (−SI-SNR): -15.7594
+Epoch 99 | Step 205300 (1166/2083) | Train loss (−SI-SNR): -16.5400
+Epoch 99 | Step 205400 (1266/2083) | Train loss (−SI-SNR): -13.5939
+Epoch 99 | Step 205500 (1366/2083) | Train loss (−SI-SNR): -19.1281
+Epoch 99 | Step 205600 (1466/2083) | Train loss (−SI-SNR): -20.7578
+Epoch 99 | Step 205700 (1566/2083) | Train loss (−SI-SNR): -12.3200
+Epoch 99 | Step 205800 (1666/2083) | Train loss (−SI-SNR): -15.8291
+Epoch 99 | Step 205900 (1766/2083) | Train loss (−SI-SNR): -16.0893
+Epoch 99 | Step 206000 (1866/2083) | Train loss (−SI-SNR): -15.0764
+Epoch 99 | Step 206100 (1966/2083) | Train loss (−SI-SNR): -19.6784
+Epoch 99 | Step 206200 (2066/2083) | Train loss (−SI-SNR): -23.1188
+Epoch 99 finished. Avg train loss: -17.3559
+Epoch 99 finished. Avg valid loss: -16.1121
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 2 epoch(s) (best: -16.1123)
+
+===== Epoch 100/100 =====
+Epoch 100 | Step 206300 (83/2083) | Train loss (−SI-SNR): -18.0342
+Epoch 100 | Step 206400 (183/2083) | Train loss (−SI-SNR): -17.8120
+Epoch 100 | Step 206500 (283/2083) | Train loss (−SI-SNR): -15.0241
+Epoch 100 | Step 206600 (383/2083) | Train loss (−SI-SNR): -17.8593
+Epoch 100 | Step 206700 (483/2083) | Train loss (−SI-SNR): -21.9898
+Epoch 100 | Step 206800 (583/2083) | Train loss (−SI-SNR): -18.4029
+Epoch 100 | Step 206900 (683/2083) | Train loss (−SI-SNR): -19.6837
+Epoch 100 | Step 207000 (783/2083) | Train loss (−SI-SNR): -15.7880
+Epoch 100 | Step 207100 (883/2083) | Train loss (−SI-SNR): -20.2259
+Epoch 100 | Step 207200 (983/2083) | Train loss (−SI-SNR): -19.7048
+Epoch 100 | Step 207300 (1083/2083) | Train loss (−SI-SNR): -17.3127
+Epoch 100 | Step 207400 (1183/2083) | Train loss (−SI-SNR): -20.4504
+Epoch 100 | Step 207500 (1283/2083) | Train loss (−SI-SNR): -14.4667
+Epoch 100 | Step 207600 (1383/2083) | Train loss (−SI-SNR): -16.1302
+Epoch 100 | Step 207700 (1483/2083) | Train loss (−SI-SNR): -19.6616
+Epoch 100 | Step 207800 (1583/2083) | Train loss (−SI-SNR): -19.1033
+Epoch 100 | Step 207900 (1683/2083) | Train loss (−SI-SNR): -16.2372
+Epoch 100 | Step 208000 (1783/2083) | Train loss (−SI-SNR): -17.6422
+Epoch 100 | Step 208100 (1883/2083) | Train loss (−SI-SNR): -18.5933
+Epoch 100 | Step 208200 (1983/2083) | Train loss (−SI-SNR): -19.1303
+Epoch 100 | Step 208300 (2083/2083) | Train loss (−SI-SNR): -17.9889
+Epoch 100 finished. Avg train loss: -17.3592
+Epoch 100 finished. Avg valid loss: -16.1123
+[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png
+No improvement on valid for 3 epoch(s) (best: -16.1123)
+[Checkpoint] Saved: ../../checkpoints\train_baseline_comm_20260419-162912\conv_tasnet_epoch100.pt
+[Viz] Saved: ../../outputs\train_baseline_comm_20260419-162912\viz_epoch100_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_epoch100_spec.png
+Loaded best model with val loss = -16.1123
+[Final] Model saved to: ../../checkpoints\train_baseline_comm_20260419-162912\conv_tasnet_final.pt
+[Test] Reached max_samples limit.
+[Test] Average test loss (−SI-SNR): -15.4776 dB
+[Viz] Saved FINAL: ../../outputs\train_baseline_comm_20260419-162912\viz_final_best_wave.png and ../../outputs\train_baseline_comm_20260419-162912\viz_final_best_spec.png
