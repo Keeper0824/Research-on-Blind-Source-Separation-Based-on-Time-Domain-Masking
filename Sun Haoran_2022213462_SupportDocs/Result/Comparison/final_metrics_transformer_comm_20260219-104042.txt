@@ -1,0 +1,8 @@
+Dual-Path Transformer on CommDataset
+Sample rate: 100000 Hz
+----------------------------------------
+  SI-SNR  : 17.5725 dB
+  SI-SNRi : 17.7675 dB
+  SNR     : 18.1342 dB
+  BER     : 0.492211 (49.2211%)
+----------------------------------------
