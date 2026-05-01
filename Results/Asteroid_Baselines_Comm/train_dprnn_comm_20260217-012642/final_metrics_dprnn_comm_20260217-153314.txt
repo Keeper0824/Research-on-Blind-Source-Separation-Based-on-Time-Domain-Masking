@@ -1,5 +1,5 @@
 DPRNNTasNet on CommDataset
-Sample rate: 100000 Hz
+Sample rate: 32000 Hz
 ----------------------------------------
   SI-SNR  : 17.6429 dB
   SI-SNRi : 17.8378 dB

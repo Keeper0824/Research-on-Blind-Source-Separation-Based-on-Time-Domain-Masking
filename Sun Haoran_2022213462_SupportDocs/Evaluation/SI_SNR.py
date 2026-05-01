@@ -3,7 +3,7 @@ import torch
 
 def si_snr(est, ref, eps=1e-8):
     """
-    SI-SNR in dB. est/ref: [T] or [..., T]
+    SI-SNR in dB
     returns: scalar tensor
     """
     est = est - est.mean(dim=-1, keepdim=True)

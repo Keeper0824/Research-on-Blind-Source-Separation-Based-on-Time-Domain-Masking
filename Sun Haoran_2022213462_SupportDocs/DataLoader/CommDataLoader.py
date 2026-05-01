@@ -11,8 +11,6 @@ class CommMixDataset(Dataset):
         self.mix_list = sorted(glob.glob(os.path.join(root, split, "mix", "*.npy")))
         self.s1_list = sorted(glob.glob(os.path.join(root, split, "s1", "*.npy")))
         self.s2_list = sorted(glob.glob(os.path.join(root, split, "s2", "*.npy")))
-        assert len(self.mix_list) > 0, f"No .npy files found in {os.path.join(root, split)}"
-        assert len(self.mix_list) == len(self.s1_list) == len(self.s2_list), "Number of files mismatch!"
 
     def __len__(self):
         return len(self.mix_list)

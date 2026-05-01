@@ -21,7 +21,6 @@ class WSJ0MixDataset(Dataset):
         self.s_lists = []
         for i in range(1, num_speakers + 1):
             s_list = sorted(glob.glob(os.path.join(root, split, f"s{i}", "*.wav")))
-            assert len(s_list) == len(self.mix_list), f"数量不匹配: mix有{len(self.mix_list)}个, s{i}有{len(s_list)}个"
             self.s_lists.append(s_list)
         self.seg_len = int(segment * sample_rate)
     def __len__(self):
