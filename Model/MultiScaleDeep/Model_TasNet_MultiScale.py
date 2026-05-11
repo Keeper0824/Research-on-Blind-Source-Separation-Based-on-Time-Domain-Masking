@@ -5,11 +5,7 @@ import Model.MultiScaleDeep.TasNet_TCN as TCNModel
 
 
 class Model(nn.Module):
-    """
-    Wrapper: Encoder + SeparatorTCN + Decoder
-    输入:  mixture (B, 1, T)
-    输出:  est_sources (B, num_speakers, T_est)
-    """
+    """Wrapper: Encoder + SeparatorTCN + Decoder Input: mixture (B, 1, T) Output: est_sources (B, num_speakers, T_est)"""
 
     def __init__(self, enc_dim=256, enc_kernel=[5, 10, 20], enc_stride=8, bottleneck_channels=128, hidden_channels=256,
                  num_blocks=8, num_repeats=3, num_speakers=2):

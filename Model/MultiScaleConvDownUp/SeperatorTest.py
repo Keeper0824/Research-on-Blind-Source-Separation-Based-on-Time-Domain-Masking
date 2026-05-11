@@ -6,10 +6,10 @@ import torchaudio
 import numpy as np
 from tqdm import tqdm
 
-# 你特有的模型引入
+# Import the local own unique model
 from Model.MultiScaleConvDownUp.Model_TasNet_MultiScale import Model
 
-# 数据加载器引入 (双重兼容)
+# Data loader introduction (dual compatibility)
 from DataLoader.WSJDataLoader import MakeDataLoader as MakeWSJLoader
 
 try:
@@ -30,17 +30,14 @@ except ImportError:
 
 
 # ==========================================
-# 新增：通信信号误比特率 (BER) 计算函数
+# New: communication signal bit error rate (BER) calculation function.
 # ==========================================
 def compute_ber(est_waveform, ref_waveform):
-    """
-    计算误比特率 (Bit Error Rate, BER) 的简易占位函数。
-    基于零点交叉的极性判决，适用于 BPSK 基带信号。
-    """
+    """A simple placeholder function for calculating Bit Error Rate (BER). BPSK"""
     est_bits = (est_waveform > 0).float()
     ref_bits = (ref_waveform > 0).float()
 
-    # 统计错误比特数
+    # Count error bits
     errors = torch.sum(torch.abs(est_bits - ref_bits))
     total_bits = torch.numel(ref_bits)
 
@@ -91,14 +88,11 @@ def ensure_ref_b2t(ref):
 
 def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, max_save_samples, min_len_needed=16,
                            dataset_type="speech"):
-    """
-    - 对 test set 跑完整个 epoch
-    - dataset_type: "comm" (算BER) 或 "speech" (算PESQ, STOI)
-    """
+    """- Run the entire epoch on the test set - dataset_type: "comm" (calculates BER) or "speech" (calculates PESQ, STOI)"""
     model.eval()
     os.makedirs(output_dir, exist_ok=True)
 
-    # 1. 动态初始化指标字典
+    # 1. Dynamically initialize indicator dictionary
     all_metrics = {
         "SI-SNR": [],
         "SI-SNRi": [],
@@ -127,7 +121,7 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
             mix = mix.to(device)  # [B,T]
             targets = targets.to(device)  # [B,2,T]
 
-            # forward
+            # Forward pass.
             est = model(mix.unsqueeze(1))
             if est.dim() == 3 and est.size(1) != 2:
                 raise RuntimeError(f"Model output unexpected: {tuple(est.shape)}")
@@ -141,10 +135,10 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
             # PIT align
             est_aligned, perm, sisnr_best = pit_align_by_sisnr(est, targets)  # sisnr_best: [B]
 
-            # 保留你原本代码中的 DC offset removal (去直流操作)
+            # Keep the DC offset removal in this code
             est_aligned = est_aligned - est_aligned.mean(dim=-1, keepdim=True)
 
-            # 公共指标计算
+            # Public indicator calculation
             si_snr_vals = sisnr_best  # [B]
             si_snri_vals = si_snr_improvement(est_aligned, targets, mix)  # [B]
             snr_vals = 0.5 * (snr(est_aligned[:, 0, :], targets[:, 0, :]) + snr(est_aligned[:, 1, :], targets[:, 1, :]))
@@ -153,9 +147,9 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
             all_metrics["SI-SNRi"].extend(si_snri_vals.detach().cpu().tolist())
             all_metrics["SNR"].extend(snr_vals.detach().cpu().tolist())
 
-            # 2. 差异化指标计算
+            # 2. Calculation of differentiation indicators
             if dataset_type == "speech":
-                # PESQ / STOI：逐条算（CPU + numpy）
+                # PESQ/STOI: Line-by-line calculation (CPU + numpy)
                 pesq_vals = []
                 stoi_vals = []
                 est_cpu = est_aligned.detach().cpu().float().numpy()
@@ -175,7 +169,7 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
                 all_metrics["STOI"].extend(stoi_vals)
 
             elif dataset_type == "comm":
-                # BER：计算误比特率
+                # BER: Calculate bit error rate.
                 ber_vals = []
                 for b in range(est_aligned.shape[0]):
                     b_err = 0.5 * (
@@ -185,7 +179,7 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
                     ber_vals.append(b_err)
                 all_metrics["BER"].extend(ber_vals)
 
-            # 3. 保存波形
+            # 3. Save the waveform
             B = mix.size(0)
             for i in range(B):
                 if saved >= max_save_samples:
@@ -206,7 +200,7 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
 
                 saved += 1
 
-    # 汇总结果 (nan-safe)
+    # Aggregate results (nan-safe)
     def nanmean(x):
         x = np.array(x, dtype=np.float64)
         return float(np.nanmean(x)) if x.size else float("nan")
@@ -230,7 +224,7 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
         if math.isnan(results.get("STOI", 0)):
             print("STOI 是 NaN：你环境可能没装 pystoi。可尝试：pip install pystoi")
 
-    # ========= 写入 outdir 的 txt =========
+    # ========= Write txt to outdir =========.
     ts = time.strftime("%Y%m%d-%H%M%S")
     txt_path = os.path.join(output_dir, f"final_metrics_{dataset_type}_{ts}.txt")
 
@@ -256,7 +250,7 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
 
 
 # ==========================================
-# 完美版权重加载器
+# complete copyright reloader
 # ==========================================
 def load_ckpt_into_model(model, model_path, device):
     print(f"Loading weights: {model_path}")
@@ -291,18 +285,18 @@ def load_ckpt_into_model(model, model_path, device):
 
 def run_test(model_path, test_root, batch_size, sample_rate, device,
              output_dir, max_save_samples=20, dataset_type="speech"):
-    # 按照你的代码，保留这里的 [5, 11, 21] 多尺度卷积核和 516 维配置
+    # According to this code, retain the [5, 11, 21] multi-scale convolution kernel and 516-dimensional configuration here
     model = Model(enc_dim=516, enc_kernel=[5, 11, 21], enc_stride=8, bottleneck_channels=128, hidden_channels=256,
                   num_blocks=8, num_repeats=3, num_speakers=2).to(device)
 
     load_ckpt_into_model(model, model_path, device)
 
-    # 动态加载对应的数据集 Loader
+    # Dynamically load the corresponding data set Loader
     if dataset_type == "speech":
         _, _, test_loader = MakeWSJLoader(root=test_root, batch_size=batch_size, num_workers=4, sample_rate=sample_rate,
                                           segment=4.0)
     elif dataset_type == "comm":
-        # 如果你想在这个脚本里跑通信信号，它也会自动调用 MakeCommLoader
+        # If you want to run communication signals in this script, it will also automatically call MakeCommLoader
         _, _, test_loader = MakeCommLoader(root=test_root, batch_size=batch_size, num_workers=4, segment=32000)
     else:
         raise ValueError("dataset_type 必须是 'comm' 或 'speech'")
@@ -314,7 +308,7 @@ def run_test(model_path, test_root, batch_size, sample_rate, device,
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    # 按照你原代码的意图，这里测试的是 WSJ0-2Mix (Speech 模式)
+    # According to the intention of this code, what is tested here is WSJ0-2Mix (Speech mode)
     run_test(
         model_path="../../checkpoints/train_multiscale_20251223-114731/conv_tasnet_final.pt",
         test_root="../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min",
@@ -323,5 +317,5 @@ if __name__ == "__main__":
         device=device,
         output_dir="../../Results/train_multiscale_20251223-114731",
         max_save_samples=20,
-        dataset_type="speech"  # <-- 开启语音模式
+        dataset_type="speech"  # <-- Turn on speech mode.
     )

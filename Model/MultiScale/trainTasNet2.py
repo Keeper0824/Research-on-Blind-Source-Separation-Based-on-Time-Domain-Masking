@@ -9,11 +9,11 @@ from contextlib import nullcontext
 from torch.amp import GradScaler, autocast
 from torch.optim.swa_utils import AveragedModel, get_ema_multi_avg_fn
 
-# 引入你的多尺度模型
+# Import the local multi-scale model
 from Model.MultiScale.Model_TasNet_MultiScale import Model
-# 引入 Loss
+# Introducing Loss
 from LossFunction.SI_SNR import pit_si_snr_loss
-# 引入 CommDataLoader
+# Introduce CommDataLoader
 from DataLoader.CommDataLoader import MakeDataLoader
 
 
@@ -260,7 +260,7 @@ def main():
     scaler = GradScaler()
     loss_fn = pit_si_snr_loss
 
-    # Tracking
+    # Track metrics.
     best_val_loss = float("inf")
     no_improve = 0
     patience = 12
@@ -283,7 +283,7 @@ def main():
 
             with autocast(device_type="cuda", dtype=torch.float16):
                 est = model(mix.unsqueeze(1))
-                # Align
+                # Align lengths.
                 min_len = min(est.shape[-1], targets.shape[-1])
                 est = est[..., :min_len]
                 targets = targets[..., :min_len]
@@ -315,7 +315,7 @@ def main():
 
         print(f"Epoch {epoch + 1} Done. Train Loss: {avg_train:.4f} | Val Loss: {avg_val:.4f} | Grad: {avg_gn:.2f}")
 
-        # History
+        # Training history.
         epochs_hist.append(epoch + 1)
         train_loss_hist.append(avg_train)
         val_loss_hist.append(avg_val)

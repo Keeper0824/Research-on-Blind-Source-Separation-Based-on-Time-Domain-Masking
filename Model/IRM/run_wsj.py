@@ -5,10 +5,10 @@ import torch
 import numpy as np
 from tqdm import tqdm
 
-# 引入你的数据加载器
+# Introduce the local data loader
 from DataLoader.WSJDataLoader import MakeDataLoader as MakeWSJLoader
 
-# 引入指标计算
+# Introducing indicator calculations
 from Evaluation.SI_SNR import si_snr, si_snr_improvement
 from Evaluation.SNR import snr
 from Evaluation.PESQ import pesqTest
@@ -16,14 +16,12 @@ from Evaluation.STOI import stoiTest
 
 
 # ==========================================
-# 理想比值掩蔽 (IRM) 分离
+# Ideal ratio masking (IRM) separation
 # ==========================================
 def compute_irm_score(mix, s1, s2, n_fft=512, hop=128):
-    """
-    计算理想比值掩蔽 (IRM) 的上限分数 (Oracle Performance)
-    """
+    """Calculate the upper bound score for ideal ratio masking (IRM) (Oracle Performance)"""
     eps = 1e-8
-    # 确保 window 在正确的设备上
+    # Make sure window is on the correct device
     window = torch.hann_window(n_fft).to(mix.device)
 
     # 1. STFT
@@ -47,7 +45,7 @@ def compute_irm_score(mix, s1, s2, n_fft=512, hop=128):
     S1_est_complex = S1_est_mag * torch.exp(1j * phase)
     S2_est_complex = S2_est_mag * torch.exp(1j * phase)
 
-    # 恢复时域信号
+    # Recover time domain signals
     s1_recon = torch.istft(S1_est_complex, n_fft, hop, window=window, length=mix.shape[-1])
     s2_recon = torch.istft(S2_est_complex, n_fft, hop, window=window, length=mix.shape[-1])
 
@@ -55,7 +53,7 @@ def compute_irm_score(mix, s1, s2, n_fft=512, hop=128):
 
 
 # ==========================================
-# 评估流程
+# Assessment process
 # ==========================================
 def evaluate_baselines(loader, device, output_dir, sample_rate=8000):
     os.makedirs(output_dir, exist_ok=True)
@@ -74,7 +72,7 @@ def evaluate_baselines(loader, device, output_dir, sample_rate=8000):
             s2 = targets[:, 1].to(device)
 
             # ===================================================
-            # Baseline 1: Input Mixture (直接把混合信号当成输出，测试下限)
+            # Baseline 1: Input Mixture (directly treat the mixed signal as output, test the lower limit)
             # ===================================================
             mix_sisnr = (si_snr(mix, s1) + si_snr(mix, s2)) / 2
             mix_snr = (snr(mix, s1) + snr(mix, s2)) / 2
@@ -83,18 +81,18 @@ def evaluate_baselines(loader, device, output_dir, sample_rate=8000):
             metrics["Mix_SNR"].extend(mix_snr.detach().cpu().tolist())
 
             # ===================================================
-            # Baseline 2: IRM Oracle (频域 Mask 的绝对理论上限)
+            # Baseline 2: IRM Oracle (absolute theoretical upper limit of frequency domain mask)
             # ===================================================
             s1_irm, s2_irm = compute_irm_score(mix, s1, s2)
 
-            # 去直流操作
+            # Implementation note.
             s1_irm = s1_irm - s1_irm.mean(dim=-1, keepdim=True)
             s2_irm = s2_irm - s2_irm.mean(dim=-1, keepdim=True)
 
             irm_sisnr = (si_snr(s1_irm, s1) + si_snr(s2_irm, s2)) / 2
             irm_snr = (snr(s1_irm, s1) + snr(s2_irm, s2)) / 2
 
-            # SI-SNRi (提升量) = 恢复后的 SI-SNR - 混合信号的 SI-SNR
+            # SI-SNRi (improvement) = restored SI-SNR - mixed-signal SI-SNR.
             irm_sisnri = irm_sisnr - mix_sisnr
 
             metrics["IRM_SI-SNR"].extend(irm_sisnr.detach().cpu().tolist())
@@ -102,7 +100,7 @@ def evaluate_baselines(loader, device, output_dir, sample_rate=8000):
             metrics["IRM_SNR"].extend(irm_snr.detach().cpu().tolist())
 
             # ===================================================
-            # CPU 端计算 (PESQ / STOI)
+            # CPU side calculation (PESQ / STOI)
             # ===================================================
             mix_np = mix.detach().cpu().numpy()
             s1_np = s1.detach().cpu().numpy()
@@ -112,7 +110,7 @@ def evaluate_baselines(loader, device, output_dir, sample_rate=8000):
 
             B = mix_np.shape[0]
             for b in range(B):
-                # 1. 计算 Mixture 的 PESQ 和 STOI
+                # 1. Calculate PESQ and STOI of Mixture
                 p_mix_1 = pesqTest(mix_np[b], s1_np[b], sample_rate)
                 p_mix_2 = pesqTest(mix_np[b], s2_np[b], sample_rate)
                 metrics["Mix_PESQ"].append(float(np.nanmean([p_mix_1, p_mix_2])))
@@ -121,7 +119,7 @@ def evaluate_baselines(loader, device, output_dir, sample_rate=8000):
                 s_mix_2 = stoiTest(mix_np[b], s2_np[b], sample_rate)
                 metrics["Mix_STOI"].append(float(np.nanmean([s_mix_1, s_mix_2])))
 
-                # 2. 计算 IRM 的 PESQ 和 STOI
+                # 2. Calculate PESQ and STOI of IRM
                 p_irm_1 = pesqTest(s1_irm_np[b], s1_np[b], sample_rate)
                 p_irm_2 = pesqTest(s2_irm_np[b], s2_np[b], sample_rate)
                 metrics["IRM_PESQ"].append(float(np.nanmean([p_irm_1, p_irm_2])))
@@ -130,13 +128,13 @@ def evaluate_baselines(loader, device, output_dir, sample_rate=8000):
                 s_irm_2 = stoiTest(s2_irm_np[b], s2_np[b], sample_rate)
                 metrics["IRM_STOI"].append(float(np.nanmean([s_irm_1, s_irm_2])))
 
-    # 汇总计算均值 (防止包含 nan 时报错)
+    # Summarize and calculate the mean (to prevent errors when nan is included)
     def nanmean(x):
         return float(np.nanmean(x)) if len(x) > 0 else float("nan")
 
     results = {k: nanmean(v) for k, v in metrics.items()}
 
-    # 打印至控制台
+    # Print to console
     print("\n" + "=" * 50)
     print(f"[WSJ0-2Mix Baselines Final Results]")
     print(f"--- 1. Input Mixture (理论下限 / 不做处理) ---")
@@ -153,7 +151,7 @@ def evaluate_baselines(loader, device, output_dir, sample_rate=8000):
     print(f"  STOI    : {results['IRM_STOI']:.4f}")
     print("=" * 50 + "\n")
 
-    # 写入至 TXT 文件
+    # Write to TXT file
     ts = time.strftime("%Y%m%d-%H%M%S")
     txt_path = os.path.join(output_dir, f"oracle_baselines_wsj_{ts}.txt")
 
@@ -184,17 +182,17 @@ def evaluate_baselines(loader, device, output_dir, sample_rate=8000):
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    # 数据集路径
+    # Dataset path
     root = "../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
     sample_rate = 8000
 
-    # 结果保存路径
+    # Results save path
     output_dir = "../../Results/Oracle_Baselines_WSJ"
 
     print(f"Device: {device}")
 
-    # 加载测试集
+    # Load test set
     _, _, test_loader = MakeWSJLoader(root=root, batch_size=32, num_workers=4, segment=4.0, sample_rate=sample_rate)
 
-    # 运行测试
+    # Run tests
     evaluate_baselines(test_loader, device, output_dir, sample_rate=sample_rate)

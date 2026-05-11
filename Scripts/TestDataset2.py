@@ -11,7 +11,7 @@ from LossFunction.SI_SNR import negative_si_snr as si_snr_loss
 class Logger(object):
     def __init__(self, log_path):
         self.terminal = sys.stdout
-        # 确保目录存在
+        # Make sure the directory exists
         os.makedirs(os.path.dirname(log_path), exist_ok=True)
         self.log = open(log_path, "a", encoding="utf-8", buffering=1)
 
@@ -20,19 +20,19 @@ class Logger(object):
         self.log.write(message)
 
     def flush(self):
-        # 兼容 Python 对 stdout.flush 的调用
+        # Compatible with Pythons call to stdout.flush
         self.terminal.flush()
         self.log.flush()
 
 
 def main():
-    # ---------------- 日志设置：同时写入命令行和文件 ----------------
+    # ---------------- Log settings: Write to command line and file at the same time ----------------.
     timestamp = time.strftime("%Y%m%d-%H%M%S")
     log_file = os.path.join("../logs", f"train_convtasnet_{timestamp}.log")
     sys.stdout = Logger(log_file)
     print(f"Log file: {log_file}")
 
-    # ---------------- 基本配置 ----------------
+    # ----------------Basic configuration----------------
     root = "Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
     sample_rate = 8000
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -43,15 +43,15 @@ def main():
         segment=4.0, sample_rate=sample_rate
     )
 
-    # torchaudio 自带 ConvTasNet_Test
+    # torchaudio comes with ConvTasNet_Test
     model = ConvTasNet(num_sources=2).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
-    # 用来保存模型参数的目录
+    # Directory used to save model parameters
     ckpt_dir = "../checkpoints"
     os.makedirs(ckpt_dir, exist_ok=True)
 
-    # --------- 训练 ---------
+    # --------- train ---------
     num_epochs = 30
     global_step = 0
 
@@ -86,7 +86,7 @@ def main():
         avg_train_loss = total_loss / num_batches
         print(f"Epoch {epoch + 1} finished. Avg train loss: {avg_train_loss:.4f}")
 
-        # --------- 阶段性保存模型参数（每个 epoch 一个 checkpoint）---------
+        # --------- Save model parameters in stages (one checkpoint for each epoch) ---------
         ckpt_path = os.path.join(ckpt_dir, f"conv_tasnet_epoch{epoch + 1}.pt")
         torch.save(
             {
@@ -99,7 +99,7 @@ def main():
         )
         print(f"[Checkpoint] Saved: {ckpt_path}")
 
-    # --------- 最终模型参数单独保存一份 ---------
+    # --------- Save the final model parameters separately ---------
     final_ckpt_path = os.path.join(ckpt_dir, "conv_tasnet_final.pt")
     torch.save(
         {
@@ -111,7 +111,7 @@ def main():
     )
     print(f"[Final] Model saved to: {final_ckpt_path}")
 
-    # --------- 用测试集跑一个 batch，导出音频 ---------
+    # --------- Run a batch with the test set and export the audio ---------
     os.makedirs("../outputs", exist_ok=True)
     model.eval()
     with torch.no_grad():
@@ -121,14 +121,14 @@ def main():
 
             est_sources = model(mix.unsqueeze(1))      # (B, 2, T)
 
-            # 只导出 batch 里的第一个样本
+            # Export only the first sample in the batch
             mix_0 = mix[0].cpu()                # (T,)
             s1_ref = targets[0, 0].cpu()
             s2_ref = targets[0, 1].cpu()
             s1_est = est_sources[0, 0].cpu()
             s2_est = est_sources[0, 1].cpu()
 
-            # 保存 wav
+            # save wav
             torchaudio.save("outputs/mix.wav",  mix_0.unsqueeze(0), sample_rate)
             torchaudio.save("outputs/s1_ref.wav", s1_ref.unsqueeze(0), sample_rate)
             torchaudio.save("outputs/s2_ref.wav", s2_ref.unsqueeze(0), sample_rate)

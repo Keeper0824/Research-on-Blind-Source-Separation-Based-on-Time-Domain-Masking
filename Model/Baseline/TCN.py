@@ -65,22 +65,7 @@ class TemporalBlock(nn.Module):
 
 
 class SeparatorTCN(nn.Module):
-    """
-    Separation module (corresponding to the "Separation" block in the architecture).
-
-    Input:
-        enc_feat: Encoder feature map, shape (B, N, L)
-
-    Output:
-        masks:       (B, C, N, L)   — estimated masks
-        masked_feat: (B, C, N, L)   — masked encoder features
-
-    Notation:
-        B: batch size
-        N: encoder feature dimension
-        L: sequence length (number of frames)
-        C: number of sources
-    """
+    """ Separation module (corresponding to the "Separation" block in the architecture). Input: enc_feat: Encoder feature map, shape (B, N, L) Output: masks: (B, C, N, L) estimated masks masked_feat: (B, C, N, L) masked encoder features Notation: B: batch size N: encoder feature dimension L: sequence length (number of frames) C: number of sources """
 
     def __init__(
             self,
@@ -97,7 +82,7 @@ class SeparatorTCN(nn.Module):
         self.enc_dim = enc_dim
         self.num_sources = num_sources
 
-        # 1x1 bottleneck projection: encoder_dim → hidden_channels
+        # 1x1 bottleneck projection: encoder_dim hidden_channels
         self.bottleneck = nn.Conv1d(enc_dim, hidden_channels, 1)
 
         # Build the dilated TCN stack (similar to Conv-TasNet separation module)
@@ -120,18 +105,11 @@ class SeparatorTCN(nn.Module):
         self.tcn = nn.Sequential(*tcn_blocks)
 
         # Final 1x1 conv to produce masks:
-        # hidden_channels → (num_sources × enc_dim)
+        # hidden_channels (num_sources enc_dim)
         self.mask_conv = nn.Conv1d(hidden_channels, num_sources * enc_dim, kernel_size=1)
 
     def forward(self, enc_feat):
-        """
-        Args:
-            enc_feat: (B, N, L) — features from the Encoder
-
-        Returns:
-            masks:       (B, C, N, L)
-            masked_feat: (B, C, N, L)
-        """
+        """ Args: enc_feat: (B, N, L) features from the Encoder Returns: masks: (B, C, N, L) masked_feat: (B, C, N, L) """
         B, N, L = enc_feat.size()
         assert N == self.enc_dim, "enc_dim mismatch: check Encoder and SeparationTCN settings."
 

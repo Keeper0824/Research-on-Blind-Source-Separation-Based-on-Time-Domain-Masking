@@ -69,7 +69,7 @@ except ImportError as e:
 
 class SeparationManager:
     """
-    Ultimate Backend Manager for GUI. Supports Speech (.wav) & Comm (.npy).
+    Backend manager for the GUI. Supports speech (.wav) and communication (.npy) inputs.
     """
 
     def __init__(self):
@@ -107,7 +107,7 @@ class SeparationManager:
         if model_choice == self.current_model_name and self.active_model is not None:
             return
 
-        print(f"\n[ModelManager] Switching backend to 🚀: {model_choice} ...")
+        print(f"\n[ModelManager] Switching backend to: {model_choice} ...")
 
         if self.active_model is not None:
             del self.active_model
@@ -157,7 +157,7 @@ class SeparationManager:
             raise ValueError(f"Unknown model selection: {model_choice}")
 
         self.current_model_name = model_choice
-        print(f"[ModelManager] {model_choice} successfully loaded! ✅\n")
+        print(f"[ModelManager] {model_choice} successfully loaded!\n")
 
     def _read_signal(self, file_path):
         if file_path.lower().endswith(".npy"):

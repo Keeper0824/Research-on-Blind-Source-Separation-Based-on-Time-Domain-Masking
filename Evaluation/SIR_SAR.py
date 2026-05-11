@@ -17,14 +17,7 @@ def bss(ref_sources, est_sources):
 
 
 def bss_eval(ref_sources, est_sources):
-    """
-    Wrapper for torch → numpy → mir_eval.
-    Args:
-        ref_sources: tensor, shape [n_sources, T]
-        est_sources: tensor, shape [n_sources, T]
-    Returns:
-        sdr, sir, sar, perm (all numpy arrays)
-    """
+    """ Wrapper for torch numpy mir_eval. Args: ref_sources: tensor, shape [n_sources, T] est_sources: tensor, shape [n_sources, T] Returns: sdr, sir, sar, perm (all numpy arrays) """
     ref_np = ref_sources.detach().cpu().numpy()
     est_np = est_sources.detach().cpu().numpy()
     return bss(ref_np, est_np)

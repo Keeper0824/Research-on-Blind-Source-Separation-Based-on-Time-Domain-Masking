@@ -12,7 +12,7 @@ from Model.Deep.Model_TasNet import Model
 from torch.optim.swa_utils import AveragedModel, get_ema_multi_avg_fn
 from LossFunction.SI_SNR import pit_si_snr_loss, si_snr
 
-# 【修改点1】引入 CommDataLoader
+# [Modification point 1] Introduction of CommDataLoader
 from DataLoader.CommDataLoader import MakeDataLoader
 
 
@@ -82,9 +82,9 @@ def eval_test_full(model, test_loader, loss_fn, sample_rate, device, output_dir,
     with torch.no_grad():
         for mix, targets in test_loader:
             mix = mix.to(device)  # [B, T]
-            targets = targets.to(device)  # [B, 2, T]  (假设 2 个源)
+            targets = targets.to(device)  # [B, 2, T] (assuming 2 sources)
 
-            est_sources = model(mix.unsqueeze(1))  # [B, 2, T’]
+            est_sources = model(mix.unsqueeze(1))  # [B, 2, T]
 
             min_len = min(est_sources.shape[-1], targets.shape[-1])
             est_sources = est_sources[..., :min_len]  # [B, 2, L]
@@ -146,7 +146,7 @@ def _log_spec(x, sample_rate, n_fft=256, hop=64):
         return_complex=True
     )  # [1, F, TT]
     mag = spec.abs().clamp_min(1e-8)
-    log_mag = mag.log10()  # log10
+    log_mag = mag.log10()  # Log-magnitude scale.
     return log_mag.squeeze(0)  # [F, TT]
 
 
@@ -158,20 +158,14 @@ def align_waveform(est, ref):
 
 
 def pit_reorder(ests: torch.Tensor, refs: torch.Tensor, eps=1e-8):
-    """
-    ests: [B, S, T]
-    refs: [B, S, T]
-    return:
-      ests_reordered: [B, S, T]
-      best_perm: LongTensor [B, S]  (每个样本选到的 permutation)
-    """
+    """ests: [B, S, T] refs: [B, S, T] return: ests_reordered: [B, S, T] best_perm: LongTensor [B, S] (permutation selected for each sample)"""
     B, S, T = ests.shape
     perms = list(permutations(range(S)))
 
     scores = []  # list of [B]
     for perm in perms:
         refp = refs[:, perm, :]
-        # 平均每个源的 si-snr
+        # average si-snr per source
         s = 0.0
         for k in range(S):
             s = s + si_snr(ests[:, k, :], refp[:, k, :], eps=eps)  # [B]
@@ -181,7 +175,7 @@ def pit_reorder(ests: torch.Tensor, refs: torch.Tensor, eps=1e-8):
     best_idx = torch.argmax(score_stack, dim=1)  # [B]
     best_perm = torch.tensor(perms, device=ests.device)[best_idx]  # [B, S]
 
-    # 根据 best_perm 重排 ests
+    # Reorder ests according to best_perm
     ests_reordered = torch.stack(
         [ests[b, best_perm[b]] for b in range(B)], dim=0
     )
@@ -204,26 +198,26 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
         with _safe_autocast(device):
             est = model(mix.unsqueeze(1))  # [1, 2, T_est]
 
-        # 1. 对齐长度
+        # 1. Alignment length
         min_len = min(est.shape[-1], targets.shape[-1], mix.shape[-1])
         est = est[..., :min_len]
         targets = targets[..., :min_len]
         mix = mix[..., :min_len]
 
-        # 2. 【关键步骤】调用 PIT 重排，自动修正通道顺序
+        # 2. Use PIT reordering to correct the source order
         # est: [B, S, T], targets: [B, S, T]
         est, _ = pit_reorder(est, targets)
 
-        # 3. 提取单条数据
+        # 3. Extract a single piece of data
         mix_ = mix[0].detach().float().cpu()
         s1_ref = targets[0, 0].detach().float().cpu()
         s2_ref = targets[0, 1].detach().float().cpu()
 
-        # 此时 est[0,0] 已经确保是对应 s1_ref 的了
+        # At this time est[0,0] has been ensured to correspond to s1_ref
         s1_est = est[0, 0].detach().float().cpu()
         s2_est = est[0, 1].detach().float().cpu()
 
-    # 4. 波形图 (加入 align_waveform 修正幅度和相位)
+    # 4. Waveform graph (add align_waveform to correct amplitude and phase)
     s1_est_aligned = align_waveform(s1_est, s1_ref)
     s2_est_aligned = align_waveform(s2_est, s2_ref)
 
@@ -239,11 +233,11 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
     plt.savefig(save_prefix + "_wave.png", dpi=200)
     plt.close()
 
-    # 5. 频谱图 (同理)
+    # 5. Spectrum (same principle)
     def to_t(x):
         return x.to(torch.float32)
 
-    # 使用对齐后的波形画谱，看起来更直观
+    # Plot spectra from aligned waveforms for easier inspection
     specs = [
         _log_spec(to_t(mix_), sample_rate),
         _log_spec(to_t(s1_ref), sample_rate),
@@ -267,7 +261,7 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
 def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
     os.makedirs(output_dir, exist_ok=True)
 
-    # 1) SI-SNR(dB) = -loss（你的 loss 是 -SI-SNR）
+    # 1) SI-SNR(dB) = -loss (the local loss is -SI-SNR)
     train_sisnr = [-x for x in train_loss]
     val_sisnr = [-x for x in val_loss]
     plt.figure()
@@ -280,7 +274,7 @@ def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
     plt.savefig(os.path.join(output_dir, "curve_sisnr.png"), dpi=200)
     plt.close()
 
-    # 2) gap = val_loss - train_loss（看过拟合很直观）
+    # 2) gap = val_loss - train_loss, useful for spotting overfitting
     gap = [v - t for t, v in zip(train_loss, val_loss)]
     plt.figure()
     plt.plot(epochs, gap, label="gap = val_loss - train_loss")
@@ -292,7 +286,7 @@ def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
     plt.savefig(os.path.join(output_dir, "curve_gap.png"), dpi=200)
     plt.close()
 
-    # 3) grad norm（每个 epoch 平均值）
+    # 3) grad norm (average of each epoch)
     plt.figure()
     plt.plot(epochs, grad_norm_epoch, label="avg grad norm / epoch")
     plt.xlabel("epoch");
@@ -306,7 +300,7 @@ def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
 def main():
     # Basic run naming & logging setup
     timestamp = time.strftime("%Y%m%d-%H%M%S")
-    # 【修改点2】更新 log_name 区分网络版本与数据集
+    # 2 log_name
     log_name = f"train_deep_comm_{timestamp}"
     log_file = os.path.join("../../logs", log_name + ".log")
 
@@ -331,16 +325,16 @@ def main():
 
     torch.backends.cudnn.benchmark = True
 
-    # 【修改点3】适配数据路径与采样率
+    # Step 3.
     root = "../../Dataset/Comm0-2Dataset"
-    sample_rate = 100000  # 匹配通信信号 100k 采样率
+    sample_rate = 100000  # 100 kHz sample rate.
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    # 【修改点4】加载 CommDataLoader (使用 segment=32000 点数)
+    # 4 CommDataLoader ( segment=32000 )
     train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=16, num_workers=8, segment=32000)
 
-    # 固定一个 valid 样例：每个 epoch 都用同一个，方便看训练进步
+    # Fixed a valid sample: use the same one for each epoch to facilitate viewing of training progress.
     fixed_mix, fixed_targets = next(iter(valid_loader))
     fixed_mix = fixed_mix[0]  # [T]
     fixed_targets = fixed_targets[0]  # [2, T]
@@ -435,7 +429,7 @@ def main():
         plot_metrics(output_dir, epochs_hist, train_loss_hist, val_loss_hist, grad_norm_hist)
         print("[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png")
 
-        if avg_val_loss < best_val_loss - min_delta:  # 可以加个很小的 margin 防止浮点抖动
+        if avg_val_loss < best_val_loss - min_delta:  # You can add a small margin to prevent floating point jitter.
             best_val_loss = avg_val_loss
             no_improve_epochs = 0
             best_state_dict = copy.deepcopy(
@@ -471,7 +465,7 @@ def main():
                 ckpt_path,
             )
             print(f"[Checkpoint] Saved: {ckpt_path}")
-        # 每5轮保存一次可视化（波形+频谱）
+        # Save visualization (waveform + spectrum) every 5 rounds
         if (epoch + 1) % VIZ_EVERY == 0 or (epoch + 1) == 1:
             viz_prefix = os.path.join(output_dir, f"viz_epoch{epoch + 1:03d}")
             visualize_separation_epoch(ema_model, fixed_mix, fixed_targets, sample_rate, device, viz_prefix)

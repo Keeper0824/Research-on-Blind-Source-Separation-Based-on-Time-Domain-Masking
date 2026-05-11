@@ -12,23 +12,21 @@ from LossFunction.SI_SNR import pit_si_snr_loss
 
 
 # ========================================================
-# 引入 Asteroid 中的 Dual-Path Transformer (与 SepFormer 原理一致)
+# Introducing Dual-Path Transformer in Asteroid (consistent with SepFormer principle)
 # ========================================================
 from asteroid.models import DPTNet
 
-# 导入你的数据加载器和评估指标
+# Implementation note.
 from DataLoader.CommDataLoader import MakeDataLoader
 from Evaluation.SI_SNR import si_snr, si_snr_improvement, pit_align_by_sisnr
 from Evaluation.SNR import snr
 
 
 # ==========================================
-# 1. 通信专属：误比特率 (BER) 计算
+# 1. (BER)
 # ==========================================
 def compute_ber(est_waveform, ref_waveform):
-    """
-    计算误比特率 (BER)，基于 BPSK 零点判决
-    """
+    """(BER) BPSK"""
     est_bits = (est_waveform > 0).float()
     ref_bits = (ref_waveform > 0).float()
     errors = torch.sum(torch.abs(est_bits - ref_bits))
@@ -37,7 +35,7 @@ def compute_ber(est_waveform, ref_waveform):
 
 
 # ==========================================
-# 2. 辅助工具：日志与数据形状对齐
+# 2.
 # ==========================================
 class Logger(object):
     def __init__(self, log_path: str):
@@ -83,16 +81,16 @@ def ensure_ref_b2t(ref):
 
 
 # ==========================================
-# 3. 验证与终极测试循环
+# 3.
 # ==========================================
 def eval_valid(model, valid_loader, loss_fn, device):
-    """训练过程中的验证循环"""
+    """Helper function."""
     model.eval()
     total_val_loss = 0.0
     with torch.no_grad():
         for mix, targets in valid_loader:
             mix, targets = ensure_mix_bt(mix).to(device), ensure_ref_b2t(targets).to(device)
-            # 使用混合精度降低 Transformer 显存消耗
+            # Use mixed precision to reduce Transformer memory consumption
             with autocast(device_type="cuda", dtype=torch.bfloat16):
                 est_sources = model(mix)
             min_len = min(est_sources.shape[-1], targets.shape[-1])
@@ -103,7 +101,7 @@ def eval_valid(model, valid_loader, loss_fn, device):
 
 
 def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save_samples=20):
-    """终极测试：计算 BER, SI-SNR, SI-SNRi, SNR"""
+    """BER, SI-SNR, SI-SNRi, SNR"""
     print(f"\n==============================================")
     print(f" 开始执行 Transformer 终极测试 (Comm0-2Dataset 标准)")
     print(f"==============================================")
@@ -128,11 +126,11 @@ def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save
             targets = targets[..., :min_len]
             mix = mix[..., :min_len]
 
-            # 1. PIT 对齐
+            # 1. PIT
             est_aligned, perm, sisnr_best = pit_align_by_sisnr(est, targets)
             est_aligned = est_aligned - est_aligned.mean(dim=-1, keepdim=True)
 
-            # 2. 计算指标
+            # 2. Calculate indicators
             si_snr_vals = sisnr_best
             si_snri_vals = si_snr_improvement(est_aligned, targets, mix)
             snr_vals = 0.5 * (snr(est_aligned[:, 0, :], targets[:, 0, :]) + snr(est_aligned[:, 1, :], targets[:, 1, :]))
@@ -141,7 +139,7 @@ def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save
             all_metrics["SI-SNRi"].extend(si_snri_vals.detach().cpu().tolist())
             all_metrics["SNR"].extend(snr_vals.detach().cpu().tolist())
 
-            # 3. 计算 BER
+            # 3. Calculate BER
             ber_vals = []
             for b in range(est_aligned.shape[0]):
                 b_err = 0.5 * (
@@ -151,7 +149,7 @@ def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save
                 ber_vals.append(b_err)
             all_metrics["BER"].extend(ber_vals)
 
-            # 4. 保存音频样本
+            # 4.
             for i in range(mix.size(0)):
                 if saved >= max_save_samples: break
                 base = f"transformer_test_{saved:04d}_perm{perm[i][0]}{perm[i][1]}"
@@ -166,7 +164,7 @@ def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save
                 torchaudio.save(os.path.join(output_dir, f"{base}_s2_est.wav"), s2_est.unsqueeze(0), sample_rate)
                 saved += 1
 
-    # 汇总写入 TXT
+    # Summary written to TXT
     results = {k: float(np.nanmean(v)) for k, v in all_metrics.items()}
 
     print("\n" + "=" * 40)
@@ -194,7 +192,7 @@ def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save
 
 
 # ==========================================
-# 4. 主程序：极限训练 + 测试
+# 4. Main program: extreme training + test.
 # ==========================================
 def main():
     timestamp = time.strftime("%Y%m%d-%H%M%S")
@@ -218,30 +216,30 @@ def main():
     root = "../../Dataset/Comm0-2Dataset"
     sample_rate = 100000
 
-    # 【警告！】Transformer 在长度 32000 的序列上计算自注意力，矩阵维度直接起飞。
-    # 强烈建议先用 batch_size=1 试水。如果秒崩，那是真的没法跑。
+    # warn! Transformer calculates self-attention on a sequence of length 32000, and the matrix dimension takes off directly.
+    # It is strongly recommended to test the waters with batch_size=1 first. If it collapses instantly, there is really no way to run.
     batch_size = 16
     train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=batch_size, num_workers=4,
                                                              segment=32000)
 
-    # --- 极度缩水的 Transformer 配置 ---
+    # --- Extremely reduced Transformer configuration ---
     print("\nInitializing Dual-Path Transformer (DPTNet) from scratch...")
     model = DPTNet(
         n_src=2,
         out_chan=64,
         in_chan=64,
-        ff_hid=128,  # 前馈网络维度
-        chunk_size=100,  # 切块大小
+        ff_hid=128,  # Feedforward network dimensions
+        chunk_size=100,  # Cut size
         hop_size=50,
-        n_repeats=6,  # 原版是 6 层 Transformer，这里砍到 2 层保命
+        n_repeats=6,  # The original version has 6 layers of Transformer, here it is reduced to 2 layers to save life.
         norm_type="gLN",
         mask_act="relu"
     ).to(device)
 
     ema_model = AveragedModel(model, multi_avg_fn=get_ema_multi_avg_fn(0.999)).to(device)
 
-    # 优化器
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)  # Transformer 学习率不能太大
+    # optimizer
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)  # Transformer learning rate cannot be too large
     loss_fn = pit_si_snr_loss
     num_epochs = 100
 

@@ -36,12 +36,7 @@ def pit_si_snr_loss(
     refs: torch.Tensor,
     eps: float = 1e-8,
 ):
-    """
-    Permutation Invariant Training (PIT) 的 SI-SNR loss.
-
-    ests: [B, S, T]
-    refs: [B, S, T]
-    """
+    """SI-SNR loss of Permutation Invariant Training (PIT). ests: [B, S, T] refs: [B, S, T]"""
     B, S, T = ests.shape
     perms = list(permutations(range(S)))
     sisnr_set = []

@@ -78,9 +78,9 @@ def eval_test_full(model, test_loader, loss_fn, sample_rate, device, output_dir,
     with torch.no_grad():
         for mix, targets in test_loader:
             mix = mix.to(device)  # [B, T]
-            targets = targets.to(device)  # [B, 2, T]  (假设 2 个源)
+            targets = targets.to(device)  # [B, 2, T] (assuming 2 sources)
 
-            est_sources = model(mix.unsqueeze(1))  # [B, 2, T’]
+            est_sources = model(mix.unsqueeze(1))  # [B, 2, T]
 
             min_len = min(est_sources.shape[-1], targets.shape[-1])
             est_sources = est_sources[..., :min_len]  # [B, 2, L]
@@ -140,20 +140,16 @@ def _log_spec(x, sample_rate, n_fft=256, hop=64):
         return_complex=True
     )  # [1, F, TT]
     mag = spec.abs().clamp_min(1e-8)
-    log_mag = mag.log10()  # log10
+    log_mag = mag.log10()  # Log-magnitude scale.
     return log_mag.squeeze(0)  # [F, TT]
 
 def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_prefix):
-    """
-    固定样例可视化：波形图 + 频谱图
-    mix: [1, T] or [T]
-    targets: [1, 2, T] or [2, T]
-    """
+    """Fixed sample visualization: waveform + spectrogram mix: [1, T] or [T] targets: [1, 2, T] or [2, T]"""
     model.eval()
     os.makedirs(os.path.dirname(save_prefix), exist_ok=True)
 
     with torch.no_grad():
-        # 统一 shape
+        # unified shape
         if mix.dim() == 1:
             mix = mix.unsqueeze(0)          # [1, T]
         if targets.dim() == 2:
@@ -163,22 +159,22 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
         targets = targets.to(device)
 
         with _safe_autocast(device):
-            est = model(mix.unsqueeze(1))  # [1, 2, T’]
+            est = model(mix.unsqueeze(1))  # [1, 2, T]
 
-        # 对齐长度
+        # alignment length
         min_len = min(est.shape[-1], targets.shape[-1], mix.shape[-1])
         est = est[..., :min_len]
         targets = targets[..., :min_len]
         mix = mix[..., :min_len]
 
-        # 取出单条
+        # Take out a single
         mix_ = mix[0].detach().float().cpu()
         s1_ref = targets[0, 0].detach().float().cpu()
         s2_ref = targets[0, 1].detach().float().cpu()
         s1_est = est[0, 0].detach().float().cpu()
         s2_est = est[0, 1].detach().float().cpu()
 
-    # ============ 1) 波形图 ============
+    # ============ 1) Waveform ============.
     wavs = [mix_, s1_ref, s2_ref, s1_est, s2_est]
     names = ["mix", "s1_ref", "s2_ref", "s1_est", "s2_est"]
 
@@ -191,8 +187,8 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
     plt.savefig(save_prefix + "_wave.png", dpi=200)
     plt.close()
 
-    # ============ 2) 频谱图 ============
-    # 用 CPU 也行（快且稳），转回 tensor 方便 stft
+    # ============ 2) Spectrum ============.
+    # You can also use CPU (fast and stable), and convert it back to tensor for convenience stft
     def to_t(x):
         return x.to(torch.float32)
 
@@ -202,7 +198,7 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
     s1_est_t = to_t(s1_est)
     s2_est_t = to_t(s2_est)
 
-    # stft 放 CPU 上跑就行（省 GPU）
+    # Just run stft on the CPU (save GPU)
     mix_spec = _log_spec(mix_t, sample_rate)
     s1_ref_spec = _log_spec(s1_ref_t, sample_rate)
     s2_ref_spec = _log_spec(s2_ref_t, sample_rate)
@@ -225,7 +221,7 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
 def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
     os.makedirs(output_dir, exist_ok=True)
 
-    # 1) SI-SNR(dB) = -loss（你的 loss 是 -SI-SNR）
+    # 1) SI-SNR(dB) = -loss (the local loss is -SI-SNR)
     train_sisnr = [-x for x in train_loss]
     val_sisnr = [-x for x in val_loss]
     plt.figure()
@@ -236,7 +232,7 @@ def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
     plt.savefig(os.path.join(output_dir, "curve_sisnr.png"), dpi=200)
     plt.close()
 
-    # 2) gap = val_loss - train_loss（看过拟合很直观）
+    # 2) gap = val_loss - train_loss, useful for spotting overfitting
     gap = [v - t for t, v in zip(train_loss, val_loss)]
     plt.figure()
     plt.plot(epochs, gap, label="gap = val_loss - train_loss")
@@ -246,7 +242,7 @@ def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
     plt.savefig(os.path.join(output_dir, "curve_gap.png"), dpi=200)
     plt.close()
 
-    # 3) grad norm（每个 epoch 平均值）
+    # 3) grad norm (average of each epoch)
     plt.figure()
     plt.plot(epochs, grad_norm_epoch, label="avg grad norm / epoch")
     plt.xlabel("epoch"); plt.ylabel("grad norm")
@@ -289,7 +285,7 @@ def main():
 
     train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=16, num_workers=8, segment=4.0,
                                                              sample_rate=sample_rate)
-    # 固定一个 valid 样例：每个 epoch 都用同一个，方便看训练进步
+    # Fixed a valid sample: use the same one for each epoch to facilitate viewing of training progress.
     fixed_mix, fixed_targets = next(iter(valid_loader))
     fixed_mix = fixed_mix[0]  # [T]
     fixed_targets = fixed_targets[0]  # [2, T]
@@ -372,7 +368,7 @@ def main():
         plot_metrics(output_dir, epochs_hist, train_loss_hist, val_loss_hist, grad_norm_hist)
         print("[Plot] Saved: curve_sisnr.png, curve_gap.png, curve_gradnorm.png")
 
-        if avg_val_loss < best_val_loss - 1e-4:  # 可以加个很小的 margin 防止浮点抖动
+        if avg_val_loss < best_val_loss - 1e-4:  # You can add a small margin to prevent floating point jitter.
             best_val_loss = avg_val_loss
             no_improve_epochs = 0
             best_state_dict = copy.deepcopy(model.state_dict())
@@ -403,7 +399,7 @@ def main():
             ckpt_path,
         )
         print(f"[Checkpoint] Saved: {ckpt_path}")
-        # 每轮保存一次可视化（波形+频谱）
+        # Save one visualization per round (waveform + spectrum)
         viz_prefix = os.path.join(output_dir, f"viz_epoch{epoch + 1:03d}")
         visualize_separation_epoch(model, fixed_mix, fixed_targets, sample_rate, device, viz_prefix)
         print(f"[Viz] Saved: {viz_prefix}_wave.png and {viz_prefix}_spec.png")

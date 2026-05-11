@@ -4,22 +4,19 @@ import torch
 import numpy as np
 from tqdm import tqdm
 
-# 数据加载
+# Implementation note.
 from DataLoader.CommDataLoader import MakeDataLoader as MakeCommLoader
 
-# 指标计算
+# Implementation note.
 from Evaluation.SI_SNR import si_snr
 from Evaluation.SNR import snr
 
 
 # ==========================================
-# 误比特率 (BER) 计算函数
+# BER calculation.
 # ==========================================
 def compute_ber(est_waveform, ref_waveform):
-    """
-    计算误比特率的简易占位函数。
-    基于零点交叉的极性判决，适用于 BPSK 基带信号。
-    """
+    """BPSK"""
     est_bits = (est_waveform > 0).float()
     ref_bits = (ref_waveform > 0).float()
     errors = torch.sum(torch.abs(est_bits - ref_bits))
@@ -28,14 +25,12 @@ def compute_ber(est_waveform, ref_waveform):
 
 
 # ==========================================
-# 理想比值掩蔽 (IRM) 分离
+# Ideal ratio masking (IRM) separation
 # ==========================================
 def compute_irm_score(mix, s1, s2, n_fft=512, hop=128):
-    """
-    计算理想比值掩蔽 (IRM) 的上限分数 (Oracle Performance)
-    """
+    """Calculate the upper bound score for ideal ratio masking (IRM) (Oracle Performance)"""
     eps = 1e-8
-    # 确保 window 在正确的设备上
+    # Make sure window is on the correct device
     window = torch.hann_window(n_fft).to(mix.device)
 
     # 1. STFT
@@ -59,7 +54,7 @@ def compute_irm_score(mix, s1, s2, n_fft=512, hop=128):
     S1_est_complex = S1_est_mag * torch.exp(1j * phase)
     S2_est_complex = S2_est_mag * torch.exp(1j * phase)
 
-    # 恢复时域信号
+    # Recover time domain signals
     s1_recon = torch.istft(S1_est_complex, n_fft, hop, window=window, length=mix.shape[-1])
     s2_recon = torch.istft(S2_est_complex, n_fft, hop, window=window, length=mix.shape[-1])
 
@@ -67,7 +62,7 @@ def compute_irm_score(mix, s1, s2, n_fft=512, hop=128):
 
 
 # ==========================================
-# 评估流程
+# Assessment process
 # ==========================================
 def evaluate_baselines(loader, device, output_dir):
     os.makedirs(output_dir, exist_ok=True)
@@ -86,7 +81,7 @@ def evaluate_baselines(loader, device, output_dir):
             s2 = targets[:, 1].to(device)
 
             # ===================================================
-            # Baseline 1: Input Mixture (直接把混合信号当成输出，测试下限)
+            # Baseline 1: Input Mixture (directly treat the mixed signal as output, test the lower limit)
             # ===================================================
             mix_sisnr = (si_snr(mix, s1) + si_snr(mix, s2)) / 2
             mix_snr = (snr(mix, s1) + snr(mix, s2)) / 2
@@ -97,18 +92,18 @@ def evaluate_baselines(loader, device, output_dir):
             metrics["Mix_BER"].append(mix_ber)
 
             # ===================================================
-            # Baseline 2: IRM Oracle (频域 Mask 的绝对理论上限)
+            # Baseline 2: IRM Oracle (absolute theoretical upper limit of frequency domain mask)
             # ===================================================
             s1_irm, s2_irm = compute_irm_score(mix, s1, s2)
 
-            # 去直流操作 (与你神经网络测试时的处理保持一致)
+            # Remove DC operation (consistent with the processing during the local neural network testing)
             s1_irm = s1_irm - s1_irm.mean(dim=-1, keepdim=True)
             s2_irm = s2_irm - s2_irm.mean(dim=-1, keepdim=True)
 
             irm_sisnr = (si_snr(s1_irm, s1) + si_snr(s2_irm, s2)) / 2
             irm_snr = (snr(s1_irm, s1) + snr(s2_irm, s2)) / 2
 
-            # SI-SNRi (提升量) = 恢复后的 SI-SNR - 混合信号的 SI-SNR
+            # SI-SNRi (improvement) = restored SI-SNR - mixed-signal SI-SNR.
             irm_sisnri = irm_sisnr - mix_sisnr
 
             irm_ber = (compute_ber(s1_irm, s1) + compute_ber(s2_irm, s2)) / 2
@@ -118,13 +113,13 @@ def evaluate_baselines(loader, device, output_dir):
             metrics["IRM_SNR"].extend(irm_snr.detach().cpu().tolist())
             metrics["IRM_BER"].append(irm_ber)
 
-    # 汇总计算均值
+    # Summary calculation mean
     def nanmean(x):
         return float(np.nanmean(x)) if len(x) > 0 else float("nan")
 
     results = {k: nanmean(v) for k, v in metrics.items()}
 
-    # 打印至控制台
+    # Print to console
     print("\n" + "=" * 50)
     print(f"[Comm0-2Dataset Baselines Final Results]")
     print(f"--- 1. Input Mixture (理论下限 / 不做处理) ---")
@@ -139,7 +134,7 @@ def evaluate_baselines(loader, device, output_dir):
     print(f"  BER     : {results['IRM_BER']:.6f} ({results['IRM_BER'] * 100:.4f}%) - 误比特率")
     print("=" * 50 + "\n")
 
-    # 写入至 TXT 文件
+    # Write to TXT file
     ts = time.strftime("%Y%m%d-%H%M%S")
     txt_path = os.path.join(output_dir, f"oracle_baselines_comm_{ts}.txt")
 
@@ -166,16 +161,16 @@ def evaluate_baselines(loader, device, output_dir):
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    # 数据集路径
+    # Dataset path
     root = "../../Dataset/Comm0-2Dataset"
 
-    # 结果保存路径
+    # Results save path
     output_dir = "../../Results/Oracle_Baselines_Comm"
 
     print(f"Device: {device}")
 
-    # 加载测试集
+    # Load test set
     _, _, test_loader = MakeCommLoader(root=root, batch_size=32, num_workers=4, segment=32000)
 
-    # 运行测试
+    # Run tests
     evaluate_baselines(test_loader, device, output_dir)

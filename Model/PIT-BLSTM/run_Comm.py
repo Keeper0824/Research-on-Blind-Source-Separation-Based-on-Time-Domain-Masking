@@ -11,7 +11,7 @@ from tqdm import tqdm
 from torch.optim.swa_utils import AveragedModel, get_ema_multi_avg_fn
 
 # ==========================================
-# 1. 导入数据加载器和评估指标
+# 1. Import data loader and evaluation indicators
 # ==========================================
 from DataLoader.CommDataLoader import MakeDataLoader
 from Evaluation.SI_SNR import si_snr_improvement, pit_align_by_sisnr
@@ -20,7 +20,7 @@ from Evaluation.SNR import snr
 
 
 # ==========================================
-# 2. 辅助工具：日志与 BER 计算
+# 2. Auxiliary tools: log and BER calculation.
 # ==========================================
 class Logger(object):
     def __init__(self, log_path: str):
@@ -38,9 +38,7 @@ class Logger(object):
 
 
 def compute_ber(est_waveform, ref_waveform):
-    """
-    计算误比特率 (BER)，基于 BPSK 零点判决
-    """
+    """(BER) BPSK"""
     est_bits = (est_waveform > 0).float()
     ref_bits = (ref_waveform > 0).float()
     errors = torch.sum(torch.abs(est_bits - ref_bits))
@@ -78,7 +76,7 @@ def plot_metrics(output_dir, epochs, train_loss, val_loss):
 
 
 # ==========================================
-# 3. 时频域模型定义 (PIT-BLSTM)
+# 3. Time-frequency domain model definition (PIT-BLSTM)
 # ==========================================
 class STFTMaskNet(nn.Module):
     def __init__(self, n_fft=1024, hop_length=256, hidden_size=300, num_layers=3, num_spks=2):
@@ -95,7 +93,7 @@ class STFTMaskNet(nn.Module):
         self.linear = nn.Linear(hidden_size * 2, input_dim * num_spks)
         self.activation = nn.Sigmoid()
 
-    # 强制关闭 AMP，防止 STFT 在半精度下数值溢出
+    # Force AMP to be turned off to prevent STFT from overflowing at half precision
     @torch.amp.autocast('cuda', enabled=False)
     def forward(self, x):
         x = x.float()
@@ -132,7 +130,7 @@ class STFTMaskNet(nn.Module):
 
 
 # ==========================================
-# 4. 验证与测试流程
+# 4. Verification and testing process
 # ==========================================
 def eval_valid(model, valid_loader, loss_fn, device):
     model.eval()
@@ -163,26 +161,26 @@ def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save
 
             est = model(mix)
 
-            # 对齐长度
+            # alignment length
             min_len = min(est.shape[-1], targets.shape[-1], mix.shape[-1])
             est = est[..., :min_len]
             targets = targets[..., :min_len]
             mix = mix[..., :min_len]
 
-            # 1. PIT 对齐
+            # 1. PIT alignment.
             est_aligned, perm, sisnr_best = pit_align_by_sisnr(est, targets)
 
-            # 去直流 (通信信号通常是零均值)
+            # Remove DC (communication signals are usually zero mean)
             est_aligned = est_aligned - est_aligned.mean(dim=-1, keepdim=True)
 
-            # 2. 计算指标
+            # 2. Calculate indicators
             metrics["SI-SNR"].extend(sisnr_best.cpu().tolist())
             metrics["SI-SNRi"].extend(si_snr_improvement(est_aligned, targets, mix).cpu().tolist())
 
             batch_snr = 0.5 * (snr(est_aligned[:, 0], targets[:, 0]) + snr(est_aligned[:, 1], targets[:, 1]))
             metrics["SNR"].extend(batch_snr.cpu().tolist())
 
-            # 3. 计算 BER
+            # 3. Calculate BER
             ber_batch = []
             for b in range(est_aligned.shape[0]):
                 ber = 0.5 * (compute_ber(est_aligned[b, 0], targets[b, 0]) +
@@ -190,7 +188,7 @@ def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save
                 ber_batch.append(ber)
             metrics["BER"].extend(ber_batch)
 
-            # 4. 保存 wav
+            # 4. Save wav
             for i in range(mix.size(0)):
                 if saved >= max_save_samples: break
                 base = f"tf_baseline_{saved:04d}"
@@ -205,7 +203,7 @@ def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save
                 torchaudio.save(os.path.join(output_dir, f"{base}_s2_est.wav"), s2_est.unsqueeze(0), sample_rate)
                 saved += 1
 
-    # 结果汇总写入 TXT
+    # Result summary written to TXT
     def nanmean(x):
         return float(np.nanmean(x)) if len(x) > 0 else float("nan")
 
@@ -238,7 +236,7 @@ def run_final_test(model, test_loader, sample_rate, device, output_dir, max_save
 
 
 # ==========================================
-# 5. 主程序
+# 5. Main program
 # ==========================================
 def main():
     timestamp = time.strftime("%Y%m%d-%H%M%S")
@@ -258,12 +256,12 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     root = "../../Dataset/Comm0-2Dataset"
 
-    # Comm0-2Dataset: segment 32000 points, batch_size 256 (显存允许的情况下尽量大)
+    # Comm0-2Dataset: segment 32000 points, batch_size 256 (as large as the memory allows)
     train_loader, valid_loader, test_loader = MakeDataLoader(
         root=root, batch_size=256, num_workers=8, segment=32000
     )
 
-    # 针对通信信号优化 STFT 参数
+    # Optimizing STFT parameters for communication signals
     model = STFTMaskNet(n_fft=1024, hop_length=256).to(device)
     ema_model = AveragedModel(model, multi_avg_fn=get_ema_multi_avg_fn(0.999)).to(device)
 
@@ -277,7 +275,7 @@ def main():
     patience, no_improve = 15, 0
     epochs_hist, train_loss_hist, val_loss_hist = [], [], []
 
-    # --- 训练循环 ---
+    # --- Training loop ---
     model.train()
     for epoch in range(100):
         total_loss = 0.0
@@ -321,7 +319,7 @@ def main():
                 print("Early stopping triggered.")
                 break
 
-    # --- 最终测试 ---
+    # --- Final test ---
     print("\n>>> Training Finished. Starting Final Test... <<<")
     model.load_state_dict(best_state)
     run_final_test(model, test_loader, 100000, device, result_dir)

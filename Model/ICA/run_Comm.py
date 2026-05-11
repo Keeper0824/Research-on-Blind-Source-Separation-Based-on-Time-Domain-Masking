@@ -5,22 +5,19 @@ import numpy as np
 from tqdm import tqdm
 from sklearn.decomposition import FastICA, NMF
 
-# 数据加载
+# Implementation note.
 from DataLoader.CommDataLoader import MakeDataLoader
 
-# 导入指标计算模块
+# Implementation note.
 from Evaluation.SI_SNR import si_snr
 from Evaluation.SNR import snr
 
 
 # ==========================================
-# 误比特率 (BER) 计算函数
+# BER calculation.
 # ==========================================
 def compute_ber(est_waveform, ref_waveform):
-    """
-    计算误比特率的简易占位函数。
-    基于零点交叉的极性判决，适用于 BPSK 基带信号。
-    """
+    """BPSK"""
     est_bits = (est_waveform > 0).float()
     ref_bits = (ref_waveform > 0).float()
     errors = torch.sum(torch.abs(est_bits - ref_bits))
@@ -29,21 +26,18 @@ def compute_ber(est_waveform, ref_waveform):
 
 
 # ==========================================
-# 综合评估函数 (包含 PIT 排列对齐)
+# ( PIT )
 # ==========================================
 def evaluate_metrics_pit(est_s1, est_s2, s1, s2, mix):
-    """
-    计算 SI-SNR, SI-SNRi, SNR, BER
-    并自动处理 ICA/NMF 输出的通道随机排列问题 (PIT)
-    """
-    # 转换为 Tensor (保持 1D)
+    """SI-SNR, SI-SNRi, SNR, BER ICA/NMF (PIT)"""
+    # Tensor ( 1D)
     e1 = torch.from_numpy(est_s1).float()
     e2 = torch.from_numpy(est_s2).float()
     t1 = torch.from_numpy(s1).float()
     t2 = torch.from_numpy(s2).float()
     m = torch.from_numpy(mix).float()
 
-    # 1. PIT 对齐 (基于 SI-SNR)
+    # 1. PIT ( SI-SNR)
     sisnr_11 = si_snr(e1, t1)
     sisnr_22 = si_snr(e2, t2)
     sisnr_12 = si_snr(e1, t2)
@@ -52,7 +46,7 @@ def evaluate_metrics_pit(est_s1, est_s2, s1, s2, mix):
     mean_sisnr_A = (sisnr_11 + sisnr_22) / 2
     mean_sisnr_B = (sisnr_12 + sisnr_21) / 2
 
-    # 选择最佳排列
+    # Implementation note.
     if mean_sisnr_A > mean_sisnr_B:
         best_e1, best_e2 = e1, e2
         best_sisnr = mean_sisnr_A
@@ -60,29 +54,27 @@ def evaluate_metrics_pit(est_s1, est_s2, s1, s2, mix):
         best_e1, best_e2 = e2, e1
         best_sisnr = mean_sisnr_B
 
-    # 2. 计算 SNR
+    # 2. SNR
     snr_val = (snr(best_e1, t1) + snr(best_e2, t2)) / 2
 
-    # 3. 计算 SI-SNRi (Improvement)
+    # 3. SI-SNRi (Improvement)
     base_sisnr_1 = si_snr(m, t1)
     base_sisnr_2 = si_snr(m, t2)
     mean_base_sisnr = (base_sisnr_1 + base_sisnr_2) / 2
     sisnri = best_sisnr - mean_base_sisnr
 
-    # 4. 计算 误比特率 (BER)
+    # 4. BER calculation.
     ber_val = (compute_ber(best_e1, t1) + compute_ber(best_e2, t2)) / 2
 
     return best_sisnr.item(), sisnri.item(), snr_val.item(), ber_val
 
 
 # ==========================================
-# 统计学分离核心逻辑
+# Implementation note.
 # ==========================================
 def run_statistical_separation(mix_wav, method='nmf', n_fft=512, hop=256):
-    """
-    对单条信号执行统计学分离 (ICA / NMF)
-    """
-    # 1. STFT 变换
+    """(ICA / NMF)"""
+    # 1. STFT
     spec_complex = torch.stft(
         torch.from_numpy(mix_wav).unsqueeze(0),
         n_fft=n_fft, hop_length=hop, win_length=n_fft,
@@ -94,7 +86,7 @@ def run_statistical_separation(mix_wav, method='nmf', n_fft=512, hop=256):
     phase = np.angle(spec_complex)
     X = mag.T  # (Samples, Features)
 
-    # 2. 运行算法
+    # Step 2.
     if method == 'ica':
         model = FastICA(n_components=2, max_iter=800, tol=1e-2, random_state=42)
     elif method == 'nmf':
@@ -106,7 +98,7 @@ def run_statistical_separation(mix_wav, method='nmf', n_fft=512, hop=256):
         W = model.fit_transform(X)
         H = model.components_
 
-        # 3. 重构幅度谱 + Soft Masking
+        # 3. + Soft Masking
         est_mag_1 = np.outer(W[:, 0], H[0, :]).T
         est_mag_2 = np.outer(W[:, 1], H[1, :]).T
 
@@ -138,16 +130,16 @@ def run_statistical_separation(mix_wav, method='nmf', n_fft=512, hop=256):
         return y1_wav, y2_wav
 
     except Exception as e:
-        # 如果算法不收敛或抛出异常，返回原混合信号作为保底
+        # Implementation note.
         return mix_wav, mix_wav
 
 
 def main():
     root = "../../Dataset/Comm0-2Dataset"
     segment_points = 32000
-    max_samples = 50  # 统计学算法在 CPU 跑比较慢，建议限制测试数量
+    max_samples = 50  # CPU
 
-    # 结果保存路径设定
+    # Implementation note.
     output_dir = "../../Results/Statistical_Baselines_Comm"
     os.makedirs(output_dir, exist_ok=True)
     ts = time.strftime("%Y%m%d-%H%M%S")
@@ -158,7 +150,7 @@ def main():
 
     methods = ['ica', 'nmf']
 
-    # 记录字典
+    # Implementation note.
     all_results = {}
 
     for method in methods:
@@ -178,10 +170,10 @@ def main():
             s1_np = targets[:, 0].squeeze().numpy()
             s2_np = targets[:, 1].squeeze().numpy()
 
-            # 运行分离算法
+            # Implementation note.
             est_s1, est_s2 = run_statistical_separation(mix_np, method=method)
 
-            # 计算各项指标 (带 PIT 对齐)
+            # ( PIT )
             sisnr_val, sisnri_val, snr_val, ber_val = evaluate_metrics_pit(est_s1, est_s2, s1_np, s2_np, mix_np)
 
             metrics["SI-SNR"].append(sisnr_val)
@@ -198,7 +190,7 @@ def main():
 
         pbar.close()
 
-        # 汇总当前方法的平均值
+        # Implementation note.
         avg_metrics = {k: np.mean(v) for k, v in metrics.items()}
         all_results[method] = avg_metrics
 
@@ -210,7 +202,7 @@ def main():
                 print(f"  {k:8s}: {v:.4f} dB")
 
     # ==========================================
-    # 将最终成绩写入 TXT 报告
+    # Write the TXT report.
     # ==========================================
     with open(txt_path, "w", encoding="utf-8") as f:
         f.write("Statistical Baselines on Comm0-2Dataset\n")

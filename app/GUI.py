@@ -5,16 +5,11 @@ import torchaudio
 import numpy as np
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
-from PyQt5.QtGui import *
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
-import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from app.Models.Code.ModelManager import SeparationManager
 
-# ==========================================
-# 1. Core Algorithm: Long Audio Chunking
-# ==========================================
 def process_long_audio_by_chunks(manager, model_choice, waveform, sr, chunk_sec=4.0):
     chunk_samples = int(chunk_sec * sr)
     total_length = waveform.shape[-1]
@@ -44,9 +39,6 @@ def process_long_audio_by_chunks(manager, model_choice, waveform, sr, chunk_sec=
     return est_sources
 
 
-# ==========================================
-# 2. Thread: Audio Processing
-# ==========================================
 class AudioWorker(QThread):
     finished_signal = pyqtSignal(list, str)
     error_signal = pyqtSignal(str)
@@ -89,9 +81,6 @@ class AudioWorker(QThread):
             self.error_signal.emit(str(e))
 
 
-# ==========================================
-# 3. Thread: Video Processing
-# ==========================================
 class VideoWorker(QThread):
     finished_signal = pyqtSignal(list, str)
     error_signal = pyqtSignal(str)
@@ -147,10 +136,6 @@ class VideoWorker(QThread):
         except Exception as e:
             self.error_signal.emit(str(e))
 
-
-# ==========================================
-# 4. Thread: Comm Signal Processing (.npy)
-# ==========================================
 class CommWorker(QThread):
     finished_signal = pyqtSignal(list, str)
     error_signal = pyqtSignal(str)
@@ -185,15 +170,11 @@ class CommWorker(QThread):
         except Exception as e:
             self.error_signal.emit(str(e))
 
-
-# ==========================================
-# 5. Main Application & Modern English UI
-# ==========================================
 class SeparationApp(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Multi-Source Signal Separation Workstation (Audio/Video/Comm)")
-        self.resize(1500, 950)  # 超大初始窗口，匹配大字体
+        self.resize(1500, 950)  # Implementation note.
         self.manager = SeparationManager()
         self.audio_player = QMediaPlayer()
 
@@ -208,7 +189,6 @@ class SeparationApp(QMainWindow):
         self.tabs.addTab(self.create_video_tab(), "  Video Vocal Extraction  ")
         self.tabs.addTab(self.create_comm_tab(), " Comm Signal Parsing ")
 
-    # ------------------ Tab 1: Audio ------------------
     def create_audio_tab(self):
         widget = QWidget()
         layout = QHBoxLayout(widget)
@@ -221,7 +201,6 @@ class SeparationApp(QMainWindow):
         speech_models = [
             "[Speech] TasNet (Baseline)",
             "[Speech] Deep TasNet",
-            "[Speech] MultiScale TasNet",
             "[Speech] MultiScale-Deep (Ultimate)",
             "[Speech] TasNet (3 Speakers)",
             "[Speech] TasNet (4 Speakers)",
@@ -244,7 +223,7 @@ class SeparationApp(QMainWindow):
 
         left.addStretch()
         self.a_run_btn = QPushButton("Execute Chunked Separation")
-        self.a_run_btn.setMinimumHeight(75)  # 巨型执行按钮
+        self.a_run_btn.setMinimumHeight(75)  # Implementation note.
         self.a_run_btn.setObjectName("runButtonAudio")
         self.a_run_btn.clicked.connect(self.run_audio)
         left.addWidget(self.a_run_btn)
@@ -275,7 +254,6 @@ class SeparationApp(QMainWindow):
         self.a_mix_path = ""
         return widget
 
-    # ------------------ Tab 2: Video ------------------
     def create_video_tab(self):
         widget = QWidget()
         layout = QHBoxLayout(widget)
@@ -303,7 +281,7 @@ class SeparationApp(QMainWindow):
 
         left.addStretch()
         self.v_run_btn = QPushButton("Start Video Audio Separation")
-        self.v_run_btn.setMinimumHeight(75)  # 巨型执行按钮
+        self.v_run_btn.setMinimumHeight(75)  # Implementation note.
         self.v_run_btn.setObjectName("runButtonVideo")
         self.v_run_btn.clicked.connect(self.run_video)
         left.addWidget(self.v_run_btn)
@@ -326,7 +304,6 @@ class SeparationApp(QMainWindow):
         self.v_mix_path = ""
         return widget
 
-    # ------------------ Tab 3: Comm ------------------
     def create_comm_tab(self):
         widget = QWidget()
         layout = QHBoxLayout(widget)
@@ -359,7 +336,7 @@ class SeparationApp(QMainWindow):
 
         left.addStretch()
         self.c_run_btn = QPushButton("Parse Comm Signal")
-        self.c_run_btn.setMinimumHeight(75)  # 巨型执行按钮
+        self.c_run_btn.setMinimumHeight(75)  # Implementation note.
         self.c_run_btn.setObjectName("runButtonComm")
         self.c_run_btn.clicked.connect(self.run_comm)
         left.addWidget(self.c_run_btn)
@@ -382,7 +359,6 @@ class SeparationApp(QMainWindow):
         self.c_mix_path = ""
         return widget
 
-    # ------------------ Advanced CSS Styling (超大字体版) ------------------
     def apply_dark_theme(self):
         self.setStyleSheet("""
             QMainWindow { background-color: #1E1E1E; }
@@ -442,7 +418,6 @@ class SeparationApp(QMainWindow):
         QMessageBox.critical(self, "Execution Failed", f"System Error:\n{err_msg}")
         btn.setEnabled(True)
 
-    # ------------------ Audio Logic ------------------
     def run_audio(self):
         if not self.a_mix_path: return QMessageBox.warning(self, "Error", "Please select an audio file first!")
         self.a_run_btn.setEnabled(False)
@@ -500,7 +475,6 @@ class SeparationApp(QMainWindow):
         self.audio_player.setMedia(QMediaContent(QUrl.fromLocalFile(path)))
         self.audio_player.play()
 
-    # ------------------ Video Logic ------------------
     def run_video(self):
         if not self.v_mix_path: return QMessageBox.warning(self, "Error", "Please select a video file first!")
         self.v_run_btn.setEnabled(False)
@@ -541,7 +515,6 @@ class SeparationApp(QMainWindow):
             box.setLayout(vbox)
             self.v_grid.addWidget(box, row, col)
 
-    # ------------------ Comm Logic ------------------
     def run_comm(self):
         if not self.c_mix_path: return QMessageBox.warning(self, "Error",
                                                            "Please select a Numpy (.npy) signal file first!")

@@ -7,7 +7,7 @@ import numpy as np
 from tqdm import tqdm
 
 # ========================================================
-# 【安全补丁 1】防止 PyTorch 2.6 拦截老旧的预训练权重
+# [Security Patch 1] Prevent PyTorch 2.6 from intercepting old pre-trained weights
 # ========================================================
 _original_load = torch.load
 
@@ -20,7 +20,7 @@ def _patched_load(*args, **kwargs):
 torch.load = _patched_load
 
 # ========================================================
-# 【依赖补丁 2 终极版】修复参数冲突 + 拦截 404 错误并伪造文件
+# [Dependency Patch 2 final Edition] Fix parameter conflicts + intercept 404 errors and forge files
 # ========================================================
 import huggingface_hub
 
@@ -28,17 +28,17 @@ _orig_hf_hub_download = huggingface_hub.hf_hub_download
 
 
 def _patched_hf_hub_download(*args, **kwargs):
-    # 修复废弃参数
+    # Fix obsolete parameters
     if 'use_auth_token' in kwargs:
         kwargs['token'] = kwargs.pop('use_auth_token')
 
-    # 获取它想下载的文件名
+    # Get the name of the file it wants to download
     filename = kwargs.get('filename', args[1] if len(args) > 1 else '')
 
     try:
         return _orig_hf_hub_download(*args, **kwargs)
     except Exception as e:
-        # 如果是请求 custom.py 并且遇到了 404 Not Found 错误
+        # If custom.py is requested and a 404 Not Found error is encountered
         if filename == "custom.py" and "404" in str(e):
             print("\n[拦截提醒] 发现 SpeechBrain 索要不存在的 custom.py，已自动伪造空文件放行！")
             dummy_path = os.path.join(os.getcwd(), "dummy_custom.py")
@@ -52,7 +52,7 @@ def _patched_hf_hub_download(*args, **kwargs):
 huggingface_hub.hf_hub_download = _patched_hf_hub_download
 
 # ========================================================
-# 【权限补丁 3】解决 Windows 无法创建软链接 (WinError 1314)
+# [Permissions Patch 3] Solve the problem that Windows cannot create soft links (WinError 1314)
 # ========================================================
 import pathlib
 import shutil
@@ -64,7 +64,7 @@ def _patched_symlink_to(self, target, target_is_directory=False):
     try:
         _orig_symlink_to(self, target, target_is_directory)
     except OSError as e:
-        # 如果是 WinError 1314 (没有特权)，就回退到直接物理复制文件
+        # If WinError 1314 (no privileges), fall back to directly physically copying the file
         if getattr(e, 'winerror', None) == 1314:
             if target.is_dir():
                 shutil.copytree(target, self)
@@ -77,13 +77,13 @@ def _patched_symlink_to(self, target, target_is_directory=False):
 pathlib.Path.symlink_to = _patched_symlink_to
 # ========================================================
 
-# 引入 SpeechBrain 的分离模块
+# Introducing the separation module of SpeechBrain
 try:
     from speechbrain.inference.separation import SepformerSeparation
 except ImportError:
     raise ImportError("请先安装 SpeechBrain: pip install speechbrain")
 
-# 引入你的 DataLoader 和 评估指标
+# DataLoader
 from DataLoader.WSJDataLoader import MakeDataLoader as MakeWSJLoader
 from Evaluation.SI_SNR import si_snr, si_snr_improvement, pit_align_by_sisnr
 from Evaluation.SNR import snr
@@ -143,26 +143,26 @@ def eval_speechbrain_model(model_name, model, loader, device, sample_rate, outpu
             mix = ensure_mix_bt(mix).to(device)
             targets = ensure_ref_b2t(targets).to(device)
 
-            # SpeechBrain SepFormer 的前向传播 [B, T]
+            # Forward propagation of SpeechBrain SepFormer [B, T]
             est = model.separate_batch(mix)
 
-            # 转换形状: [Batch, Time, Spk] -> [Batch, Spk, Time]
+            # Convert shape: [Batch, Time, Spk] -> [Batch, Spk, Time]
             if est.dim() == 3:
                 est = est.permute(0, 2, 1)
 
-            # 对齐长度
+            # alignment length
             min_len = min(est.shape[-1], targets.shape[-1], mix.shape[-1])
             est = est[..., :min_len]
             targets = targets[..., :min_len]
             mix = mix[..., :min_len]
 
-            # 1. PIT 自动对齐
+            # 1. PIT
             est_aligned, perm, sisnr_best = pit_align_by_sisnr(est, targets)
 
-            # 去直流操作
+            # Implementation note.
             est_aligned = est_aligned - est_aligned.mean(dim=-1, keepdim=True)
 
-            # 2. 公共指标计算
+            # 2.
             si_snr_vals = sisnr_best
             si_snri_vals = si_snr_improvement(est_aligned, targets, mix)
             snr_vals = 0.5 * (snr(est_aligned[:, 0, :], targets[:, 0, :]) + snr(est_aligned[:, 1, :], targets[:, 1, :]))
@@ -171,7 +171,7 @@ def eval_speechbrain_model(model_name, model, loader, device, sample_rate, outpu
             all_metrics["SI-SNRi"].extend(si_snri_vals.detach().cpu().tolist())
             all_metrics["SNR"].extend(snr_vals.detach().cpu().tolist())
 
-            # 3. CPU 逐条计算 PESQ 和 STOI
+            # 3. CPU PESQ STOI
             pesq_vals = []
             stoi_vals = []
             est_cpu = est_aligned.detach().cpu().float().numpy()
@@ -190,7 +190,7 @@ def eval_speechbrain_model(model_name, model, loader, device, sample_rate, outpu
             all_metrics["PESQ"].extend(pesq_vals)
             all_metrics["STOI"].extend(stoi_vals)
 
-            # 4. 保存部分结果供试听
+            # 4.
             for i in range(mix.size(0)):
                 if saved >= max_save_samples:
                     break
@@ -208,7 +208,7 @@ def eval_speechbrain_model(model_name, model, loader, device, sample_rate, outpu
                 torchaudio.save(os.path.join(model_output_dir, f"{base}_s2_est.wav"), s2_est.unsqueeze(0), sample_rate)
                 saved += 1
 
-    # 汇总结果
+    # Summary results
     def nanmean(x):
         x = np.array(x, dtype=np.float64)
         return float(np.nanmean(x)) if x.size else float("nan")
@@ -230,7 +230,7 @@ def main():
     output_dir = "../../Results/SpeechBrain_Baselines_WSJ"
     os.makedirs(output_dir, exist_ok=True)
 
-    # 降低 batch_size 防止 Transformer 爆显存
+    # Reduce batch_size to prevent Transformer from exploding video memory
     batch_size = 32
     print(f"Loading WSJ0-2Mix Test Set...")
     _, _, test_loader = MakeWSJLoader(root=root, batch_size=batch_size, num_workers=4, segment=4.0,
@@ -239,21 +239,21 @@ def main():
     all_results = {}
 
     # ===============================================
-    # 评估 SpeechBrain 的 SepFormer
+    # Evaluating SpeechBrains SepFormer
     # ===============================================
     print("\nLoading SepFormer from SpeechBrain HuggingFace Hub...")
-    # 这里会自动从 HuggingFace 下载预训练模型到 pretrained_models 文件夹
+    # The pretrained model will be automatically downloaded from HuggingFace to the pretrained_models folder.
     model_sepformer = SepformerSeparation.from_hparams(
         source="speechbrain/sepformer-wsj02mix",
         savedir="pretrained_models/sepformer-wsj02mix",
-        run_opts={"device": device}  # 确保模型在 GPU 上运行
+        run_opts={"device": device}  # Make sure the model runs on GPU
     )
 
     res_sepformer = eval_speechbrain_model("SepFormer", model_sepformer, test_loader, device, sample_rate, output_dir)
     all_results["SepFormer"] = res_sepformer
 
     # ===============================================
-    # 将基准结果写入综合报告
+    # Implementation note.
     # ===============================================
     ts = time.strftime("%Y%m%d-%H%M%S")
     txt_path = os.path.join(output_dir, f"speechbrain_sepformer_wsj_{ts}.txt")

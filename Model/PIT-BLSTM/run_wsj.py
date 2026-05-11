@@ -10,7 +10,7 @@ from tqdm import tqdm
 from contextlib import nullcontext
 from torch.optim.swa_utils import AveragedModel, get_ema_multi_avg_fn
 
-# 引入数据加载和损失函数
+# Introducing data loading and loss functions
 from DataLoader.WSJDataLoader import MakeDataLoader
 from LossFunction.SI_SNR import pit_si_snr_loss
 
@@ -31,7 +31,7 @@ class Logger(object):
 
 
 class STFTMaskNet(nn.Module):
-    """标准的时频域基准模型 (PIT-BLSTM)"""
+    """Standard time-frequency domain benchmark model (PIT-BLSTM)"""
 
     def __init__(self, n_fft=512, hop_length=128, hidden_size=300, num_layers=3, num_spks=2):
         super().__init__()
@@ -47,10 +47,10 @@ class STFTMaskNet(nn.Module):
         self.linear = nn.Linear(hidden_size * 2, input_dim * num_spks)
         self.activation = nn.Sigmoid()
 
-    # 强制在这个前向传播里关闭混合精度，防止 stft 复数运算在 float16 下崩溃
+    # Force mixed precision to be turned off in this forward propagation to prevent stft complex number operations from crashing under float16
     @torch.amp.autocast('cuda', enabled=False)
     def forward(self, x):
-        x = x.float()  # 确保输入为 float32
+        x = x.float()  # Make sure the input is float32
         B = x.shape[0]
         device = x.device
 

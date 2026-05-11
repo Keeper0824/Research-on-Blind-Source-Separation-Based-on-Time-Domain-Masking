@@ -4,9 +4,7 @@ import torch.nn as nn
 
 
 class STFTMaskNet(nn.Module):
-    """
-    纯净版时频域基准模型 (PITBLSTM)，去除了所有与推理无关的代码。
-    """
+    """A clean version of the time-frequency domain benchmark model (PITBLSTM), removing all code unrelated to inference."""
 
     def __init__(self, n_fft=512, hop_length=128, hidden_size=300, num_layers=3, num_spks=2):
         super().__init__()
@@ -22,7 +20,7 @@ class STFTMaskNet(nn.Module):
         self.linear = nn.Linear(hidden_size * 2, input_dim * num_spks)
         self.activation = nn.Sigmoid()
 
-    # 强制关闭 AMP，防止 STFT 在半精度 (float16/bfloat16) 下数值溢出
+    # Force AMP off to prevent STFT numerical overflow at half precision (float16/bfloat16)
     @torch.amp.autocast('cuda', enabled=False)
     def forward(self, x):
         x = x.float()
@@ -57,11 +55,7 @@ class STFTMaskNet(nn.Module):
 
 class TFBaselineInferenceCore:
     def __init__(self, model_type="tf_baseline_wsj", ckpt_path=None, device=None):
-        """
-        时频域基准模型的纯推理接口
-        :param model_type: 'tf_baseline_wsj' (语音) 或 'tf_baseline_comm' (通信)
-        :param ckpt_path: 你的本地 .pt 权重路径
-        """
+        """Pure inference interface for time-frequency domain benchmark models :param model_type: 'tf_baseline_wsj' (speech) or 'tf_baseline_comm' (communication) :param ckpt_path: the local local.pt weight path"""
         self.device = device if device else ("cuda" if torch.cuda.is_available() else "cpu")
         self.model_type = model_type
         self.ckpt_path = ckpt_path
@@ -71,10 +65,10 @@ class TFBaselineInferenceCore:
 
     def _build_and_load(self):
         if self.model_type == "tf_baseline_wsj":
-            # 严格对齐 core_baseline.py 的配置
+            # Strictly align the configuration of core_baseline.py
             self.model = STFTMaskNet(n_fft=512, hop_length=128).to(self.device)
         elif self.model_type == "tf_baseline_comm":
-            # 严格对齐 run_Comm.py 的配置
+            # Strictly align the configuration of run_Comm.py
             self.model = STFTMaskNet(n_fft=1024, hop_length=256).to(self.device)
         else:
             raise ValueError(f"不支持的基准模型类型: {self.model_type}")
@@ -83,7 +77,7 @@ class TFBaselineInferenceCore:
         self.model.eval()
 
     def _load_local_weights(self):
-        """加载本地权重，如果不存在则输出警告（GUI 启动时不会崩溃）"""
+        """Load local weights and output a Warning: if they don't exist (no crash on GUI startup)"""
         if not self.ckpt_path or not os.path.exists(self.ckpt_path):
             print(f"⚠️ 警告: 找不到本地权重文件 {self.ckpt_path}。")
             print("系统已加载网络架构，如果用于 GUI 演示，分离结果将基于随机初始化的参数。")
@@ -92,17 +86,15 @@ class TFBaselineInferenceCore:
         print(f"正在加载 TF-Baseline 本地权重: {self.ckpt_path}")
         state_dict = torch.load(self.ckpt_path, map_location=self.device)
 
-        # 兼容 EMA 保存的 module. 前缀
+        # Compatible with EMA saved module. prefix
         clean_state_dict = {k.replace('module.', ''): v for k, v in state_dict.items()}
         self.model.load_state_dict(clean_state_dict, strict=True)
         print("本地权重加载成功！")
 
     @torch.no_grad()
     def separate(self, mix_waveform):
-        """
-        供 GUI 调用的核心分离函数。
-        """
-        # 统一维度整理为 (Batch, Time) 以适配 STFTMaskNet
+        """Core detached functions called by the GUI."""
+        # Unified dimensions are organized into (Batch, Time) to adapt to STFTMaskNet
         if mix_waveform.dim() == 1:
             mix_waveform = mix_waveform.unsqueeze(0)
         elif mix_waveform.dim() == 2 and mix_waveform.size(0) != 1:
@@ -112,10 +104,10 @@ class TFBaselineInferenceCore:
 
         mix_waveform = mix_waveform.to(self.device)
 
-        # 前向推理
+        # forward reasoning
         est_sources = self.model(mix_waveform)
 
-        # 长度对齐并去除直流分量
+        # Length alignment and DC component removal
         min_len = min(est_sources.shape[-1], mix_waveform.shape[-1])
         est_sources = est_sources[..., :min_len]
         est_sources = est_sources - est_sources.mean(dim=-1, keepdim=True)

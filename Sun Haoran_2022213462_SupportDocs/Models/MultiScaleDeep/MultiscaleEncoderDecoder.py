@@ -8,7 +8,7 @@ class ConvGroupNormReLU(nn.Module):
         padding = (kernel_size - 1) // 2
         self.net = nn.Sequential(
             nn.Conv1d(in_channels, out_channels, kernel_size, stride=1, padding=padding, bias=False),
-            nn.GroupNorm(1, out_channels, eps=1e-6),  # 使用 GroupNorm (G=1 等同于 LayerNorm，对音频更稳)
+            nn.GroupNorm(1, out_channels, eps=1e-6),  # Use GroupNorm (G=1 is equivalent to LayerNorm, more stable for audio)
             nn.PReLU(out_channels)
         )
 

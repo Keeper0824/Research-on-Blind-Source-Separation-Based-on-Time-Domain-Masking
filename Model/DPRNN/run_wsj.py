@@ -7,21 +7,21 @@ import numpy as np
 from tqdm import tqdm
 
 # ========================================================
-# 【终极修复】PyTorch 2.6 安检太严，直接全局劫持 torch.load
+# PyTorch 2.6 torch.load
 # ========================================================
 _original_load = torch.load
 def _patched_load(*args, **kwargs):
-    # 强制把 weights_only 设为 False，放行所有老模型的加载
+    # weights_only False
     kwargs['weights_only'] = False
     return _original_load(*args, **kwargs)
 
 torch.load = _patched_load
 # ========================================================
 
-# 移除了 ConvTasNet，只保留 DPRNNTasNet
+# ConvTasNet DPRNNTasNet
 from asteroid.models import DPRNNTasNet
 
-# 引入你的 DataLoader 和 评估指标
+# DataLoader
 from DataLoader.WSJDataLoader import MakeDataLoader as MakeWSJLoader
 from Evaluation.SI_SNR import si_snr, si_snr_improvement, pit_align_by_sisnr
 from Evaluation.SNR import snr
@@ -74,9 +74,7 @@ def ensure_ref_b2t(ref):
 
 
 def eval_asteroid_model(model_name, model, loader, device, sample_rate, output_dir, max_save_samples=20):
-    """
-    针对 Asteroid 预训练模型的标准化测试流程
-    """
+    """Asteroid"""
     print(f"\n==============================================")
     print(f" 正在运行 Asteroid [{model_name}] 基准测试")
     print(f"==============================================")
@@ -103,26 +101,26 @@ def eval_asteroid_model(model_name, model, loader, device, sample_rate, output_d
             mix = mix.to(device)
             targets = targets.to(device)
 
-            # Asteroid 模型通常接受 (B, T) 作为输入
+            # Asteroid (B, T)
             est = model(mix)
 
-            # 如果模型输出是 (B, 1, Spk, T)，压缩掉多余的维度
+            # (B, 1, Spk, T)
             if est.dim() == 4 and est.size(1) == 1:
                 est = est.squeeze(1)
 
-            # 对齐长度 (防止 Asteroid 卷积带来的微小截断)
+            # ( Asteroid )
             min_len = min(est.shape[-1], targets.shape[-1], mix.shape[-1])
             est = est[..., :min_len]
             targets = targets[..., :min_len]
             mix = mix[..., :min_len]
 
-            # 1. PIT 自动对齐
+            # 1. PIT alignment.
             est_aligned, perm, sisnr_best = pit_align_by_sisnr(est, targets)
 
-            # 去直流操作
+            # Implementation note.
             est_aligned = est_aligned - est_aligned.mean(dim=-1, keepdim=True)
 
-            # 2. 公共指标计算
+            # Step 2.
             si_snr_vals = sisnr_best
             si_snri_vals = si_snr_improvement(est_aligned, targets, mix)
             snr_vals = 0.5 * (snr(est_aligned[:, 0, :], targets[:, 0, :]) + snr(est_aligned[:, 1, :], targets[:, 1, :]))
@@ -131,7 +129,7 @@ def eval_asteroid_model(model_name, model, loader, device, sample_rate, output_d
             all_metrics["SI-SNRi"].extend(si_snri_vals.detach().cpu().tolist())
             all_metrics["SNR"].extend(snr_vals.detach().cpu().tolist())
 
-            # 3. CPU 逐条计算 PESQ 和 STOI
+            # 3. CPU PESQ STOI
             pesq_vals = []
             stoi_vals = []
             est_cpu = est_aligned.detach().cpu().float().numpy()
@@ -150,7 +148,7 @@ def eval_asteroid_model(model_name, model, loader, device, sample_rate, output_d
             all_metrics["PESQ"].extend(pesq_vals)
             all_metrics["STOI"].extend(stoi_vals)
 
-            # 4. 保存部分结果供试听
+            # Step 4.
             B = mix.size(0)
             for i in range(B):
                 if saved >= max_save_samples:
@@ -171,7 +169,7 @@ def eval_asteroid_model(model_name, model, loader, device, sample_rate, output_d
 
                 saved += 1
 
-    # 汇总结果
+    # Summary results
     def nanmean(x):
         x = np.array(x, dtype=np.float64)
         return float(np.nanmean(x)) if x.size else float("nan")
@@ -190,7 +188,7 @@ def main():
     root = "../../Dataset/WSJ0-2Mix/wsj0_2mix/2speakers/wav8k/min"
     sample_rate = 8000
 
-    # 结果保存根目录
+    # Implementation note.
     output_dir = "../../Results/Asteroid_Baselines_WSJ"
     os.makedirs(output_dir, exist_ok=True)
 
@@ -200,16 +198,16 @@ def main():
     all_results = {}
 
     # ===============================================
-    # 评估 Asteroid 官方更强的 DPRNNTasNet
+    # Asteroid DPRNNTasNet
     # ===============================================
     print("\nLoading DPRNNTasNet from Asteroid Hub...")
-    # 修复了 HuggingFace 仓库命名的感叹号问题
+    # HuggingFace
     model_dprnn = DPRNNTasNet.from_pretrained("mpariente/DPRNNTasNet-ks2_WHAM_sepclean").to(device)
     res_dprnn = eval_asteroid_model("DPRNNTasNet", model_dprnn, test_loader, device, sample_rate, output_dir)
     all_results["DPRNNTasNet"] = res_dprnn
 
     # ===============================================
-    # 将基准结果写入综合报告
+    # Implementation note.
     # ===============================================
     ts = time.strftime("%Y%m%d-%H%M%S")
     txt_path = os.path.join(output_dir, f"asteroid_dprnn_baseline_wsj_{ts}.txt")

@@ -2,7 +2,7 @@ import os
 import torch
 
 # ========================================================
-# 继承自 run_wsj.py 的终极兼容性补丁 (GUI 稳定运行的保障)
+# The final compatibility patch inherited from run_wsj.py (guaranteeing stable GUI operation)
 # ========================================================
 _original_load = torch.load
 
@@ -71,7 +71,7 @@ except ImportError:
 
 class DPTNetInferenceCore:
     def __init__(self, ckpt_path=None, device=None):
-        """Asteroid DPTNet 推理核心"""
+        """Asteroid DPTNet inference core"""
         if DPTNet is None:
             raise ImportError("请先安装 asteroid: pip install asteroid")
 
@@ -100,7 +100,7 @@ class DPTNetInferenceCore:
 
     @torch.no_grad()
     def separate(self, mix_waveform):
-        # 🚀 修复核心：正确地把音频整理成 [Batch, Time] (即 [1, T]) 格式
+        # Core fix: Correctly organize audio into [Batch, Time] (i.e. [1, T]) format.
         if mix_waveform.dim() == 1:
             mix_waveform = mix_waveform.unsqueeze(0)
         elif mix_waveform.dim() == 2 and mix_waveform.shape[0] != 1:
@@ -110,15 +110,14 @@ class DPTNetInferenceCore:
 
         mix_waveform = mix_waveform.to(self.device).float()
 
-        # 强制使用 float32，避免 DPTNet 内部的 Transformer 产生精度溢出
         est = self.model(mix_waveform)
-        if est.dim() == 3: est = est.squeeze(0)  # (Spk, T)
+        if est.dim() == 3: est = est.squeeze(0)  # Force the use of float32 to avoid precision overflow in the Transformer inside DPTNet
         return (est - est.mean(dim=-1, keepdim=True)).cpu()
 
 
 class SepFormerInferenceCore:
     def __init__(self, device=None):
-        """SpeechBrain SepFormer 现成模型推理核心"""
+        """SpeechBrain SepFormer """
         if SepformerSeparation is None:
             raise ImportError("请先安装 speechbrain: pip install speechbrain")
 
@@ -127,13 +126,13 @@ class SepFormerInferenceCore:
         self.model = SepformerSeparation.from_hparams(
             source="speechbrain/sepformer-wsj02mix",
             savedir="pretrained_models/sepformer-wsj02mix",
-            run_opts={"device": self.device}
+            run_opts={"device": str(self.device)}
         )
         self.model.eval()
 
     @torch.no_grad()
     def separate(self, mix_waveform):
-        # 🚀 修复核心：同上，防止时间维度被一刀切成 1
+        # Step 1.
         if mix_waveform.dim() == 1:
             mix_waveform = mix_waveform.unsqueeze(0)
         elif mix_waveform.dim() == 2 and mix_waveform.shape[0] != 1:
@@ -143,10 +142,10 @@ class SepFormerInferenceCore:
 
         mix_waveform = mix_waveform.to(self.device).float()
 
-        # 调用 SpeechBrain 专属的推理函数
+        # Repair core: Same as above, prevent the time dimension from being cut into 1.
         est = self.model.separate_batch(mix_waveform)
 
-        # 修正输出形状 (Batch, Time, Spk) -> (Spk, Time)
+        # Call SpeechBrains exclusive inference function
         if est.dim() == 3:
             est = est.permute(0, 2, 1).squeeze(0)
 

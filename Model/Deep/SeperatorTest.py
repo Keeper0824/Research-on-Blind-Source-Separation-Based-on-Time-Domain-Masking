@@ -6,17 +6,17 @@ import torchaudio
 import numpy as np
 from tqdm import tqdm
 
-# 模型引入 (请根据你的实际路径调整)
+# Model introduction (please adjust according to the local actual path)
 from Model.Deep.Model_TasNet import Model
 
-# 数据加载器引入
-# 为了兼容两种数据，我们可以在 run_test 中动态传入 loader，或者在这里都 import 进来
+# Data loader introduction
+# In order to be compatible with both types of data, we can dynamically pass in loader in run_test, or import both here.
 from DataLoader.CommDataLoader import MakeDataLoader as MakeCommLoader
 
 try:
     from DataLoader.WSJDataLoader import MakeDataLoader as MakeWSJLoader
 except ImportError:
-    pass  # 如果暂时没有 WSJDataLoader，不报错
+    pass  # If there is currently no WSJDataLoader, no error will be reported
 
 from Evaluation.SI_SNR import si_snr, si_snr_improvement, pit_align_by_sisnr
 from Evaluation.SNR import snr
@@ -25,24 +25,19 @@ try:
     from Evaluation.PESQ import pesqTest
     from Evaluation.STOI import stoiTest
 except ImportError:
-    pass  # 跑 comm 时如果没有装 pesq/stoi 也不报错
+    pass  # No error will be reported if pesq/stoi is not installed when running comm
 
 
 # ==========================================
-# 新增：通信信号误码率 (BER) 计算函数
+# New: communication signal bit error rate (BER) calculation function.
 # ==========================================
 def compute_ber(est_waveform, ref_waveform):
-    """
-    计算误码率的简易占位函数。
-    注意：真实的通信系统需要严格的解调器（如匹配滤波、载波同步、星座图映射）。
-    这里使用最基础的极性判决（大于0判为1，小于0判为0），适用于简单的基带 BPSK 信号。
-    请根据你的具体调制方式（QPSK, QAM 等）替换此处的解调逻辑。
-    """
-    # 极性判决 (BPSK)
+    """A simple placeholder function for calculating bit error rate. Note: Real communication systems require rigorous demodulators (such as matched filtering, carrier synchronization, constellation mapping). The most basic polarity judgment is used here (if it is greater than 0, it is judged as 1, and if it is less than 0, it is judged as 0), which is suitable for simple baseband BPSK signals. Please replace the demodulation logic here according to the local specific modulation method (QPSK, QAM, etc.)."""
+    # Polarity Decision (BPSK)
     est_bits = (est_waveform > 0).float()
     ref_bits = (ref_waveform > 0).float()
 
-    # 统计错误比特数
+    # Count error bits
     errors = torch.sum(torch.abs(est_bits - ref_bits))
     total_bits = torch.numel(ref_bits)
 
@@ -91,20 +86,18 @@ def ensure_ref_b2t(ref):
 
 def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, max_save_samples, min_len_needed=16,
                            dataset_type="comm"):
-    """
-    dataset_type: "comm" (通信数据集) 或 "speech" (WSJ 语音数据集)
-    """
+    """dataset_type: "comm" (communication dataset) or "speech" (WSJ speech dataset)"""
     model.eval()
     os.makedirs(output_dir, exist_ok=True)
 
-    # 基础指标 (两种数据都要算)
+    # Basic indicators (both data must be calculated)
     all_metrics = {
         "SI-SNR": [],
         "SI-SNRi": [],
         "SNR": [],
     }
 
-    # 根据数据集类型添加特定指标
+    # Add specific metrics based on dataset type
     if dataset_type == "speech":
         all_metrics["PESQ"] = []
         all_metrics["STOI"] = []
@@ -138,7 +131,7 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
             # PIT align
             est_aligned, perm, sisnr_best = pit_align_by_sisnr(est, targets)
 
-            # 公共指标
+            # public indicators
             si_snr_vals = sisnr_best
             si_snri_vals = si_snr_improvement(est_aligned, targets, mix)
             snr_vals = 0.5 * (snr(est_aligned[:, 0, :], targets[:, 0, :]) + snr(est_aligned[:, 1, :], targets[:, 1, :]))
@@ -147,9 +140,9 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
             all_metrics["SI-SNRi"].extend(si_snri_vals.detach().cpu().tolist())
             all_metrics["SNR"].extend(snr_vals.detach().cpu().tolist())
 
-            # -----------------------------------
-            # 分支 1：计算语音特有指标 (PESQ, STOI)
-            # -----------------------------------
+            # Section separator.
+            # Branch 1: Calculation of speech-specific indicators (PESQ, STOI)
+            # Section separator.
             if dataset_type == "speech":
                 pesq_vals = []
                 stoi_vals = []
@@ -169,13 +162,13 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
                 all_metrics["PESQ"].extend(pesq_vals)
                 all_metrics["STOI"].extend(stoi_vals)
 
-            # -----------------------------------
-            # 分支 2：计算通信特有指标 (BER)
-            # -----------------------------------
+            # Section separator.
+            # Branch 2: Calculation of communication-specific metrics (BER)
+            # Section separator.
             elif dataset_type == "comm":
                 ber_vals = []
                 for b in range(est_aligned.shape[0]):
-                    # 对重构波形进行解调并计算误码率 (平均两个说话人)
+                    # Demodulate the reconstructed waveform and calculate the bit error rate (average of two speakers)
                     b_err = 0.5 * (
                             compute_ber(est_aligned[b, 0], targets[b, 0]) +
                             compute_ber(est_aligned[b, 1], targets[b, 1])
@@ -183,7 +176,7 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
                     ber_vals.append(b_err)
                 all_metrics["BER"].extend(ber_vals)
 
-            # 保存波形
+            # Save waveform
             B = mix.size(0)
             for i in range(B):
                 if saved >= max_save_samples:
@@ -203,7 +196,7 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
                 torchaudio.save(os.path.join(output_dir, f"{base}_s2_est.wav"), s2_est.unsqueeze(0), sample_rate)
                 saved += 1
 
-    # 汇总结果
+    # Summary results
     def nanmean(x):
         x = np.array(x, dtype=np.float64)
         return float(np.nanmean(x)) if x.size else float("nan")
@@ -214,14 +207,14 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
     print(f"[Test] Saved {saved} samples to: {output_dir}")
     print(f"[Test] Final Metrics ({dataset_type.upper()} mode, PIT-aligned):")
     for k, v in results.items():
-        # 如果是 BER，可以用科学计数法或百分比显示更直观
+        # If it is BER, it can be displayed more intuitively in scientific notation or percentage.
         if k == "BER":
             print(f"  {k:8s}: {v:.6f} ({v * 100:.4f}%)")
         else:
             print(f"  {k:8s}: {v:.4f}")
     print("=" * 40 + "\n")
 
-    # 写入 TXT
+    # Write to TXT
     ts = time.strftime("%Y%m%d-%H%M%S")
     txt_path = os.path.join(output_dir, f"final_metrics_{dataset_type}_{ts}.txt")
     num_utts = len(all_metrics["SI-SNR"])
@@ -246,13 +239,13 @@ def eval_test_full_metrics(model, test_loader, sample_rate, device, output_dir, 
 
 
 # ==========================================
-# 修复过的完美加载权重函数 (解决 ema_state 和 n_averaged 报错)
+# Fixed complete loading weight function (solve ema_state and n_averaged errors)
 # ==========================================
 def load_ckpt_into_model(model, model_path, device):
     print(f"Loading weights: {model_path}")
     ckpt = torch.load(model_path, map_location=device)
 
-    # 优先使用 ema_state 获取更好的性能
+    # Prefer using ema_state for better performance
     if isinstance(ckpt, dict):
         if "ema_state" in ckpt:
             print("Found 'ema_state'. Loading EMA weights for better performance...")
@@ -268,10 +261,10 @@ def load_ckpt_into_model(model, model_path, device):
     else:
         sd = ckpt
 
-    # 去掉 module. 前缀
+    # Remove the module. prefix
     if isinstance(sd, dict):
         sd = {k.replace("module.", "", 1): v for k, v in sd.items()}
-        # 【关键】：去掉 EMA 产生的计数器，防止 load 报错
+        # [Key]: Remove the counter generated by EMA to prevent load errors.
         if "n_averaged" in sd:
             sd.pop("n_averaged")
 
@@ -281,17 +274,17 @@ def load_ckpt_into_model(model, model_path, device):
 
 def run_test(model_path, test_root, batch_size, sample_rate, device, output_dir, dataset_type="comm",
              max_save_samples=20):
-    # 初始化模型 (注意：请根据你是测 Baseline 还是 MultiScale 切换这里的模型定义)
+    # Initialize the model (Note: Please switch the model definition here according to whether you are testing Baseline or MultiScale)
     model = Model(enc_dim=512, enc_kernel=16, enc_stride=8, bottleneck_channels=128, hidden_channels=256, num_blocks=8,
                   num_repeats=3, num_speakers=2).to(device)
 
     load_ckpt_into_model(model, model_path, device)
 
-    # 动态加载对应的数据集 Loader
+    # Dynamically load the corresponding data set Loader
     if dataset_type == "comm":
         _, _, test_loader = MakeCommLoader(root=test_root, batch_size=batch_size, num_workers=8, segment=32000)
     elif dataset_type == "speech":
-        # 语音用秒为单位 4.0，并且需要传 sample_rate
+        # The speech unit is 4.0 seconds, and sample_rate needs to be passed
         _, _, test_loader = MakeWSJLoader(root=test_root, batch_size=batch_size, num_workers=8, segment=4.0,
                                           sample_rate=sample_rate)
     else:
@@ -311,9 +304,9 @@ def run_test(model_path, test_root, batch_size, sample_rate, device, output_dir,
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    # -----------------------------------------------------
-    # 测试通信数据 (Comm0-2Dataset) -> 只计算 SNR, SI-SNR, SI-SNRi, BER
-    # -----------------------------------------------------
+    # Section separator.
+    # Test communication data (Comm0-2Dataset) -> only calculate SNR, SI-SNR, SI-SNRi, BER.
+    # Section separator.
     run_test(
         model_path="../../checkpoints/train_deep_comm_20260215-184416/conv_tasnet_final.pt",
         test_root="../../Dataset/Comm0-2Dataset",
@@ -321,14 +314,14 @@ if __name__ == "__main__":
         sample_rate=100000,
         device=device,
         output_dir="../../Results/train_deep_comm_20260215-184416",
-        dataset_type="comm",  # <--- 切换为通信模式
-        # speech
+        dataset_type="comm",  # <--- Switch to communication mode.
+        # Speech mode.
         max_save_samples=20
     )
 
-    # -----------------------------------------------------
-    # 【备用示例】测试语音数据 (WSJ0-2Mix) -> 计算 PESQ, STOI 等
-    # -----------------------------------------------------
+    # Section separator.
+    # [Alternate example] Test speech data (WSJ0-2Mix) -> Calculate PESQ, STOI, etc.
+    # Section separator.
     """
     run_test(
         model_path="../../checkpoints/your_speech_model.pt",

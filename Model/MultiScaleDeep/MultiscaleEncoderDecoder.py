@@ -8,7 +8,7 @@ class ConvGroupNormReLU(nn.Module):
         padding = (kernel_size - 1) // 2
         self.net = nn.Sequential(
             nn.Conv1d(in_channels, out_channels, kernel_size, stride=1, padding=padding, bias=False),
-            nn.GroupNorm(1, out_channels, eps=1e-6),  # 使用 GroupNorm (G=1 等同于 LayerNorm，对音频更稳)
+            nn.GroupNorm(1, out_channels, eps=1e-6),  # Use GroupNorm (G=1 is equivalent to LayerNorm, more stable for audio)
             nn.PReLU(out_channels)
         )
 
@@ -21,7 +21,7 @@ class ConvGroupNormGLU(nn.Module):
         super().__init__()
         padding = (kernel_size - 1) // 2
 
-        # 卷积输出必须是 out_channels 的 2 倍
+        # The convolution output must be 2 times the size of out_channels
         self.conv = nn.Conv1d(in_channels, out_channels * 2, kernel_size, padding=padding, bias=False)
         self.norm = nn.GroupNorm(1, out_channels * 2, eps=1e-6)
         self.glu = nn.GLU(dim=1)
@@ -29,10 +29,10 @@ class ConvGroupNormGLU(nn.Module):
     def forward(self, x):
         x = self.conv(x)
         x = self.norm(x)
-        return self.glu(x)  # GLU 执行后，通道数变回 out_channels
+        return self.glu(x)  # After GLU is executed, the number of channels changes back to out_channels
 
 
-# --- 修改后的 PostRefine ---
+# --- Modified PostRefine ---
 class PostRefine(nn.Module):
     def __init__(self, C, depth=3, k=3, scale=0.1):
         super().__init__()
@@ -53,7 +53,7 @@ class ConvDownBlock(nn.Module):
     def __init__(self, out_channels, kernel_size):
         super().__init__()
         # Input: 1 -> Block1 -> Down1 -> Block2 -> Down2 -> Block3 -> Down3
-        # 假设最终 out_channels 是 C
+        # Assume eventually out_channels is C
         pad = (kernel_size - 1) // 2
         # Stage 1: 1 -> C/2
         self.block1 = ConvGroupNormReLU(1, out_channels // 2, kernel_size)
@@ -78,21 +78,18 @@ class ConvDownBlock(nn.Module):
 
 
 class MultiScaleEncoder(nn.Module):
-    """
-    对应图片2 (image_676301.jpg) 左侧 Encoder 部分
-    包含 Short, Middle, Long 三个分支
-    """
+    """Corresponding to picture 2 (image_676301.jpg) Encoder part on the left Contains three branches: Short, Middle, and Long"""
 
     def __init__(self, enc_dim=256, kernel_sizes=[5, 11, 21], stride=8):
         super().__init__()
         self.enc_dim = enc_dim
 
-        # 确保总维度能被3整除，或者手动分配每个分支的维度
-        # 这里我们假设每个分支输出 dim // 3
+        # Make sure the total dimension is divisible by 3, or manually assign the dimensions of each branch
+        # Here we assume that each branch outputs dim // 3
         branch_dim = enc_dim // 3
         self.branch_dim = branch_dim
 
-        # 修正：如果 enc_dim 不能被3整除，最后一个分支补齐
+        # Bugfix: if enc_dim is not divisible by 3, the last branch is completed.
         last_dim = enc_dim - (branch_dim * 2)
 
         self.short_branch = ConvDownBlock(branch_dim, kernel_size=kernel_sizes[0])
@@ -106,7 +103,7 @@ class MultiScaleEncoder(nn.Module):
         s_out = self.short_branch(x)
         m_out = self.mid_branch(x)
         l_out = self.long_branch(x)
-        # 拼接: (B, C_short, L) + (B, C_mid, L) + ... -> (B, enc_dim, L)
+        # Splicing: (B, C_short, L) + (B, C_mid, L) +... -> (B, enc_dim, L)
         enc_feat = torch.cat([s_out, m_out, l_out], dim=1)
         enc_feat = self.post_refine(enc_feat)
         return enc_feat
@@ -151,7 +148,7 @@ class ConvUpBlock(nn.Module):
 class MultiScaleDecoder(nn.Module):
     def __init__(self, enc_dim=256, kernel_sizes=[5, 11, 21], stride=8):
         super().__init__()
-        # 检查 stride 是否匹配：ConvUpBlock 内部做了 3 次 stride=2 的上采样，总 stride=8
+        # Check whether stride matches: ConvUpBlock internally performs 3 times of upsampling with stride=2, total stride=8.
         if stride != 8:
             print("Warning: Manual stride parameter is ignored, fixed to 8 by architecture.")
 
@@ -159,12 +156,12 @@ class MultiScaleDecoder(nn.Module):
         last_dim = enc_dim - (branch_dim * 2)
         self.splits = [branch_dim, branch_dim, last_dim]
 
-        # 初始化三个分支
+        # Initialize three branches
         self.short_branch = ConvUpBlock(branch_dim, kernel_size=kernel_sizes[0])
         self.mid_branch = ConvUpBlock(branch_dim, kernel_size=kernel_sizes[1])
         self.long_branch = ConvUpBlock(last_dim, kernel_size=kernel_sizes[2])
 
-        # 自动计算融合层的输入通道数 (避免手动计算出错)
+        # Automatically calculate the number of input channels of the fusion layer (avoid manual calculation errors)
         total_out_channels = (
                 self.short_branch.out_channels +
                 self.mid_branch.out_channels +
@@ -175,7 +172,7 @@ class MultiScaleDecoder(nn.Module):
         self.final_concat = nn.Conv1d(96, 1, kernel_size=1, bias=False)
 
     def forward(self, masked_feat):
-        # 如果输入是 4D (B, Source, N, L)，先并在 Batch 维度处理
+        # If the input is 4D (B, Source, N, L), process it first and in the Batch dimension
         is_4d = False
         if masked_feat.dim() == 4:
             is_4d = True
@@ -184,7 +181,7 @@ class MultiScaleDecoder(nn.Module):
         else:
             x = masked_feat
 
-        # 1. 拆分特征
+        # 1. Split features
         cur = 0
         s_in = x[:, cur:cur + self.splits[0], :]
         cur += self.splits[0]
@@ -192,16 +189,16 @@ class MultiScaleDecoder(nn.Module):
         cur += self.splits[1]
         l_in = x[:, cur:, :]
 
-        # 2. 并行解码
+        # 2. Parallel decoding
         s_out = self.short_branch(s_in)
         m_out = self.mid_branch(m_in)
         l_out = self.long_branch(l_in)
 
-        # 3. 裁剪 & 拼接
+        # 3. Cutting & Stitching.
         decoded_feat = torch.cat([s_out, m_out, l_out], dim=1)
         decoded_feat = self.fusion_conv(decoded_feat)
         refined_feat = self.post_refine(decoded_feat)
-        # 4. 融合输出
+        # 4. Fusion output
         waveform = self.final_concat(refined_feat)
 
         if is_4d:

@@ -8,12 +8,12 @@ import matplotlib.pyplot as plt
 from contextlib import nullcontext
 from itertools import permutations
 from torch.amp import GradScaler, autocast
-# 保持 Baseline Model 不变
+# Keep Baseline Model unchanged
 from Model.Baseline.Model_TasNet import Model
 from torch.optim.swa_utils import AveragedModel, get_ema_multi_avg_fn
 from LossFunction.SI_SNR import pit_si_snr_loss, si_snr
 
-# 【修改点1】引入 CommDataLoader
+# [Modification point 1] Introduction of CommDataLoader
 from DataLoader.CommDataLoader import MakeDataLoader
 
 
@@ -83,7 +83,7 @@ def eval_test_full(model, test_loader, loss_fn, sample_rate, device, output_dir,
             mix = mix.to(device)  # [B, T]
             targets = targets.to(device)  # [B, 2, T]
 
-            est_sources = model(mix.unsqueeze(1))  # [B, 2, T’]
+            est_sources = model(mix.unsqueeze(1))  # [B, 2, T]
 
             min_len = min(est_sources.shape[-1], targets.shape[-1])
             est_sources = est_sources[..., :min_len]  # [B, 2, L]
@@ -109,7 +109,7 @@ def eval_test_full(model, test_loader, loss_fn, sample_rate, device, output_dir,
                 s2_est = est_sources[i, 1].cpu()
 
                 base = f"test_{count}"
-                # 虽然是通讯信号，为了可视化方便依然保存为 wav
+                # Although it is a communication signal, it is still saved as wav for the convenience of visualization.
                 torchaudio.save(os.path.join(output_dir, f"{base}_mix.wav"),
                                 mix_i.unsqueeze(0), sample_rate)
                 torchaudio.save(os.path.join(output_dir, f"{base}_s1_ref.wav"),
@@ -146,7 +146,7 @@ def _log_spec(x, sample_rate, n_fft=256, hop=64):
         return_complex=True
     )  # [1, F, TT]
     mag = spec.abs().clamp_min(1e-8)
-    log_mag = mag.log10()  # log10
+    log_mag = mag.log10()  # Log-magnitude scale.
     return log_mag.squeeze(0)  # [F, TT]
 
 
@@ -164,7 +164,7 @@ def pit_reorder(ests: torch.Tensor, refs: torch.Tensor, eps=1e-8):
     scores = []  # list of [B]
     for perm in perms:
         refp = refs[:, perm, :]
-        # 平均每个源的 si-snr
+        # average si-snr per source
         s = 0.0
         for k in range(S):
             s = s + si_snr(ests[:, k, :], refp[:, k, :], eps=eps)  # [B]
@@ -174,7 +174,7 @@ def pit_reorder(ests: torch.Tensor, refs: torch.Tensor, eps=1e-8):
     best_idx = torch.argmax(score_stack, dim=1)  # [B]
     best_perm = torch.tensor(perms, device=ests.device)[best_idx]  # [B, S]
 
-    # 根据 best_perm 重排 ests
+    # Reorder ests according to best_perm
     ests_reordered = torch.stack(
         [ests[b, best_perm[b]] for b in range(B)], dim=0
     )
@@ -197,16 +197,16 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
         with _safe_autocast(device):
             est = model(mix.unsqueeze(1))  # [1, 2, T_est]
 
-        # 1. 对齐长度
+        # 1. Alignment length
         min_len = min(est.shape[-1], targets.shape[-1], mix.shape[-1])
         est = est[..., :min_len]
         targets = targets[..., :min_len]
         mix = mix[..., :min_len]
 
-        # 2. 【关键步骤】调用 PIT 重排
+        # 2. Use PIT reordering
         est, _ = pit_reorder(est, targets)
 
-        # 3. 提取单条数据
+        # 3. Extract a single piece of data
         mix_ = mix[0].detach().float().cpu()
         s1_ref = targets[0, 0].detach().float().cpu()
         s2_ref = targets[0, 1].detach().float().cpu()
@@ -214,7 +214,7 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
         s1_est = est[0, 0].detach().float().cpu()
         s2_est = est[0, 1].detach().float().cpu()
 
-    # 4. 波形图
+    # 4. Waveform graph
     s1_est_aligned = align_waveform(s1_est, s1_ref)
     s2_est_aligned = align_waveform(s2_est, s2_ref)
 
@@ -230,7 +230,7 @@ def visualize_separation_epoch(model, mix, targets, sample_rate, device, save_pr
     plt.savefig(save_prefix + "_wave.png", dpi=200)
     plt.close()
 
-    # 5. 频谱图
+    # 5. Spectrogram
     def to_t(x):
         return x.to(torch.float32)
 
@@ -293,7 +293,7 @@ def plot_metrics(output_dir, epochs, train_loss, val_loss, grad_norm_epoch):
 def main():
     # Basic run naming & logging setup
     timestamp = time.strftime("%Y%m%d-%H%M%S")
-    # 【修改点】重命名 Log
+    # [Modification point] Rename Log
     log_name = f"train_baseline_comm_{timestamp}"
     log_file = os.path.join("../../logs", log_name + ".log")
 
@@ -316,25 +316,25 @@ def main():
 
     torch.backends.cudnn.benchmark = True
 
-    # 【修改点2】 Comm0-2Dataset 路径和参数
+    # 2 Comm0-2Dataset
     root = "../../Dataset/CommBPSK_4v16"
-    # 通讯信号通常使用较高的采样率进行模拟，这里保持一致
+    # Implementation note.
     sample_rate = 100000
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    # 【修改点3】 调用 CommDataLoader
-    # 注意：segment 传点数 (32000)，移除 sample_rate 参数
+    # 3 CommDataLoader
+    # segment (32000) sample_rate
     train_loader, valid_loader, test_loader = MakeDataLoader(root=root, batch_size=16, num_workers=8, segment=32000)
 
-    # 固定一个 valid 样例
+    # Validation sample.
     fixed_mix, fixed_targets = next(iter(valid_loader))
     fixed_mix = fixed_mix[0]  # [T]
     fixed_targets = fixed_targets[0]  # [2, T]
 
     # Model (Baseline TasNet)
-    # 这里的参数可以根据 Comm0-2Dataset 的复杂度调整
-    # 如果信号很简单，可以减小 enc_dim 或 num_blocks
+    # Comm0-2Dataset
+    # enc_dim num_blocks
     model = Model(enc_dim=512, enc_kernel=16, enc_stride=8, bottleneck_channels=128, hidden_channels=256, num_blocks=8,
                   num_repeats=3, num_speakers=2).to(device)
     ema_model = AveragedModel(model, multi_avg_fn=get_ema_multi_avg_fn(0.999)).to(device)

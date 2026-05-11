@@ -2,10 +2,10 @@ import os
 import torch
 import torchaudio
 
-# 导入你的 MultiScaleDeep 模型
+# Import the local MultiScaleDeep model
 from app.Models.Code.MultiScaleDeep.Model_TasNet_MultiScale import Model
 
-# 如果没有本地权重，我们调用现成的 Asteroid 开源模型作为替补
+# If there are no local weights, we call the ready-made Asteroid open source model as a substitute
 try:
     from asteroid.models import ConvTasNet
 except ImportError:
@@ -14,16 +14,7 @@ except ImportError:
 
 class UnifiedInferenceCore:
     def __init__(self, model_type="multiscale_speech_2spk", ckpt_path=None, device=None):
-        """
-        统一的纯推理接口，供 GUI 直接调用。
-
-        :param model_type: 支持以下三种模式
-            - 'multiscale_comm_2spk': 通信信号 2 源分离 (对应 trainTasNet2.py)
-            - 'multiscale_speech_4spk': 语音信号 4 源分离 (对应 trainTasNet.py)
-            - 'pretrained_asteroid': 网上现成的开源模型 (无参数文件时的替补方案)
-        :param ckpt_path: 你的 .pt 权重文件路径
-        :param device: 强制指定设备，默认自动选择 cuda 或 cpu
-        """
+        """A unified pure reasoning interface for direct calls from the GUI. :param model_type: supports the following three modes - 'multiscale_comm_2spk': communication signal 2 source separation (corresponding to trainTasNet2.py) - 'multiscale_speech_4spk': speech signal 4 source separation (corresponding to trainTasNet.py) - 'pretrained_asteroid': ready-made open source model on the Internet (substitute when there is no parameter file) :param ckpt_path: the local.pt weight file path :param device: Forcibly specify the device, cuda or cpu is automatically selected by default"""
         self.device = device if device else ("cuda" if torch.cuda.is_available() else "cpu")
         self.model_type = model_type
         self.ckpt_path = ckpt_path
@@ -33,7 +24,7 @@ class UnifiedInferenceCore:
 
     def _build_and_load(self):
         if self.model_type == "multiscale_speech_2spk":
-            # 严格对齐 trainTasNet2.py 的配置
+            # Configuration of strict alignment trainTasNet2.py
             self.model = Model(
                 enc_dim=516, enc_kernel=(5, 11, 21), enc_stride=8,
                 bottleneck_channels=128, hidden_channels=256,
@@ -42,7 +33,7 @@ class UnifiedInferenceCore:
             self._load_local_weights()
 
         elif self.model_type == "multiscale_speech_3spk":
-            # 严格对齐 trainTasNet.py 的配置
+            # Strictly align the configuration of trainTasNet.py
             self.model = Model(
                 enc_dim=516, enc_kernel=(11, 21, 31), enc_stride=8,
                 bottleneck_channels=128, hidden_channels=256,
@@ -51,7 +42,7 @@ class UnifiedInferenceCore:
             self._load_local_weights()
 
         elif self.model_type == "multiscale_speech_4spk":
-            # 严格对齐 trainTasNet.py 的配置
+            # Strictly align the configuration of trainTasNet.py
             self.model = Model(
                 enc_dim=516, enc_kernel=(11, 21, 31), enc_stride=8,
                 bottleneck_channels=128, hidden_channels=256,
@@ -61,11 +52,11 @@ class UnifiedInferenceCore:
         else:
             raise ValueError(f"不支持的模型类型: {self.model_type}")
 
-        # 强制切换到评估模式，关闭 Dropout 和 BatchNorm 的动态更新
+        # Force switching to evaluation mode and turn off dynamic updates of Dropout and BatchNorm
         self.model.eval()
 
     def _load_local_weights(self):
-        """复用你写好的稳健加载逻辑，优先提取 ema_state"""
+        """Reuse the robust loading logic you wrote and extract ema_state first"""
         if not self.ckpt_path or not os.path.exists(self.ckpt_path):
             print(f"警告: 找不到权重文件 {self.ckpt_path}，将使用随机初始化权重。")
             return
@@ -83,7 +74,7 @@ class UnifiedInferenceCore:
         else:
             sd = ckpt
 
-        # 清洗键名，去除 module. 前缀并剔除 n_averaged
+        # Clean key names, remove module. prefix and remove n_averaged
         if isinstance(sd, dict):
             sd = {k.replace("module.", "", 1): v for k, v in sd.items()}
             if "n_averaged" in sd:
@@ -92,14 +83,10 @@ class UnifiedInferenceCore:
         self.model.load_state_dict(sd, strict=True)
         print("本地权重加载成功！")
 
-    @torch.no_grad()  # 显式禁用梯度，严格控制显存使用
+    @torch.no_grad()  # Explicitly disable gradients and strictly control video memory usage
     def separate(self, mix_waveform):
-        """
-        供 GUI 调用的核心分离函数。
-        :param mix_waveform: 输入的混合音频 Tensor (可为一维或二维)
-        :return: 分离后的多源音频 Tensor，位于 CPU 上，形状为 (num_speakers, T)
-        """
-        # 统一维度整理为 (Batch, 1, Time)
+        """Core detached functions called by the GUI. :param mix_waveform: input mixed audio Tensor (can be one-dimensional or two-dimensional) :return: separated multi-source audio Tensor, located on the CPU, with shape (num_speakers, T)"""
+        # The unified dimensions are organized into (Batch, 1, Time)
         if mix_waveform.dim() == 1:
             mix_waveform = mix_waveform.unsqueeze(0).unsqueeze(0)
         elif mix_waveform.dim() == 2:
@@ -107,18 +94,16 @@ class UnifiedInferenceCore:
 
         mix_waveform = mix_waveform.to(self.device)
 
-        # 开启 bfloat16 混合精度加速推理，提升界面响应速度
-        with torch.autocast(device_type=self.device.type, dtype=torch.bfloat16):
-            est_sources = self.model(mix_waveform)
+        est_sources = self.model(mix_waveform)
 
-        # 如果使用的是 Asteroid 等现成模型，抹平输出维度差异
+        # Enable bfloat16 mixed-precision accelerated reasoning to improve interface response speed
         if est_sources.dim() == 4 and est_sources.size(1) == 1:
             est_sources = est_sources.squeeze(1)
 
-        # 长度对齐并去除直流分量 (避免播放时出现爆音)
+        # If you are using an off-the-shelf model such as Asteroid, smooth out the differences in output dimensions
         min_len = min(est_sources.shape[-1], mix_waveform.shape[-1])
         est_sources = est_sources[..., :min_len]
         est_sources = est_sources - est_sources.mean(dim=-1, keepdim=True)
 
-        # 将结果移至 CPU 并压缩 Batch 维度，方便前端 UI 绘图和保存
+        # Length alignment and DC component removal (to avoid sonic popping during playback)
         return est_sources.squeeze(0).cpu()

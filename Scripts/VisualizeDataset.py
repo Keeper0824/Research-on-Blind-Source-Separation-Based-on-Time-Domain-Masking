@@ -6,28 +6,23 @@ from scipy.signal import welch
 
 
 def visualize_generated_data(root_dir='./Comm0-2Dataset', split='tr', sample_idx=None):
-    """
-    可视化生成的通信信号数据集
-    :param root_dir: 数据集根目录
-    :param split: 'tr' (训练集), 'cv' (验证集), 'tt' (测试集)
-    :param sample_idx: 指定查看第几个样本，None则随机选择
-    """
+    """Visually generated communication signal data set :param root_dir: Data set root directory :param split: 'tr' (training set), 'cv' (validation set), 'tt' (test set) :param sample_idx: specifies which sample to view, None means random selection"""
     mix_dir = os.path.join(root_dir, split, 'mix')
     s1_dir = os.path.join(root_dir, split, 's1')
     s2_dir = os.path.join(root_dir, split, 's2')
 
-    # 检查目录是否存在
+    # Check if directory exists
     if not os.path.exists(mix_dir):
         print(f"Error: Directory {mix_dir} not found. Please run the generation script first.")
         return
 
-    # 获取文件列表
+    # Get file list
     files = sorted(os.listdir(mix_dir))
     if len(files) == 0:
         print("Error: No data found.")
         return
 
-    # 选择样本
+    # Select sample
     if sample_idx is None:
         filename = random.choice(files)
     else:
@@ -38,19 +33,19 @@ def visualize_generated_data(root_dir='./Comm0-2Dataset', split='tr', sample_idx
 
     print(f"Visualizing sample: {filename} from {split} set")
 
-    # 加载数据 (.npy)
+    # Load data (.npy)
     mix = np.load(os.path.join(mix_dir, filename))
     s1 = np.load(os.path.join(s1_dir, filename))
     s2 = np.load(os.path.join(s2_dir, filename))
 
-    # --- 开始绘图 ---
+    # --- Start drawing ---
     fig, axes = plt.subplots(3, 2, figsize=(18, 10))
     plt.subplots_adjust(hspace=0.4)
 
-    fs = 16000  # 采样率
-    n_plot = 400  # 仅绘制前 400 个点，以便看清波形细节
+    fs = 16000  # Sampling rate
+    n_plot = 400  # Plot only the first 400 points to see waveform details
 
-    # 1. 时域波形 (Time Domain) - Zoomed In
+    # 1. Time Domain - Zoomed In
     t = np.arange(n_plot) / fs
 
     # Mix
@@ -72,15 +67,15 @@ def visualize_generated_data(root_dir='./Comm0-2Dataset', split='tr', sample_idx
     axes[2, 0].set_ylabel('Amplitude')
     axes[2, 0].grid(True, alpha=0.3)
 
-    # 2. 频域功率谱密度 (PSD) - 全长信号
-    # 使用 Welch 方法计算功率谱
+    # 2. Frequency Domain Power Spectral Density (PSD) - Full Length Signal
+    # Calculate the power spectrum using Welch's method.
     def plot_psd(ax, sig, color, label):
         f, Pxx = welch(sig, fs, nperseg=1024)
         ax.semilogy(f, Pxx, color=color)
         ax.set_title(label)
         ax.set_ylabel('PSD (V**2/Hz)')
         ax.grid(True, which='both', alpha=0.3)
-        # 标记载波频率 2000Hz
+        # Mark carrier frequency 2000Hz
         ax.axvline(2000, color='g', linestyle='--', alpha=0.5, label='Carrier (2kHz)')
         ax.legend(loc='upper right')
 
@@ -94,5 +89,5 @@ def visualize_generated_data(root_dir='./Comm0-2Dataset', split='tr', sample_idx
 
 
 if __name__ == "__main__":
-    # 随机查看一个训练集样本
+    # View a random training set sample
     visualize_generated_data()

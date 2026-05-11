@@ -28,14 +28,14 @@ class LibriMixSeparationDataset(Dataset):
     def __getitem__(self, idx):
         # sr: int
         # mixture: Tensor [C, T]
-        # sources: list[Tensor[T]]，长度=num_speakers
+        # sources: list[Tensor[T]], length=num_speakers.
         sr, mixture, sources = self.ds[idx]
 
-        # 保守一点，转成 mono 单声道 [1, T]
+        # Be conservative and convert to mono [1, T]
         if mixture.dim() == 1:
             mixture = mixture.unsqueeze(0)  # [1, T]
         else:
-            mixture = mixture.mean(0, keepdim=True)  # 多声道 -> [1, T]
+            mixture = mixture.mean(0, keepdim=True)  # Multichannel -> [1, T]
 
         # sources: list[T] -> Tensor[num_speakers, T]
         sources = torch.stack(sources, dim=0)
@@ -62,21 +62,13 @@ def build_model(num_sources=2):
 
 
 def separation_collate_fn(batch):
-    """
-    batch: list of (mixture, sources, sr)
-      mixture: [1, T_i]
-      sources: [num_speakers, T_i]
-    返回:
-      mixtures_pad: [B, 1, T_max]
-      sources_pad:  [B, num_speakers, T_max]
-      sr: int (假设 batch 里都是同一个采样率)
-    """
-    mixtures, sources_list, srs = zip(*batch)  # 各是 tuple 长度 B
+    """batch: list of (mixture, sources, sr) mixture: [1, T_i] sources: [num_speakers, T_i] return: mixtures_pad: [B, 1, T_max] sources_pad: [B, num_speakers, T_max] sr: int (assuming the batch has the same sampling rate)"""
+    mixtures, sources_list, srs = zip(*batch)  # Each is a tuple of length B
 
-    # 检查一下 num_speakers 一致
+    # Check that num_speakers is consistent
     num_speakers = sources_list[0].size(0)
 
-    # 计算这个 batch 中的最长长度
+    # Calculate the longest length in this batch
     lengths = [m.shape[-1] for m in mixtures]
     max_len = max(lengths)
 
@@ -85,11 +77,11 @@ def separation_collate_fn(batch):
     padded_sources = []
 
     for m, s in zip(mixtures, sources_list):
-        # m: [1, T_i]；s: [C, T_i]
+        # m: [1, T_i]s: [C, T_i]
         T = m.shape[-1]
         if T < max_len:
             pad_size = max_len - T
-            # 在右侧补零: (left, right) for last dim
+            # Pad zeros on the right: (left, right) for last dim.
             m = torch.nn.functional.pad(m, (0, pad_size))
             s = torch.nn.functional.pad(s, (0, pad_size))
         padded_mixtures.append(m)
@@ -98,7 +90,7 @@ def separation_collate_fn(batch):
     mixtures_pad = torch.stack(padded_mixtures, dim=0)  # [B, 1, T_max]
     sources_pad = torch.stack(padded_sources, dim=0)  # [B, C, T_max]
 
-    # 默认取第一个 sr
+    # By default, the first sr is taken
     sr = srs[0]
     return mixtures_pad, sources_pad, sr
 
@@ -110,14 +102,14 @@ def train_convtasnet(librimix_root, num_epochs=5, batch_size=1, lr=1e-3, device=
 
     print(f"Using device: {device}")
 
-    # 1. 数据
+    # 1. Data
     train_loader, val_loader = make_dataloaders(
         root=librimix_root,
         batch_size=batch_size,
         num_workers=4,
     )
 
-    # 2. 模型
+    # 2. Model
     model = build_model(num_sources=2).to(device)
     optimizer = optim.Adam(model.parameters(), lr=lr)
 
@@ -125,7 +117,7 @@ def train_convtasnet(librimix_root, num_epochs=5, batch_size=1, lr=1e-3, device=
         model.train()
         total_loss = 0.0
         for i, (mixture, sources, sr) in enumerate(train_loader):
-            # mixture: [B, 1, T]；sources: [B, 2, T]
+            # mixture: [B, 1, T]sources: [B, 2, T]
             mixture = mixture.to(device)  # [B, 1, T]
             sources = sources.to(device)  # [B, 2, T]
 
@@ -145,7 +137,7 @@ def train_convtasnet(librimix_root, num_epochs=5, batch_size=1, lr=1e-3, device=
         avg_train_loss = total_loss / len(train_loader)
         print(f"Epoch {epoch} finished. Avg train loss: {avg_train_loss:.4f}")
 
-        # 简单做个 val（可选）
+        # Simply make a val (optional)
         model.eval()
         with torch.no_grad():
             val_loss = 0.0
@@ -179,29 +171,26 @@ def load_trained_model(ckpt_path, device=None, num_sources=2):
 
 def separate_one_wav(model, device, in_wav_path, out_dir,
                      target_sr=8000):
-    """
-    in_wav_path: 你的混音 wav 路径
-    out_dir: 分离音频输出目录
-    """
+    """in_wav_path: the local mix wav path out_dir: separate audio output directory"""
     os.makedirs(out_dir, exist_ok=True)
 
-    # 1. 读入音频
+    # 1. Read audio
     mixture, sr = torchaudio.load(in_wav_path)  # [C, T]
     print(f"Loaded {in_wav_path}, shape={mixture.shape}, sr={sr}")
 
-    # 2. 转单声道
+    # 2. Convert to mono
     if mixture.dim() == 1:
         mixture = mixture.unsqueeze(0)  # [1, T]
     elif mixture.size(0) > 1:
-        mixture = mixture.mean(0, keepdim=True)  # 多声道 -> mono
+        mixture = mixture.mean(0, keepdim=True)  # Multi-channel -> mono.
 
-    # 3. 重采样到 8k（和训练保持一致）
+    # 3. Resample to 8k (consistent with training)
     if sr != target_sr:
         resampler = torchaudio.transforms.Resample(orig_freq=sr, new_freq=target_sr)
         mixture = resampler(mixture)
         sr = target_sr
 
-    # 4. 加 batch 维度 -> [B, 1, T]
+    # 4. Add batch dimension -> [B, 1, T]
     mixture = mixture.unsqueeze(0).to(device)  # [1, 1, T]
 
     with torch.no_grad():
@@ -211,25 +200,25 @@ def separate_one_wav(model, device, in_wav_path, out_dir,
     num_sources = est_sources.size(0)
     base_name = os.path.splitext(os.path.basename(in_wav_path))[0]
 
-    # 5. 逐个保存分离出的源
+    # 5. Save separated sources one by one
     for i in range(num_sources):
         out_path = os.path.join(out_dir, f"{base_name}_s{i + 1}.wav")
-        # torchaudio.save 需要 [channels, T]
-        torchaudio.save(out_path, est_sources[i:i + 1, :],  # 保留 channel 维度 [1, T]
+        # torchaudio.save requires [channels, T]
+        torchaudio.save(out_path, est_sources[i:i + 1, :],  # Reserve channel dimensions [1, T]
                         sample_rate=sr)
         print(f"Saved: {out_path}")
 
 
 if __name__ == "__main__":
-    librimix_root = "Dataset/LibriMix"  # 这里换成你自己的路径
+    librimix_root = "Dataset/LibriMix"  # Change here to the local own path
     model = train_convtasnet(librimix_root=librimix_root, num_epochs=3, batch_size=1, lr=1e-3,
                              ckpt_path="convtasnet_librimix_train100_epoch3.pt", )
 
     # ckpt_path = "convtasnet_librimix_train100_epoch3.pt"
     # model, device = load_trained_model(ckpt_path)
-    #
-    # # 你自己的混音音频
-    # in_wav = r"E:\Lessons\大学\大四\Project\my_mixture.wav"
-    # out_dir = r"E:\Lessons\大学\大四\Project\separated"
-    #
+    # Implementation note.
+    # # the local own audio mix
+    # in_wav = r"E:\Lessons\University\Senior\Project\my_mixture.wav".
+    # out_dir = r"E:\Lessons\University\Senior\Project\separated".
+    # Implementation note.
     # separate_one_wav(model, device, in_wav, out_dir)

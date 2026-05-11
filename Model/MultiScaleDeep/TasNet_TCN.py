@@ -13,13 +13,13 @@ class TCNBlock(nn.Module):
         self.bottleneck_channels = bottleneck_channels
         self.hidden_channels = hidden_channels
 
-        # 1x1 conv: bottleneck → hidden
+        # 1x1 conv: bottleneck hidden
         self.conv1x1 = nn.Conv1d(bottleneck_channels, hidden_channels, kernel_size=1, bias=False)
 
         self.prelu1 = nn.PReLU(hidden_channels)
         self.norm1 = nn.GroupNorm(1, hidden_channels, eps=1e-6)
 
-        # Depthwise dilated convolution: hidden → hidden
+        # Depthwise dilated convolution: hidden hidden
         # Padding ensures output length == input length
         padding = dilation * (kernel_size - 1) // 2
         self.dconv = nn.Conv1d(hidden_channels, hidden_channels, kernel_size=kernel_size, dilation=dilation,
@@ -73,7 +73,7 @@ class SeparatorTCN(nn.Module):
         self.num_repeats = num_repeats
         self.num_speakers = num_speakers
 
-        # Map encoder output N → bottleneck B
+        # Map encoder output N bottleneck B
         self.encoder_1x1 = nn.Conv1d(enc_channels, bottleneck_channels, kernel_size=1)
 
         # Build TCN blocks: dilation pattern 1, 2, 4, ... per repeat

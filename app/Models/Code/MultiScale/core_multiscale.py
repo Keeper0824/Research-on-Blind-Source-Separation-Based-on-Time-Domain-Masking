@@ -1,16 +1,13 @@
 import os
 import torch
 
-# 指向你的多尺度模型架构
+# Point to the local multi-scale model architecture
 from app.Models.Code.MultiScale.Model_TasNet_MultiScale import Model
 
 
 class MultiScaleInferenceCore:
     def __init__(self, ckpt_path=None, device=None):
-        """
-        多尺度 (MultiScale) 终极优化版模型的推理核心类。
-        采用 Golden Config: enc_kernel=[8, 16, 24], enc_dim=516
-        """
+        """The inference core class of the MultiScale final optimized model. Use Golden Config: enc_kernel=[8, 16, 24], enc_dim=516"""
         self.device = device if device else ("cuda" if torch.cuda.is_available() else "cpu")
         self.ckpt_path = ckpt_path
         self.model = None
@@ -18,7 +15,7 @@ class MultiScaleInferenceCore:
         self._load_model()
 
     def _load_model(self):
-        # 严格对齐 trainTasNet2.py 中的 Golden Config
+        # Strict alignment Golden Config in trainTasNet2.py
         print("Initializing Multi-Scale Model with Golden Config...")
         self.model = Model(
             enc_dim=516,
@@ -39,7 +36,7 @@ class MultiScaleInferenceCore:
         self.model.eval()
 
     def _load_weights(self, path):
-        """完美复刻 core_baseline.py 中的高兼容性权重读取"""
+        """Reuse the compatible weight-loading path from core_baseline.py"""
         print(f"Loading MultiScale weights from {path}...")
         ckpt = torch.load(path, map_location=self.device)
 
@@ -59,7 +56,7 @@ class MultiScaleInferenceCore:
         else:
             sd = ckpt
 
-        # 清洗键名
+        # Clean key names
         if isinstance(sd, dict):
             sd = {k.replace("module.", "", 1): v for k, v in sd.items()}
             if "n_averaged" in sd:
@@ -70,7 +67,7 @@ class MultiScaleInferenceCore:
 
     @torch.no_grad()
     def separate(self, mix_waveform):
-        # 整理维度为 (Batch, 1, Time)
+        # The sorting dimension is (Batch, 1, Time)
         if mix_waveform.dim() == 1:
             mix_waveform = mix_waveform.unsqueeze(0).unsqueeze(0)
         elif mix_waveform.dim() == 2:
@@ -78,11 +75,9 @@ class MultiScaleInferenceCore:
 
         mix_waveform = mix_waveform.to(self.device)
 
-        # 采用 float16 混合精度加速 (与 trainTasNet2.py 保持一致)
-        with torch.autocast(device_type=self.device.type, dtype=torch.float16):
-            est_sources = self.model(mix_waveform)
+        est_sources = self.model(mix_waveform)
 
-        # 长度对齐
+        # Use float16 mixed precision acceleration (consistent with trainTasNet2.py)
         min_len = min(est_sources.shape[-1], mix_waveform.shape[-1])
         est_sources = est_sources[..., :min_len]
 
